@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "airbnb/base"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "import"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "jquery": true
+  },
+  "rules": {
+    "comma-dangle": ["error", "never"],
+    "indent": ["error", "tab"],
+    "no-tabs": 0,
+    "no-lonely-if": 0,
+    "no-use-before-define": ["error", { "functions": false }],
+    "consistent-return": 0,
+    "func-names": ["error", "never"],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "prefer-arrow-callback": 0
+  }
+}

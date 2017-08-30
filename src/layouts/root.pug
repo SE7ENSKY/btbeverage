@@ -1,0 +1,22 @@
+include ../globals/commons
+include ../../node_modules/verstat-bemto/bemto-tabs
+
+
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(content="width=device-width, initial-scale=1" name="viewport")
+    meta(name="theme-color" content="#1073fb")
+    if file.title
+        title!= file.title
+    block styles
+      rontEndWebDev
+
+  body
+    block root
+
+    block fonts
+    block styles
+    block scripts
+    block analytics

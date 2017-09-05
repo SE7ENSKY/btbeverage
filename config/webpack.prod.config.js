@@ -332,7 +332,8 @@ const prodConfig = {
 				ignore: [
 					'scripts/*',
 					'styles/*',
-					'*.js'
+					'*.js',
+					'.DS_Store'
 				]
 			}
 		]),

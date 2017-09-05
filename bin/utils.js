@@ -670,9 +670,9 @@ function renderBlockEngine(blockName, data) {
 }
 
 function getGlobalData() {
-	const data = sync(`${PROJECT_ROOT}/src/data/*.yml`).map((file) => {
+	const data = sync(`${PROJECT_ROOT}/src/data/*.?(yml|yaml)`).map((file) => {
 		const obj = {};
-		obj[basename(file, '.yml')] = safeLoad(customReadFile(file));
+		obj[basename(file, extname(file))] = safeLoad(customReadFile(file));
 		return obj;
 	});
 	return data.length ? Object.assign({}, ...data) : {};

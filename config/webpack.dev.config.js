@@ -274,7 +274,8 @@ const devConfig = {
 				ignore: [
 					'scripts/*',
 					'styles/*',
-					'*.js'
+					'*.js',
+					'.DS_Store'
 				]
 			}
 		]),

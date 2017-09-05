@@ -88,6 +88,34 @@ const prodConfig = {
 		publicPath: '/',
 		filename: `assets/[name]${process.env.UGLIFY ? '.min' : ''}.[chunkhash:8].js`
 	},
+	resolve: {
+		// modules: [
+		// 	resolve(__dirname, 'src'),
+		// 	'node_modules'
+		// ],
+		extensions: [
+			'.js',
+			'.coffee',
+			'.yaml',
+			'.json',
+			'.css',
+			'.sass',
+			'.scss',
+			'.less',
+			'.styl',
+			'.png',
+			'.jpg',
+			'.jpeg',
+			'.gif'
+		],
+		alias: {
+			fonts: join(PROJECT_ROOT, 'src', 'assets', 'fonts'),
+			img: join(PROJECT_ROOT, 'src', 'assets', 'img'),
+			scripts: join(PROJECT_ROOT, 'src', 'assets', 'scripts'),
+			styles: join(PROJECT_ROOT, 'src', 'assets', 'styles'),
+			vendor: join(PROJECT_ROOT, 'src', 'vendor')
+		}
+	},
 	devtool: false,
 	target: 'web',
 	watch: false,

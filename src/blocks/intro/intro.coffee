@@ -7,5 +7,3 @@ $ ->
 	# setTimeout ->
 	# 	_video.play()
 	# , 20
-
-	console.log "TROLOLO!"

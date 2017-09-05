@@ -14,14 +14,14 @@ const getRequiredfiles = file => file.keys().forEach(file);
 import 'normalize.css/normalize.css';
 
 // ------------------ import system styles -------------------
-import './styles/main.styl';
+import '../assets/fonts/ffmark/stylesheet.css';
+import '../assets/styles/main.styl';
 
 // ------------------ import vendor scripts ------------------
-// import '../vendor/';
+import '../vendor/modernizr.js';
 
 // ----------------- import system scripts -------------------
-import '../assets/scripts/jquery-select7.coffee';
-import '../assets/scripts/main.js';
+import '../assets/scripts/main.coffee';
 
 // ------------------ import system blocks -------------------
 getRequiredfiles(require.context('../blocks/', true, /\.(css|styl|less|sass|scss)$/));

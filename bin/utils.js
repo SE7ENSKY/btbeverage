@@ -802,7 +802,6 @@ function initHtmlWebpackPlugin(outputPath, outputFileSystem, compiler, browserSy
 		const filename = basename(item);
 		let inject;
 		switch (filename) {
-		case 'styles.html':
 		case 'sitegrid.html':
 			inject = false;
 			break;

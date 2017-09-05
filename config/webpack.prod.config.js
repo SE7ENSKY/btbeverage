@@ -246,7 +246,11 @@ const prodConfig = {
 					query: {
 						sourceMap: false,
 						use: nib(),
-						import: [getModifiedNib(require.resolve('verstat-nib'))],
+						import: [
+							join(PROJECT_ROOT, 'src', 'globals', 'variables.styl'),
+							join(PROJECT_ROOT, 'src', 'globals', 'mixins.styl'),
+							getModifiedNib(require.resolve('verstat-nib'))
+						],
 						preferPathResolver: 'webpack'
 					}
 				}

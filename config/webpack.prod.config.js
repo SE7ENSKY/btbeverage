@@ -86,7 +86,7 @@ const prodConfig = {
 	output: {
 		path: PROD_OUTPUT,
 		publicPath: '/',
-		filename: `assets/[name]${process.env.UGLIFY ? '.min' : ''}.js`
+		filename: `assets/[name]${process.env.UGLIFY ? '.min' : ''}.[chunkhash:8].js`
 	},
 	devtool: false,
 	target: 'web',
@@ -161,11 +161,11 @@ const prodConfig = {
 	plugins: [
 		new DefinePlugin({
 			'process.env': {
-				NODE_ENV: process.env.NODE_ENV
+				NODE_ENV: JSON.stringify(process.env.NODE_ENV)
 			}
 		}),
 		new ExtractTextPlugin({
-			filename: `assets/[name]${process.env.UGLIFY ? '.min' : ''}.css`,
+			filename: `assets/[name]${process.env.UGLIFY ? '.min' : ''}.[chunkhash:8].css`,
 			allChunks: true
 		}),
 		new HappyPack({
@@ -323,7 +323,8 @@ const prodConfig = {
 		}),
 		new CommonsChunkPlugin({
 			name: gererateVendor(),
-			minChunks: ({ resource }) => (/node_modules/.test(resource)) || (/vendor/.test(resource))
+			filename: `assets/${gererateVendor()}${process.env.UGLIFY ? '.min' : ''}.[chunkhash:8].js`,
+			minChunks: (module, count) => (/node_modules/.test(module.resource) || /vendor/.test(module.resource)) && count >= 1
 		}),
 		new CopyWebpackPlugin([
 			{

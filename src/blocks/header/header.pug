@@ -1,0 +1,10 @@
+.container
+	if menu
+		+e("nav").menu
+			+e("ul").menu-list
+				each item in menu
+					+e("li").menu-item
+						+e("a").menu-link(href=item.url)
+							= item.title
+							if item.badge
+								+e("span").menu-badge= item.badge

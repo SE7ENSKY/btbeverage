@@ -1,6 +1,11 @@
 extends root
 
 block root
+	- classes = []
+	if headerMod
+		- classes.push(headerMod)
+	+b.header(class=classes): +i({ menu: mainMenu })
+
 	main.main
 		block main
 			!= content

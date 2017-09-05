@@ -1,0 +1,47 @@
+.header
+	position relative
+	z-index 150
+	&_simple
+		position absolute
+		top 30px
+		right 0
+		left 0
+		.header__menu
+			&-link
+				color #fff
+				&:hover
+					color brandColor
+					.header__menu-badge
+						color brandColor
+						&:before
+							background-color brandColor
+	&__menu
+		&-list
+			display flex
+			justify-content center
+			margin 0
+			padding 0
+			list-style none
+		&-item
+			margin 0 15px
+		&-link
+			font-size 12px
+			text-transform uppercase
+			text-decoration none
+		&-badge
+			position relative
+			padding-left 12px
+			display inline-block
+			color #b2b7b8
+			transition .2s color ease-in-out
+			&:before
+				content ""
+				position absolute
+				top 4px
+				left 5px
+				width 3px
+				height @width
+				border-radius 50%
+				background-color #b2b7b8
+				transition .2s background-color ease-in-out
+

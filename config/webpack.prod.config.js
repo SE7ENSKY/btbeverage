@@ -89,10 +89,6 @@ const prodConfig = {
 		filename: `assets/[name]${process.env.UGLIFY ? '.min' : ''}.[chunkhash:8].js`
 	},
 	resolve: {
-		// modules: [
-		// 	resolve(__dirname, 'src'),
-		// 	'node_modules'
-		// ],
 		extensions: [
 			'.js',
 			'.coffee',

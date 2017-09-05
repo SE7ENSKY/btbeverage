@@ -50,10 +50,6 @@ const devConfig = {
 		filename: 'assets/[name].js'
 	},
 	resolve: {
-		// modules: [
-		// 	resolve(__dirname, 'src'),
-		// 	'node_modules'
-		// ],
 		extensions: [
 			'.js',
 			'.coffee',

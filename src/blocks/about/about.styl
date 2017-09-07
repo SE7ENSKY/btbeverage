@@ -1,0 +1,61 @@
+.about
+	&__inner
+		padding-top 140px
+	&__title
+		margin 0 0 90px
+		font-size 72px
+		line-height 1.138
+		color brandColor
+		text-align center
+		font-weight normal
+		text-transform uppercase
+		&-row
+			display block
+			position relative
+			&_1
+			&_3
+				z-index 1
+			&_2
+				z-index 3
+		&-image
+			position absolute
+			top 0
+			left 50%
+			z-index 2
+			width 164px
+			height 90px
+			margin -87px 0 0 -62px
+			transform translateY(-50vh)
+	&__text
+		width 65%
+		margin 0 auto
+		font-size 16px
+		line-height 1.4
+		color brandColor
+		text-align center
+		p
+			margin 0
+	&__list
+		display flex
+		flex-wrap wrap
+		justify-content space-between
+		margin-top 450px
+		&-item
+			width 38%
+			text-align center
+			margin-bottom 110px
+		&-image
+			width 65px
+			height @width
+			display flex
+			align-items center
+			justify-content center
+			margin 0 auto 15px
+			&-i
+				max-width 100%
+				max-height @max-width
+		&-title
+			font-size 14px
+			line-height 1.285
+			color brandColor
+

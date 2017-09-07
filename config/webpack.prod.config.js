@@ -105,8 +105,10 @@ const prodConfig = {
 			'.gif'
 		],
 		alias: {
+			assets: join(PROJECT_ROOT, 'src', 'assets'),
 			fonts: join(PROJECT_ROOT, 'src', 'assets', 'fonts'),
 			img: join(PROJECT_ROOT, 'src', 'assets', 'img'),
+			video: join(PROJECT_ROOT, 'src', 'assets', 'video'),
 			scripts: join(PROJECT_ROOT, 'src', 'assets', 'scripts'),
 			styles: join(PROJECT_ROOT, 'src', 'assets', 'styles'),
 			vendor: join(PROJECT_ROOT, 'src', 'vendor')
@@ -272,6 +274,7 @@ const prodConfig = {
 						use: nib(),
 						import: [
 							join(PROJECT_ROOT, 'src', 'globals', 'variables.styl'),
+							join(PROJECT_ROOT, 'src', 'globals', 'functions.styl'),
 							join(PROJECT_ROOT, 'src', 'globals', 'mixins.styl'),
 							getModifiedNib(require.resolve('verstat-nib'))
 						],

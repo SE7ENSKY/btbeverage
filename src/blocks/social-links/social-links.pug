@@ -1,4 +1,9 @@
-if data
-	each item in data
-		+e("a").item(href=item.url, target="_blank")
-			+e("img").item-image(src=asset("/i/#{item.title}-icon.svg"), alt="")
++e("a").item(href="/" target="_blank")
+	+e("img").item-image(src="/assets/img/youtube-icon.svg" alt="" width="20" height="20")
++e("a").item(href="/" target="_blank")
+	+e("img").item-image(src="/assets/img/instagram-icon.svg" alt="" width="20" height="20")
++e("a").item(href="/" target="_blank")
+	+e("img").item-image(src="/assets/img/facebook-icon.svg" alt="" width="20" height="20")
++e("a").item(href="/" target="_blank")
+	+e("img").item-image(src="/assets/img/pinterest-icon.svg" alt="" width="20" height="20")
+

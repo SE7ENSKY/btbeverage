@@ -2,3 +2,13 @@
 	display flex
 	flex-wrap wrap
 	justify-content center
+	&__item
+		margin 0 10px
+		text-decoration none
+		transition .2s transform ease-in-out
+		&:hover
+			transform translateY(-5px)
+		&-image
+			display block
+			width 20px
+			height @width

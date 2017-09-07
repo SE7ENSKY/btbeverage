@@ -1,0 +1,61 @@
+.media-widget
+	position relative
+	display flex
+	flex-direction column
+	margin-bottom 130px
+	&__image
+		&_main
+			position absolute
+			top 120px
+			left 0
+			right 0
+			bottom 40px
+		&_add
+			position relative
+			width 40%
+			padding-bottom 30%
+			&.media-widget__image_mask
+				margin-bottom 40px
+		&_mask
+			&:after
+				content ""
+				position absolute
+				top 0
+				right 0
+				bottom 0
+				left 0
+				background-color rgba(86,148,62,.7)
+		&-i
+			position absolute
+			top 0
+			right 0
+			bottom 0
+			left 0
+			background-size cover
+			background-position center center
+			background-repeat no-repeat
+	&__content
+		position relative
+		width 50%
+		padding-bottom 40%
+		background url("/assets/img/green-texture.jpg") repeat center center brandColor
+	&__title
+		position absolute
+		top 0
+		left 0
+		width 100%
+		height @width
+		display flex
+		align-items center
+		justify-content center
+		font-size 48px
+		text-transform uppercase
+		color #fff
+		text-align center
+	&_oriented
+		&-right
+			align-items flex-end
+		&-left
+			align-items flex-start
+
+

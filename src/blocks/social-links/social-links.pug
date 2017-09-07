@@ -1,0 +1,4 @@
+if data
+	each item in data
+		+e("a").item(href=item.url, target="_blank")
+			+e("img").item-image(src=asset("/i/#{item.title}-icon.svg"), alt="")

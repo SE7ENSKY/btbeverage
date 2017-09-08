@@ -1,12 +1,18 @@
 +e.image._main
 	if mainImage
-		+e.image-i(style="background-image:url('/assets/img/media-img-2.jpg');")
+		+e.image-i(style=`background-image:url("${mainImage}");`)
+
 +e.content
 	if title
 		+e.title= title
-- classes = []
-if addImageMask
-	- classes.push("media-widget__image_mask")
-+e.image._add(class=classes)
-	if addImage
-		+e.image-i(style="background-image:url('/assets/img/media-img-sm-1.jpg');")
+
+if bottle
+	+e("img").image._center(src="/assets/img/bottle.png" alt="")
+
+unless hideAddImage
+	- classes = []
+	if addImageMask
+		- classes.push("media-widget__image_mask")
+	+e.image._add(class=classes)
+		if addImage
+			+e.image-i(style=`background-image:url("${addImage}");`)

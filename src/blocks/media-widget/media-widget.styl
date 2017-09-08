@@ -2,20 +2,21 @@
 	position relative
 	display flex
 	flex-direction column
-	margin-bottom 130px
 	&__image
+		overflow hidden
 		&_main
 			position absolute
 			top 120px
 			left 0
 			right 0
-			bottom 40px
+			bottom 80px
 		&_add
 			position relative
 			width 40%
 			padding-bottom 30%
 			&.media-widget__image_mask
-				margin-bottom 40px
+				margin-bottom 80px
+				padding-bottom 20%
 		&_mask
 			&:after
 				content ""
@@ -57,5 +58,22 @@
 			align-items flex-end
 		&-left
 			align-items flex-start
+	&_offset
+		&-bottom
+			margin-bottom 140px
+	&_simple
+		padding-top 23%
+		align-items flex-end
+		justify-content flex-end
+		.media-widget
+			&__image
+				&_main
+					top 0
+					right 20%
+				&_center
+					position absolute
+					top 12%
+					left 50%
+					transform translateX(-50%)
 
 

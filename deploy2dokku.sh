@@ -3,7 +3,7 @@
 PROJECT_NAME=btbeverage
 OUT_FOLDER=dist
 
-npm install ; yarn build:min
+yarn ; yarn build:min
 rm -rf tmp ; git clone --depth 1 https://github.com/SE7ENSKY/heroku-express-template.git tmp
 ( cd tmp ; rm -rf .git ; rm -rf public )
 cp -r $OUT_FOLDER tmp/public

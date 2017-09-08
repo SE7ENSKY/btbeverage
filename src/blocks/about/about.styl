@@ -26,7 +26,10 @@
 			width 164px
 			height 90px
 			margin -87px 0 0 -62px
-			transform translateY(-50vh)
+			@media (min-height: 650px)
+				transform translateY(-50vh)
+			@media (max-height: 649px)
+				margin-top -412px
 	&__text
 		width 65%
 		margin 0 auto

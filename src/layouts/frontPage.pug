@@ -24,9 +24,23 @@ block main
 		addImageMask: true
 	})
 
-	+b.media-widget._simple: +i({
+	+b.media-widget._simple._offset-bottom: +i({
 		title: "b-tea",
 		mainImage: "/assets/img/media-img-3.jpg",
 		hideAddImage: true,
 		bottle: "/assets/img/bottle.png"
 	})
+
+	.container
+		+b.content-heading: +i({
+			title: "Choose <br>your flavor",
+			text: "<p>Each flavor is crisp, refreshing and fully satisfying.</p><p>Naturally!</p>"
+		})
+
+	+b.catalog: +i({ data: catalog })
+
+
+
+
+
+

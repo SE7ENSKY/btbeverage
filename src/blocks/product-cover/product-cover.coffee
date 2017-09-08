@@ -5,4 +5,4 @@ $ ->
 
 	$block.on "click", (e) ->
 		$target = $(@).attr("data-target")
-		$catalog.find($target).slideToggle(200)
+		$catalog.find($target).slideToggle(200).toggleClass("active")

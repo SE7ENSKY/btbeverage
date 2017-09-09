@@ -23,6 +23,7 @@ const {
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BeautifyHtmlPlugin = require('beautify-html-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const ResourceHintWebpackPlugin = require('preload-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const StylesPostprocessorPlugin = require('styles-postprocessor-plugin');
 const HappyPack = require('happypack');
@@ -194,6 +195,17 @@ const prodConfig = {
 			filename: `assets/[name]${process.env.UGLIFY ? '.min' : ''}.[chunkhash:8].css`,
 			allChunks: true
 		}),
+		new ResourceHintWebpackPlugin(
+			{
+				rel: 'preload',
+				as(entry) {
+					if (/\.css$/.test(entry)) return 'style';
+					return 'script';
+				},
+				include: 'all',
+				fileBlacklist: [/\.map/]
+			}
+		),
 		new HappyPack({
 			id: 'markdown',
 			verbose: false,

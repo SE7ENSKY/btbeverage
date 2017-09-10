@@ -69,7 +69,7 @@ const fileLoaderExclude = [
 const urlLoaderInclude = fileLoaderExclude;
 
 const postcssLoaderOptions = {
-	sourceMap: false,
+	sourceMap: process.env.SOURCEMAP ? true : false,
 	config: {
 		path: POSTCSS_CONFIG,
 		ctx: {
@@ -116,7 +116,7 @@ const prodConfig = {
 			vendor: join(PROJECT_ROOT, 'src', 'vendor')
 		}
 	},
-	devtool: false,
+	devtool: process.env.SOURCEMAP ? 'source-map' : false,
 	target: 'web',
 	watch: false,
 	module: {
@@ -247,7 +247,7 @@ const prodConfig = {
 				{
 					path: 'sass-loader',
 					query: {
-						sourceMap: false
+						sourceMap: process.env.SOURCEMAP ? true : false
 					}
 				}
 			]
@@ -265,7 +265,7 @@ const prodConfig = {
 				{
 					path: 'less-loader',
 					query: {
-						sourceMap: false
+						sourceMap: process.env.SOURCEMAP ? true : false
 					}
 				}
 			]
@@ -283,7 +283,7 @@ const prodConfig = {
 				{
 					path: 'stylus-loader',
 					query: {
-						sourceMap: false,
+						sourceMap: process.env.SOURCEMAP ? true : false,
 						use: nib(),
 						import: [
 							join(PROJECT_ROOT, 'src', 'globals', 'variables.styl'),

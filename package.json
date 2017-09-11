@@ -87,6 +87,7 @@
   },
   "dependencies": {
     "fastclick": "^1.0.6",
+    "gsap": "^1.20.2",
     "jquery": "^3.2.1",
     "normalize.css": "^6.0.0"
   }

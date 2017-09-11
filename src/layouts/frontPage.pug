@@ -10,7 +10,9 @@ block main
 	})
 	//- mp4: "http://tmp.static.se7enapp.com/bdsl/main.mp4"
 
-	+b.about: +i
+	+b.about: +i({
+		bottleSeq: file.bottleSeq 
+	})
 
 	+b.media-widget._oriented-right: +i({
 		title: "b-healthy",
@@ -38,9 +40,3 @@ block main
 		})
 
 	+b.catalog: +i({ list: catalog })
-
-
-
-
-
-

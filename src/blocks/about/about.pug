@@ -25,3 +25,8 @@
 			+e.list-image
 				+e("img").list-image-i(src="/assets/img/ingridient-icon-4.svg" alt="" width="65" height="65")
 			+e.list-title Natural Flavor &amp; Herbs
+	+e.bottle
+		if Array.isArray(bottleSeq)
+			each imgSrc in bottleSeq
+				+e("img").bottle-img(src=img(imgSrc) alt="")
+			

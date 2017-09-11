@@ -1,4 +1,5 @@
-import { TimelineMax, Power2, Power1 } from 'gsap'
+import { TimelineMax, TweenMax, Power2, Power1, Sine } from 'gsap'
+import ScrollMagic from 'scrollmagic';
 
 $ ->
 	$block = $(".intro")
@@ -52,13 +53,18 @@ $ ->
 		tl = new TimelineMax()
 
 		tl
-			.fromTo $leaf, 2.2, { y: -90, rotation: -90 }, { y: window.innerHeight / 2 - 85, ease: Power1.easeOut }, 0
+			.fromTo $leaf, 2.2,
+				y: - window.innerHeight / 2 - 40,
+				rotation: -90,
+					y: "-100%"
+					ease: Power1.easeOut
+				, 0
 			.fromTo $leaf, 0.8, { rotation: -90 }, { rotation: 25 }, 0
-			.fromTo $leaf, 0.8, { x: -45 }, { x: -80 }, 0
-			.fromTo $leaf, 0.6, { x: -80 }, { x: -55 }, 0.8
+			.fromTo $leaf, 0.8, { x: "-50%" }, { x: "-53%" }, 0
+			.fromTo $leaf, 0.6, { x: "-53%" }, { x: "-45%" }, 0.8
 			.fromTo $leaf, 0.4, { rotation: 25 }, { rotation: -5 }, 1
 			.fromTo $leaf, 0.8, { rotation: -5 }, { rotation: 5 }, 1.4
-			.fromTo $leaf, 0.6, { x: -55 }, { x: -62 }, 1.6
+			.fromTo $leaf, 0.6, { x: "-45%" }, { x: "-50%" }, 1.6
 
 	playPreloaderAnimation = ->
 		leafAnimation()
@@ -69,3 +75,46 @@ $ ->
 		headerAnimation(3.5)
 
 	playPreloaderAnimation()
+
+	leafScrollAnimation = ->
+		controller = new ScrollMagic.Controller()
+		$leaf = $(".about__title-image")
+		basicConfig =
+			rotation: 5,
+			x: "-50%",
+			y: "-100%",
+			scale: 1
+
+		hideTween =
+			TweenMax.fromTo $leaf, 0.5,
+				rotation: 60,
+				scale: 1.15
+					rotation: 30,
+					ease: Power2.easeOut
+					scale: 1.15
+
+		tween =
+			TweenMax.fromTo $leaf, 0.5, basicConfig,
+				rotation: 60,
+				x: -25,
+				y: -35,
+				scale: 1.15,
+				ease: Power1.easeIn
+
+		new ScrollMagic.Scene({
+				offset: 0
+				duration: Math.max(window.innerHeight, 650)
+			})
+			.setTween(tween)
+			.addTo(controller)
+
+		new ScrollMagic.Scene({
+				offset: Math.max(window.innerHeight, 650),
+				duration: Math.max(window.innerHeight, 650),
+			})
+			.setTween(hideTween)
+			.addTo(controller)
+			# .on 'end', () ->
+			# 	TweenMax.set $leaf, basicConfig
+
+	leafScrollAnimation()

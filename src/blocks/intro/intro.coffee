@@ -1,4 +1,4 @@
-import { TimelineMax, TweenMax, Power2, Circ } from 'gsap'
+import { TimelineMax, Power2, Power1 } from 'gsap'
 
 $ ->
 	$block = $(".intro")
@@ -52,15 +52,13 @@ $ ->
 		tl = new TimelineMax()
 
 		tl
-			.fromTo $leaf, 2, { y: -90, rotation: -90 }, { y: window.innerHeight / 2 - 85 }, 0
-			.fromTo $leaf, 0.3, { rotation: -90 }, { rotation: 0, ease: Power0.easeNone }, 0
-			.fromTo $leaf, 0.3, { x: -45 }, { x: -80 }, 0
-
-			.fromTo $leaf, 0.6, { rotation: 0 }, { rotation: 25 }, 0.4
-			.fromTo $leaf, 1, { x: -80 }, { x: -50 }, 0.6
-			.fromTo $leaf, 0.8, { rotation: 25 }, { rotation: -5, ease: Power0.easeNone }, 0.8
-			.fromTo $leaf, 0.4, { rotation: -5 }, { rotation: 5, ease: Power0.easeNone }, 1.6
-			.fromTo $leaf, 0.4, { x: -50 }, { x: -62 }, 1.6
+			.fromTo $leaf, 2.2, { y: -90, rotation: -90 }, { y: window.innerHeight / 2 - 85, ease: Power1.easeOut }, 0
+			.fromTo $leaf, 0.8, { rotation: -90 }, { rotation: 25 }, 0
+			.fromTo $leaf, 0.8, { x: -45 }, { x: -80 }, 0
+			.fromTo $leaf, 0.6, { x: -80 }, { x: -55 }, 0.8
+			.fromTo $leaf, 0.4, { rotation: 25 }, { rotation: -5 }, 1
+			.fromTo $leaf, 0.8, { rotation: -5 }, { rotation: 5 }, 1.4
+			.fromTo $leaf, 0.6, { x: -55 }, { x: -62 }, 1.6
 
 	playPreloaderAnimation = ->
 		leafAnimation()

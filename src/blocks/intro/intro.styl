@@ -50,6 +50,8 @@ strokeAnimDelay = 0.3
 				&_main
 					animation (animTime - strokeAnimDelay)s logoMainAnim forwards linear
 					animation-delay (strokeAnimDelay)s
+				&_shape
+					opacity 1
 		&-image
 			display block
 			width 100%
@@ -70,6 +72,10 @@ strokeAnimDelay = 0.3
 				stroke-dashoffset -(strokeLine)
 				// animation (animTime - strokeAnimDelay)s logoMainAnim forwards linear
 				// animation-delay (strokeAnimDelay)s
+			&_shape
+				opacity 0
+				fill brandColor
+				transition .1s opacity (animTime)s ease-in-out
 
 @keyframes logoShortAnim
 	10%

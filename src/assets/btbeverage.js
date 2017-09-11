@@ -1,7 +1,7 @@
 if (module.hot) {
 	const originalLog = console.log;
 	console.log = function () {
-		if (arguments[0].indexOf('[HMR]') === -1) {
+		if (arguments[0].toString().indexOf('[HMR]') === -1) {
 			return originalLog.apply(console, arguments);
 		}
 	};

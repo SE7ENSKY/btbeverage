@@ -10,26 +10,42 @@ $ ->
 	# 	_video.play()
 	# , 20
 
-	lettersAnimation = ->
+	preloaderAnimation = (startTime) ->
 		tl = new TimelineMax()
-
 		tl
-			.fromTo '.intro__logo-s_b', 0.4, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0 } , 0
-			.fromTo '.intro__logo-s_line', 0.4, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, 0.1
-			.fromTo '.intro__logo-s_t', 0.4, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, 0.15
-			.fromTo '.intro__logo-s_e', 0.4, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, 0.2
-			.fromTo '.intro__logo-s_a', 0.4, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, 0.25
+			.to '.intro__preloader', 0.9, { height: 0 }, startTime
 
-	sliderAnimation = ->
+	bLetterAnimation = (startTime) ->
 		tl = new TimelineMax()
+		$symbol = $(".intro__logo-s_symbol").get(0)
+		pathLength = $symbol.getTotalLength()
 
+	lettersAnimation = (startTime) ->
+		tl = new TimelineMax()
 		tl
-			.fromTo '.intro__more .stop-3', 0.5, { attr: { offset: "0%" } }, { attr: { offset: "100%" } }, 0
-			.fromTo '.intro__more .stop-2', 0.5, { attr: { offset: "0%" } }, { attr: { offset: "100%" } }, 0.2
-			.fromTo '.intro__more .stop-1', 0.5, { attr: { offset: "0%" } }, { attr: { offset: "100%" } }, 0.4
+			.fromTo '.intro__logo-s_b', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0 } , startTime
+			.fromTo '.intro__logo-s_line', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut },  startTime + 0.1
+			.fromTo '.intro__logo-s_t', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, startTime + 0.15
+			.fromTo '.intro__logo-s_e', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, startTime + 0.2
+			.fromTo '.intro__logo-s_a', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, startTime + 0.25
 
-	headerAnimation = ->
+	sliderAnimation = (startTime) ->
 		tl = new TimelineMax()
+		delay = startTime + 1
+		tl
+			.set '.intro__more', { autoAlpha: 0 }
+			.to '.intro__more', 0.5, { autoAlpha: 1 }, startTime
+			.fromTo '.intro__more .stop-3', 0.5, { attr: { offset: "0%" } }, { attr: { offset: "100%" } }, delay
+			.fromTo '.intro__more .stop-2', 0.5, { attr: { offset: "0%" } }, { attr: { offset: "100%" } }, delay + 0.2
+			.fromTo '.intro__more .stop-1', 0.5, { attr: { offset: "0%" } }, { attr: { offset: "100%" } }, delay + 0.4
+
+	headerAnimation = (startTime) ->
+		tl = new TimelineMax()
+		tl
+			.set '.header__menu', { y: -60 }
+			.set '.header__shadow', { autoAlpha: 0 }
+			.to '.header__menu', 0.5, { y: 0 }, startTime
+			.to '.header__shadow', 0.5, { autoAlpha: 1 }, startTime
 
 	leafAnimation = ->
 		$leaf = $(".about__title-image")
@@ -46,8 +62,12 @@ $ ->
 			.fromTo $leaf, 0.4, { rotation: -5 }, { rotation: 5, ease: Power0.easeNone }, 1.6
 			.fromTo $leaf, 0.4, { x: -50 }, { x: -62 }, 1.6
 
-	setTimeout ->
-		lettersAnimation()
-		sliderAnimation()
+	playPreloaderAnimation = ->
 		leafAnimation()
-	, 1000
+		preloaderAnimation(1.3)
+		bLetterAnimation()
+		lettersAnimation(2.5)
+		sliderAnimation(3.5)
+		headerAnimation(3.5)
+
+	playPreloaderAnimation()

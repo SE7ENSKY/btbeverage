@@ -1,11 +1,16 @@
 .container
-	if menu
-		+e("nav").menu
-			+e("ul").menu-list
-				each item in menu
-					+e("li").menu-item
-						+e("a").menu-link(href=item.url)
-							= item.title
-							if item.badge
-								+e("span").menu-badge= item.badge
-+e.shadow
+	+e.wrap
+		if defaultState
+			+e("a").logo(href="/")
+				+e("img").logo-image(src=img("btea-logo.svg"), alt="" width="20" height="27")
+		if menu
+			+e("nav").menu
+				+e("ul").menu-list
+					each item in menu
+						+e("li").menu-item
+							+e("a").menu-link(href=item.url)
+								= item.title
+								if item.badge
+									+e("span").menu-badge= item.badge
+unless defaultState
+	+e.shadow

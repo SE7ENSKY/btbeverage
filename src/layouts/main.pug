@@ -4,13 +4,16 @@ block root
 	- classes = []
 	if headerMod
 		- classes.push(headerMod)
-	+b.header(class=classes): +i({ menu: mainMenu })
+	+b("header").header(class=classes): +i({
+		menu: mainMenu,
+		defaultState: headerDefault
+	})
 
 	main.main
 		block main
 			!= content
 
-	+b.footer: +i
+	+b("footer").footer: +i
 
 block fonts
 

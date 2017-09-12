@@ -1,0 +1,24 @@
+extends main
+
+block main
+	- classes = []
+	if pageMod
+		- classes.push(pageMod)
+	+b.page(class=classes)
+		if file.cover
+			+e.cover
+				if file.cover.image
+					+e.cover-bg(style=`background-image:url("${file.cover.image}");`)
+				.container
+					+e.cover-wrap
+						+e.cover-content
+							if file.cover.title
+								+e("h1").cover-title!= file.cover.title
+							if file.cover.text
+								+e.cover-text!= file.cover.text
+							if file.cover.date
+								+e.cover-date= file.cover.date
+		
+		+e.content
+			.container
+				block pageContent

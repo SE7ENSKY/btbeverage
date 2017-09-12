@@ -1,0 +1,48 @@
+.page
+	&__cover
+		position relative
+		display flex
+		align-items flex-end
+		height calc(100vh - 80px)
+		min-height 650px
+		margin-bottom 40px
+		&-bg
+			position absolute
+			top 0
+			right 0
+			bottom 0
+			left 0
+			background-size cover
+			background-repeat no-repeat
+			background-position center center
+		&-wrap
+			position relative
+			margin-bottom -40px
+			padding-right 35%
+			&:before
+				content ""
+				position absolute
+				top 0
+				right 35%
+				bottom 0
+				left 50%
+				margin-left -50vw
+				background url(img("green-texture.jpg")) repeat center center brandColor
+		&-content
+			position relative
+			padding 60px 100px 50px 0
+			color #fff
+		&-title
+			margin-bottom 35px
+		&-text
+			margin-bottom 20px
+			font-size 14px
+			line-height 1.57
+			color #dfeada
+		&-date
+			font-size 12px
+			color #9dc78d
+	&__content
+		padding-top 100px
+
+

@@ -1,0 +1,45 @@
+.pagination
+	display flex
+	justify-content center
+	align-items center
+	margin 0
+	padding 0
+	list-style none
+	font-size 12px
+	text-transform uppercase
+	a
+		text-decoration none
+		&:hover
+			color siteColor
+	a
+	span
+		display block
+		padding 0 12px
+		color brandColor
+	.prev
+		margin-right 10px
+	.next
+		margin-left 10px
+	.separator
+		position relative
+		padding 0
+		margin 0 8px
+		width 3px
+		height @width
+		background-color #dfeada
+		border-radius 50%
+		&:before
+		&:after
+			content ""
+			position absolute
+			width 3px
+			height @width
+			background-color #dfeada
+			border-radius 50%
+		&:before
+			right 100%
+			margin-right 5px
+		&:after
+			left 100%
+			margin-left 5px
+

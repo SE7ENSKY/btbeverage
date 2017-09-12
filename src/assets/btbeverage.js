@@ -12,6 +12,7 @@ const getRequiredfiles = file => file.keys().forEach(file);
 
 // ------------------ import vendor styles -------------------
 import 'normalize.css/normalize.css';
+import 'flickity/dist/flickity.css';
 
 // ------------------ import system styles -------------------
 import 'fonts/ffmark/stylesheet.css';

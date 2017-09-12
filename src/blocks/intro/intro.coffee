@@ -90,7 +90,7 @@ $ ->
 				rotation: 60,
 				scale: 1.15
 					rotation: 30,
-					ease: Power2.easeOut
+					ease: Sine.easeIn
 					scale: 1.15
 
 		tween =

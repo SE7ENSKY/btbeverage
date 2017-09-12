@@ -40,7 +40,7 @@ $ ->
 
 	new ScrollMagic.Scene({
 			triggerElement: '.about__text'
-			offset: 90,
+			offset: 0,
 			duration: '500%'
 		})
 		.setTween(seqTween)

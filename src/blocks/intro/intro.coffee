@@ -16,10 +16,10 @@ $ ->
 		tl
 			.to '.intro__preloader', 0.9, { height: 0 }, startTime
 
-	bLetterAnimation = (startTime) ->
-		tl = new TimelineMax()
-		$symbol = $(".intro__logo-s_symbol").get(0)
-		pathLength = $symbol.getTotalLength()
+	bLetterAnimation = (startTime)->
+		setTimeout ->
+			$('.intro__logo').addClass 'active'
+		, startTime * 1000
 
 	lettersAnimation = (startTime) ->
 		tl = new TimelineMax()
@@ -69,7 +69,7 @@ $ ->
 	playPreloaderAnimation = ->
 		leafAnimation()
 		preloaderAnimation(1.3)
-		bLetterAnimation()
+		bLetterAnimation(2)
 		lettersAnimation(2.5)
 		sliderAnimation(3.5)
 		headerAnimation(3.5)

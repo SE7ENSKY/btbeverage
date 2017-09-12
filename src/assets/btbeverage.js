@@ -19,6 +19,8 @@ import 'styles/main.styl';
 
 // ------------------ import vendor scripts ------------------
 import 'vendor/modernizr.js';
+import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap';
+import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators';
 
 // ----------------- import system scripts -------------------
 import 'scripts/main.coffee';

@@ -18,5 +18,12 @@
 
 
 +e.footer
-	+e.more Scroll to discover
-
+	+e("svg").more
+		defs
+			linearGradient#textGradient(x1="0" y1="0" x2="100%" y2="0")
+				stop.stop-1(offset="0%" stop-color="#b2b7b8")
+				stop.stop-2(offset="0%" stop-color="#fff")
+				stop.stop-3(offset="0%" stop-color="#b2b7b8")
+		text(fill="url(#textGradient)" font-size="10px" x="50%" y="0" dy="1em") Scroll to discover
+		
++e.preloader

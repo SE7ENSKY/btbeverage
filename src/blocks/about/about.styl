@@ -19,17 +19,13 @@
 			&_2
 				z-index 3
 		&-image
-			position absolute
-			top 0
-			left 50%
+			position fixed
+			top calc(50% + 5px)
+			left calc(50% + 20px)
 			z-index 2
-			width 164px
+			width 160px
 			height 90px
-			margin -87px 0 0 -62px
-			@media (min-height: 650px)
-				transform translateY(-50vh)
-			@media (max-height: 649px)
-				margin-top -412px
+			transform translate(-50%, -100%)rotate(5deg)
 	&__text
 		width 65%
 		margin 0 auto
@@ -48,6 +44,7 @@
 			width 38%
 			text-align center
 			margin-bottom 110px
+			opacity 0
 		&-image
 			width 65px
 			height @width
@@ -62,4 +59,22 @@
 			font-size 14px
 			line-height 1.285
 			color brandColor
-
+	&__bottle
+		position fixed
+		bottom 0
+		top 0
+		right 0
+		left 0
+		opacity 0
+		visibility hidden
+		&-img
+			position absolute
+			display none
+			top 0
+			bottom 0
+			top 0
+			right 0
+			left 0
+			background-size 100% 100%
+			&:first
+				display block

@@ -1,6 +1,11 @@
 import { TimelineMax, TweenMax, Power2, Power1, Sine } from 'gsap'
 import ScrollMagic from 'scrollmagic';
 
+isLoaded = false
+
+window.onload = ->
+	isLoaded = true
+
 $ ->
 	$block = $(".intro")
 	return unless $block.length
@@ -11,7 +16,9 @@ $ ->
 	# 	_video.play()
 	# , 20
 
-	preloaderAnimation = (startTime) ->
+	$leaf = $(".about__title-image")
+
+	preloaderBgAnimation = (startTime) ->
 		tl = new TimelineMax()
 		tl
 			.to '.intro__preloader', 0.9, { height: 0 }, startTime
@@ -24,7 +31,7 @@ $ ->
 	lettersAnimation = (startTime) ->
 		tl = new TimelineMax()
 		tl
-			.fromTo '.intro__logo-s_b', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0 } , startTime
+			.fromTo '.intro__logo-s_b', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut } , startTime
 			.fromTo '.intro__logo-s_line', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut },  startTime + 0.1
 			.fromTo '.intro__logo-s_t', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, startTime + 0.15
 			.fromTo '.intro__logo-s_e', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, startTime + 0.2
@@ -48,8 +55,7 @@ $ ->
 			.to '.header__menu', 0.5, { y: 0 }, startTime
 			.to '.header__shadow', 0.5, { autoAlpha: 1 }, startTime
 
-	leafAnimation = ->
-		$leaf = $(".about__title-image")
+	leafPreloaderAnimation = ->
 		tl = new TimelineMax()
 
 		tl
@@ -63,22 +69,11 @@ $ ->
 			.fromTo $leaf, 0.8, { x: "-50%" }, { x: "-53%" }, 0
 			.fromTo $leaf, 0.6, { x: "-53%" }, { x: "-45%" }, 0.8
 			.fromTo $leaf, 0.4, { rotation: 25 }, { rotation: -5 }, 1
-			.fromTo $leaf, 0.8, { rotation: -5 }, { rotation: 5 }, 1.4
+			.fromTo $leaf, 0.6, { rotation: -5 }, { rotation: 5 }, 1.6
 			.fromTo $leaf, 0.6, { x: "-45%" }, { x: "-50%" }, 1.6
-
-	playPreloaderAnimation = ->
-		leafAnimation()
-		preloaderAnimation(1.3)
-		bLetterAnimation(2)
-		lettersAnimation(2.5)
-		sliderAnimation(3.5)
-		headerAnimation(3.5)
-
-	playPreloaderAnimation()
 
 	leafScrollAnimation = ->
 		controller = new ScrollMagic.Controller()
-		$leaf = $(".about__title-image")
 		basicConfig =
 			rotation: 5,
 			x: "-50%",
@@ -119,4 +114,19 @@ $ ->
 			.on 'enter', (ev) ->
 				$leaf.show(0) if ev.scrollDirection == "REVERSE"
 
-	leafScrollAnimation()
+	startAnimation = ->
+			$leaf.show(0)
+			# preloader animation
+			leafPreloaderAnimation()
+			preloaderBgAnimation(1.3)
+			bLetterAnimation(2)
+			lettersAnimation(2.5)
+			sliderAnimation(3.5)
+			headerAnimation(3.5)
+			# add leaf scrolling animation
+			leafScrollAnimation()
+
+	if !isLoaded
+		window.onload = startAnimation
+	else
+		startAnimation()

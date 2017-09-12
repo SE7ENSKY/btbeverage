@@ -103,18 +103,20 @@ $ ->
 
 		new ScrollMagic.Scene({
 				offset: 0
-				duration: Math.max(window.innerHeight, 650)
+				duration: "100%"
 			})
 			.setTween(tween)
 			.addTo(controller)
 
 		new ScrollMagic.Scene({
 				offset: Math.max(window.innerHeight, 650),
-				duration: Math.max(window.innerHeight, 650),
+				duration: "50%",
 			})
 			.setTween(hideTween)
 			.addTo(controller)
-			# .on 'end', () ->
-			# 	TweenMax.set $leaf, basicConfig
+			.on 'leave', (ev) ->
+				$leaf.hide(0) if ev.scrollDirection == "FORWARD"
+			.on 'enter', (ev) ->
+				$leaf.show(0) if ev.scrollDirection == "REVERSE"
 
 	leafScrollAnimation()

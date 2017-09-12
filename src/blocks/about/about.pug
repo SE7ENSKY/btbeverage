@@ -28,5 +28,5 @@
 	+e.bottle
 		if Array.isArray(bottleSeq)
 			each imgSrc in bottleSeq
-				+e().bottle-img(background="url(#{imgSrc})" alt="")
+				+e().bottle-img(style={'background-image': `url(${imgSrc})`} alt="")
 			

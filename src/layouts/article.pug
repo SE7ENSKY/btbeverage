@@ -4,3 +4,8 @@ block pageContent
 	.slim-wrap
 		.rich-text
 			!= content
+
+		.page__footer
+			+b.share-box: +i({ label: "Share" })
+
+			a.btn.page__back(href="/blog.html") Back

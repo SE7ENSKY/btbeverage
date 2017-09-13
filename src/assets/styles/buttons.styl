@@ -1,0 +1,33 @@
+.btn
+	display inline-block
+	vertical-align middle
+	padding 23px 30px
+	border 0 none
+	font-family mainFont
+	font-size 12px
+	line-height 1.2
+	color #fff
+	font-weight normal
+	text-align center
+	text-transform uppercase
+	white-space nowrap
+	background brandColor
+	cursor pointer
+	outline none
+	user-select none
+	transition .15s background ease-in-out, .15s color ease-in-out, .15s box-shadow ease-in-out
+	&:hover
+	&:active
+		background darken(brandColor, 10%)
+		color #fff
+	&:active
+		box-shadow 0 3px 7px rgba(0,0,0,0.25) inset
+	&:focus
+		outline none
+	a&
+		text-decoration none
+	// &.disabled
+	// &[disabled]
+	// 	cursor not-allowed
+	// 	opacity .5
+	// 	pointer-events none

@@ -13,8 +13,37 @@
 		color #fff
 		background-color #78A965
 	&__packs
+		display flex
 		color #fff
 		background-color #679E51
+		&-title
+			display flex
+			align-items center
+			text-transform uppercase
+			font-size 12px
+			line-height 1.5
+			white-space pre-line
+		&-size
+			flex-grow 1
+			display flex
+			justify-content space-around
+			align-items center
+			&-item
+				font-size 30px
+				line-height 1.1
+				cursor pointer
+		&-dots
+			width 52px
+			display flex
+			flex-wrap wrap
+		&-dot
+			width 7px
+			height 7px
+			margin 3px
+			background-color #fff
+			border-radius 50%
+			&.disabled
+				opacity 0.2
 	&__cart
 		display flex
 		color #fff

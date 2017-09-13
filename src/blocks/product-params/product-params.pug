@@ -2,6 +2,15 @@ if text
 	+e.text!= text
 +e.sizes
 +e.packs
+	+e.packs-title select &#10; pack of
+	+e.packs-size
+		+e.packs-size-item(data-pack="12") 12
+		+e.packs-size-item(data-pack="8") 8
+		+e.packs-size-item(data-pack="6") 6
+	+e.packs-dots
+		- n = 0
+		while n++ < 12
+			+e.packs-dot
 +e.cart
 	+e.cart-total
 		+e.cart-total-title your &#10; total

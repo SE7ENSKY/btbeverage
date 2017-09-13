@@ -1,8 +1,12 @@
 if text
 	+e.text!= text
 +e.sizes
+	+e.title select &#10; size
+	+e.sizes-list
+		+e.sizes-item(data-size="16oz") 16 oz
+		+e.sizes-item(data-size="8oz") 8 oz
 +e.packs
-	+e.packs-title select &#10; pack of
+	+e.title select &#10; pack of
 	+e.packs-size
 		+e.packs-size-item(data-pack="12") 12
 		+e.packs-size-item(data-pack="8") 8
@@ -13,6 +17,6 @@ if text
 			+e.packs-dot
 +e.cart
 	+e.cart-total
-		+e.cart-total-title your &#10; total
+		+e.title your &#10; total
 		+e.cart-total-value $ 230
 	+e.cart-button add to cart

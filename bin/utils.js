@@ -208,11 +208,13 @@ function createDirectory(path, fileSystem) {
 				filePathParts.forEach(function (item, index) {
 					if (fileSystem.readdirSync(index === 0 ? DEV_OUTPUT : dirPath).indexOf(filePathParts[index]) === -1) {
 						dirPath += `${DEV_OUTPUT}${filePathParts[index]}`;
-						fileSystem.mkdirpSync(dirPath);
-						console.log(
-							boldTerminalString('addDir:'),
-							shortenAbsolutePath(join(PROJECT_ROOT, MEMORY_DIRECTORY, dirPath))
-						);
+						if (dirPath.indexOf('.DS_Store') === -1) {
+							fileSystem.mkdirpSync(dirPath);
+							console.log(
+								boldTerminalString('addDir:'),
+								shortenAbsolutePath(join(PROJECT_ROOT, MEMORY_DIRECTORY, dirPath))
+							);
+						}
 					} else {
 						dirPath += `${DEV_OUTPUT}${filePathParts[index]}`;
 					}
@@ -222,12 +224,14 @@ function createDirectory(path, fileSystem) {
 				filePathParts.forEach(function (item, index) {
 					if (readdirSync(dirPath).indexOf(filePathParts[index]) === -1) {
 						dirPath += join(sep, filePathParts[index]);
-						mkdirSync(dirPath);
-						const shortenPath = shortenAbsolutePath(dirPath);
-						if (shortenPath.indexOf('pages') !== -1) {
-							console.log(boldTerminalString('addDir:'), shortenPath);
-						} else {
-							console.log(boldTerminalString('addDir:'), shortenPath.replace('src', OUTPUT_DIRECTORY));
+						if (dirPath.indexOf('.DS_Store') === -1) {
+							mkdirSync(dirPath);
+							const shortenPath = shortenAbsolutePath(dirPath);
+							if (shortenPath.indexOf('pages') !== -1) {
+								console.log(boldTerminalString('addDir:'), shortenPath);
+							} else {
+								console.log(boldTerminalString('addDir:'), shortenPath.replace('src', OUTPUT_DIRECTORY));
+							}
 						}
 					} else {
 						dirPath += join(sep, filePathParts[index]);

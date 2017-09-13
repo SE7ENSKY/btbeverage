@@ -7,7 +7,7 @@
 	font-size 12px
 	line-height 1.2
 	color #fff
-	font-weight normal
+	font-weight bold
 	text-align center
 	text-transform uppercase
 	white-space nowrap
@@ -26,6 +26,13 @@
 		outline none
 	a&
 		text-decoration none
+	&-white
+		color brandColor
+		background #fff
+		&:hover
+		&:active
+			color brandColor
+			background lighten(brandColor, 80%)
 	// &.disabled
 	// &[disabled]
 	// 	cursor not-allowed

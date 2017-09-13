@@ -4,6 +4,7 @@
 	height 80px
 	padding 26px 0 27px
 	background-color #fff
+	box-shadow 0 15px 15px rgba(0,0,0,.05)
 	&_simple
 		position absolute
 		top 30px
@@ -11,6 +12,7 @@
 		left 0
 		padding 0
 		height auto
+		box-shadow none
 		background-color transparent
 		.header__menu
 			&-link
@@ -46,6 +48,7 @@
 			color brandColor
 			text-transform uppercase
 			text-decoration none
+			font-weight bold
 			&:hover
 				color siteColor
 				.header__menu-badge
@@ -61,7 +64,7 @@
 			&:before
 				content ""
 				position absolute
-				top 4px
+				top 8px
 				left 5px
 				width 3px
 				height @width

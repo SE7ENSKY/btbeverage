@@ -1,8 +1,58 @@
 .product-params
 	display none
-	background-color #dfeada
 	&__text
 		padding 40px 70px
 		font-size 16px
 		line-height 1.4
 		color brandColor
+		background-color #dfeada
+	&__sizes
+	&__packs
+		padding 60px 70px
+	&__sizes
+		color #fff
+		background-color #78A965
+	&__packs
+		color #fff
+		background-color #679E51
+	&__cart
+		display flex
+		color #fff
+		text-transform uppercase
+		background-color #56943E
+		&-total
+		&-button
+			transition width 0.5s ease-in-out, padding-left 0.5s ease-in-out
+		&-total
+			display flex
+			width 60%
+			padding 60px 0 60px 70px
+			opacity 1
+			visibility visible
+			&-title
+				font-size 12px
+				line-height 1.5
+				white-space pre-line
+			&-value
+				flex-grow 1
+				text-align center
+				font-size 30px
+				line-height 1.1
+		&-button
+			width 40%
+			padding 70px 0
+			text-align center
+			font-size 14px
+			line-height 1.1
+			background-color #4B8834
+			cursor pointer
+		&.added
+			.product-params
+				&__cart
+					&-total
+						width 0
+						padding 0
+						opacity 0
+					&-button
+						width 100%
+						background-color #315423

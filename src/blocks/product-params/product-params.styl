@@ -14,12 +14,12 @@
 		font-size 12px
 		line-height 1.5
 		white-space pre-line
-	&__sizes
+	&__volume
 	&__packs
 		display flex
 		color #fff
 		padding 60px 70px
-	&__sizes
+	&__volume
 		background-color #78A965
 		&-list
 			display flex
@@ -37,21 +37,21 @@
 				opacity 0.6
 	&__packs
 		background-color #679E51
-		&-size
+		&-list
 			flex-grow 1
 			display flex
 			justify-content space-between
 			align-items center
-			&-item
-				font-size 30px
-				line-height 1.1
-				cursor pointer
-				opacity 0.2
-				transition opacity 0.15s ease-in-out
-				&.active
-					opacity 1
-				&:not(.active):hover
-					opacity 0.6
+		&-item
+			font-size 30px
+			line-height 1.1
+			cursor pointer
+			opacity 0.2
+			transition opacity 0.15s ease-in-out
+			&.active
+				opacity 1
+			&:not(.active):hover
+				opacity 0.6
 		&-dots
 			display flex
 			flex-wrap wrap

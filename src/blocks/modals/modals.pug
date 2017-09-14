@@ -1,0 +1,10 @@
+mixin modal(name, classes, contentClasses, modalClose)
+	.modal.fade(id=name, class=classes, tabindex="-1")
+		.modal-dialog
+			.modal-content(class=contentClasses)
+				button.modal-close.close(data-dismiss="modal" type="button")
+				block
+
++modal("cart-modal")
+	.modal-title My cart
+	+b.cart: +i({ list: cartList })

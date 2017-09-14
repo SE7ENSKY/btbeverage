@@ -8,9 +8,15 @@
 				+e("ul").menu-list
 					each item in menu
 						+e("li").menu-item
-							+e("a").menu-link(href=item.url)
-								= item.title
-								if item.badge
-									+e("span").menu-badge= item.badge
+							if item.modal
+								+e("a").menu-link(href=item.url, data-toggle="modal")
+									= item.title
+									if item.badge
+										+e("span").menu-badge= item.badge
+							else
+								+e("a").menu-link(href=item.url)
+									= item.title
+									if item.badge
+										+e("span").menu-badge= item.badge
 unless defaultState
 	+e.shadow

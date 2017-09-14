@@ -2,6 +2,7 @@
 	height 0
 	overflow hidden
 	&__text
+		z-index 1
 		padding 40px 70px
 		font-size 16px
 		line-height 1.4
@@ -15,12 +16,13 @@
 		font-size 12px
 		line-height 1.5
 		white-space pre-line
-	&__volume
-	&__packs
+	&__volume-inner
+	&__packs-inner
 		display flex
 		color #fff
 		padding 60px 70px
 	&__volume
+		z-index 2
 		background-color #78A965
 		&-list
 			display flex
@@ -37,6 +39,7 @@
 			&:not(.active):hover
 				opacity 0.6
 	&__packs
+		z-index 3
 		background-color #679E51
 		&-list
 			flex-grow 1
@@ -67,10 +70,12 @@
 			&.disabled
 				opacity 0.2
 	&__cart
-		display flex
 		color #fff
 		text-transform uppercase
 		background-color #56943E
+		z-index 4
+		&-inner
+			display flex
 		&-total
 		&-button
 			transition width 0.5s ease-in-out, padding-left 0.5s ease-in-out

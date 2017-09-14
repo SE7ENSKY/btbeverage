@@ -42,3 +42,61 @@
 		text-transform uppercase
 		color #fff
 		text-align center
+		transition opacity 0.2s ease-in-out
+	&__close
+		position absolute
+		top 30px
+		right 30px
+		width 10px
+		height 10px
+		opacity 0
+		transition opacity 0.2s ease-in-out
+		&:hover
+			opacity 0.6
+	&__slider
+		display none
+		position relative
+		overflow hidden
+		&-wrapper
+			display none
+			position absolute
+			top 0
+			left 0
+			right 0
+			bottom 0
+			padding 70px 0 70px 60px
+		&-inner
+			position absolute
+			top 0
+			left 0
+			right 0
+			bottom 0
+			transition margin-left 0.4s ease-in-out
+		&-image
+			width 100%
+			height 100%
+			background-size cover
+		&-text
+			display flex
+			flex-direction column
+	&__text
+		font-size 14px
+		line-height 1.5
+		&-vertical
+			font-weight 600
+			font-size 72px
+			line-height 1.1
+			text-transform uppercase
+			transform rotate(-90deg)translate(-100%, 100%)
+			transform-origin left bottom
+			margin-bottom calc(100% + 45px)
+	&.active
+		.product-cover
+			&__close
+				visibility visible
+				opacity 1
+			&__slider
+				&-wrapper
+					display flex
+			&__title
+				opacity 0

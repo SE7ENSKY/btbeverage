@@ -1,13 +1,11 @@
-if text
-	+e.wrapper
++e.inner
+	if text
 		+e.text!= text
-+e.wrapper
 	+e.volume
 		+e.title select &#10; size
 		+e.volume-list
 			+e.volume-item(data-volume="16oz") 16 oz
 			+e.volume-item(data-volume="8oz") 8 oz
-+e.wrapper
 	+e.packs
 		+e.title select &#10; pack of
 		+e.packs-list
@@ -18,7 +16,6 @@ if text
 			- n = 0
 			while n++ < 12
 				+e.packs-dot
-+e.wrapper
 	+e.cart
 		+e.cart-total
 			+e.title your &#10; total

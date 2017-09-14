@@ -37,7 +37,7 @@ $ ->
 			.fromTo '.intro__logo-s_e', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, startTime + 0.2
 			.fromTo '.intro__logo-s_a', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, startTime + 0.25
 
-	sliderAnimation = (startTime) ->
+	sliderAnimation = (startTime, onComplete) ->
 		tl = new TimelineMax()
 		delay = startTime + 1
 		tl
@@ -45,7 +45,7 @@ $ ->
 			.to '.intro__more', 0.5, { autoAlpha: 1 }, startTime
 			.fromTo '.intro__more .stop-3', 0.5, { attr: { offset: "0%" } }, { attr: { offset: "100%" } }, delay
 			.fromTo '.intro__more .stop-2', 0.5, { attr: { offset: "0%" } }, { attr: { offset: "100%" } }, delay + 0.2
-			.fromTo '.intro__more .stop-1', 0.5, { attr: { offset: "0%" } }, { attr: { offset: "100%" } }, delay + 0.4
+			.fromTo '.intro__more .stop-1', 0.5, { attr: { offset: "0%" } }, { attr: { offset: "100%" }, onComplete: onComplete }, delay + 0.4
 
 	headerAnimation = (startTime) ->
 		tl = new TimelineMax()
@@ -116,13 +116,16 @@ $ ->
 
 	startAnimation = ->
 			$leaf.show(0)
+			window.scrollTo(0, 0)
+			$('body').css 'overflow', 'hidden'
 			# preloader animation
 			leafPreloaderAnimation()
-			preloaderBgAnimation(1.3)
-			bLetterAnimation(2)
-			lettersAnimation(2.5)
-			sliderAnimation(3.5)
-			headerAnimation(3.5)
+			preloaderBgAnimation 1.3
+			bLetterAnimation 2
+			lettersAnimation 2.5
+			headerAnimation 3.5
+			sliderAnimation 3.5, ->
+				$('body').css 'overflow', 'auto'
 			# add leaf scrolling animation
 			leafScrollAnimation()
 

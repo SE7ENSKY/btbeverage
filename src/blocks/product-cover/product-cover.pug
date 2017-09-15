@@ -15,6 +15,9 @@
 				if data.slider.bottleImage
 					+e.slider-inner
 						each image, index in data.slider.bottleImage
-							+e.slider-item
+							- classes = []
+							if index == 0
+								- classes.push("active")
+							+e.slider-item(class=classes)
 								+e("img").slider-image(src=image, alt="")
 +e.close

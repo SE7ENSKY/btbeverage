@@ -90,9 +90,14 @@
 			left 0
 			width 200%
 			transform translateY(-50%)
+			transition margin-left .5s ease-in-out
 		&-item
 			width 50%
 			text-align center
+			transition opacity .3s ease-in-out
+			opacity 0
+			&.active
+				opacity 1
 		&-image
 			max-width 100%
 			max-height 100%
@@ -107,6 +112,7 @@
 		font-size 14px
 		line-height 1.5
 		color #fff
+		text-transform uppercase
 		&-vertical
 			transform rotate(-90deg) translate(-90%, 100%)
 			transform-origin left bottom

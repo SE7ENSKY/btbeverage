@@ -25,6 +25,23 @@ $ ->
 
 	$volumes = $block.find('.product-params__volume-item')
 	$volumes.click ->
-		$volumes.each ->
+		$this = $(@)
+		position = 0
+
+		$innerVolumes = $this.parent().find('.product-params__volume-item')
+
+		$innerVolumes.each (index) ->
 			$(this).removeClass 'active'
-		$(@).addClass 'active'
+			if $this.get(0) == $(this).get(0)
+				position = index
+
+		$this.addClass 'active'
+		$thisProductCover = $(".product-cover.active")
+
+		$slider = $thisProductCover.find('.product-cover__slider-inner')
+		$slider.css 'margin-left', if position then "-#{position * 100}%" else 0
+		$slider.find('.product-cover__slider-item')
+			.each (index) ->
+				$(this).removeClass 'active'
+				if index == position
+					$(this).addClass 'active'

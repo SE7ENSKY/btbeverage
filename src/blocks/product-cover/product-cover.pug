@@ -13,6 +13,7 @@
 				+e.text!= data.slider.noteTxt
 			+e.slider
 				if data.slider.bottleImage
+					+e.slider-inner
 						each image, index in data.slider.bottleImage
 							+e.slider-item
 								+e("img").slider-image(src=image, alt="")

@@ -57,3 +57,60 @@ code
 	color #fff
 	background-color brandColor
 	border-radius 2px
+
+.rich-text
+	font-size 14px
+	line-height 1.43
+
+ul.list-point
+.rich-text ul
+	padding 0
+	margin 0 0 25px
+	list-style none
+	li
+		position relative
+		margin-bottom 5px
+		&:before
+			content ""
+			display inline-block
+			vertical-align top
+			margin 9px 5px 0 25px
+			width 3px
+			height @width
+			border-radius 50%
+			background-color siteColor
+
+ol.list-numbers
+.rich-text ol
+	padding 0
+	margin 0 0 25px
+	list-style none
+	counter-reset list1
+	li
+		position relative
+		margin-bottom 5px
+		&:before
+			margin-right 5px
+			white-space nowrap
+			counter-increment list1
+			content counter(list1) "."
+	ol
+		padding 0
+		margin 0
+		counter-reset list2
+		li
+			padding-left 25px
+			&:before
+				border-color transparent
+				counter-increment list2
+				content: counter(list1) "." counter(list2)
+		ol
+			padding 0
+			margin 0
+			counter-reset list3
+			li
+				padding-left 25px
+				&:before
+					border-color transparent
+					counter-increment list3
+					content counter(list1) "." counter(list2) "." counter(list3)

@@ -88,7 +88,32 @@ block pageMain
 							button.btn(type="submit") Continue to payment method
 							a.form-footer-link.form-link(href="/") Return to customer info
 				when "3"
-					p= file.step
-
+					form
+						fieldset
+							.form-section
+								.form-section-header
+									.form-section-title Payment Method
+								.row
+									.col-12
+										.form-checkbox-group
+							.form-section
+								.form-section-header
+									.form-section-title Billing address
+								.row
+									.col-12
+										.form-checkbox-group
+											.form-checkbox-row
+												.radio
+													label(for="billing-1")
+														input(id="billing-1" name="billing" value="same")
+														span Same as shipping address
+											.form-checkbox-row
+												.radio
+													label(for="billing-2")
+														input(id="billing-2" name="billing" value="other")
+														span Use a different billing address
+						.form-footer.form-footer_nav
+							button.btn(type="submit") Complete order
+							a.form-footer-link.form-link(href="/") Return to shipping method
 	.page__aside
 		+b.cart: +i({ list: cartProducts, hidePayments: true })

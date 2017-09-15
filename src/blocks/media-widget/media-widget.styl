@@ -2,6 +2,7 @@
 	position relative
 	display flex
 	flex-direction column
+	min-height 100vh
 	&__image
 		overflow hidden
 		&_main
@@ -39,7 +40,14 @@
 		position relative
 		width 50%
 		padding-bottom 40%
-		background url(img("green-texture.jpg")) repeat center center brandColor
+		overflow hidden
+		&-bg
+			position absolute
+			bottom 0
+			right 0
+			left 0
+			height 100%
+			background url(img("green-texture.jpg")) repeat center center brandColor
 	&__title
 		position absolute
 		top 0
@@ -76,5 +84,3 @@
 					top 12%
 					left 50%
 					transform translateX(-50%)
-
-

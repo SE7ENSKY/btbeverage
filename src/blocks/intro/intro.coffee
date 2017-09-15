@@ -1,6 +1,11 @@
 import { TimelineMax, TweenMax, Power2, Power1, Sine } from 'gsap'
 import ScrollMagic from 'scrollmagic';
 
+isLoaded = false
+
+window.onload = ->
+	isLoaded = true
+
 $ ->
 	$block = $(".intro")
 	return unless $block.length
@@ -11,7 +16,9 @@ $ ->
 	# 	_video.play()
 	# , 20
 
-	preloaderAnimation = (startTime) ->
+	$leaf = $(".about__title-image")
+
+	preloaderBgAnimation = (startTime) ->
 		tl = new TimelineMax()
 		tl
 			.to '.intro__preloader', 0.9, { height: 0 }, startTime
@@ -24,13 +31,13 @@ $ ->
 	lettersAnimation = (startTime) ->
 		tl = new TimelineMax()
 		tl
-			.fromTo '.intro__logo-s_b', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0 } , startTime
+			.fromTo '.intro__logo-s_b', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut } , startTime
 			.fromTo '.intro__logo-s_line', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut },  startTime + 0.1
 			.fromTo '.intro__logo-s_t', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, startTime + 0.15
 			.fromTo '.intro__logo-s_e', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, startTime + 0.2
 			.fromTo '.intro__logo-s_a', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, startTime + 0.25
 
-	sliderAnimation = (startTime) ->
+	sliderAnimation = (startTime, onComplete) ->
 		tl = new TimelineMax()
 		delay = startTime + 1
 		tl
@@ -38,7 +45,7 @@ $ ->
 			.to '.intro__more', 0.5, { autoAlpha: 1 }, startTime
 			.fromTo '.intro__more .stop-3', 0.5, { attr: { offset: "0%" } }, { attr: { offset: "100%" } }, delay
 			.fromTo '.intro__more .stop-2', 0.5, { attr: { offset: "0%" } }, { attr: { offset: "100%" } }, delay + 0.2
-			.fromTo '.intro__more .stop-1', 0.5, { attr: { offset: "0%" } }, { attr: { offset: "100%" } }, delay + 0.4
+			.fromTo '.intro__more .stop-1', 0.5, { attr: { offset: "0%" } }, { attr: { offset: "100%" }, onComplete: onComplete }, delay + 0.4
 
 	headerAnimation = (startTime) ->
 		tl = new TimelineMax()
@@ -48,8 +55,7 @@ $ ->
 			.to '.header__menu', 0.5, { y: 0 }, startTime
 			.to '.header__shadow', 0.5, { autoAlpha: 1 }, startTime
 
-	leafAnimation = ->
-		$leaf = $(".about__title-image")
+	leafPreloaderAnimation = ->
 		tl = new TimelineMax()
 
 		tl
@@ -63,22 +69,11 @@ $ ->
 			.fromTo $leaf, 0.8, { x: "-50%" }, { x: "-53%" }, 0
 			.fromTo $leaf, 0.6, { x: "-53%" }, { x: "-45%" }, 0.8
 			.fromTo $leaf, 0.4, { rotation: 25 }, { rotation: -5 }, 1
-			.fromTo $leaf, 0.8, { rotation: -5 }, { rotation: 5 }, 1.4
+			.fromTo $leaf, 0.6, { rotation: -5 }, { rotation: 5 }, 1.6
 			.fromTo $leaf, 0.6, { x: "-45%" }, { x: "-50%" }, 1.6
-
-	playPreloaderAnimation = ->
-		leafAnimation()
-		preloaderAnimation(1.3)
-		bLetterAnimation(2)
-		lettersAnimation(2.5)
-		sliderAnimation(3.5)
-		headerAnimation(3.5)
-
-	playPreloaderAnimation()
 
 	leafScrollAnimation = ->
 		controller = new ScrollMagic.Controller()
-		$leaf = $(".about__title-image")
 		basicConfig =
 			rotation: 5,
 			x: "-50%",
@@ -90,7 +85,7 @@ $ ->
 				rotation: 60,
 				scale: 1.15
 					rotation: 30,
-					ease: Power2.easeOut
+					ease: Sine.easeIn
 					scale: 1.15
 
 		tween =
@@ -103,18 +98,38 @@ $ ->
 
 		new ScrollMagic.Scene({
 				offset: 0
-				duration: Math.max(window.innerHeight, 650)
+				duration: "100%"
 			})
 			.setTween(tween)
 			.addTo(controller)
 
 		new ScrollMagic.Scene({
 				offset: Math.max(window.innerHeight, 650),
-				duration: Math.max(window.innerHeight, 650),
+				duration: "50%",
 			})
 			.setTween(hideTween)
 			.addTo(controller)
-			# .on 'end', () ->
-			# 	TweenMax.set $leaf, basicConfig
+			.on 'leave', (ev) ->
+				$leaf.hide(0) if ev.scrollDirection == "FORWARD"
+			.on 'enter', (ev) ->
+				$leaf.show(0) if ev.scrollDirection == "REVERSE"
 
-	leafScrollAnimation()
+	startAnimation = ->
+			$leaf.show(0)
+			window.scrollTo(0, 0)
+			$('body').css 'overflow', 'hidden'
+			# preloader animation
+			leafPreloaderAnimation()
+			preloaderBgAnimation 1.3
+			bLetterAnimation 2
+			lettersAnimation 2.5
+			headerAnimation 3.5
+			sliderAnimation 3.5, ->
+				$('body').css 'overflow', 'auto'
+			# add leaf scrolling animation
+			leafScrollAnimation()
+
+	if !isLoaded
+		window.onload = startAnimation
+	else
+		startAnimation()

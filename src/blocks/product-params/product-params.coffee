@@ -7,8 +7,9 @@ $ ->
 		$this = $(@)
 		$this.click ->
 			$this
-				.parent '.product-params__cart'
-				.toggleClass 'added'
+				.parents '.product-params__cart'
+				.addClass 'added'
+			$this.text 'Added to Cart'
 
 	$packSize = $block.find('.product-params__packs-item')
 	$packSize.click ->

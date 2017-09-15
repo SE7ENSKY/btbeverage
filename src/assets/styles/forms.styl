@@ -65,11 +65,47 @@ placeholderTrans()
 		margin-bottom 17px
 		font-size 12px
 		text-transform uppercase
-		a
-			color brandColor
-			text-decoration none
-			&:hover
-				color siteColor
+	&-summary
+		padding 15px 20px 30px
+		font-size 12px
+		line-height 1.6
+		color brandColor
+		background-color #dfeada
+		text-transform uppercase
+
+.form-checkbox
+	&-group
+		padding 30px 20px 10px
+		border 2px solid #d5e4d0
+	&-row
+		display flex
+		justify-content space-between
+		align-items baseline
+		font-size 12px
+		line-height 1
+		text-transform uppercase
+
+.form-price
+	color brandColor
+	font-weight 600
+	line-height 1
+
+.form-link
+	font-size 12px
+	line-height 1.1
+	color brandColor
+	text-decoration none
+	text-transform uppercase
+	&:hover
+		color siteColor
+
+.form-footer
+	&_nav
+		display flex
+		justify-content space-between
+		align-items center
+	&-link
+		font-weight 600
 
 .error-message
 	display none

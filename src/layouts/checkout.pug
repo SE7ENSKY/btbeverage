@@ -18,7 +18,7 @@ block pageMain
 							.form-section
 								.form-section-header
 									.form-section-title Customer information
-									.form-section-info Already have an account? <a href="#login-modal" data-toggle="modal"><strong>Log in</strong></a>
+									.form-section-info Already have an account? <a href="#login-modal" data-toggle="modal" class="form-link"><strong>Log in</strong></a>
 								.row
 									.col-8
 										.form-group.has-error
@@ -60,7 +60,33 @@ block pageMain
 											input.form-control(type="tel" placeholder="Phone (Optional)")
 							button.btn(type="submit") Continue to shipping method
 				when "2"
-					p= file.step
+					form
+						fieldset
+							.form-section
+								.form-section-header
+									.form-section-title Shipping Address
+									.form-section-info
+										a.form-link(href="/checkout-page-1.html") <strong>Edit</strong>
+								.row
+									.col-12
+										.form-section-summary!= file.shippingAddress
+							.form-section
+								.form-section-header
+									.form-section-title Delivery
+								.row
+									.col-12
+										.form-checkbox-group
+											each delivery, index in file.deliveryList
+												.form-checkbox-row
+													.radio
+														- id = "delivery-" + index
+														label(for=id)
+															input(id=id name="delivery" value=delivery.slug)
+															span= delivery.title
+													.form-price= delivery.price
+						.form-footer.form-footer_nav
+							button.btn(type="submit") Continue to payment method
+							a.form-footer-link.form-link(href="/") Return to customer info
 				when "3"
 					p= file.step
 

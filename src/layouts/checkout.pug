@@ -2,9 +2,67 @@ extends page
 
 append params
 	- bodyMod = "bg-white"
+	- pageMod = "_checkout"
 
-block pageContent
-	if file.title
-		h1.page__title.page__title_bottom-offset-sm!= file.title
-	if file.nav
-		+b.steps-list: +i({ data: file.nav })
+block pageMain
+	.page__body
+		.page__body-inner
+			if file.title
+				h1.page__title.page__title_bottom-offset-sm!= file.title
+			if file.nav
+				+b.steps-list: +i({ data: file.nav })
+			case file.step
+				when "1"
+					form
+						fieldset
+							.form-section
+								.form-section-header
+									.form-section-title Customer information
+									.form-section-info Already have an account? <a href="#login-modal" data-toggle="modal"><strong>Log in</strong></a>
+								.row
+									.col-8
+										.form-group.has-error
+											input.form-control(type="email" placeholder="Email")
+											.error-message Please enter a valid email address.
+							.form-section
+								.form-section-title Shipping address
+								.row
+									.col-6
+										.form-group
+											input.form-control(type="text" placeholder="First name")
+									.col-6
+										.form-group
+											input.form-control(type="text" placeholder="Second name")
+								.row
+									.col-8
+										.form-group
+											input.form-control(type="text" placeholder="Address")
+									.col-4
+										.form-group
+											input.form-control(type="text" placeholder="Apt, suite, etc.")
+								.row
+									.col-8
+										.form-group
+											input.form-control(type="text" placeholder="City")
+								.row
+									.col-4
+										.form-group
+											input.form-control(type="text" placeholder="Country")
+									.col-4
+										.form-group
+											input.form-control(type="text" placeholder="State")
+									.col-4
+										.form-group
+											input.form-control(type="text" placeholder="Zip code")
+								.row
+									.col-8
+										.form-group
+											input.form-control(type="tel" placeholder="Phone (Optional)")
+							button.btn(type="submit") Continue to shipping method
+				when "2"
+					p= file.step
+				when "3"
+					p= file.step
+
+	.page__aside
+		+b.cart: +i({ list: cartProducts, hidePayments: true })

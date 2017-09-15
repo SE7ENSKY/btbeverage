@@ -1,0 +1,12 @@
+.row
+	display flex
+	flex-wrap wrap
+	margin 0 -10px
+
+for item in 1..12
+	.col-{item}
+		width (100% / 12 * item)%
+
+[class^="col-"]
+[class*=" col-"]
+	padding 0 10px

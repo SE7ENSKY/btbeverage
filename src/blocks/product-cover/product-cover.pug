@@ -3,17 +3,17 @@
 		+e.image(style=`background-image:url("${data.image}");`)
 	if data.video
 		+e.video
++e.content
+	if data.title
+		+e.title!= data.title
 	if data.slider
 		+e.slider-wrapper
 			+e.slider-text
 				+e.text-vertical!= data.slider.verticalTxt
 				+e.text!= data.slider.noteTxt
 			+e.slider
-				if data.bottleImage
-					+e.slider-inner
-						each image, index in data.bottleImage
-							+e.slider-image(style=`background-image:url("${image}");`)
-+e.content
-	if data.title
-		+e.title!= data.title
-+e("img").close(src="/assets/img/close-icon.svg" alt="")
+				if data.slider.bottleImage
+						each image, index in data.slider.bottleImage
+							+e.slider-item
+								+e("img").slider-image(src=image, alt="")
++e.close

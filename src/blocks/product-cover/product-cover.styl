@@ -76,13 +76,15 @@
 		width 50%
 		overflow hidden
 		&-wrapper
-			display none
+			display flex
 			position absolute
 			top 0
 			left 0
 			right 0
 			bottom 0
 			padding 70px 0 70px 60px
+			opacity 0
+			visibility hidden
 		&-inner
 			position absolute
 			display flex
@@ -128,7 +130,7 @@
 			span
 				display inline-block
 				transform-origin 100% 50%
-	&:nth-child(2n)
+	&.right
 		.product-cover
 			&__slider
 				left 10%
@@ -146,9 +148,6 @@
 			&__close
 				visibility visible
 				opacity 1
-			&__slider
-				&-wrapper
-					display flex
 			&__title
 				opacity 0
 			&__close

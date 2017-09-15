@@ -10,3 +10,31 @@
 	h4 Заголовок H4 <small>(22px)</small>
 	h5 Заголовок H5 <small>(20px)</small>
 	h6 Заголовок H6 <small>(18px)</small>
+	br
+	h2 Forms
+	div(style="width:50%;")
+		.form-group
+			code input.form-control
+			br
+			input.form-control(type="email" placeholder="Email")
+		.form-group.has-error
+			input.form-control(type="email" placeholder="Email")
+			.error-message Error message
+		.form-group
+			code .checkbox
+			br
+			.checkbox
+				label
+					input(type="checkbox")
+					span Checkbox
+		.form-group
+			code .radio
+			br
+			.radio
+				label
+					input(type="radio" name="test-name" checked)
+					span Radio 1
+			.radio
+				label
+					input(type="radio" name="test-name")
+					span Radio 2

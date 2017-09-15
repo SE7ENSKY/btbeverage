@@ -1,10 +1,23 @@
 mixin modal(name, classes, contentClasses, modalClose)
 	.modal.fade(id=name, class=classes, tabindex="-1")
 		.modal-dialog
+			button.modal-close.close(data-dismiss="modal" type="button")
 			.modal-content(class=contentClasses)
-				button.modal-close.close(data-dismiss="modal" type="button")
 				block
 
 +modal("cart-modal")
 	.modal-title My cart
 	+b.cart: +i({ list: cartList })
+
++modal("login-modal", "modal_content-centered")
+	.modal-title.modal-title_simple Login
+	.modal-text I am a returning customer
+	.modal-body
+		+b.auth-box: +i({ state: "login" })
+
++modal("registration-modal", "modal_content-centered")
+	.modal-title.modal-title_simple Register
+	.modal-text Already have an account? <a href="#login-modal" data-toggle="modal" data-dismiss="modal"><strong>Log in</strong></a>
+	.modal-body
+		+b.auth-box: +i({ state: "registration" })
+

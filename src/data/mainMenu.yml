@@ -9,4 +9,5 @@
   url: "#cart-modal"
   modal: true
 - title: "Login"
-  url: "/"
+  url: "#login-modal"
+  modal: true

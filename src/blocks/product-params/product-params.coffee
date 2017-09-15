@@ -40,7 +40,7 @@ $ ->
 		$thisProductCover = $(".product-cover.active")
 
 		$slider = $thisProductCover.find('.product-cover__slider-inner')
-		$slider.css 'margin-left', if position then "-#{position * 100}%" else 0
+		$slider.css 'margin-left', if position then "-" + (position * 100) + "%" else 0
 		$slider.find('.product-cover__slider-item')
 			.each (index) ->
 				$(this).removeClass 'active'

@@ -10,7 +10,7 @@ $ ->
 
 		$bottle = $('.sequence')
 		triggerElementClass = $bottle.data('trigger')
-		$triggerElement = $(".#{triggerElementClass}")
+		$triggerElement = $("." + triggerElementClass)
 		if !$triggerElement.get(0)
 			$triggerElement = $bottle.parent()
 

@@ -128,6 +128,19 @@
 			span
 				display inline-block
 				transform-origin 100% 50%
+	&:nth-child(2n)
+		.product-cover
+			&__slider
+				left 10%
+				right auto
+				&-wrapper
+					justify-content flex-end
+					padding 70px 60px 70px 0
+			&__text
+				text-align right
+				&-vertical
+					transform rotate(90deg) translate(10%, -290%)
+					transform-origin left top
 	&.active
 		.product-cover
 			&__close

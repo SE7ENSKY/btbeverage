@@ -1,0 +1,7 @@
+if data
+	each item in data
+		- classes = []
+		if item.active
+			- classes.push("active")
+		+e.item(class=classes)
+			+e("a").link(href=item.url)= item.title

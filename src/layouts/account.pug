@@ -1,0 +1,15 @@
+extends page
+
+append params
+	- bodyMod = "bg-white"
+
+block pageContent
+	if file.title
+		h1.page__title.page__title_bottom-offset-sm!= file.title
+
+	if file.nav
+		+b.content-nav: +i({ data: file.nav })
+
+	case file.state
+		when "1"
+			+b.order-list: +i({ data: orderList })

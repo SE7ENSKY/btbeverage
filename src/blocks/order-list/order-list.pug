@@ -1,0 +1,25 @@
++e.row._header
+	+e.col Order #
+	+e.col Status
+	+e.col Date
+	+e.col Total
++e.body
+	if data
+		each item in data
+			+e.row
+				+e.col
+					if item.number
+						+e("a").number(href=item.url)= item.number
+				+e.col
+					if item.status
+						+e.status= item.status
+				+e.col
+					if item.date
+						+e.date= item.date
+				+e.col
+					if item.total
+						+e.total= item.total
+				if item.buttons
+					+e.buttons
+						each button in item.buttons
+							+e("a").button.btn(href=button.url)= button.title

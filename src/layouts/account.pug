@@ -14,5 +14,11 @@ block pageContent
 		when "1"
 			+b.order-list: +i({ data: orderList })
 
+		when "2"
+			+b.addresses-box: +i({ data: addressList })
+
 		when "3"
 			+b("form").personal-data: +i
+
+		when "4"
+			+b("form").change-pass: +i

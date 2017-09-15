@@ -42,7 +42,7 @@ $ ->
 		new ScrollMagic.Scene({
 				triggerElement: $triggerElement.get(0),
 				offset: 0,
-				triggerHook: 0,
+				triggerHook: 0.5,
 				duration: '100%'
 			})
 			.setTween(seqTween)

@@ -1,0 +1,10 @@
+extends page
+
+append params
+	- bodyMod = "bg-white"
+
+block pageContent
+	if file.title
+		h1.page__title.page__title_bottom-offset-sm!= file.title
+	if file.nav
+		+b.steps-list: +i({ data: file.nav })

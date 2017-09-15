@@ -1,0 +1,8 @@
+if data
+	each item, i in data
+		- classes = []
+		if item.active
+			- classes.push("active")
+		+e.item(class=classes)
+			+e.item-num= i + 1
+			+e.item-label= item.title

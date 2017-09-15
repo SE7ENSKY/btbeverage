@@ -92,7 +92,7 @@
 			left 0
 			width 200%
 			transform translateY(-50%)
-			transition margin-left .5s ease-in-out
+			transition margin-left .5s ease-out
 		&-item
 			width 50%
 			text-align center
@@ -100,6 +100,7 @@
 			opacity 0
 			&.active
 				opacity 1
+				transition opacity .4s ease-out
 		&-image
 			max-width 100%
 			max-height 100%
@@ -148,8 +149,7 @@
 			&__close
 				visibility visible
 				opacity 1
-			&__title
-				opacity 0
-			&__close
 				&:hover
 					opacity 0.6
+			&__title
+				opacity 0

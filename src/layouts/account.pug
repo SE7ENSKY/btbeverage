@@ -13,3 +13,6 @@ block pageContent
 	case file.state
 		when "1"
 			+b.order-list: +i({ data: orderList })
+
+		when "3"
+			+b("form").personal-data: +i

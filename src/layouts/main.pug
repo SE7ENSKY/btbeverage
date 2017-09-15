@@ -4,13 +4,22 @@ block root
 	- classes = []
 	if headerMod
 		- classes.push(headerMod)
-	+b.header(class=classes): +i({ menu: mainMenu })
+	+b("header").header(class=classes): +i({
+		menu: mainMenu,
+		defaultState: headerDefault
+	})
 
 	main.main
 		block main
 			!= content
 
-	+b.footer: +i
+	+b("footer").footer: +i
+
+	+b.modals: +i({
+		cartList: cartProducts
+	})
+
+	script(type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=se7ensky")
 
 block fonts
 

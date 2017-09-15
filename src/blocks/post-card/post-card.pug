@@ -1,0 +1,7 @@
+if data
+	if data.image
+		+e("span").image(style=`background-image:url("${data.image}");`)
+	if data.title
+		+e("span").title= data.title
+	if data.date
+		+e("span").date= data.date

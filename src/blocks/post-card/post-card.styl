@@ -1,0 +1,42 @@
+.post-card
+	display block
+	text-decoration none
+	color brandColor
+	text-align center
+	&:hover
+		color siteColor
+		.post-card
+			&__image
+				&:after
+					opacity .3
+			&__date
+				color siteColor
+	&__image
+		position relative
+		display block
+		margin-bottom 30px
+		padding-bottom 100%
+		background-size cover
+		background-position center center
+		background-repeat no-repeat
+		&:after
+			content ""
+			position absolute
+			top 0
+			right 0
+			bottom 0
+			left 0
+			background-color brandColor
+			opacity 0
+			transition .2s opacity ease-in-out
+	&__title
+		display block
+		margin-bottom 10px
+		font-size 20px
+		line-height 1.35
+		text-transform uppercase
+		font-weight bold
+	&__date
+		font-size 12px
+		color #78a965
+		transition .2s color ease-in-out

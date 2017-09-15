@@ -1,0 +1,10 @@
+if data
+	if data.title
+		+e("h2").title!= data.title
+	+e.row
+		+e.col
+			if data.mainText
+				+e.text._md!= data.mainText
+		+e.col
+			if data.text
+				+e.text!= data.text

@@ -1,0 +1,7 @@
+extends page
+
+block pageContent
+	if articles
+		+b.articles-list: +i({ data: articles })
+
+	+b("ul").pagination: +i

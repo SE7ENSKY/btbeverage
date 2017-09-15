@@ -1,11 +1,19 @@
 .header
 	position relative
 	z-index 4
+	height 80px
+	padding 26px 0 27px
+	background-color #fff
+	box-shadow 0 5px 25px rgba(0,0,0,.05)
 	&_simple
 		position absolute
 		top 30px
 		right 0
 		left 0
+		padding 0
+		height auto
+		box-shadow none
+		background-color transparent
 		.header__menu
 			&-link
 				color #fff
@@ -15,10 +23,21 @@
 						color lighten(brandColor, 30%)
 						&:before
 							background-color lighten(brandColor, 30%)
+	&__wrap
+		display flex
+		justify-content center
+		align-items center
+	&__logo
+		display block
+		margin-right 15px
+		width 20px
+		height 27px
+		text-decoration none
+		&-image
+			display block
 	&__menu
 		&-list
 			display flex
-			justify-content center
 			margin 0
 			padding 0
 			list-style none
@@ -26,8 +45,16 @@
 			margin 0 15px
 		&-link
 			font-size 12px
+			color brandColor
 			text-transform uppercase
 			text-decoration none
+			font-weight bold
+			&:hover
+				color siteColor
+				.header__menu-badge
+					color siteColor
+					&:before
+						background-color siteColor
 		&-badge
 			position relative
 			padding-left 12px
@@ -37,7 +64,7 @@
 			&:before
 				content ""
 				position absolute
-				top 4px
+				top 8px
 				left 5px
 				width 3px
 				height @width

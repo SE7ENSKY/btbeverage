@@ -1,0 +1,12 @@
+extends page
+
+block pageContent
+	.container
+		if file.mission
+			+b.content-widget._type-1._offset-bottom: +i({ data: file.mission })
+
+		if file.philosophy
+			+b.content-box: +i({ data: file.philosophy })
+
+		if file.history
+			+b.content-widget._type-2: +i({ data: file.history })

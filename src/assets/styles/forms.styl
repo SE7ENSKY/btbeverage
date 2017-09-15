@@ -1,0 +1,157 @@
+placeholderTrans()
+	transition .15s opacity ease-in-out
+
+.form-group
+	position relative
+	margin-bottom 17px
+
+.form-control
+	display block
+	width 100%
+	height 54px
+	padding 18px 20px
+	font-family mainFont
+	font-size 12px
+	line-height 1.2
+	color siteColor
+	text-transform uppercase
+	border 2px solid #d5e4d0
+	background-color #fff
+	border-radius 0
+	transition .2s border-color ease-in-out
+	outline 0 none
+	-webkit-appearance none
+	&:focus
+		border-color brandColor
+		background-color #fafff9
+	&.has-value
+		background-color #fafff9
+	textarea&
+		height auto
+		resize vertical
+	&::-webkit-input-placeholder
+		color brandColor
+		placeholderTrans()
+	&::-moz-placeholder
+		color brandColor
+		placeholderTrans()
+	&:-moz-placeholder
+		color brandColor
+		placeholderTrans()
+	&:-ms-input-placeholder
+		color brandColor
+		placeholderTrans()
+	&:focus::-webkit-input-placeholder
+		opacity 0
+	&:focus::-moz-placeholder
+		opacity 0
+	&:focus:-moz-placeholder
+		opacity 0
+	&:focus:-ms-input-placeholder
+		opacity 0
+	.has-error &
+		border-color redColor
+
+.error-message
+	display none
+	margin-top 5px
+	font-size 14px
+	line-height 1.3
+	color redColor
+	.has-error &
+		display block
+
+form
+	width 100%
+
+fieldset
+	padding 0
+	margin 0
+	border 0 none
+	min-width 0
+
+// Radio & Checkbox
+.radio
+.checkbox
+	position relative
+	display block
+	margin-bottom 20px
+	font-size 12px
+	line-height 1.2
+	color brandColor
+	&[disabled]
+	&.disabled
+		cursor not-allowed
+		label
+			cursor not-allowed
+	label
+		display block
+		min-height 21px
+		margin-bottom 0
+		font-weight normal
+		cursor pointer
+	input
+		position absolute
+		z-index 2
+		top 0
+		left 0
+		width 100%
+		height 100%
+		margin 0
+		opacity 0
+		cursor pointer
+		&+ span
+			position relative
+			display block
+			min-height 21px
+			padding 4px 0 0 35px
+			user-select none
+			&:before
+			&:after
+				content ""
+				position absolute
+			&:before
+				top 0
+				left 0
+				width 21px
+				height @width
+				border 2px solid brandColor
+				background-color #fff
+				transition .2s background-color ease-in-out
+			&:after
+				visibility hidden
+				transform scale(2)
+				opacity 0
+				transition .2s transform ease-in-out, .2s opacity ease-in-out
+		&:checked + span
+		// &[checked="checked"] + span
+			&:after
+				transform scale(1)
+				opacity 1
+				visibility visible
+			&:before
+				background-color brandColor
+
+.checkbox
+	input
+		&+ span
+			&:after
+				top 4px
+				left @top
+				width 12px
+				height @width
+				background url(img('check.svg')) no-repeat 0 0
+				background-size 12px 12px
+
+.radio
+	input
+		&+ span
+			&:before
+				border-radius 50%
+			&:after
+				top 8px
+				left 8px
+				width 5px
+				height @width
+				background-color #fff
+				border-radius 50%

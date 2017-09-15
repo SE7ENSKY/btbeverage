@@ -1,0 +1,14 @@
+if data
+	+e.body
+		+e.body-inner
+			if data.title
+				+e("h2").title!= data.title
+			if data.text
+				- classes = []
+				if data.textMod
+					- classes.push(data.textMod)
+				+e.text(class=classes)!= data.text
+			if data.button
+				+e("a").button.btn.btn-white(href=data.button.url)= data.button.label
+	if data.image
+		+e.image(style=`background-image:url("${data.image}");`)

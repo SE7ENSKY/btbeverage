@@ -1,0 +1,109 @@
+.modal
+	display none
+	position fixed
+	top 0
+	right 0
+	bottom 0
+	left 0
+	z-index 1050
+	overflow hidden
+	-webkit-overflow-scrolling touch
+	outline 0 none
+	background-color rgba(49,84,35,.87)
+	&-close
+		position absolute
+		z-index 3
+		bottom auto
+		top 10px
+		right @top
+		width 24px
+		height @width
+		padding 0
+		background none
+		border 0 none
+		outline 0 none
+		cursor pointer
+		transform rotate(45deg)
+		&:hover
+			&:before
+			&:after
+				background-color siteColor
+		&:before
+		&:after
+			content ""
+			position absolute
+			background-color brandColor
+			left 50%
+			top 50%
+			transform translate(-50%,-50%)
+			transition .2s background-color ease-in-out
+		&:before
+			width 2px
+			height 10px
+		&:after
+			width 10px
+			height 2px
+	&-dialog
+		position absolute
+		top 0
+		right 0
+		bottom 0
+		overflow-y auto
+		-webkit-overflow-scrolling touch
+		min-width 300px
+		width 525px
+		background-color #fff
+		transform translateX(100%)
+		transition .2s transform ease-in-out
+		// @media phone
+		// 	width 95%
+		// 	max-width 550px
+	&-content
+		position relative
+		z-index 2
+		outline 0 none
+		width 100%
+	&-body
+		padding 0 105px 50px
+	&-backdrop
+		position fixed
+		top 0
+		right 0
+		bottom 0
+		left 0
+		z-index 1040
+	&-title
+		padding 49px 30px
+		font-size 48px
+		line-height 1.1
+		font-weight bold
+		text-align center
+		text-transform uppercase
+		color brandColor
+		&_simple
+			padding-bottom 30px
+	&-text
+		margin-bottom 35px
+		font-size 12px
+		text-transform uppercase
+		text-align center
+		a
+			text-decoration none
+			color brandColor
+			&:hover
+				color siteColor
+	&-open
+		overflow hidden
+		.modal
+			overflow-x hidden
+			overflow-y auto
+	&.in
+		.modal-dialog
+			transform translateX(0)
+	&_content-centered
+		.modal-dialog
+			display flex
+			align-items center
+	&_md
+		.modal-dialog
+			width 735px

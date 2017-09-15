@@ -1,0 +1,42 @@
+.gallery
+	position relative
+	display flex
+	left 50%
+	right @left
+	margin 80px -50vw
+	width 100vw
+	&.flickity-enabled
+		display block
+	&__item
+		width 44%
+		padding-bottom 30%
+		background-size cover
+		background-position center center
+		background-repeat no-repeat
+		&:nth-child(n+3)
+			display none
+			.flickity-enabled &
+				display block
+	
+	.flickity-prev-next-button
+		width 50px
+		height @width
+		margin-top -25px
+		border-radius 0
+		background #fff
+		transition .2s background ease-in-out
+		.arrow
+			fill lighten(brandColor, 30%)
+			transition .2s fill ease-in-out
+		&:hover
+			background brandColor
+			.arrow
+				fill #fff
+		&.previous
+			left 50%
+			margin-left -22%
+			transform translateX(-80px)
+		&.next
+			right 50%
+			margin-right -22%
+			transform translateX(80px)

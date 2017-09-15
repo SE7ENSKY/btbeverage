@@ -2,7 +2,10 @@ include ../globals/commons
 include ../../node_modules/verstat-bemto/bemto-tabs
 
 block params
+	- bodyMod = ""
 	- headerMod = ""
+	- headerDefault = true
+	- pageMod = ""
 
 doctype html
 html
@@ -18,7 +21,10 @@ html
 				| #{site.title}
 		block styles
 
-	body
+	- classes = []
+	if bodyMod
+		- classes.push(bodyMod)
+	body(class=classes)
 		block root
 			!= content
 

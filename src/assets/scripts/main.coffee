@@ -10,3 +10,11 @@ $ ->
 		window.touchDevice = true
 
 	FastClick.attach(document.body)
+
+	$(".form-control").on 'blur', (e) ->
+		$this = $(e.target)
+		value = $this.val()
+		if value
+			$this.addClass('has-value')
+		if $this.hasClass('has-value')
+			$this.removeClass('has-value') unless value

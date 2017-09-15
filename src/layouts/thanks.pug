@@ -1,0 +1,18 @@
+extends page
+
+append params
+	- bodyMod = "bg-white"
+
+block pageContent
+	.container
+		if file.pageTitle
+			h1.page__title!= file.pageTitle
+
+		if file.informer
+			+b.informer: +i({ data: file.informer })
+
+		if articles
+			if file.pageSubtitle
+				h2.page__subtitle!= file.pageSubtitle
+
+			+b.articles-list: +i({ data: articles })

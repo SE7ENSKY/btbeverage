@@ -3,7 +3,7 @@
 		+e("span").title-row._1 We brew
 		+e("span").title-row._2 Kombucha
 		+e("span").title-row._3 the right way
-		+e("img").title-image(src="/assets/img/leaf.png" alt="")
+		+e("img").title-image#leaf(src="/assets/img/leaf.png" alt="")
 	+e.text
 		p Kombucha is a healthy and refreshing fermented tea with a long history. 
 		p For the past twenty years, B-tea has crafted Kombucha in the centuries-old tradition, using only raw and organic ingredients and a three-week primary fermentation.
@@ -25,8 +25,4 @@
 			+e.list-image
 				+e("img").list-image-i(src="/assets/img/ingridient-icon-4.svg" alt="" width="65" height="65")
 			+e.list-title Natural Flavor &amp; Herbs
-	+e.bottle
-		if Array.isArray(bottleSeq)
-			each imgSrc in bottleSeq
-				+e().bottle-img(background="url(#{imgSrc})" alt="")
-			
+	+b.sequence(data-trigger="about__text"): +i({ sequence: bottleSeq })

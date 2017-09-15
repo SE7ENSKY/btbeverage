@@ -1,44 +1,27 @@
-import ScrollMagic from 'scrollmagic'
-import { TimelineMax, TweenMax } from 'gsap'
+import { Controller, Scene } from 'scrollmagic'
+import { TimelineMax, TweenMax, Power0 } from 'gsap'
 
 $ ->
 	$block = $('.about')
 	return unless $block.length
 
-	$bottle = $('.about__bottle')
-	$bottleSeq = $bottle.find('img')
+	controller = new Controller()
 
-	tempAnimationObj =
-		current: 0
-
-	prevChild = 0
-
-	onUpdateFunc = (obj) ->
-		return unless obj
-		currentChild = Math.round obj.current
-
-		if prevChild != currentChild
-			$($bottleSeq.get(prevChild)).css("display", "none")
-			$($bottleSeq.get(currentChild)).css("display", "block")
-			prevChild = currentChild
-
-	seqTween = TweenMax.fromTo tempAnimationObj, 0.5,
-		current: 0,
-			current: $bottleSeq.length - 1,
-			onUpdate: onUpdateFunc,
-			onUpdateParams: [tempAnimationObj]
-
-	controller = new ScrollMagic.Controller()
-	new ScrollMagic.Scene({
-			triggerElement: '.about__list'
-			offset: -200,
-			duration: window.innerHeight * 4
+	new Scene({
+			triggerElement: ".about__text"
+			offset: 0,
+			duration: '100%'
 		})
-		.setTween(seqTween)
+		.setTween(TweenMax.fromTo '.about__text', 0.5, { autoAlpha: 1 }, { autoAlpha: 0 })
 		.addTo(controller)
-		.on 'start', ->
-			TweenMax.staggerTo '.about__list-item', 0.5, { autoAlpha: 1 }, 0.2
-		.on 'enter', ->
-			TweenMax.fromTo $bottle, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }
-		.on 'leave', ->
-			TweenMax.fromTo $bottle, 0.1, { autoAlpha: 1 }, { autoAlpha: 0 }
+
+	$listItems = $block.find '.about__list-item'
+	$listItems.each ->
+		new Scene({
+				triggerElement: $(@).get(0),
+				triggerHook: 1,
+				offset: 50,
+				duration: '50%'
+			})
+			.setTween(TweenMax.fromTo @, 0.5, { autoAlpha: 0 }, { autoAlpha: 1 })
+			.addTo(controller)

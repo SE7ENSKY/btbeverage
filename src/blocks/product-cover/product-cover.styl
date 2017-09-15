@@ -44,3 +44,114 @@
 		text-align center
 		font-weight bold
 		letter-spacing 1pt
+		transition opacity 0.2s ease-in-out
+	&__close
+		position absolute
+		top 20px
+		right @top
+		width 30px
+		height @width
+		opacity 0
+		transform rotate(45deg)
+		transition .2s opacity ease-in-out
+		cursor pointer
+		&:before
+		&:after
+			content ""
+			position absolute
+			top 50%
+			left 50%
+			transform translate(-50%,-50%)
+			background-color #fff
+		&:before
+			width 10px
+			height 2px
+		&:after
+			width 2px
+			height 10px
+	&__slider
+		position absolute
+		z-index 2
+		top 5%
+		right 10%
+		bottom 5%
+		width 50%
+		overflow hidden
+		&-wrapper
+			display flex
+			position absolute
+			top 0
+			left 0
+			right 0
+			bottom 0
+			padding 70px 0 70px 60px
+			opacity 0
+			visibility hidden
+		&-inner
+			position absolute
+			display flex
+			top 50%
+			left 0
+			width 200%
+			transform translateY(-50%)
+			transition margin-left .5s ease-out
+		&-item
+			width 50%
+			text-align center
+			transition opacity .2s ease-in-out
+			opacity 0
+			&.active
+				opacity 1
+				transition opacity .4s ease-out
+		&-image
+			max-width 100%
+			max-height 100%
+		&-text
+			position relative
+			padding-bottom 60px
+	&__text
+		position absolute
+		left 0
+		right 0
+		bottom 0
+		font-size 14px
+		line-height 1.5
+		color #fff
+		text-transform uppercase
+		&-vertical
+			transform rotate(-90deg) translate(-90%, 100%)
+			transform-origin left bottom
+			margin-left -20px
+			// font-size 72px
+			font-size 5.1vw
+			line-height 1.1
+			font-weight 600
+			color #fff
+			text-transform uppercase
+			perspective 600px
+			perspective-origin top center
+			span
+				display inline-block
+				transform-origin 100% 50%
+	&.right
+		.product-cover
+			&__slider
+				left 10%
+				right auto
+				&-wrapper
+					justify-content flex-end
+					padding 70px 60px 70px 0
+			&__text
+				text-align right
+				&-vertical
+					transform rotate(90deg) translate(10%, -290%)
+					transform-origin left top
+	&.active
+		.product-cover
+			&__close
+				visibility visible
+				opacity 1
+				&:hover
+					opacity 0.6
+			&__title
+				opacity 0

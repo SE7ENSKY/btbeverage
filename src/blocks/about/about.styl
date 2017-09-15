@@ -16,12 +16,13 @@
 			&_3
 				z-index 1
 			&_2
-				z-index 3
+				z-index 7
 		&-image
+			display none
 			position fixed
 			top calc(50% + 5px)
 			left calc(50% + 20px)
-			z-index 2
+			z-index 6
 			width 160px
 			height 90px
 			transform translate(-50%, -100%)rotate(5deg)
@@ -43,7 +44,6 @@
 			width 38%
 			text-align center
 			margin-bottom 110px
-			opacity 0
 		&-image
 			width 65px
 			height @width
@@ -59,22 +59,3 @@
 			line-height 1.285
 			color brandColor
 			font-weight bold
-	&__bottle
-		position fixed
-		bottom 0
-		top 0
-		right 0
-		left 0
-		opacity 0
-		visibility hidden
-		&-img
-			position absolute
-			display none
-			top 0
-			bottom 0
-			top 0
-			right 0
-			left 0
-			background-size 100% 100%
-			&:first
-				display block

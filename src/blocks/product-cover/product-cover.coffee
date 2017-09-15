@@ -1,4 +1,4 @@
-import { TimelineMax, Power0 } from 'gsap'
+import { TimelineMax, Power0, Power2 } from 'gsap'
 
 $ ->
 	$block = $(".product-cover")
@@ -29,6 +29,10 @@ $ ->
 		volumeHeight = $paramsVolume.outerHeight()
 		textHeight = $paramsText.outerHeight()
 
+		$slider = $this.find '.product-cover__slider'
+		$sliderVerticalText = $this.find '.product-cover__text-vertical span'
+		$sliderNormalText = $this.find '.product-cover__text'
+
 		if !$this.hasClass('active')
 			tl
 				.fromTo $target.get(0), 0.5, { height: 0 }, { height: $targetInner.outerHeight(),ease: Power0.easeNone  }, 0
@@ -39,6 +43,9 @@ $ ->
 				.fromTo $paramsPack.get(0), 0.4, { y: -(textHeight + volumeHeight) }, { y: 0, ease: Power0.easeNone }, 0.1
 				.fromTo $paramsVolume.get(0), 0.3, { y: -textHeight }, { y: 0, ease: Power0.easeNone }, 0.2
 				.staggerFromTo $blockInners, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }, 0, 0.4
+				.fromTo $slider, 1, { x: -0.5 * window.innerWidth }, { x: 0, ease: Power2.easeOut }, 0.3
+				.fromTo $sliderNormalText, 0.4, { x: -0.25 * window.innerWidth }, { x: 0, ease: Power2.easeOut }, 0.9
+				.staggerFromTo $sliderVerticalText, 0.4, { autoAlpha: 0, rotationX: -90 }, { autoAlpha: 1, rotationX: 0 }, 0.2, 0.4
 		else
 			tl
 				.to $target.get(0), 0.5, { height: 0, ease: Power0.easeNone }, 0

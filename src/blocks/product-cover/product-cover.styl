@@ -94,7 +94,7 @@
 		&-item
 			width 50%
 			text-align center
-			transition opacity .3s ease-in-out
+			transition opacity .2s ease-in-out
 			opacity 0
 			&.active
 				opacity 1
@@ -123,6 +123,11 @@
 			font-weight 600
 			color #fff
 			text-transform uppercase
+			perspective 600px
+			perspective-origin top center
+			span
+				display inline-block
+				transform-origin 100% 50%
 	&.active
 		.product-cover
 			&__close

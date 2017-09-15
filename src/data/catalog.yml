@@ -3,7 +3,7 @@
   image: "/assets/img/catalog-img-1.jpg"
   video: "/"
   slider:
-    verticalTxt: "Original<br>Black tea"
+    verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     noteTxt: "Ingredients"
     bottleImage:
       - "/assets/img/bottle.png"
@@ -13,7 +13,7 @@
   image: "/assets/img/catalog-img-2.jpg"
   video: "/"
   slider:
-    verticalTxt: "Original<br>Black tea"
+    verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     noteTxt: "Ingredients"
     bottleImage:
       - "/assets/img/bottle.png"
@@ -23,7 +23,7 @@
   image: "/assets/img/catalog-img-3.jpg"
   video: "/"
   slider:
-    verticalTxt: "Original<br>Black tea"
+    verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     noteTxt: "Ingredients"
     bottleImage:
       - "/assets/img/bottle.png"
@@ -33,7 +33,7 @@
   image: "/assets/img/catalog-img-4.jpg"
   video: "/"
   slider:
-    verticalTxt: "Original<br>Black tea"
+    verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     noteTxt: "Ingredients"
     bottleImage:
       - "/assets/img/bottle.png"
@@ -43,7 +43,7 @@
   image: "/assets/img/catalog-img-5.jpg"
   video: "/"
   slider:
-    verticalTxt: "Original<br>Black tea"
+    verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     noteTxt: "Ingredients"
     bottleImage:
       - "/assets/img/bottle.png"
@@ -53,7 +53,7 @@
   image: "/assets/img/catalog-img-6.jpg"
   video: "/"
   slider:
-    verticalTxt: "Original<br>Black tea"
+    verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     noteTxt: "Ingredients"
     bottleImage:
       - "/assets/img/bottle.png"
@@ -63,7 +63,7 @@
   image: "/assets/img/catalog-img-7.jpg"
   video: "/"
   slider:
-    verticalTxt: "Original<br>Black tea"
+    verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     noteTxt: "Ingredients"
     bottleImage:
       - "/assets/img/bottle.png"
@@ -73,7 +73,7 @@
   image: "/assets/img/catalog-img-8.jpg"
   video: "/"
   slider:
-    verticalTxt: "Original<br>Black tea"
+    verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     noteTxt: "Ingredients"
     bottleImage:
       - "/assets/img/bottle.png"
@@ -83,7 +83,7 @@
   image: "/assets/img/catalog-img-9.jpg"
   video: "/"
   slider:
-    verticalTxt: "Original<br>Black tea"
+    verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     noteTxt: "Ingredients"
     bottleImage:
       - "/assets/img/bottle.png"

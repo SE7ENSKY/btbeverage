@@ -10,11 +10,28 @@ $ ->
 	$block = $(".intro")
 	return unless $block.length
 
-	_video = $block.find("video").get(0)
-	$(_video).attr "controls", "true" if touchDevice
-	# setTimeout ->
-	# 	_video.play()
-	# , 20
+	#
+	# Video
+	#
+
+	addVideo = ->
+		$video = $block.find("video")
+		$video.attr "controls", "true" if touchDevice
+		videoSrc = $video.data 'video'
+
+		tempVideo = document.createElement('video')
+		tempVideo.src = videoSrc
+		videoDOM = document.body.appendChild tempVideo
+		videoDOM.addEventListener 'canplay', ->
+			$video.attr 'src', videoSrc
+			setTimeout ->
+				$video.get(0).play()
+			, 5000
+			$(videoDOM).remove()
+
+	#
+	# Animation
+	#
 
 	$leaf = $(".about__title-image")
 
@@ -130,6 +147,9 @@ $ ->
 			leafScrollAnimation()
 
 	if !isLoaded
-		window.onload = startAnimation
+		window.onload = ->
+			startAnimation()
+			addVideo()
 	else
 		startAnimation()
+		addVideo()

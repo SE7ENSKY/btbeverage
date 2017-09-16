@@ -1,0 +1,8 @@
++e.title Addresses
+if data
+	+e.list
+		each item in data
+			+e.list-item
+				+b.address-widget: +i({ data: item })
++e.footer
+	+e("a").button.btn(href="/") Add new address

@@ -1,0 +1,15 @@
+if data
+	+e.content
+		if data.name
+			+e.row!= data.name
+		if data.address
+			+e.row!= data.address
+		if data.apartments
+			+e.row!= data.apartments
+		if data.street
+			+e.row!= data.street
+		if data.country
+			+e.row!= data.country
+	+e.buttons
+		+e("a").button._edit.btn(href="/") Edit
+		+e("a").button._delete.btn(href="/") Delete

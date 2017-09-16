@@ -1,0 +1,49 @@
+.order-list
+	margin 0 auto 50px
+	width 75%
+	&__row
+		position relative
+		display flex
+		padding-right 300px
+		font-size 12px
+		text-transform uppercase
+		&_header
+			font-size 10px
+			font-weight bold
+			color #b9b9b9
+			background-color transparent !important
+		&:nth-child(odd)
+			background-color #dfeada
+		&:nth-child(even)
+			background-color #ecf3e9
+	&__col
+		width 25%
+		padding 25px
+	&__number
+		color siteColor
+		text-decoration none
+		&:hover
+			color brandColor
+	&__status
+		color brandColor
+		font-weight bold
+	&__buttons
+		position absolute
+		top 0
+		right 0
+		bottom 0
+		width 300px
+		display flex
+	&__button
+		display flex
+		align-items center
+		justify-content center
+		width 50%
+		&:first-child
+			background #56943e
+		&:last-child
+			background #679e51
+		&:hover
+		&:active
+			background lighten(brandColor, 10%)
+

@@ -96,6 +96,35 @@ block pageMain
 								.row
 									.col-12
 										.form-checkbox-group
+											.form-checkbox-row
+												.radio
+													label(for="payment-1")
+														input(id="payment-1" name="payment" value="same" checked="checked")
+														span
+															.form-payment
+																.form-payment-text Credit card
+																img.form-payment-info(src=img('cards.png') height="25")
+											.row
+												.col-9
+													.form-group
+														input.form-control(type="text" placeholder="First name")
+											.row
+												.col-6
+													.form-group
+														input.form-control(type="text" placeholder="First name")
+												.col-3
+													.form-group
+														input.form-control(type="text" placeholder="MM/YY")
+												.col-3
+													.form-group
+														input.form-control(type="text" placeholder="CVV")
+											.form-checkbox-separator
+											.form-checkbox-row
+												.radio
+													label(for="payment-2")
+														input(id="payment-2" name="payment" value="other")
+														span
+															img.form-payment(src=img("paypal-logo.png") width="90" height="25")
 							.form-section
 								.form-section-header
 									.form-section-title Billing address

@@ -1,0 +1,48 @@
+.order-box
+	position relative
+	left 50%
+	right @left
+	width 100vw
+	margin 0 -50vw
+	&__wrap
+		display flex
+	&__body
+		display flex
+		justify-content flex-end
+		width 63%
+		padding-right 100px
+		&-inner
+			width 630px
+	&__aside
+		width 37%
+	&__section
+		margin-bottom 35px
+		&-title
+			margin-bottom 15px
+			font-size 12px
+			text-transform uppercase
+	&__info
+		padding 20px
+		background-color #dfeada
+		font-size 12px
+		line-height 1.666
+		color brandColor
+		text-transform uppercase
+		&-row
+			display flex
+			margin-bottom 10px
+			&:last-child
+				margin-bottom 0
+		&-label
+			flex-shrink 0
+			width 130px
+			padding-right 5px
+		&-value
+			font-weight bold
+	&__footer
+		margin-top 80px
+		text-align center
+	&__button
+		min-width 210px
+
+

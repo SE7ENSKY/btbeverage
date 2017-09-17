@@ -1,0 +1,38 @@
++e.wrap
+	+e.body
+		+e.body-inner
+			+e.section
+				+e.section-title Info
+				+e.info
+					+e.info-row
+						+e.info-label Order number
+						+e.info-value 223-279-091
+					+e.info-row
+						+e.info-label Order status
+						+e.info-value Processed
+					+e.info-row
+						+e.info-label Date
+						+e.info-value 11/23/17
+			+e.section
+				+e.section-title Shipping address
+				+e.info
+					+e.info-item Anton Kolisnyk
+					+e.info-item 195 Pymouth street
+					+e.info-item 4/20
+					+e.info-item Brooklyn NY 11201
+					+e.info-item United States
+			+e.section
+				+e.section-title Delivery
+			+e.section
+				+e.section-title Payment Method
+	+e.aside
+		+b.cart: +i({
+			list: cartProducts,
+			hidePayments: true,
+			hideControls: true,
+			hideTotal: true,
+			showPriceList: true
+		})
++e.footer
+	.container
+		+e("a").button.btn(href="/orders.html") Back

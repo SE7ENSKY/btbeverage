@@ -9,14 +9,17 @@ $ ->
 		if index % 2
 			$(this).addClass 'right'
 
-	$block.on "click", (e) ->
-		$this = $(@)
+	isAnimation = false
+
+	animationFunc = ($this, isOpen) ->
+		isAnimation = true
 		tl = new TimelineMax()
 		$target = $catalog.find($this.attr("data-target"))
 		$targetInner = $target.find('.product-params__inner')
 
 		productCoverHeightClosed = 0.33 * window.innerWidth
 		productCoverHeightOpen = Math.max(150 + $targetInner.outerHeight(), 0.33 * window.innerWidth)
+		console.log 'productCoverHeightOpen', productCoverHeightOpen, $targetInner.outerHeight(), 0.33 * window.innerWidth
 
 		diff = 0.33 * window.innerWidth + $targetInner.outerHeight() - productCoverHeightOpen
 
@@ -40,10 +43,10 @@ $ ->
 		$sliderVerticalText = $this.find '.product-cover__text-vertical span'
 		$sliderNormalText = $this.find '.product-cover__text'
 
-		if !$this.hasClass('active')
+		if !isOpen
 			tl
 				.fromTo $target.get(0), 0.5, { height: 0 }, { height: $targetInner.outerHeight(),ease: Power0.easeNone  }, 0
-				.fromTo $this.get(0), 0.5, { paddingBottom: productCoverHeightClosed }, { paddingBottom: productCoverHeightOpen, ease: Power0.easeNone }, 0
+				.fromTo $this.get(0), 0.5, { paddingBottom: "#{productCoverHeightClosed}px" }, { paddingBottom: "#{productCoverHeightOpen}px", ease: Power0.easeNone }, 0
 				.fromTo $sliderWrapper, 0.2, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
 				.staggerFromTo selector, 0.5, { y: 0 }, { y: -diff, ease: Power0.easeNone }, 0, 0
 				.set $blockInners, { autoAlpha: 0 }, 0
@@ -54,10 +57,13 @@ $ ->
 				.fromTo $slider, 1, { x: 0.5 * window.innerWidth * coef}, { x: 0, ease: Power2.easeOut }, 0.3
 				.fromTo $sliderNormalText, 0.4, { x: 0.25 * window.innerWidth * coef }, { x: 0, ease: Power2.easeOut }, 0.9
 				.staggerFromTo $sliderVerticalText, 0.4, { autoAlpha: 0, rotationX: 90 * coef }, { autoAlpha: 1, rotationX: 0 }, 0.2, 0.4
+				setTimeout ->
+					isAnimation = false
+				, 1300
 		else
 			tl
 				.to $target.get(0), 0.5, { height: 0, ease: Power0.easeNone }, 0
-				.to $this.get(0), 0.5, { paddingBottom: productCoverHeightClosed , ease: Power0.easeNone  }, 0
+				.to $this.get(0), 0.5, { paddingBottom: "#{productCoverHeightClosed}px" , ease: Power0.easeNone  }, 0
 				.set $this.get(0), { paddingBottom: "66%" }, 0.5
 				.fromTo $sliderWrapper, 0.2, { autoAlpha: 1 }, { autoAlpha: 0 }, 0
 				.staggerFromTo $blockInners, 0.1, { autoAlpha: 1 }, { autoAlpha: 0 }, 0, 0
@@ -65,5 +71,30 @@ $ ->
 				.fromTo $paramsCart.get(0), 0.5, { y: 0 }, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight()), ease: Power0.easeNone }, 0
 				.fromTo $paramsPack.get(0), 0.4, { y: 0 }, { y: -(textHeight + volumeHeight), ease: Power0.easeNone }, 0
 				.fromTo $paramsVolume.get(0), 0.3, { y: 0 }, { y: -textHeight, ease: Power0.easeNone }, 0
+				setTimeout ->
+					isAnimation = false
+				, 500
 
-		$this.toggleClass 'active'
+	$block.on "click", (e) ->
+		$this = $(@)
+		isOpen = $this.hasClass('active')
+		$openBlock = $('.product-cover.active')
+
+		return if isAnimation
+
+		if !isOpen and $openBlock.length
+			# check if other block is not opened
+			console.log 'here', (new Date()).getTime()
+			animationFunc $openBlock, true
+			$openBlock.toggleClass 'active'
+
+			setTimeout ->
+				console.log 'here -timeout', (new Date()).getTime()
+				animationFunc $this, isOpen
+				$this.toggleClass 'active'
+			, 1300
+
+		else
+			console.log 'else'
+			animationFunc $this, isOpen
+			$this.toggleClass 'active'

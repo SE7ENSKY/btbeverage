@@ -25,3 +25,8 @@ $ ->
 			})
 			.setTween(TweenMax.fromTo @, 0.5, { autoAlpha: 0 }, { autoAlpha: 1 })
 			.addTo(controller)
+
+	sequence = $block.data('sequence')
+	return if !sequence
+
+	sequenceAnimation '.about__text', sequence[0], sequence[1], { begin: true, triggerHook: 0.5 }

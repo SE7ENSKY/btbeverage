@@ -61,3 +61,13 @@ $ ->
 			})
 			.setTween(tl)
 			.addTo(controller)
+
+		#
+		# Sequence
+		#
+		sequence = $elem.data('sequence')
+		return if !sequence
+		isFinish = $elem.data('sequence-fin')
+		duration = $elem.data('sequence-duration')
+
+		sequenceAnimation $elem.get(0), sequence[0], sequence[1], { finish: isFinish, duration: duration }

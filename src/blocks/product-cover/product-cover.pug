@@ -1,8 +1,10 @@
 +e.wrap
 	if data.image
-		+e.image(style=`background-image:url("${data.image}");`)
+		+e.image-wrapper
+			+e.image(style=`background-image:url("${data.image}");`)
 	if data.video
-		+e.video
+		+e.video-wrapper
+			+e("video").video(data-video=data.video type="video/mp4" preload="preload")
 +e.content
 	if data.title
 		+e.title!= data.title

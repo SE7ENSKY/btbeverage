@@ -15,7 +15,7 @@ $ ->
 		$('body').animate
 			scrollTop: $this.offset().top
 
-	animationFunc = ($this, isOpen) ->
+	animationFunc = ($this, isOpen, removeHover = false) ->
 		isAnimation = true
 		tl = new TimelineMax()
 		$target = $catalog.find($this.attr("data-target"))
@@ -79,7 +79,52 @@ $ ->
 				# after animation
 				setTimeout ->
 					isAnimation = false
+					$this.removeClass 'hover' if removeHover
 				, 500
+
+	#
+	# add Video
+	#
+
+	addVideo = (block) ->
+		$video = block.find("video")
+		return unless $video.length
+
+		$target = $catalog.find(block.attr("data-target")).find('.product-params__inner')
+
+		$video.attr "controls", "true" if touchDevice
+		videoSrc = $video.data 'video'
+
+		tempVideo = document.createElement('video')
+		tempVideo.src = videoSrc
+		videoDOM = document.body.appendChild tempVideo
+		videoDOM.addEventListener 'canplay', ->
+			$video.attr 'src', videoSrc
+			$video.css 'height', $target.outerHeight() + 150
+			$(videoDOM).remove()
+
+	window.addEventListener 'load', ->
+		$block.each ->
+			addVideo $(@)
+
+	#
+	# hover
+	#
+
+	$block.hover ->
+		$this = $(@)
+		$video = $this.find('video')
+		hasVideo = $video.length and $video.attr('src')
+		if (hasVideo or $this.hasClass('hover')) and !$this.hasClass('active')
+			if !$this.hasClass('hover')
+				$video.get(0).play()
+			else
+				$video.get(0).pause()
+			$this.toggleClass 'hover'
+
+	#
+	# Click handler
+	#
 
 	$block.on "click", (e) ->
 		$this = $(@)
@@ -90,7 +135,7 @@ $ ->
 
 		if !isOpen and $openBlock.length
 			# check if other block is not opened
-			animationFunc $openBlock, true
+			animationFunc $openBlock, true, true
 			$openBlock.toggleClass 'active'
 
 			setTimeout ->

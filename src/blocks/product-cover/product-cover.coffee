@@ -19,7 +19,6 @@ $ ->
 
 		productCoverHeightClosed = 0.33 * window.innerWidth
 		productCoverHeightOpen = Math.max(150 + $targetInner.outerHeight(), 0.33 * window.innerWidth)
-		console.log 'productCoverHeightOpen', productCoverHeightOpen, $targetInner.outerHeight(), 0.33 * window.innerWidth
 
 		diff = 0.33 * window.innerWidth + $targetInner.outerHeight() - productCoverHeightOpen
 
@@ -84,17 +83,14 @@ $ ->
 
 		if !isOpen and $openBlock.length
 			# check if other block is not opened
-			console.log 'here', (new Date()).getTime()
 			animationFunc $openBlock, true
 			$openBlock.toggleClass 'active'
 
 			setTimeout ->
-				console.log 'here -timeout', (new Date()).getTime()
 				animationFunc $this, isOpen
 				$this.toggleClass 'active'
 			, 1300
 
 		else
-			console.log 'else'
 			animationFunc $this, isOpen
 			$this.toggleClass 'active'

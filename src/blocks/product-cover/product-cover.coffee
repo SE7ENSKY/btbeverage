@@ -11,6 +11,10 @@ $ ->
 
 	isAnimation = false
 
+	scrollToViewport = ($this) ->
+		$('body').animate
+			scrollTop: $this.offset().top
+
 	animationFunc = ($this, isOpen) ->
 		isAnimation = true
 		tl = new TimelineMax()
@@ -56,8 +60,10 @@ $ ->
 				.fromTo $slider, 1, { x: 0.5 * window.innerWidth * coef}, { x: 0, ease: Power2.easeOut }, 0.3
 				.fromTo $sliderNormalText, 0.4, { x: 0.25 * window.innerWidth * coef }, { x: 0, ease: Power2.easeOut }, 0.9
 				.staggerFromTo $sliderVerticalText, 0.4, { autoAlpha: 0, rotationX: 90 * coef }, { autoAlpha: 1, rotationX: 0 }, 0.2, 0.4
+				# after animation
 				setTimeout ->
 					isAnimation = false
+					scrollToViewport $this
 				, 1300
 		else
 			tl
@@ -70,6 +76,7 @@ $ ->
 				.fromTo $paramsCart.get(0), 0.5, { y: 0 }, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight()), ease: Power0.easeNone }, 0
 				.fromTo $paramsPack.get(0), 0.4, { y: 0 }, { y: -(textHeight + volumeHeight), ease: Power0.easeNone }, 0
 				.fromTo $paramsVolume.get(0), 0.3, { y: 0 }, { y: -textHeight, ease: Power0.easeNone }, 0
+				# after animation
 				setTimeout ->
 					isAnimation = false
 				, 500
@@ -89,7 +96,7 @@ $ ->
 			setTimeout ->
 				animationFunc $this, isOpen
 				$this.toggleClass 'active'
-			, 1300
+			, 500
 
 		else
 			animationFunc $this, isOpen

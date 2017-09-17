@@ -3,7 +3,7 @@ import ScrollMagic from 'scrollmagic';
 
 isLoaded = false
 
-window.onload = ->
+window.addEventListener 'load', ->
 	isLoaded = true
 
 $ ->
@@ -147,7 +147,7 @@ $ ->
 			leafScrollAnimation()
 
 	if !isLoaded
-		window.onload = ->
+		window.addEventListener 'load', ->
 			startAnimation()
 			addVideo()
 	else

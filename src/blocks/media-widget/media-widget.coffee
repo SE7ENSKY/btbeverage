@@ -28,14 +28,16 @@ $ ->
 			$video.get(0).play()
 			$(videoDOM).remove()
 
+	window.addEventListener 'load', ->
+		$block.each ->
+			addVideo $(@)
+
 	#
 	# Animation
 	#
 
 	$block.each ->
 		$elem = $(@)
-
-		addVideo $elem
 
 		$contentBg = $elem.find '.media-widget__content-bg'
 		$mainImage = $elem.find '.media-widget__image_main .media-widget__image-i'

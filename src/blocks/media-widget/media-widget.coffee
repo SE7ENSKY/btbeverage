@@ -9,8 +9,33 @@ $ ->
 
 	getRandomSkew = -> 100 - Math.random() * 20
 
+	#
+	# Video
+	#
+
+	addVideo = (block) ->
+		$video = block.find("video")
+		return unless $video.length
+
+		$video.attr "controls", "true" if touchDevice
+		videoSrc = $video.data 'video'
+
+		tempVideo = document.createElement('video')
+		tempVideo.src = videoSrc
+		videoDOM = document.body.appendChild tempVideo
+		videoDOM.addEventListener 'canplay', ->
+			$video.attr 'src', videoSrc
+			$video.get(0).play()
+			$(videoDOM).remove()
+
+	#
+	# Animation
+	#
+
 	$block.each ->
 		$elem = $(@)
+
+		addVideo $elem
 
 		$contentBg = $elem.find '.media-widget__content-bg'
 		$mainImage = $elem.find '.media-widget__image_main .media-widget__image-i'

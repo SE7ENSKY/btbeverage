@@ -13,21 +13,6 @@ $ ->
 	# Video
 	#
 
-	addVideo = (block) ->
-		$video = block.find("video")
-		return unless $video.length
-
-		$video.attr "controls", "true" if touchDevice
-		videoSrc = $video.data 'video'
-
-		tempVideo = document.createElement('video')
-		tempVideo.src = videoSrc
-		videoDOM = document.body.appendChild tempVideo
-		videoDOM.addEventListener 'canplay', ->
-			$video.attr 'src', videoSrc
-			$video.get(0).play()
-			$(videoDOM).remove()
-
 	window.addEventListener 'load', ->
 		$block.each ->
 			addVideo $(@)

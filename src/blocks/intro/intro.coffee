@@ -11,25 +11,6 @@ $ ->
 	return unless $block.length
 
 	#
-	# Video
-	#
-
-	addVideo = ->
-		$video = $block.find("video")
-		$video.attr "controls", "true" if touchDevice
-		videoSrc = $video.data 'video'
-
-		tempVideo = document.createElement('video')
-		tempVideo.src = videoSrc
-		videoDOM = document.body.appendChild tempVideo
-		videoDOM.addEventListener 'canplay', ->
-			$video.attr 'src', videoSrc
-			setTimeout ->
-				$video.get(0).play()
-			, 5000
-			$(videoDOM).remove()
-
-	#
 	# Animation
 	#
 
@@ -79,7 +60,7 @@ $ ->
 			.fromTo $leaf, 2.2,
 				y: - window.innerHeight / 2 - 40,
 				rotation: -90,
-					y: "-100%"
+					y: "-100%",
 					ease: Power1.easeOut
 				, 0
 			.fromTo $leaf, 0.8, { rotation: -90 }, { rotation: 25 }, 0
@@ -149,7 +130,7 @@ $ ->
 	if !isLoaded
 		window.addEventListener 'load', ->
 			startAnimation()
-			addVideo()
+			addVideo $block, 5000
 	else
 		startAnimation()
-		addVideo()
+		addVideo $block, 5000

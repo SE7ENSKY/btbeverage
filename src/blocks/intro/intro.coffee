@@ -10,6 +10,9 @@ $ ->
 	$block = $(".intro")
 	return unless $block.length
 
+	$('body').css 'overflow', 'hidden'
+	sliderAnimationOver = false
+
 	#
 	# Animation
 	#
@@ -115,7 +118,6 @@ $ ->
 	startAnimation = ->
 			$leaf.show(0)
 			window.scrollTo(0, 0)
-			$('body').css 'overflow', 'hidden'
 			# preloader animation
 			leafPreloaderAnimation()
 			preloaderBgAnimation 1.3
@@ -123,14 +125,16 @@ $ ->
 			lettersAnimation 2.5
 			headerAnimation 3.5
 			sliderAnimation 3.5, ->
-				$('body').css 'overflow', 'auto'
+				$('body').css 'overflow', '' if isLoaded
+				sliderAnimationOver = true
 			# add leaf scrolling animation
 			leafScrollAnimation()
 
+	startAnimation()
+
 	if !isLoaded
 		window.addEventListener 'load', ->
-			startAnimation()
 			addVideo $block, 5000
+			$('body').css 'overflow', '' if sliderAnimationover
 	else
-		startAnimation()
 		addVideo $block, 5000

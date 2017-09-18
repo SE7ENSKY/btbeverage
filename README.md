@@ -1,7 +1,9 @@
 # Verstat v2
-Release candidate
+Release :tada:
 
-NOTE: all paths in css and html start with a sign ```/``` . On ```Linux``` ```nodemon``` restarts only once due bug with ```chokidar```.
+**NOTE:** All paths in css and html start with a sign ```/``` . On Linux [nodemon](https://github.com/remy/nodemon) restarts only once due bug with [chokidar](https://github.com/paulmillr/chokidar). For [Modernizr](https://github.com/Modernizr/Modernizr) we use [modernizr-loader](https://github.com/peerigon/modernizr-loader).
+
+**WARNING: ```yarn``` temporary removed due [js-beautify bug](https://github.com/beautify-web/js-beautify/issues/1247). Further use of ```yarn``` is under consideration.**
 
 **Languages**
 ```
@@ -16,7 +18,7 @@ NOTE: all paths in css and html start with a sign ```/``` . On ```Linux``` ```no
  9. JavaScript
 10. CoffeeScript
 11. JSON
-12. YAML
+12. YAML (temporary removed)
 ```
 
 **Features**
@@ -40,6 +42,21 @@ NOTE: all paths in css and html start with a sign ```/``` . On ```Linux``` ```no
 17. bemto
 18. Browsersync
 19. yarn
+20. Modernizr
+21. Critical CSS (currently in development)
+```
+
+**Assets naming convention**
+
+```
+// bin/utils.js
+const ASSETS_NAMING_CONVENTION = {
+  images: 'i',
+  fonts: 'f',
+  videos: 'v',
+  scripts: 'scripts',
+  styles: 'styles'
+}
 ```
 
 **Requirements**
@@ -64,10 +81,10 @@ npm i
 ```
 // only for development, read/write, server on localhost:8080
 // yarn
-yarn dev
+yarn start
 
 // npm
-npm run dev
+npm run start
 ```
 ```
 // only for production, read-only, server on localhost:3000
@@ -107,16 +124,20 @@ verstat // project name
 ├── dist
 ├── src
 │   ├── assets
-│   │   ├── fonts
-│   │   ├── img
+│   │   ├── f // fonts
+│   │   ├── i // images
 │   │   ├── scripts
 │   │   ├── styles
-│   │   ├── video
+│   │   ├── v // videos
 │   │   └── project-name.js // webpack entry, imports
 │   ├── blocks
+│   │   └── container
+│   │       └── container.styl
 │   ├── data
+│   │   └── text.yml
 │   ├── globals
 │   │   ├── commons.pug
+│   │   ├── functions.styl
 │   │   ├── mixins.styl
 │   │   └── variables.styl
 │   ├── layouts
@@ -132,6 +153,7 @@ verstat // project name
 ├── .eslintignore
 ├── .eslintrc
 ├── .gitignore
+├── .modernizrrc
 ├── package.json
 └── README.md
 ```

@@ -14,15 +14,26 @@ if list
 										+e.product-info!= subitem.title
 									if subitem.price
 										+e.product-price!= subitem.price
-									+e.controls
-										+e.controls-item._plus
-										+e.controls-item._minus
+									unless hideControls
+										+e.controls
+											+e.controls-item._plus
+											+e.controls-item._minus
+unless hideTotal
+	+e.total
+		+e.total-label Your Total
+		+e.total-value $ 280.00
 
-
-
-+e.total
-	+e.total-label Your Total
-	+e.total-value $ 280.00
+if showPriceList
+	+e.prices
+		+e.prices-item
+			+e.prices-label Subtotal
+			+e.prices-value $ 280.00
+		+e.prices-item
+			+e.prices-label Shipping
+			+e.prices-value $ 15.00
+		+e.prices-item
+			+e.prices-label Your Total
+			+e.prices-value $ 295.00
 
 unless hidePayments
 	+e.payments
@@ -30,7 +41,7 @@ unless hidePayments
 			+e.payments-label Checkout
 		+e.payments-item
 			+e("a").payments-link(href="/")
-				+e("img").payments-icon(src=img("amazon-pay.svg"), alt="" width="101" height="21")
+				+e("img").payments-icon(src=i("amazon-pay.svg"), alt="" width="101" height="21")
 		+e.payments-item
 			+e("a").payments-link(href="/")
-				+e("img").payments-icon(src=img("paypal.svg"), alt="" width="91" height="23")
+				+e("img").payments-icon(src=i("paypal.svg"), alt="" width="91" height="23")

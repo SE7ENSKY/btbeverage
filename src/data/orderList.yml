@@ -5,7 +5,7 @@
   total: "$ 198.02"
   buttons:
     - title: "View"
-      url: "/"
+      url: "/order.html"
     - title: "Cancel"
       url: "/"
 - number: "781-891-001"
@@ -15,6 +15,6 @@
   total: "$ 305.19"
   buttons:
     - title: "View"
-      url: "/"
+      url: "/order.html"
     - title: "Edit"
       url: "/"

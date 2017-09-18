@@ -14,8 +14,14 @@ block pageContent
 		when "1"
 			+b.order-list: +i({ data: orderList })
 
+		when "1-1"
+			+b.order-box: +i({ cartProducts: cartProducts })
+
 		when "2"
 			+b.addresses-box: +i({ data: addressList })
+
+		when "2-1"
+			+b("form").address-edit: +i
 
 		when "3"
 			+b("form").personal-data: +i

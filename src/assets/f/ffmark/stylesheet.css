@@ -30,16 +30,16 @@
   
 @font-face {
 	font-family: 'FFMark';
-	src: url('/assets/fonts/ffmark/348C4E_0_0.ttf') format('truetype'),
-		 url('/assets/fonts/ffmark/348C4E_0_0.woff') format('woff');
+	src: url('/assets/f/ffmark/348C4E_0_0.ttf') format('truetype'),
+		 url('/assets/f/ffmark/348C4E_0_0.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'FFMark';
-	src: url('/assets/fonts/ffmark/348C4E_1_0.ttf') format('truetype'),
-		 url('/assets/fonts/ffmark/348C4E_1_0.woff') format('woff');
+	src: url('/assets/f/ffmark/348C4E_1_0.ttf') format('truetype'),
+		 url('/assets/f/ffmark/348C4E_1_0.woff') format('woff');
 	font-weight: bold;
 	font-style: normal;
 }

@@ -1,0 +1,48 @@
++e.section
+	.form-section-title.form-section-title_simple Edit address
+	.row
+		.col-6
+			.form-group
+				input.form-control(type="text" placeholder="First name")
+		.col-6
+			.form-group
+				input.form-control(type="text" placeholder="Second name")
+	.row
+		.col-8
+			.form-group
+				input.form-control(type="text" placeholder="Address")
+		.col-4
+			.form-group
+				input.form-control(type="text" placeholder="Apt, suite, etc.")
+	.row
+		.col-8
+			.form-group
+				input.form-control(type="text" placeholder="City")
+	.row
+		.col-4
+			.form-group
+				input.form-control(type="text" placeholder="Country")
+		.col-4
+			.form-group
+				input.form-control(type="text" placeholder="State")
+		.col-4
+			.form-group
+				input.form-control(type="text" placeholder="Zip code")
+	.row
+		.col-8
+			.form-group
+				input.form-control(type="tel" placeholder="Phone (Optional)")
++e.wrap
+	.form-section-title.form-section-title_simple Make default address?
+	.form-group
+		.radio.radio_inline
+			label
+				input(type="radio" name="default-address" value="yes" checked)
+				span Yes
+		.radio.radio_inline
+			label
+				input(type="radio" name="default-address" value="no")
+				span No
++e.footer
+	+e("button").button._save.btn(type="submit") Save
+	+e("a").button._back.btn(href="/address-book.html") Back

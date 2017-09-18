@@ -1,0 +1,30 @@
++e.item.active
+	+e.item-header.radio
+		label
+			input(type="radio" name="payment" value="same" checked)
+			+e("span").panel
+				+e("span").panel-label Credit card
+				+e("span").panel-icons
+					img(src=i('cards.png'), alt="")
+	+e.item-wrap
+		.row
+			.col-9
+				.form-group
+					input.form-control(type="text" placeholder="Card Number")
+		.row
+			.col-6
+				.form-group
+					input.form-control(type="text" placeholder="Name on card")
+			.col-3
+				.form-group
+					input.form-control(type="text" placeholder="MM/YY")
+			.col-3
+				.form-group
+					input.form-control(type="text" placeholder="CVV")
++e.item
+	+e.item-header.radio
+		label
+			input(type="radio" name="payment" value="paypal")
+			+e("span").panel
+				+e("span").panel-icons
+					img(src=i("paypal-logo.png"), alt="")

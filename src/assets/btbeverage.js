@@ -19,7 +19,6 @@ import 'f/ffmark/stylesheet.css';
 import 'styles/main.styl';
 
 // ------------------ import vendor scripts ------------------
-import 'vendor/modernizr.js';
 import 'vendor/twitter-bootstrap/transition.js';
 import 'vendor/twitter-bootstrap/modal.js';
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap';

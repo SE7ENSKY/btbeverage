@@ -1,0 +1,11 @@
+if data
+	each item in data
+		+e.item.radio
+			label
+				if item.active
+					input(type="radio" name=groupName, value=item.slug, checked)
+				else
+					input(type="radio" name=groupName, value=item.slug)
+				+e("span").item-inner
+					+e("span").label= item.title
+					+e("span").value= item.price

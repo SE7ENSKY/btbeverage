@@ -135,6 +135,6 @@ $ ->
 	if !isLoaded
 		window.addEventListener 'load', ->
 			addVideo $block, 5000
-			$('body').css 'overflow', '' if sliderAnimationover
+			$('body').css 'overflow', '' if sliderAnimationOver
 	else
 		addVideo $block, 5000

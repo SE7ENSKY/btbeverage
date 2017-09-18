@@ -15,7 +15,7 @@ import 'normalize.css/normalize.css';
 import 'flickity/dist/flickity.css';
 
 // ------------------ import system styles -------------------
-import 'fonts/ffmark/stylesheet.css';
+import 'f/ffmark/stylesheet.css';
 import 'styles/main.styl';
 
 // ------------------ import vendor scripts ------------------

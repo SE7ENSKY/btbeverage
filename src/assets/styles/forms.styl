@@ -68,11 +68,30 @@ placeholderTrans()
 		margin-bottom 17px
 		font-size 12px
 		text-transform uppercase
-		a
-			color brandColor
-			text-decoration none
-			&:hover
-				color siteColor
+	&-summary
+		padding 20px
+		font-size 12px
+		line-height 1.6
+		color brandColor
+		text-transform uppercase
+		background-color #dfeada
+
+.form-link
+	font-size 12px
+	line-height 1.1
+	color brandColor
+	text-decoration none
+	text-transform uppercase
+	&:hover
+		color siteColor
+
+.form-footer
+	&_nav
+		display flex
+		justify-content space-between
+		align-items center
+	&-link
+		font-weight 600
 
 .error-message
 	display none
@@ -164,7 +183,7 @@ fieldset
 				left @top
 				width 12px
 				height @width
-				background url(img('check.svg')) no-repeat 0 0
+				background url(i('check.svg')) no-repeat 0 0
 				background-size 12px 12px
 
 .radio

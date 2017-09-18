@@ -12,6 +12,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HappyPack = require('happypack');
 const happyThreadPool = HappyPack.ThreadPool({ size: 4 });
 const {
+	ASSETS_NAMING_CONVENTION,
 	PROJECT_ROOT,
 	DEV_OUTPUT,
 	POSTCSS_CONFIG,
@@ -41,6 +42,29 @@ const postcssLoaderOptions = {
 	}
 };
 
+const babelLoaderOptions = {
+	cacheDirectory: true,
+	babelrc: false,
+	plugins: [
+		'babel-plugin-transform-class-properties',
+		'babel-plugin-syntax-dynamic-import',
+		'babel-plugin-transform-runtime',
+		'babel-plugin-syntax-async-functions',
+		'babel-plugin-transform-object-rest-spread'
+	],
+	presets: [
+		[
+			'env',
+			{
+				targets: {
+					browsers: SUPPORTED_BROWSERS_LIST
+				},
+				modules: false
+			}
+		]
+	]
+};
+
 const devConfig = {
 	context: join(PROJECT_ROOT, 'src'),
 	entry: generateEntry('webpack-hot-middleware/client'),
@@ -67,12 +91,13 @@ const devConfig = {
 		],
 		alias: {
 			assets: join(PROJECT_ROOT, 'src', 'assets'),
-			fonts: join(PROJECT_ROOT, 'src', 'assets', 'fonts'),
-			img: join(PROJECT_ROOT, 'src', 'assets', 'img'),
-			video: join(PROJECT_ROOT, 'src', 'assets', 'video'),
-			scripts: join(PROJECT_ROOT, 'src', 'assets', 'scripts'),
-			styles: join(PROJECT_ROOT, 'src', 'assets', 'styles'),
-			vendor: join(PROJECT_ROOT, 'src', 'vendor')
+			f: join(PROJECT_ROOT, 'src', 'assets', ASSETS_NAMING_CONVENTION.fonts),
+			i: join(PROJECT_ROOT, 'src', 'assets', ASSETS_NAMING_CONVENTION.images),
+			v: join(PROJECT_ROOT, 'src', 'assets', ASSETS_NAMING_CONVENTION.videos),
+			scripts: join(PROJECT_ROOT, 'src', 'assets', ASSETS_NAMING_CONVENTION.scripts),
+			styles: join(PROJECT_ROOT, 'src', 'assets', ASSETS_NAMING_CONVENTION.styles),
+			vendor: join(PROJECT_ROOT, 'src', 'vendor'),
+			modernizr$: join(PROJECT_ROOT, '.modernizrrc')
 		}
 	},
 	devtool: 'cheap-module-eval-source-map',
@@ -129,6 +154,16 @@ const devConfig = {
 				test: /\.js$/,
 				exclude: /node_modules/,
 				use: 'happypack/loader?id=babel'
+			},
+			// this.exec() is not supported by HappyPack
+			// https://github.com/amireh/happypack/wiki/Webpack-Loader-API-Support
+			{
+				test: /\.modernizrrc.js$/,
+				use: ['modernizr-loader']
+			},
+			{
+				test: /\.modernizrrc(\.json)?$/,
+				use: ['modernizr-loader', 'json-loader']
 			}
 		]
 	},
@@ -250,28 +285,7 @@ const devConfig = {
 			loaders: [
 				{
 					path: 'babel-loader',
-					query: {
-						cacheDirectory: true,
-						babelrc: false,
-						plugins: [
-							'babel-plugin-transform-class-properties',
-							'babel-plugin-syntax-dynamic-import',
-							'babel-plugin-transform-runtime',
-							'babel-plugin-transform-object-rest-spread'
-						],
-						presets: [
-							[
-								'env',
-								{
-									targets: {
-										browsers: SUPPORTED_BROWSERS_LIST
-									},
-									modules: false,
-									loose: true
-								}
-							]
-						]
-					}
+					query: babelLoaderOptions
 				},
 				'coffee-loader'
 			]
@@ -294,28 +308,7 @@ const devConfig = {
 			threadPool: happyThreadPool,
 			loaders: [{
 				path: 'babel-loader',
-				query: {
-					cacheDirectory: true,
-					babelrc: false,
-					plugins: [
-						'babel-plugin-transform-class-properties',
-						'babel-plugin-syntax-dynamic-import',
-						'babel-plugin-transform-runtime',
-						'babel-plugin-transform-object-rest-spread'
-					],
-					presets: [
-						[
-							'env',
-							{
-								targets: {
-									browsers: SUPPORTED_BROWSERS_LIST
-								},
-								modules: false,
-								loose: true
-							}
-						]
-					]
-				}
+				query: babelLoaderOptions
 			}]
 		}),
 		new NoEmitOnErrorsPlugin(),
@@ -330,8 +323,8 @@ const devConfig = {
 				from: 'assets',
 				to: 'assets',
 				ignore: [
-					'scripts/*',
-					'styles/*',
+					`${ASSETS_NAMING_CONVENTION.scripts}/*`,
+					`${ASSETS_NAMING_CONVENTION.styles}/*`,
 					'*.js',
 					'.DS_Store'
 				]

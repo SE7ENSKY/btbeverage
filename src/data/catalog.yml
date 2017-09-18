@@ -1,7 +1,7 @@
 - title: "Original black tea"
   text: "Original made with Black Tea - It quenches that hard-to-reach thirst with a bold flavor and all the goodness of 100% organic Darjeerling Black Tea."
   image: "/assets/i/catalog-img-1.jpg"
-  video: "/"
+  video: "http://tmp.static.se7enapp.com/bdsl/main.mp4"
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     noteTxt: "Ingredients"
@@ -11,7 +11,6 @@
 - title: "Chili Cleanser"
   text: "Chili Cleanser - It quenches that hard-to-reach thirst with a bold flavor and all the goodness of 100% organic Darjeerling Black Tea."
   image: "/assets/i/catalog-img-2.jpg"
-  video: "/"
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     noteTxt: "Ingredients"
@@ -21,7 +20,7 @@
 - title: "Lemonade"
   text: "Lemonade - It quenches that hard-to-reach thirst with a bold flavor and all the goodness of 100% organic Darjeerling Black Tea."
   image: "/assets/i/catalog-img-3.jpg"
-  video: "/"
+  video: ""
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     noteTxt: "Ingredients"
@@ -31,7 +30,7 @@
 - title: "Lemon Balm"
   text: "Lemon Balm - It quenches that hard-to-reach thirst with a bold flavor and all the goodness of 100% organic Darjeerling Black Tea."
   image: "/assets/i/catalog-img-4.jpg"
-  video: "/"
+  video: ""
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     noteTxt: "Ingredients"
@@ -41,7 +40,7 @@
 - title: "Tranquility"
   text: "Tranquility - It quenches that hard-to-reach thirst with a bold flavor and all the goodness of 100% organic Darjeerling Black Tea."
   image: "/assets/i/catalog-img-5.jpg"
-  video: "/"
+  video: ""
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     noteTxt: "Ingredients"
@@ -51,7 +50,7 @@
 - title: "Serenity"
   text: "Serenity - It quenches that hard-to-reach thirst with a bold flavor and all the goodness of 100% organic Darjeerling Black Tea."
   image: "/assets/i/catalog-img-6.jpg"
-  video: "/"
+  video: ""
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     noteTxt: "Ingredients"
@@ -61,7 +60,7 @@
 - title: "Original Ginger"
   text: "Original Ginger - It quenches that hard-to-reach thirst with a bold flavor and all the goodness of 100% organic Darjeerling Black Tea."
   image: "/assets/i/catalog-img-7.jpg"
-  video: "/"
+  video: ""
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     noteTxt: "Ingredients"
@@ -71,7 +70,7 @@
 - title: "Green Tea"
   text: "Green Tea - It quenches that hard-to-reach thirst with a bold flavor and all the goodness of 100% organic Darjeerling Black Tea."
   image: "/assets/i/catalog-img-8.jpg"
-  video: "/"
+  video: ""
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     noteTxt: "Ingredients"
@@ -81,7 +80,7 @@
 - title: "Variety pack"
   text: "Variety pack - It quenches that hard-to-reach thirst with a bold flavor and all the goodness of 100% organic Darjeerling Black Tea."
   image: "/assets/i/catalog-img-9.jpg"
-  video: "/"
+  video: ""
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     noteTxt: "Ingredients"

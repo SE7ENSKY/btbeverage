@@ -23,8 +23,17 @@
 					+e.info-item United States
 			+e.section
 				+e.section-title Delivery
+				+e.panel
+					+e.panel-body
+						+e.panel-text Standard Shipping (Delivery by USPS in 15 Days)
+					+e.panel-label Free
 			+e.section
 				+e.section-title Payment Method
+				+e.panel
+					+e.panel-body
+						+e.panel-text Credit Card ended <strong>•••• 8723</strong>
+						+e.panel-icons
+							img(src=img("payments.jpg"), alt="")
 	+e.aside
 		+b.cart: +i({
 			list: cartProducts,

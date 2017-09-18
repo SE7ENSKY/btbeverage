@@ -67,23 +67,11 @@ block pageMain
 									.form-section-title Shipping Address
 									.form-section-info
 										a.form-link(href="/checkout-page-1.html") <strong>Edit</strong>
-								.row
-									.col-12
-										.form-section-summary!= file.shippingAddress
+								.form-section-summary!= file.shippingAddress
 							.form-section
 								.form-section-header
 									.form-section-title Delivery
-								.row
-									.col-12
-										.form-checkbox-group
-											each delivery, index in file.deliveryList
-												.form-checkbox-row
-													.radio
-														- id = "delivery-" + index
-														label(for=id)
-															input(id=id name="delivery" value=delivery.slug)
-															span= delivery.title
-													.form-price= delivery.price
+								+b.checkbox-group: +i({ data: file.deliveryList, groupName: "delivery" })
 						.form-footer.form-footer_nav
 							button.btn(type="submit") Continue to payment method
 							a.form-footer-link.form-link(href="/") Return to customer info
@@ -93,56 +81,13 @@ block pageMain
 							.form-section
 								.form-section-header
 									.form-section-title Payment Method
-								.row
-									.col-12
-										.form-checkbox-group
-											.form-checkbox-row
-												.radio
-													label(for="payment-1")
-														input(id="payment-1" name="payment" value="same" checked="checked")
-														span
-															.form-payment
-																.form-payment-text Credit card
-																img.form-payment-info(src=img('cards.png') height="25")
-											.row
-												.col-9
-													.form-group
-														input.form-control(type="text" placeholder="First name")
-											.row
-												.col-6
-													.form-group
-														input.form-control(type="text" placeholder="First name")
-												.col-3
-													.form-group
-														input.form-control(type="text" placeholder="MM/YY")
-												.col-3
-													.form-group
-														input.form-control(type="text" placeholder="CVV")
-											.form-checkbox-separator
-											.form-checkbox-row
-												.radio
-													label(for="payment-2")
-														input(id="payment-2" name="payment" value="other")
-														span
-															img.form-payment(src=img("paypal-logo.png") width="90" height="25")
+								+b.payment-chooser: +i
 							.form-section
 								.form-section-header
 									.form-section-title Billing address
-								.row
-									.col-12
-										.form-checkbox-group
-											.form-checkbox-row
-												.radio
-													label(for="billing-1")
-														input(id="billing-1" name="billing" value="same")
-														span Same as shipping address
-											.form-checkbox-row
-												.radio
-													label(for="billing-2")
-														input(id="billing-2" name="billing" value="other")
-														span Use a different billing address
+								+b.checkbox-group: +i({ data: file.billingList, groupName: "billing" })
 						.form-footer.form-footer_nav
 							button.btn(type="submit") Complete order
-							a.form-footer-link.form-link(href="/") Return to shipping method
+							a.form-footer-link.form-link(href="/checkout-step-2.html") Return to shipping method
 	.page__aside
 		+b.cart: +i({ list: cartProducts, hidePayments: true })

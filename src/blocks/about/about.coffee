@@ -1,5 +1,5 @@
 import { Controller, Scene } from 'scrollmagic'
-import { TimelineMax, TweenMax, Power0 } from 'gsap'
+import { TimelineMax, TweenMax } from 'gsap'
 
 $ ->
 	aboutBlockScene = []
@@ -20,14 +20,19 @@ $ ->
 
 		$listItems = $block.find '.about__list-item'
 		$listItems.each ->
-			new Scene({
-					triggerElement: $(@).get(0),
-					triggerHook: 1,
-					offset: 50,
-					duration: '50%'
+			tl = new TimelineMax()
+			$icon = $(@).find '.about__list-image'
+			tl
+				.fromTo @, 0.5, { autoAlpha: 0 }, { autoAlpha: 1 }, 0
+				.fromTo $icon.get(0), 0.5, { scale: 0.6 }, { scale: 1 }, 0
+
+			aboutBlockScene.push(new Scene({
+					triggerElement: @,
+					triggerHook: 0.8,
+					duration: '25%'
 				})
-				.setTween(TweenMax.fromTo @, 0.5, { autoAlpha: 0 }, { autoAlpha: 1 })
-				.addTo(controller)
+				.setTween(tl)
+				.addTo(controller))
 
 		sequence = $block.data('sequence')
 		return if !sequence

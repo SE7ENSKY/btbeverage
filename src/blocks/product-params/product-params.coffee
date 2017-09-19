@@ -12,11 +12,12 @@ $ ->
 					.addClass 'added'
 				$this.text 'Added to Cart'
 
-		$packSize = $block.find('.product-params__packs-item')
+		$packSize = $block.find('.product-params__packs .product-params__item')
 		$packSize.click ->
 			$this = $(@)
 			activeDots = $this.data 'pack'
-			$packSize.each -> $(this).removeClass 'active'
+			$innerPackSize = $this.parent().find('.product-params__item')
+			$innerPackSize.each -> $(this).removeClass 'active'
 			$this.addClass 'active'
 			$dots = $this.parent().parent().find('.product-params__packs-dot')
 			$dots.each (index) ->
@@ -25,12 +26,12 @@ $ ->
 				else
 					$(this).removeClass 'disabled'
 
-		$volumes = $block.find('.product-params__volume-item')
+		$volumes = $block.find('.product-params__volume .product-params__item')
 		$volumes.click ->
 			$this = $(@)
 			position = 0
 
-			$innerVolumes = $this.parent().find('.product-params__volume-item')
+			$innerVolumes = $this.parent().find('.product-params__item')
 
 			$innerVolumes.each (index) ->
 				$(this).removeClass 'active'

@@ -16,46 +16,31 @@
 		font-size 12px
 		line-height 1.5
 		white-space pre-line
-	&__volume-inner
-	&__packs-inner
+	&__inner
 		display flex
 		color #fff
 		padding 60px 70px
+	&__list
+		display flex
+		align-items center
+	&__item
+		margin-right 70px
+		font-size 30px
+		line-height 1.1
+		font-weight bold
+		cursor pointer
+		opacity 0.2
+		transition opacity 0.15s ease-in-out
+		&.active
+			opacity 1
+		&:not(.active):hover
+			opacity 0.6
 	&__volume
 		z-index 2
 		background-color #78A965
-		&-list
-			display flex
-		&-item
-			margin-right 70px
-			font-size 30px
-			line-height 1.1
-			font-weight bold
-			cursor pointer
-			opacity 0.2
-			transition opacity 0.15s ease-in-out
-			&.active
-				opacity 1
-			&:not(.active):hover
-				opacity 0.6
 	&__packs
 		z-index 3
 		background-color #679E51
-		&-list
-			display flex
-			align-items center
-		&-item
-			margin-right 70px
-			font-size 30px
-			line-height 1.1
-			font-weight bold
-			cursor pointer
-			opacity 0.2
-			transition opacity 0.15s ease-in-out
-			&.active
-				opacity 1
-			&:not(.active):hover
-				opacity 0.6
 		&-dots
 			display flex
 			flex-wrap wrap

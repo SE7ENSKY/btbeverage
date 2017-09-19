@@ -20,7 +20,7 @@ $ ->
 			isAnimation = true
 			tl = new TimelineMax()
 			$target = $catalog.find($this.attr("data-target"))
-			$targetInner = $target.find('.product-params__inner')
+			$targetInner = $target.find('.product-params__wrap')
 
 			productCoverHeightClosed = 0.33 * window.innerWidth
 			productCoverHeightOpen = Math.max(150 + $targetInner.outerHeight(), 0.33 * window.innerWidth)

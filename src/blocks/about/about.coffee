@@ -2,19 +2,21 @@ import { Controller, Scene } from 'scrollmagic'
 import { TimelineMax, TweenMax, Power0 } from 'gsap'
 
 $ ->
+	aboutBlockScene = []
+
 	aboutBlockJS = ->
 		$block = $('.about')
 		return unless $block.length
 
 		controller = new Controller()
 
-		new Scene({
+		aboutBlockScene.push(new Scene({
 				triggerElement: ".about__text"
 				offset: 0,
 				duration: '100%'
 			})
 			.setTween(TweenMax.fromTo '.about__text', 0.5, { autoAlpha: 1 }, { autoAlpha: 0 })
-			.addTo(controller)
+			.addTo(controller))
 
 		$listItems = $block.find '.about__list-item'
 		$listItems.each ->
@@ -34,4 +36,9 @@ $ ->
 
 	aboutBlockJS()
 
+	removeScene = ->
+		aboutBlockScene.forEach (el) -> el.destroy()
+		aboutBlockScene.length = 0
+
 	$(document).on 'about-block', aboutBlockJS
+	$(document).on 'about-block-remove', removeScene

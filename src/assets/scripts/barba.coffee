@@ -15,8 +15,16 @@ $ ->
 	HideShowTransition = Barba.BaseTransition.extend({
 		start: ->
 			Promise
-					.all [@.newContainerLoading]
+					.all [@.newContainerLoading, @.fadeOut()]
 					.then @.fadeIn.bind(@)
+		fadeOut: -> new Promise (resolve) ->
+				$(document).trigger 'intro-remove'
+				$(document).trigger 'taste-button-remove'
+				$(document).trigger 'content-heading-remove'
+				$(document).trigger 'catalog-remove'
+				$(document).trigger 'about-block-remove'
+				$('body').css 'overflow', ''
+				resolve()
 		fadeIn: ->
 			tl = new TimelineMax()
 			self = @
@@ -44,3 +52,5 @@ $ ->
 		$(document).trigger 'product-cover'
 		$(document).trigger 'product-params'
 		$(document).trigger 'payment-chooser'
+		$(document).trigger 'sequence-init'
+		$(document).trigger 'intro'

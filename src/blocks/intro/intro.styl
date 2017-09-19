@@ -63,6 +63,14 @@ strokeAnimDelay = 0.3
 					animation-delay (strokeAnimDelay)s
 				&_shape
 					opacity 1
+		&.done
+			.intro__logo-s
+				&_short
+					stroke-dashoffset -(strokeShortLine * 4)
+				&_main
+					stroke-dashoffset -(strokeLine * 2)
+				&_shape
+					opacity 1
 		&-image
 			display block
 			width 100%

@@ -22,9 +22,10 @@ $ ->
 			self = @
 			onComplete = ->
 				self.done()
+				windowScroll()
 
 			tl
-				.fromTo @.oldContainer, 0.5, { autoAlpha: 1 }, { autoAlpha: 0, onComplete: onComplete}, 0
+				.fromTo @.oldContainer, 0.5, { autoAlpha: 1 }, { autoAlpha: 0, onComplete: onComplete }, 0
 				.fromTo @.newContainer, 0.5, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.5
 	})
 
@@ -34,4 +35,12 @@ $ ->
 		history.replaceState { sTop: window.pageYOffset }, "page1", window.location.pathname
 
 	Barba.Dispatcher.on 'transitionCompleted', ->
-		$(document).trigger 'someEvent'
+		$(document).trigger 'about-block'
+		$(document).trigger 'catalog'
+		$(document).trigger 'content-heading'
+		$(document).trigger 'gallery'
+		$(document).trigger 'media-widget'
+		$(document).trigger 'taste-button'
+		$(document).trigger 'product-cover'
+		$(document).trigger 'product-params'
+		$(document).trigger 'payment-chooser'

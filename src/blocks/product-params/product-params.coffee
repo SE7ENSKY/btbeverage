@@ -1,48 +1,53 @@
 $ ->
-	$block = $('.product-params')
-	return unless $block.length
+	productParamsJS = ->
+		$block = $('.product-params')
+		return unless $block.length
 
-	$cartButton = $block.find('.product-params__cart-button')
-	$cartButton.each ->
-		$this = $(@)
-		$this.click ->
-			$this
-				.parents '.product-params__cart'
-				.addClass 'added'
-			$this.text 'Added to Cart'
+		$cartButton = $block.find('.product-params__cart-button')
+		$cartButton.each ->
+			$this = $(@)
+			$this.click ->
+				$this
+					.parents '.product-params__cart'
+					.addClass 'added'
+				$this.text 'Added to Cart'
 
-	$packSize = $block.find('.product-params__packs-item')
-	$packSize.click ->
-		$this = $(@)
-		activeDots = $this.data 'pack'
-		$packSize.each -> $(this).removeClass 'active'
-		$this.addClass 'active'
-		$dots = $this.parent().parent().find('.product-params__packs-dot')
-		$dots.each (index) ->
-			if index < $dots.length - activeDots
-				$(this).addClass 'disabled'
-			else
-				$(this).removeClass 'disabled'
+		$packSize = $block.find('.product-params__packs-item')
+		$packSize.click ->
+			$this = $(@)
+			activeDots = $this.data 'pack'
+			$packSize.each -> $(this).removeClass 'active'
+			$this.addClass 'active'
+			$dots = $this.parent().parent().find('.product-params__packs-dot')
+			$dots.each (index) ->
+				if index < $dots.length - activeDots
+					$(this).addClass 'disabled'
+				else
+					$(this).removeClass 'disabled'
 
-	$volumes = $block.find('.product-params__volume-item')
-	$volumes.click ->
-		$this = $(@)
-		position = 0
+		$volumes = $block.find('.product-params__volume-item')
+		$volumes.click ->
+			$this = $(@)
+			position = 0
 
-		$innerVolumes = $this.parent().find('.product-params__volume-item')
+			$innerVolumes = $this.parent().find('.product-params__volume-item')
 
-		$innerVolumes.each (index) ->
-			$(this).removeClass 'active'
-			if $this.get(0) == $(this).get(0)
-				position = index
-
-		$this.addClass 'active'
-		$thisProductCover = $(".product-cover.active")
-
-		$slider = $thisProductCover.find('.product-cover__slider-inner')
-		$slider.css 'margin-left', if position then "-" + (position * 100) + "%" else 0
-		$slider.find('.product-cover__slider-item')
-			.each (index) ->
+			$innerVolumes.each (index) ->
 				$(this).removeClass 'active'
-				if index == position
-					$(this).addClass 'active'
+				if $this.get(0) == $(this).get(0)
+					position = index
+
+			$this.addClass 'active'
+			$thisProductCover = $(".product-cover.active")
+
+			$slider = $thisProductCover.find('.product-cover__slider-inner')
+			$slider.css 'margin-left', if position then "-" + (position * 100) + "%" else 0
+			$slider.find('.product-cover__slider-item')
+				.each (index) ->
+					$(this).removeClass 'active'
+					if index == position
+						$(this).addClass 'active'
+
+	productParamsJS()
+
+	$(document).on 'product-params', productParamsJS

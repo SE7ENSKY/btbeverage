@@ -3,12 +3,17 @@ import Flickity from 'flickity'
 
 $ ->
 	jQueryBridget('flickity', Flickity, $ )
-	$block = $(".gallery")
-	return unless $block.length
-	$item = $(".gallery__item")
+	galleryJS = ->
+		$block = $(".gallery")
+		return unless $block.length
+		$item = $(".gallery__item")
 
-	if $item.length > 3
-		$block.flickity
-			wrapAround: true
-			pageDots: false
-			initialIndex: 1
+		if $item.length > 3
+			$block.flickity
+				wrapAround: true
+				pageDots: false
+				initialIndex: 1
+
+	galleryJS()
+
+	$(document).on 'gallery', galleryJS

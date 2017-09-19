@@ -1,8 +1,7 @@
 .container
 	+e.wrap
-		if defaultState
-			+e("a").logo(href="/")
-				+e("img").logo-image(src=i("btea-logo.svg"), alt="" width="20" height="27")
+		+e("a").logo(href="/")
+			+e("img").logo-image(src=i("btea-logo.svg"), alt="" width="20" height="27")
 		if menu
 			+e("nav").menu
 				+e("ul").menu-list
@@ -18,5 +17,4 @@
 									= item.title
 									if item.badge
 										+e("span").menu-badge= item.badge
-unless defaultState
-	+e.shadow
++e.shadow

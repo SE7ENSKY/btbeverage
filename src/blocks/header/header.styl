@@ -23,12 +23,18 @@
 						color lighten(brandColor, 30%)
 						&:before
 							background-color lighten(brandColor, 30%)
+	&_default
+		.header
+			&__logo
+				display block
+			&__shadow
+				display none
 	&__wrap
 		display flex
 		justify-content center
 		align-items center
 	&__logo
-		display block
+		display none
 		margin-right 15px
 		width 20px
 		height 27px

@@ -2,57 +2,62 @@ import { Controller, Scene } from 'scrollmagic'
 import { TimelineMax } from 'gsap'
 
 $ ->
-	$block = $('.media-widget')
-	return unless $block.length
+	mediaWidgetJS = ->
+		$block = $('.media-widget')
+		return unless $block.length
 
-	controller = new Controller()
+		controller = new Controller()
 
-	getRandomSkew = -> 100 - Math.random() * 20
+		getRandomSkew = -> 100 - Math.random() * 20
 
-	#
-	# Video
-	#
+		#
+		# Video
+		#
 
-	window.addEventListener 'load', ->
+		window.addEventListener 'load', ->
+			$block.each ->
+				addVideo $(@)
+
+		#
+		# Animation
+		#
+
 		$block.each ->
-			addVideo $(@)
+			$elem = $(@)
 
-	#
-	# Animation
-	#
+			$contentBg = $elem.find '.media-widget__content-bg'
+			$mainImage = $elem.find '.media-widget__image_main .media-widget__image-i'
+			$secondImage = $elem.find '.media-widget__image_add .media-widget__image-i'
 
-	$block.each ->
-		$elem = $(@)
+			contentBlockHeight = $elem.find('.media-widget__content').outerHeight()
 
-		$contentBg = $elem.find '.media-widget__content-bg'
-		$mainImage = $elem.find '.media-widget__image_main .media-widget__image-i'
-		$secondImage = $elem.find '.media-widget__image_add .media-widget__image-i'
+			yRangeMain = getRandomSkew()
+			yRangeSecond = getRandomSkew()
 
-		contentBlockHeight = $elem.find('.media-widget__content').outerHeight()
+			tl = new TimelineMax()
+			tl
+				.fromTo $contentBg, 0.5, { height: "60%" }, { height: "140%" }, 0
+				.fromTo $mainImage, 0.5, { y: -yRangeMain }, { y: yRangeMain }, 0
+				# .fromTo $secondImage, 0.5, { y: -yRangeSecond }, { y: yRangeSecond }, 0
 
-		yRangeMain = getRandomSkew()
-		yRangeSecond = getRandomSkew()
+			new Scene({
+				triggerElement: $elem.get(0),
+				offset: 0,
+				duration: "200%"
+				})
+				.setTween(tl)
+				.addTo(controller)
 
-		tl = new TimelineMax()
-		tl
-			.fromTo $contentBg, 0.5, { height: "60%" }, { height: "140%" }, 0
-			.fromTo $mainImage, 0.5, { y: -yRangeMain }, { y: yRangeMain }, 0
-			# .fromTo $secondImage, 0.5, { y: -yRangeSecond }, { y: yRangeSecond }, 0
+			#
+			# Sequence
+			#
+			sequence = $elem.data('sequence')
+			return if !sequence
+			isFinish = $elem.data('sequence-fin')
+			duration = $elem.data('sequence-duration')
 
-		new Scene({
-			triggerElement: $elem.get(0),
-			offset: 0,
-			duration: "200%"
-			})
-			.setTween(tl)
-			.addTo(controller)
+			sequenceAnimation $elem.get(0), sequence[0], sequence[1], { finish: isFinish, duration: duration }
 
-		#
-		# Sequence
-		#
-		sequence = $elem.data('sequence')
-		return if !sequence
-		isFinish = $elem.data('sequence-fin')
-		duration = $elem.data('sequence-duration')
+	mediaWidgetJS()
 
-		sequenceAnimation $elem.get(0), sequence[0], sequence[1], { finish: isFinish, duration: duration }
+	$(document).on 'media-widget', mediaWidgetJS

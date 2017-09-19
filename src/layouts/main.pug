@@ -9,9 +9,10 @@ block root
 		defaultState: headerDefault
 	})
 
-	main.main
-		block main
-			!= content
+	main.main#barba-wrapper
+		.barba-container(data-namespace="page")
+			block main
+				!= content
 
 	+b("footer").footer: +i
 

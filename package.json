@@ -91,6 +91,7 @@
     "yaml-loader": "^0.4.0"
   },
   "dependencies": {
+    "barba.js": "^1.0.0",
     "fastclick": "^1.0.6",
     "flickity": "^2.0.9",
     "flickity-as-nav-for": "^2.0.1",
@@ -99,8 +100,8 @@
     "gsap": "^1.20.2",
     "jquery": "^3.2.1",
     "jquery-bridget": "^2.0.1",
+    "modernizr": "^3.5.0",
     "normalize.css": "^6.0.0",
-    "scrollmagic": "^2.0.5",
-    "modernizr": "^3.5.0"
+    "scrollmagic": "^2.0.5"
   }
 }

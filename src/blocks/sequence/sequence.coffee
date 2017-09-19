@@ -15,7 +15,6 @@ $ ->
 			tempImage.style.height = 0
 			imageDOM = document.body.appendChild tempImage
 			imageDOM.addEventListener 'load', ->
-				console.log 'loaded', loadedCount, $childrenCount
 				self.style.backgroundImage = "url(#{imgSrc})"
 				$(imageDOM).remove()
 				$(document).trigger 'sequence-loaded' if ++loadedCount == $childrenCount

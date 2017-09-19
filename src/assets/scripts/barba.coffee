@@ -2,7 +2,6 @@ import Barba from 'barba.js'
 import { TimelineMax } from 'gsap'
 
 $ ->
-	console.log 'initBarba'
 	Barba.Pjax.start()
 
 	windowScroll = ->
@@ -27,10 +26,15 @@ $ ->
 				resolve()
 		fadeIn: ->
 			tl = new TimelineMax()
+			oldPageHeaderClasses = $(@.oldContainer).data('header-classes').join(' ')
+			newPageHeaderClasses = $(@.newContainer).data('header-classes').join(' ')
 			self = @
+
 			onComplete = ->
 				self.done()
 				windowScroll()
+				if oldPageHeaderClasses != newPageHeaderClasses
+					$('.header').removeClass(oldPageHeaderClasses).addClass(newPageHeaderClasses)
 
 			tl
 				.fromTo @.oldContainer, 0.5, { autoAlpha: 1 }, { autoAlpha: 0, onComplete: onComplete }, 0

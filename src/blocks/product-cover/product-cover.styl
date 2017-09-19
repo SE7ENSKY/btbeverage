@@ -20,12 +20,33 @@
 	&__image
 		position absolute
 		top 0
-		right 0
-		bottom 0
 		left 0
+		bottom 0
+		width 50vw
 		background-size cover
 		background-position center center
 		background-repeat no-repeat
+		&-wrapper
+			position absolute
+			top 0
+			bottom 0
+			left 0
+			width 100%
+			overflow hidden
+			transition width .3s ease-in-out
+	&__video
+		position absolute
+		top 0
+		right 0
+		width 50vw
+		&-wrapper
+			position absolute
+			top 0
+			bottom 0
+			right 0
+			width 0
+			overflow hidden
+			transition width .3s ease-in-out
 	&__content
 		position absolute
 		top 0
@@ -98,11 +119,11 @@
 		&-item
 			width 50%
 			text-align center
-			transition opacity .2s ease-in-out
+			transition opacity .15s ease-in-out
 			opacity 0
 			&.active
 				opacity 1
-				transition opacity .4s ease-out
+				transition opacity .3s ease-out .3s
 		&-image
 			max-width 100%
 			max-height 100%
@@ -155,3 +176,11 @@
 					opacity 0.6
 			&__title
 				opacity 0
+	&.hover
+		.product-cover
+			&__image
+				&-wrapper
+					width 0
+			&__video
+				&-wrapper
+					width 100%

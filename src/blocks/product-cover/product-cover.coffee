@@ -9,8 +9,14 @@ $ ->
 		if index % 2
 			$(this).addClass 'right'
 
-	$block.on "click", (e) ->
-		$this = $(@)
+	isAnimation = false
+
+	scrollToViewport = ($this) ->
+		$('body').animate
+			scrollTop: $this.offset().top
+
+	animationFunc = ($this, isOpen, removeHover = false) ->
+		isAnimation = true
 		tl = new TimelineMax()
 		$target = $catalog.find($this.attr("data-target"))
 		$targetInner = $target.find('.product-params__inner')
@@ -40,10 +46,10 @@ $ ->
 		$sliderVerticalText = $this.find '.product-cover__text-vertical span'
 		$sliderNormalText = $this.find '.product-cover__text'
 
-		if !$this.hasClass('active')
+		if !isOpen
 			tl
 				.fromTo $target.get(0), 0.5, { height: 0 }, { height: $targetInner.outerHeight(),ease: Power0.easeNone  }, 0
-				.fromTo $this.get(0), 0.5, { paddingBottom: productCoverHeightClosed }, { paddingBottom: productCoverHeightOpen, ease: Power0.easeNone }, 0
+				.fromTo $this.get(0), 0.5, { paddingBottom: "#{productCoverHeightClosed}px" }, { paddingBottom: "#{productCoverHeightOpen}px", ease: Power0.easeNone }, 0
 				.fromTo $sliderWrapper, 0.2, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
 				.staggerFromTo selector, 0.5, { y: 0 }, { y: -diff, ease: Power0.easeNone }, 0, 0
 				.set $blockInners, { autoAlpha: 0 }, 0
@@ -54,10 +60,15 @@ $ ->
 				.fromTo $slider, 1, { x: 0.5 * window.innerWidth * coef}, { x: 0, ease: Power2.easeOut }, 0.3
 				.fromTo $sliderNormalText, 0.4, { x: 0.25 * window.innerWidth * coef }, { x: 0, ease: Power2.easeOut }, 0.9
 				.staggerFromTo $sliderVerticalText, 0.4, { autoAlpha: 0, rotationX: 90 * coef }, { autoAlpha: 1, rotationX: 0 }, 0.2, 0.4
+				# after animation
+				setTimeout ->
+					isAnimation = false
+					scrollToViewport $this
+				, 1300
 		else
 			tl
 				.to $target.get(0), 0.5, { height: 0, ease: Power0.easeNone }, 0
-				.to $this.get(0), 0.5, { paddingBottom: productCoverHeightClosed , ease: Power0.easeNone  }, 0
+				.to $this.get(0), 0.5, { paddingBottom: "#{productCoverHeightClosed}px" , ease: Power0.easeNone  }, 0
 				.set $this.get(0), { paddingBottom: "66%" }, 0.5
 				.fromTo $sliderWrapper, 0.2, { autoAlpha: 1 }, { autoAlpha: 0 }, 0
 				.staggerFromTo $blockInners, 0.1, { autoAlpha: 1 }, { autoAlpha: 0 }, 0, 0
@@ -65,5 +76,73 @@ $ ->
 				.fromTo $paramsCart.get(0), 0.5, { y: 0 }, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight()), ease: Power0.easeNone }, 0
 				.fromTo $paramsPack.get(0), 0.4, { y: 0 }, { y: -(textHeight + volumeHeight), ease: Power0.easeNone }, 0
 				.fromTo $paramsVolume.get(0), 0.3, { y: 0 }, { y: -textHeight, ease: Power0.easeNone }, 0
+				# after animation
+				setTimeout ->
+					isAnimation = false
+					$this.removeClass 'hover' if removeHover
+				, 500
 
-		$this.toggleClass 'active'
+	#
+	# add Video
+	#
+
+	addVideo = (block) ->
+		$video = block.find("video")
+		return unless $video.length
+
+		$target = $catalog.find(block.attr("data-target")).find('.product-params__inner')
+
+		$video.attr "controls", "true" if touchDevice
+		videoSrc = $video.data 'video'
+
+		tempVideo = document.createElement('video')
+		tempVideo.src = videoSrc
+		videoDOM = document.body.appendChild tempVideo
+		videoDOM.addEventListener 'canplay', ->
+			$video.attr 'src', videoSrc
+			$video.css 'height', $target.outerHeight() + 150
+			$(videoDOM).remove()
+
+	window.addEventListener 'load', ->
+		$block.each ->
+			addVideo $(@)
+
+	#
+	# hover
+	#
+
+	$block.hover ->
+		$this = $(@)
+		$video = $this.find('video')
+		hasVideo = $video.length and $video.attr('src')
+		if (hasVideo or $this.hasClass('hover')) and !$this.hasClass('active')
+			if !$this.hasClass('hover')
+				$video.get(0).play()
+			else
+				$video.get(0).pause()
+			$this.toggleClass 'hover'
+
+	#
+	# Click handler
+	#
+
+	$block.on "click", (e) ->
+		$this = $(@)
+		isOpen = $this.hasClass('active')
+		$openBlock = $('.product-cover.active')
+
+		return if isAnimation
+
+		if !isOpen and $openBlock.length
+			# check if other block is not opened
+			animationFunc $openBlock, true, true
+			$openBlock.toggleClass 'active'
+
+			setTimeout ->
+				animationFunc $this, isOpen
+				$this.toggleClass 'active'
+			, 500
+
+		else
+			animationFunc $this, isOpen
+			$this.toggleClass 'active'

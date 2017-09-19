@@ -3,18 +3,19 @@ import ScrollMagic from 'scrollmagic';
 
 isLoaded = false
 
-window.onload = ->
+window.addEventListener 'load', ->
 	isLoaded = true
 
 $ ->
 	$block = $(".intro")
 	return unless $block.length
 
-	_video = $block.find("video").get(0)
-	$(_video).attr "controls", "true" if touchDevice
-	# setTimeout ->
-	# 	_video.play()
-	# , 20
+	$('body').css 'overflow', 'hidden'
+	sliderAnimationOver = false
+
+	#
+	# Animation
+	#
 
 	$leaf = $(".about__title-image")
 
@@ -62,7 +63,7 @@ $ ->
 			.fromTo $leaf, 2.2,
 				y: - window.innerHeight / 2 - 40,
 				rotation: -90,
-					y: "-100%"
+					y: "-100%",
 					ease: Power1.easeOut
 				, 0
 			.fromTo $leaf, 0.8, { rotation: -90 }, { rotation: 25 }, 0
@@ -117,7 +118,6 @@ $ ->
 	startAnimation = ->
 			$leaf.show(0)
 			window.scrollTo(0, 0)
-			$('body').css 'overflow', 'hidden'
 			# preloader animation
 			leafPreloaderAnimation()
 			preloaderBgAnimation 1.3
@@ -125,11 +125,16 @@ $ ->
 			lettersAnimation 2.5
 			headerAnimation 3.5
 			sliderAnimation 3.5, ->
-				$('body').css 'overflow', 'auto'
+				$('body').css 'overflow', '' if isLoaded
+				sliderAnimationOver = true
 			# add leaf scrolling animation
 			leafScrollAnimation()
 
+	startAnimation()
+
 	if !isLoaded
-		window.onload = startAnimation
+		window.addEventListener 'load', ->
+			addVideo $block, 5000
+			$('body').css 'overflow', '' if sliderAnimationOver
 	else
-		startAnimation()
+		addVideo $block, 5000

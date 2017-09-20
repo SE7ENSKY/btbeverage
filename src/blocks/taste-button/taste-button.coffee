@@ -8,16 +8,20 @@ $ ->
 		return unless $block.length
 
 		controller = new Controller()
+		$buttonLink = $block.find '.taste-button__link'
+		tasteButtonHeight = $block.outerHeight()
+		offset = $block.data 'screen-offset'
+		duration = $block.data 'duration'
 
 		tasteButtonScene.push(new Scene({
-				offset: window.innerHeight,
-				duration: "600%",
+				offset: if offset then offset * window.innerHeight else 0,
+				duration: duration or 0,
 			})
 			.addTo(controller)
 			.on 'enter', ->
-				TweenMax.fromTo $block, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }
+				TweenMax.fromTo $buttonLink, 0.3, { y: tasteButtonHeight }, { y: 0 }
 			.on 'leave', ->
-				TweenMax.fromTo $block, 0.1, { autoAlpha: 1 }, { autoAlpha: 0 }
+				TweenMax.fromTo $buttonLink, 0.3, { y: 0 }, { y: tasteButtonHeight }
 		)
 
 	tasteButtonJS()

@@ -1,20 +1,20 @@
-+e.inner
++e.wrap
 	if text
 		+e.text
 			+e.text-inner.stagger!= text
 	+e.volume
-		+e.volume-inner.stagger
+		+e.inner.stagger
 			+e.title select &#10; size
-			+e.volume-list
-				+e.volume-item.active(data-volume="16oz") 16 oz
-				+e.volume-item(data-volume="8oz") 8 oz
+			+e.list
+				+e.item.active(data-volume="16oz") 16 oz
+				+e.item(data-volume="8oz") 8 oz
 	+e.packs
-		+e.packs-inner.stagger
+		+e.inner.stagger
 			+e.title select &#10; pack of
-			+e.packs-list
-				+e.packs-item.active(data-pack="12") 12
-				+e.packs-item(data-pack="8") 8
-				+e.packs-item(data-pack="6") 6
+			+e.list
+				+e.item.active(data-pack="12") 12
+				+e.item(data-pack="8") 8
+				+e.item(data-pack="6") 6
 			+e.packs-dots
 				- n = 0
 				while n++ < 12

@@ -1,7 +1,10 @@
+import { Controller, Scene } from 'scrollmagic'
 import { TimelineMax, Power0, Power2 } from 'gsap'
 
 $ ->
+	controller = null
 	productCoverJS = ->
+		controller = null
 		$block = $(".product-cover")
 		return unless $block.length
 		$catalog = $(".catalog")
@@ -20,7 +23,7 @@ $ ->
 			isAnimation = true
 			tl = new TimelineMax()
 			$target = $catalog.find($this.attr("data-target"))
-			$targetInner = $target.find('.product-params__inner')
+			$targetInner = $target.find('.product-params__wrap')
 
 			productCoverHeightClosed = 0.33 * window.innerWidth
 			productCoverHeightOpen = Math.max(150 + $targetInner.outerHeight(), 0.33 * window.innerWidth)
@@ -87,26 +90,20 @@ $ ->
 		# add Video
 		#
 
-		addVideo = (block) ->
-			$video = block.find("video")
-			return unless $video.length
+		controller = new Controller()
 
-			$target = $catalog.find(block.attr("data-target")).find('.product-params__inner')
-
-			$video.attr "controls", "true" if touchDevice
-			videoSrc = $video.data 'video'
-
-			tempVideo = document.createElement('video')
-			tempVideo.src = videoSrc
-			videoDOM = document.body.appendChild tempVideo
-			videoDOM.addEventListener 'canplay', ->
-				$video.attr 'src', videoSrc
-				$video.css 'height', $target.outerHeight() + 150
-				$(videoDOM).remove()
-
-		window.addEventListener 'load', ->
-			$block.each ->
-				addVideo $(@)
+		$block.each ->
+			isCalled = false
+			self = @
+			new Scene({
+				triggerElement: self,
+				offset: -200
+				})
+				.on 'enter', ->
+					if !isCalled
+						addVideo $(self)
+						isCalled = true
+				.addTo(controller)
 
 		#
 		# hover
@@ -116,13 +113,16 @@ $ ->
 			$this = $(@)
 			$video = $this.find('video')
 			hasVideo = $video.length and $video.attr('src')
-			if (hasVideo or $this.hasClass('hover')) and !$this.hasClass('active')
-				if !$this.hasClass('hover')
-					$video.get(0).play()
-				else
-					$video.get(0).pause()
+			if (hasVideo and !$this.hasClass('hover')) and !$this.hasClass('active')
+				$video.get(0).play()
 				$this.toggleClass 'hover'
-
+		, ->
+			$this = $(@)
+			$video = $this.find('video')
+			hasVideo = $video.length and $video.attr('src')
+			if (hasVideo and $this.hasClass('hover')) and !$this.hasClass('active')
+				$video.get(0).pause()
+				$this.toggleClass 'hover'
 		#
 		# Click handler
 		#
@@ -150,4 +150,8 @@ $ ->
 
 	productCoverJS()
 
+	removeScene = ->
+		controller.destroy() if controller
+
 	$(document).on 'product-cover', productCoverJS
+	$(document).on 'product-cover-remove', removeScene

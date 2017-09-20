@@ -43,13 +43,13 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 		.addTo(controller)
 		.on 'leave', (ev) ->
 			if (options.begin and ev.scrollDirection == "REVERSE") or (options.finish and ev.scrollDirection == "FORWARD")
-				TweenMax.to $bottle.get(0), 0.1, { autoAlpha: 0 }
+				TweenMax.set $bottle.get(0), { autoAlpha: 0 }
 			if (options.finish and ev.scrollDirection == "FORWARD")
 				return unless $img.length
-				TweenMax.to $img, 0.1, { autoAlpha: 1 }
+				TweenMax.set $img, { autoAlpha: 1 }
 		.on 'enter', (ev) ->
 			if (options.begin and ev.scrollDirection == "FORWARD") or (options.finish and ev.scrollDirection == "REVERSE")
-				TweenMax.to $bottle.get(0), 0.1, { autoAlpha: 1 }
+				TweenMax.set $bottle.get(0), { autoAlpha: 1 }
 			if (options.finish and ev.scrollDirection == "REVERSE")
 				return unless $img.length
-				TweenMax.to $img, 0.1, { autoAlpha: 0 }
+				TweenMax.set $img, { autoAlpha: 0 }

@@ -15,16 +15,16 @@ $ ->
 		# init background Video
 		#
 
-		addVideo $block
-
 		controller = new Controller()
 		new Scene({
 			triggerElement: $block.get(0)
 			triggerHook: 0,
 			duration: if window.innerHeight >= 650 then "100%" else 650
 			})
-			.on 'leave', -> $block.find('video').get(0).pause()
-			.on 'enter', -> $block.find('video').get(0).play()
+			.on 'leave', ->
+				$block.find('video').get(0).pause()
+			.on 'enter', ->
+				$block.find('video').get(0).play()
 			.addTo(controller)
 
 		#
@@ -157,6 +157,7 @@ $ ->
 			setTimeout ->
 				$('body').css 'overflow', '' if isSequenceLoaded
 				sliderAnimationOver = true
+				addVideo $block
 			, 5000
 			window.isPreloaderPlayedBefore = true
 
@@ -166,6 +167,7 @@ $ ->
 			sliderAnimationOver = true
 			$('.intro__preloader').hide(0)
 			$('.intro__logo').addClass 'done'
+			addVideo $block
 		else
 			startAnimation()
 
@@ -178,6 +180,7 @@ $ ->
 
 	handleSequenceLoad = ->
 		isSequenceLoaded = true
+		$('.intro__more text').text 'Scroll to discover'
 		$('body').css 'overflow', '' if sliderAnimationOver
 
 	introJS()

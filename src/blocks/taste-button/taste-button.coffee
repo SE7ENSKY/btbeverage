@@ -24,6 +24,11 @@ $ ->
 				TweenMax.fromTo $buttonLink, 0.3, { y: 0 }, { y: tasteButtonHeight }
 		)
 
+		$buttonLink.on 'click', (ev) ->
+			ev.preventDefault()
+			$('body').animate
+				scrollTop: $("#catalog").offset().top
+
 	tasteButtonJS()
 
 	removeScene = ->

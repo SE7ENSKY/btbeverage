@@ -19,7 +19,6 @@ $ ->
 		#
 		# set basic configs
 		#
-		$('body').css 'overflow', 'hidden'
 		isSequenceLoaded = false
 		sliderAnimationOver = false
 		#
@@ -127,6 +126,7 @@ $ ->
 		startAnimation = ->
 			$leaf.show(0)
 			window.scrollTo(0, 0)
+			$('body').css 'overflow', 'hidden'
 			# preloader animation
 			leafPreloaderAnimation()
 			preloaderBgAnimation 1.3
@@ -140,6 +140,7 @@ $ ->
 
 		if window.isPreloaderPlayedBefore
 			$leaf.show(0)
+			$('body').css 'overflow', 'hidden'
 			sliderAnimationOver = true
 			$('.intro__preloader').hide(0)
 			$('.intro__logo').addClass 'done'

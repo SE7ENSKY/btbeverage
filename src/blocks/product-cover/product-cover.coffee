@@ -1,6 +1,8 @@
+import { Controller, Scene } from 'scrollmagic'
 import { TimelineMax, Power0, Power2 } from 'gsap'
 
 $ ->
+	productCoverScene = []
 	productCoverJS = ->
 		$block = $(".product-cover")
 		return unless $block.length
@@ -87,8 +89,20 @@ $ ->
 		# add Video
 		#
 
+		controller = new Controller()
+
 		$block.each ->
-			addVideo $(@)
+			isCalled = false
+			self = @
+			productCoverScene.push(new Scene({
+				triggerElement: self,
+				offset: -200
+				})
+				.on 'enter', ->
+					if !isCalled
+						addVideo $(self)
+						isCalled = true
+				.addTo(controller))
 
 		#
 		# hover
@@ -98,13 +112,16 @@ $ ->
 			$this = $(@)
 			$video = $this.find('video')
 			hasVideo = $video.length and $video.attr('src')
-			if (hasVideo or $this.hasClass('hover')) and !$this.hasClass('active')
-				if !$this.hasClass('hover')
-					$video.get(0).play()
-				else
-					$video.get(0).pause()
+			if (hasVideo and !$this.hasClass('hover')) and !$this.hasClass('active')
+				$video.get(0).play()
 				$this.toggleClass 'hover'
-
+		, ->
+			$this = $(@)
+			$video = $this.find('video')
+			hasVideo = $video.length and $video.attr('src')
+			if (hasVideo and $this.hasClass('hover')) and !$this.hasClass('active')
+				$video.get(0).pause()
+				$this.toggleClass 'hover'
 		#
 		# Click handler
 		#
@@ -132,4 +149,9 @@ $ ->
 
 	productCoverJS()
 
+	removeScene = ->
+		productCoverScene.forEach (el) -> el.destroy()
+		productCoverScene.length = 0
+
 	$(document).on 'product-cover', productCoverJS
+	$(document).on 'product-cover-remove', removeScene

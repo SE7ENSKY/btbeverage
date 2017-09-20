@@ -5,7 +5,7 @@
 	if data.video
 		+e.video-wrapper
 			+e.video-inner
-				+e("video").video(data-video=data.video type="video/mp4" preload="preload" loop)
+				+e("video").video(data-video=data.video type="video/mp4" preload="preload" loop muted)
 +e.content
 	if data.title
 		+e.title!= data.title

@@ -2,21 +2,15 @@ import { Controller, Scene } from 'scrollmagic'
 import { TimelineMax } from 'gsap'
 
 $ ->
+	controller = null
 	mediaWidgetJS = ->
 		$block = $('.media-widget')
+		controller = null
 		return unless $block.length
 
 		controller = new Controller()
 
 		getRandomSkew = -> 100 - Math.random() * 20
-
-		#
-		# Video
-		#
-
-		window.addEventListener 'load', ->
-			$block.each ->
-				addVideo $(@)
 
 		#
 		# Animation
@@ -49,6 +43,20 @@ $ ->
 				.addTo(controller)
 
 			#
+			# Video loading
+			#
+			isVideoCalled = false
+			new Scene({
+				triggerElement: $elem.get(0),
+				offset: -200,
+				})
+				.on 'enter', ->
+					if !isVideoCalled
+						isVideoCalled = true
+						addVideo $elem
+				.addTo(controller)
+
+			#
 			# Sequence
 			#
 			sequence = $elem.data('sequence')
@@ -60,4 +68,8 @@ $ ->
 
 	mediaWidgetJS()
 
+	removeScene = ->
+		controller.destroy() if controller
+
 	$(document).on 'media-widget', mediaWidgetJS
+	$(document).on 'media-widget-remove', removeScene

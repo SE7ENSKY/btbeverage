@@ -23,6 +23,7 @@ $ ->
 				$(document).trigger 'catalog-remove'
 				$(document).trigger 'about-block-remove'
 				$(document).trigger 'product-cover-remove'
+				$(document).trigger 'media-widget-remove'
 				$('body').css 'overflow', ''
 				resolve()
 		fadeIn: ->

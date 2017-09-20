@@ -2,8 +2,9 @@ import { Controller, Scene } from 'scrollmagic'
 import { TimelineMax, Power0, Power2 } from 'gsap'
 
 $ ->
-	productCoverScene = []
+	controller = null
 	productCoverJS = ->
+		controller = null
 		$block = $(".product-cover")
 		return unless $block.length
 		$catalog = $(".catalog")
@@ -94,7 +95,7 @@ $ ->
 		$block.each ->
 			isCalled = false
 			self = @
-			productCoverScene.push(new Scene({
+			new Scene({
 				triggerElement: self,
 				offset: -200
 				})
@@ -102,7 +103,7 @@ $ ->
 					if !isCalled
 						addVideo $(self)
 						isCalled = true
-				.addTo(controller))
+				.addTo(controller)
 
 		#
 		# hover
@@ -150,8 +151,7 @@ $ ->
 	productCoverJS()
 
 	removeScene = ->
-		productCoverScene.forEach (el) -> el.destroy()
-		productCoverScene.length = 0
+		controller.destroy() if controller
 
 	$(document).on 'product-cover', productCoverJS
 	$(document).on 'product-cover-remove', removeScene

@@ -4,14 +4,16 @@ block root
 	- classes = []
 	if headerMod
 		- classes.push(headerMod)
+	if headerDefault
+		- classes.push('header_default')
 	+b("header").header(class=classes): +i({
-		menu: mainMenu,
-		defaultState: headerDefault
+		menu: mainMenu
 	})
 
-	main.main
-		block main
-			!= content
+	main.main#barba-wrapper
+		.barba-container(data-namespace="page" data-header-classes=classes)
+			block main
+				!= content
 
 	+b("footer").footer: +i
 

@@ -7,29 +7,25 @@ append params
 block main
 	+b.intro: +i({
 		poster: "/assets/i/intro-cover.jpg",
-		mp4: "http://tmp.static.se7enapp.com/bdsl/main.mp4"
+		mp4: "http://tmp.static.se7enapp.com/btbeverage/video/main.mp4"
 	})
 	//- mp4: "http://tmp.static.se7enapp.com/bdsl/main.mp4"
 
 	+b.about(data-sequence="[0, 74]"): +i({ })
 
-	+b.media-widget._oriented-right(data-sequence="[74, 150]"): +i({
+	+b.media-widget._oriented-right(data-sequence="[74, 177]"): +i({
 		title: "b-healthy",
 		mainImage: "/assets/i/media-img-1.jpg",
 		addImage: "/assets/i/media-img-sm-1.jpg",
-		videoLink: {
-			poster: "/assets/i/media-img-1.jpg",
-			src: "http://tmp.static.se7enapp.com/bdsl/main.mp4"
-		}
 	})
 
-	+b.media-widget._oriented-left(data-sequence="[150, 242]"): +i({
+	+b.media-widget._oriented-left(data-sequence="[177, 370]"): +i({
 		title: "b-active",
 		mainImage: "/assets/i/media-img-2.jpg",
 		addImageMask: true
 	})
 
-	+b.media-widget._simple._offset-bottom(data-sequence="[242, 358]" data-sequence-fin="true" data-sequence-duration="165%"): +i({
+	+b.media-widget._simple._offset-bottom(data-sequence="[370, 440]" data-sequence-fin="true"): +i({
 		title: "b-tea",
 		mainImage: "/assets/i/media-img-3.jpg",
 		hideAddImage: true,
@@ -41,6 +37,8 @@ block main
 			text: "<p>Each flavor is crisp, refreshing and fully satisfying.</p><p>Naturally!</p>"
 		})
 
-	+b.catalog: +i({ list: catalog })
+	+b.catalog#catalog: +i({ list: catalog })
+	
+	+b.taste-button(data-screen-offset="0.5" data-duration="600%"): +i({})
 	
 	+b.sequence: +i({ sequence: file.bottleSeq })

@@ -87,26 +87,8 @@ $ ->
 		# add Video
 		#
 
-		addVideo = (block) ->
-			$video = block.find("video")
-			return unless $video.length
-
-			$target = $catalog.find(block.attr("data-target")).find('.product-params__inner')
-
-			$video.attr "controls", "true" if touchDevice
-			videoSrc = $video.data 'video'
-
-			tempVideo = document.createElement('video')
-			tempVideo.src = videoSrc
-			videoDOM = document.body.appendChild tempVideo
-			videoDOM.addEventListener 'canplay', ->
-				$video.attr 'src', videoSrc
-				$video.css 'height', $target.outerHeight() + 150
-				$(videoDOM).remove()
-
-		window.addEventListener 'load', ->
-			$block.each ->
-				addVideo $(@)
+		$block.each ->
+			addVideo $(@)
 
 		#
 		# hover

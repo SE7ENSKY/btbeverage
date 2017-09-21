@@ -40,6 +40,7 @@ $ ->
 			if (hasVideo and !$this.hasClass('hover'))
 				$video.get(0).play()
 				$this.toggleClass 'hover'
+				TweenMax.set $video.get(0), { autoAlpha: 1 }
 		, ->
 			$this = $(@)
 			$video = $this.find('video')

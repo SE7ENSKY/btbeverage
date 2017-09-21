@@ -22,7 +22,9 @@ $ ->
 			})
 			.on 'leave', ->
 				$block.find('video').get(0).pause()
+				TweenMax.set $block.find('video').get(0), { autoAlpha: 0 }
 			.on 'enter', ->
+				TweenMax.set $block.find('video').get(0), { autoAlpha: 1 }
 				$block.find('video').get(0).play()
 			.addTo(cntrl)
 

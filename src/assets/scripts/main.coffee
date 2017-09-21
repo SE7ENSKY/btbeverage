@@ -1,5 +1,19 @@
 import FastClick from 'fastclick';
 import Modernizr from 'modernizr';
+import { Controller } from 'scrollmagic'
+
+window.controller =
+	controller: null,
+	get: ->
+		if @.controller
+			return @.controller
+		@.controller = new Controller()
+		return @.controller
+	,
+	destroy: ->
+		if @.controller
+			@.controller.destroy()
+			@.controller = null
 
 $ ->
 	unless Modernizr.touchevents

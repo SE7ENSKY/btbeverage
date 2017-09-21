@@ -1,11 +1,10 @@
 import { TimelineMax, TweenMax, Power2, Power1, Sine } from 'gsap'
-import { Controller, Scene } from 'scrollmagic';
+import { Scene } from 'scrollmagic';
 
 $ ->
 	introScrollScene = []
 	isSequenceLoaded = false
 	sliderAnimationOver = false
-	controller = null
 
 	introJS = ->
 		$block = $(".intro")
@@ -15,7 +14,7 @@ $ ->
 		# init background Video
 		#
 
-		controller = new Controller()
+		cntrl = controller.get()
 		new Scene({
 			triggerElement: $block.get(0)
 			triggerHook: 0,
@@ -25,7 +24,7 @@ $ ->
 				$block.find('video').get(0).pause()
 			.on 'enter', ->
 				$block.find('video').get(0).play()
-			.addTo(controller)
+			.addTo(cntrl)
 
 		#
 		# set basic configs
@@ -130,14 +129,14 @@ $ ->
 					duration: "100%"
 				})
 				.setTween(tween)
-				.addTo(controller)
+				.addTo(cntrl)
 
 			new Scene({
 					offset: Math.max(window.innerHeight, 650),
 					duration: "50%",
 				})
 				.setTween(hideTween)
-				.addTo(controller)
+				.addTo(cntrl)
 				.on 'leave', (ev) ->
 					$leaf.hide(0) if ev.scrollDirection == "FORWARD"
 				.on 'enter', (ev) ->
@@ -175,11 +174,6 @@ $ ->
 
 		leafScrollAnimation()
 
-	removeScene = ->
-		if controller
-			controller.destroy()
-			controller = null
-
 	handleSequenceLoad = ->
 		isSequenceLoaded = true
 		$('.intro__more text').text 'Scroll to discover'
@@ -188,5 +182,4 @@ $ ->
 	introJS()
 
 	$(document).on 'intro', introJS
-	$(document).on 'intro-remove', removeScene
 	$(document).on 'sequence-loaded', handleSequenceLoad

@@ -1,4 +1,4 @@
-import { Controller, Scene } from 'scrollmagic'
+import { Scene } from 'scrollmagic'
 import { TimelineMax, TweenMax, Power0 } from 'gsap'
 
 window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
@@ -16,8 +16,10 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 	onUpdateFunc = (obj) ->
 		return unless obj
 		currentChild = Math.round obj.current
-		$bottle.find('.active').removeClass 'active'
-		$($bottleSeq.get(currentChild)).addClass 'active'
+		prevActive = $bottle.find('.active').get(0)
+		if prevActive != $bottleSeq.get(currentChild)
+			$($bottleSeq.get(currentChild)).addClass 'active'
+			$(prevActive).removeClass 'active'
 
 	seqTween = TweenMax.fromTo tempAnimationObj, 0.5,
 		current: start,
@@ -26,7 +28,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 			onUpdateParams: [tempAnimationObj],
 			ease: Power0.easeNone,
 
-	controller = new Controller()
+	cntrl = controller.get()
 
 	if options.finish
 		$img = $(triggerElement).find '.media-widget__image_center'
@@ -40,10 +42,13 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 			duration: options.duration or '100%'
 		})
 		.setTween(seqTween)
-		.addTo(controller)
+		.addTo(cntrl)
 		.on 'leave', (ev) ->
 			if (options.begin and ev.scrollDirection == "REVERSE") or (options.finish and ev.scrollDirection == "FORWARD")
-				TweenMax.set $bottle.get(0), { autoAlpha: 0 }
+				setTimeout ->
+					TweenMax.set $bottle.get(0), { autoAlpha: 0 }
+					$bottle.find('.active').removeClass 'active'
+				, 50
 			if (options.finish and ev.scrollDirection == "FORWARD")
 				return unless $img.length
 				TweenMax.set $img, { autoAlpha: 1 }
@@ -52,4 +57,5 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 				TweenMax.set $bottle.get(0), { autoAlpha: 1 }
 			if (options.finish and ev.scrollDirection == "REVERSE")
 				return unless $img.length
+				$bottle.find('.active').removeClass 'active'
 				TweenMax.set $img, { autoAlpha: 0 }

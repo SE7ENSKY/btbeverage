@@ -17,13 +17,7 @@ $ ->
 					.all [@.newContainerLoading, @.fadeOut()]
 					.then @.fadeIn.bind(@)
 		fadeOut: -> new Promise (resolve) ->
-				$(document).trigger 'intro-remove'
-				$(document).trigger 'taste-button-remove'
-				$(document).trigger 'content-heading-remove'
-				$(document).trigger 'catalog-remove'
-				$(document).trigger 'about-block-remove'
-				$(document).trigger 'product-cover-remove'
-				$(document).trigger 'media-widget-remove'
+				controller.destroy()
 				$('body').css 'overflow', ''
 				resolve()
 		fadeIn: ->

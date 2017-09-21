@@ -1,9 +1,7 @@
-import { Controller, Scene } from 'scrollmagic'
+import { Scene } from 'scrollmagic'
 
 $ ->
-	controller = null
 	productCoverJS = ->
-		controller = null
 		$block = $(".product-cover")
 		return unless $block.length
 		$catalog = $(".catalog")
@@ -16,7 +14,7 @@ $ ->
 		# add Video
 		#
 
-		controller = new Controller()
+		cntrl = controller.get()
 
 		$block.each ->
 			isCalled = false
@@ -29,7 +27,7 @@ $ ->
 					if !isCalled
 						addVideo $(self)
 						isCalled = true
-				.addTo(controller)
+				.addTo(cntrl)
 
 		#
 		# hover
@@ -52,8 +50,4 @@ $ ->
 
 	productCoverJS()
 
-	removeScene = ->
-		controller.destroy() if controller
-
 	$(document).on 'product-cover', productCoverJS
-	$(document).on 'product-cover-remove', removeScene

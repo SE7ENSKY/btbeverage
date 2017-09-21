@@ -19,6 +19,4 @@ $ ->
 				$(imageDOM).remove()
 				$(document).trigger 'sequence-loaded' if ++loadedCount == $childrenCount
 
-	sequenceJS()
-
 	$(document).on 'sequence-init', sequenceJS

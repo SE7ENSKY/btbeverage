@@ -1,4 +1,4 @@
-window.addVideo = ($block, playDelay = 0) ->
+window.addVideo = ($block, playDelay = 0, cb) ->
   $video = $block.find("video")
   $video.attr "controls", "true" if touchDevice
   videoSrc = $video.data 'video'
@@ -14,3 +14,4 @@ window.addVideo = ($block, playDelay = 0) ->
       $video.get(0).play()
     , playDelay
     $(videoDOM).remove()
+    cb() if cb

@@ -157,7 +157,8 @@ $ ->
 			setTimeout ->
 				$('body').css 'overflow', '' if isSequenceLoaded
 				sliderAnimationOver = true
-				addVideo $block
+				addVideo $block, 0, ->
+							$(document).trigger 'sequence-init'
 			, 5000
 			window.isPreloaderPlayedBefore = true
 
@@ -167,7 +168,8 @@ $ ->
 			sliderAnimationOver = true
 			$('.intro__preloader').hide(0)
 			$('.intro__logo').addClass 'done'
-			addVideo $block
+			addVideo $block, 0, ->
+				$(document).trigger 'sequence-init'
 		else
 			startAnimation()
 

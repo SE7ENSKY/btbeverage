@@ -1,7 +1,9 @@
 $ ->
 	sequenceJS = ->
 		$block = $('.sequence')
-		return unless $block.length
+		if !$block.length
+			$(document).trigger 'sequence-loaded'
+			return
 
 		$children = $block.find('.sequence__image')
 		$childrenCount = $children.length
@@ -10,13 +12,10 @@ $ ->
 			$this = $(@)
 			self = @
 			imgSrc = $this.data('image')
-			tempImage = document.createElement 'img'
+			tempImage = new Image()
 			tempImage.src = imgSrc
-			tempImage.style.height = 0
-			imageDOM = document.body.appendChild tempImage
-			imageDOM.addEventListener 'load', ->
+			tempImage.addEventListener 'load', ->
 				self.style.backgroundImage = "url(#{imgSrc})"
-				$(imageDOM).remove()
 				$(document).trigger 'sequence-loaded' if ++loadedCount == $childrenCount
 
 	$(document).on 'sequence-init', sequenceJS

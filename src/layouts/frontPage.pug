@@ -7,24 +7,24 @@ append params
 block main
 	+b.intro: +i({
 		poster: "/assets/i/intro-cover.jpg",
-		mp4: "http://tmp.static.se7enapp.com/btbeverage/video/main.mp4"
+		mp4: ""
 	})
 
-	+b.about(data-sequence="[0, 74]"): +i({ })
+	+b.about(data-sequence="[0, 37]"): +i({ })
 
-	+b.media-widget._oriented-right(data-sequence="[74, 177]"): +i({
+	+b.media-widget._oriented-right(data-sequence="[37, 88]"): +i({
 		title: "b-healthy",
 		mainImage: "/assets/i/media-img-1.jpg",
 		addImage: "/assets/i/media-img-sm-1.jpg",
 	})
 
-	+b.media-widget._oriented-left(data-sequence="[177, 370]"): +i({
+	+b.media-widget._oriented-left(data-sequence="[88, 185]"): +i({
 		title: "b-active",
 		mainImage: "/assets/i/media-img-2.jpg",
 		addImageMask: true
 	})
 
-	+b.media-widget._simple._offset-bottom(data-sequence="[370, 440]" data-sequence-fin="true"): +i({
+	+b.media-widget._simple._offset-bottom(data-sequence="[185, 220]" data-sequence-fin="true"): +i({
 		title: "b-tea",
 		mainImage: "/assets/i/media-img-3.jpg",
 		hideAddImage: true,
@@ -40,4 +40,4 @@ block main
 	
 	+b.taste-button(data-screen-offset="0.5" data-duration="600%"): +i({})
 	
-	+b.sequence: +i({ sequence: file.bottleSeq })
+	- // +b.sequence: +i({ sequence: file.bottleSeq })

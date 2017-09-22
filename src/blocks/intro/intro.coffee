@@ -144,8 +144,7 @@ $ ->
 
 		startAnimation = ->
 			$leaf.show(0)
-			window.scrollTo(0, 0)
-			$('body').css 'overflow', 'hidden'
+			window.scrollTo 0, 0
 			# preloader animation
 			leafPreloaderAnimation()
 			preloaderBgAnimation 1.3
@@ -153,11 +152,12 @@ $ ->
 			lettersAnimation 2.5
 			headerAnimation 3.5
 			sliderAnimation 3.5
+			$('body').css 'overflow', 'hidden'
 			setTimeout ->
 				$('body').css 'overflow', '' if isSequenceLoaded
 				sliderAnimationOver = true
 				addVideo $block, 0, ->
-							$(document).trigger 'sequence-init'
+					$(document).trigger 'sequence-init'
 			, 5000
 			window.isPreloaderPlayedBefore = true
 

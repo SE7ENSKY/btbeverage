@@ -1,10 +1,4 @@
 $ ->
-	type = "WebGL"
-	if PIXI.utils.isWebGLSupported()
-		type = "canvas"
-
-	PIXI.utils.sayHello type
-
 	window.pixi =
 		app: new PIXI.Application
 			width: window.innerWidth

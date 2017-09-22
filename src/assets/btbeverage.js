@@ -21,6 +21,7 @@ import 'styles/main.styl';
 // ------------------ import vendor scripts ------------------
 import 'vendor/twitter-bootstrap/transition.js';
 import 'vendor/twitter-bootstrap/modal.js';
+import 'vendor/pixi/pixi.min.js';
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap';
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators';
 
@@ -29,6 +30,7 @@ import 'scripts/main.coffee';
 import 'scripts/sequenceAnimation.coffee';
 import 'scripts/addVideo.coffee';
 import 'scripts/barba.coffee';
+import 'scripts/pixi.coffee';
 
 // ------------------ import system blocks -------------------
 getRequiredfiles(require.context('../blocks/', true, /\.(css|styl|less|sass|scss)$/));

@@ -1,3 +1,5 @@
-if Array.isArray(sequence)
-	each imgSrc in sequence
-		+e.image(data-image=imgSrc)
+if sequence
+	- imgArr = []
+	each img in sequence
+		- imgArr.push(i(img))
+	+e.seq(data-image=imgArr)

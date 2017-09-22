@@ -1,25 +1,22 @@
 import { Scene } from 'scrollmagic'
-import { TimelineMax, TweenMax, Power0 } from 'gsap'
+import { TweenMax, Power0 } from 'gsap'
 
 window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
-	$bottle = $('.sequence')
-	return unless $bottle.length
+	$seq = $('.sequence')
+	return unless $seq.length
 
-	$bottleSeq = $bottle.find('.sequence__image')
-	if !$bottleSeq.length
-		console.warn 'Sequence block was init, but sequence images were not set'
-		return
+	$canvas = $seq.find 'canvas'
 
 	tempAnimationObj =
 		current: start
 
 	onUpdateFunc = (obj) ->
-		return unless obj
-		currentChild = $bottleSeq.get Math.round(obj.current)
-		prevActive = $bottle.find('.active').get(0)
+		return unless obj && pixi.sprite
+		currentChild = pixi.frames[Math.round(obj.current)]
+		prevActive = pixi.sprite.texture
 		if prevActive != currentChild
-			$(currentChild).addClass 'active'
-			$(prevActive).removeClass 'active'
+			pixi.sprite.texture = currentChild
+			pixi.rerender()
 
 	seqTween = TweenMax.fromTo tempAnimationObj, 0.5,
 		current: start,
@@ -31,9 +28,11 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 	cntrl = controller.get()
 
 	if options.finish
+		seqArr = $('.sequence__seq').data 'image'
+		imgUrl = seqArr[seqArr.length - 1]
 		$img = $(triggerElement).find '.media-widget__image_center'
 		return unless $img.length
-		$img.css 'background-image', "url(#{$($bottleSeq.get(end)).data('image')})"
+		$img.css 'background-image', "url(#{imgUrl})"
 
 	new Scene({
 			triggerElement: triggerElement,
@@ -45,17 +44,15 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 		.addTo(cntrl)
 		.on 'leave', (ev) ->
 			if (options.begin and ev.scrollDirection == "REVERSE") or (options.finish and ev.scrollDirection == "FORWARD")
-				setTimeout ->
-					TweenMax.set $bottle.get(0), { autoAlpha: 0 }
-					$bottle.find('.active').removeClass 'active'
-				, 50
+				TweenMax.set $canvas.get(0), { autoAlpha: 0 }
+				TweenMax.set $seq.get(0), { autoAlpha: 0 }
 			if (options.finish and ev.scrollDirection == "FORWARD")
 				return unless $img.length
 				TweenMax.set $img, { autoAlpha: 1 }
 		.on 'enter', (ev) ->
 			if (options.begin and ev.scrollDirection == "FORWARD") or (options.finish and ev.scrollDirection == "REVERSE")
-				TweenMax.set $bottle.get(0), { autoAlpha: 1 }
+				TweenMax.set $canvas.get(0), { autoAlpha: 1 }
+				TweenMax.set $seq.get(0), { autoAlpha: 1 }
 			if (options.finish and ev.scrollDirection == "REVERSE")
 				return unless $img.length
-				$bottle.find('.active').removeClass 'active'
 				TweenMax.set $img, { autoAlpha: 0 }

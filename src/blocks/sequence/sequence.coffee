@@ -5,17 +5,27 @@ $ ->
 			$(document).trigger 'sequence-loaded'
 			return
 
-		$children = $block.find('.sequence__image')
-		$childrenCount = $children.length
-		loadedCount = 0
-		$children.each ->
-			$this = $(@)
-			self = @
-			imgSrc = $this.data('image')
-			tempImage = new Image()
-			tempImage.src = imgSrc
-			tempImage.addEventListener 'load', ->
-				self.style.backgroundImage = "url(#{imgSrc})"
-				$(document).trigger 'sequence-loaded' if ++loadedCount == $childrenCount
+		pixi.frames = []
+
+		onPixiSetup = (loader, resources) ->
+			$(document).trigger 'sequence-loaded'
+
+			Object.keys(resources).forEach (key) ->
+				pixi.frames.push resources[key].texture
+
+			pixi.sprite = new PIXI.Sprite pixi.frames[0]
+			pixi.sprite.height = window.innerHeight
+			pixi.sprite.anchor.set(0.5, 0)
+
+			pixi.sprite.position.x = pixi.app.renderer.width / 2
+			pixi.sprite.position.y = 0
+
+			pixi.app.stage.addChild pixi.sprite
+
+		$this = $('.sequence__seq')
+		loader = new PIXI.loaders.Loader()
+		loader
+			.add $this.data('image')
+			.load onPixiSetup
 
 	$(document).on 'sequence-init', sequenceJS

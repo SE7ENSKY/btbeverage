@@ -9,3 +9,18 @@
 +e("a").content(href=data.externalLink target="_blank")
 	if data.title
 		+e.title!= data.title
+	if data.slider
+		+e.slider-wrapper
+			+e.slider-text
+				+e.text-vertical!= data.slider.verticalTxt
+				+e.text!= data.slider.noteTxt
+			+e.slider
+				if data.slider.bottleImage
+					+e.slider-inner
+						each image, index in data.slider.bottleImage
+							- classes = []
+							if index == 0
+								- classes.push("active")
+							+e.slider-item(class=classes)
+								+e("img").slider-image(src=image, alt="")
++e.close

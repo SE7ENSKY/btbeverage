@@ -15,10 +15,10 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 
 	onUpdateFunc = (obj) ->
 		return unless obj
-		currentChild = Math.round obj.current
+		currentChild = $bottleSeq.get Math.round(obj.current)
 		prevActive = $bottle.find('.active').get(0)
-		if prevActive != $bottleSeq.get(currentChild)
-			$($bottleSeq.get(currentChild)).addClass 'active'
+		if prevActive != currentChild
+			$(currentChild).addClass 'active'
 			$(prevActive).removeClass 'active'
 
 	seqTween = TweenMax.fromTo tempAnimationObj, 0.5,

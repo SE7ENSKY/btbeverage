@@ -14,12 +14,15 @@
 		background-size cover
 		background-position center center
 		background-repeat no-repeat
-		@media tablet_desktop
+		@media desktop
 			width 44%
 			padding-bottom 30%
+		@media tablet
+			width 54%
+			padding-bottom 40%
 		@media phone
 			width 75%
-			padding-bottom 50%
+			padding-bottom 55%
 		&:nth-child(n+3)
 			display none
 			.flickity-enabled &
@@ -32,6 +35,8 @@
 		border-radius 0
 		background #fff
 		transition .2s background ease-in-out
+		@media phone
+			display none
 		.arrow
 			fill lighten(brandColor, 30%)
 			transition .2s fill ease-in-out

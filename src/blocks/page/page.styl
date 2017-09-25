@@ -2,11 +2,11 @@
 	&__cover
 		position relative
 		display flex
-		margin-bottom 40px
 		@media tablet_desktop
 			align-items flex-end
 			height calc(100vh - 80px)
 			min-height 650px
+			margin-bottom 40px
 		@media phone
 			padding-top 66vw
 		&-bg
@@ -25,7 +25,10 @@
 			position relative
 			@media tablet_desktop
 				margin-bottom -40px
+			@media desktop
 				padding-right 35%
+			@media tablet
+				padding-right 25%
 			&:before
 				content ""
 				position absolute
@@ -33,9 +36,12 @@
 				bottom 0
 				background url(i("green-texture.jpg")) repeat center center brandColor
 				@media tablet_desktop
-					right 35%
 					left 50%
 					margin-left -50vw
+				@media desktop
+					right 35%
+				@media tablet
+					right 25%
 				@media phone
 					right -20px
 					left -20px
@@ -72,10 +78,16 @@
 		color brandColor
 		text-align center
 	&__content
-		padding-top 100px
+		@media tablet_desktop
+			padding-top 100px
+		@media phone
+			padding-top 40px
 	&__footer
-		margin-top 80px
 		text-align center
+		@media tablet_desktop
+			margin-top 80px
+		@media phone
+			margin-top 60px
 	&__back
 		min-width 210px
 	
@@ -100,4 +112,5 @@
 			&__content
 				@media phone
 					padding-top 0
+
 

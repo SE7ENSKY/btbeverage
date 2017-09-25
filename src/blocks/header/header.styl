@@ -7,6 +7,7 @@
 	@media tablet_desktop
 		height 80px
 	@media phone
+		padding 24px 0 25px
 		height 60px
 	&_simple
 		position absolute
@@ -50,7 +51,7 @@
 		@media tablet_desktop
 			font-size 12px
 		@media phone
-			font-size 11px
+			font-size 10px
 			width 100%
 		&-list
 			display flex
@@ -59,16 +60,12 @@
 			list-style none
 			@media phone
 				width 100%
-				padding 0 10px
 				justify-content space-between
 		&-item
 			@media tablet_desktop
 				margin 0 15px
 			@media phone
 				margin 0
-			&:last-child
-				@media phone
-					display none
 		&-link
 			color brandColor
 			text-transform uppercase

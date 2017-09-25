@@ -32,6 +32,7 @@ import 'scripts/sequenceAnimation.coffee';
 import 'scripts/addVideo.coffee';
 import 'scripts/barba.coffee';
 import 'scripts/pixi.coffee';
+import 'scripts/slowScroll.coffee';
 
 // ------------------ import system blocks -------------------
 getRequiredfiles(require.context('../blocks/', true, /\.(css|styl|less|sass|scss)$/));

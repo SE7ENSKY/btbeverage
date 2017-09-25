@@ -18,6 +18,7 @@ $ ->
 					.then @.fadeIn.bind(@)
 		fadeOut: -> new Promise (resolve) ->
 				controller.destroy()
+				$(document).trigger 'remove-slow-scroll'
 				$('body').css 'overflow', ''
 				resolve()
 		fadeIn: ->

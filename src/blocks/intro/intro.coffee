@@ -176,7 +176,9 @@ $ ->
 				$('body').css 'overflow', 'hidden'
 			, 300
 			setTimeout ->
-				$('body').css 'overflow', '' if isSequenceLoaded
+				if isSequenceLoaded
+					$('body').css 'overflow', ''
+					$(document).trigger 'init-slow-scroll'
 				sliderAnimationOver = true
 				addVideo $block, 0, addVideoCallback
 			, 5000
@@ -197,7 +199,9 @@ $ ->
 	handleSequenceLoad = ->
 		isSequenceLoaded = true
 		$('.intro__more text').text 'Scroll to discover'
-		$('body').css 'overflow', '' if sliderAnimationOver
+		if sliderAnimationOver
+			$('body').css 'overflow', ''
+			$(document).trigger 'init-slow-scroll'
 
 	introJS()
 

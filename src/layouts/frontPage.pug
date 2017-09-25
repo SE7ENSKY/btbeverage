@@ -16,18 +16,30 @@ block main
 		title: "b-healthy",
 		mainImage: "/assets/i/media-img-1.jpg",
 		addImage: "/assets/i/media-img-sm-1.jpg",
+		videoLink: {
+			src: "http://tmp.static.se7enapp.com/btbeverage/video/B_Healthy.mp4",
+			poster: "/assets/i/media-img-1.jpg",
+		}
 	})
 
 	+b.media-widget._oriented-left(data-sequence="[70, 148]"): +i({
 		title: "b-active",
 		mainImage: "/assets/i/media-img-2.jpg",
-		addImageMask: true
+		addImageMask: true,
+		videoLink: {
+			src: "http://tmp.static.se7enapp.com/btbeverage/video/B_Active.mp4",
+			poster: "/assets/i/media-img-2.jpg",
+		}
 	})
 
 	+b.media-widget._simple._offset-bottom(data-sequence="[148, 176]" data-sequence-fin="true"): +i({
 		title: "b-tea",
 		mainImage: "/assets/i/media-img-3.jpg",
 		hideAddImage: true,
+		videoLink: {
+			src: "http://tmp.static.se7enapp.com/btbeverage/video/B_Tea.mp4",
+			poster: "/assets/i/media-img-3.jpg",
+		}
 	})
 
 	.container

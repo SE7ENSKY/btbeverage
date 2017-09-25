@@ -3,21 +3,28 @@
 	display flex
 	left 50%
 	right @left
-	margin 80px -50vw
 	width 100vw
+	@media tablet_desktop
+		margin 80px -50vw
+	@media phone
+		margin 30px -50vw
 	&.flickity-enabled
 		display block
 	&__item
-		width 44%
-		padding-bottom 30%
 		background-size cover
 		background-position center center
 		background-repeat no-repeat
+		@media tablet_desktop
+			width 44%
+			padding-bottom 30%
+		@media phone
+			width 75%
+			padding-bottom 50%
 		&:nth-child(n+3)
 			display none
 			.flickity-enabled &
 				display block
-	
+
 	.flickity-prev-next-button
 		width 50px
 		height @width

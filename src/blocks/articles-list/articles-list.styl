@@ -4,5 +4,10 @@
 	justify-content space-between
 	margin-bottom 15px
 	&__item
-		width 315px
-		margin-bottom 50px
+		@media tablet_desktop
+			width 315px
+			margin-bottom 50px
+		@media phone
+			margin-bottom 30px
+			padding 0 10px
+			width 100%

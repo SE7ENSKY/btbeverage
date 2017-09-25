@@ -1,6 +1,9 @@
 .informer
-	margin-bottom 90px
 	text-align center
+	@media tablet_desktop
+		margin-bottom 90px
+	@media phone
+		margin-bottom 25px
 	&__text
 		margin-bottom 30px
 	&__label
@@ -10,4 +13,7 @@
 		font-size 24px
 		color brandColor
 	&__button
-		min-width 320px
+		@media tablet_desktop
+			min-width 320px
+		@media phone
+			min-width 280px

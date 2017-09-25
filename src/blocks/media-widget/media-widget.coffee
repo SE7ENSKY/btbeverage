@@ -63,12 +63,15 @@ $ ->
 
 				new Scene({
 					triggerElement: $elem.get(0),
-					duration: $video.outerHeight()
+					triggerHook: 1,
+					duration: 2 * $video.outerHeight()
 					})
 					.on 'enter', ->
 						$video.get(0).play()
+						TweenMax.to $video.get(0), 0.2, { autoAlpha: 1 }
 					.on 'leave', ->
 						$video.get(0).pause()
+						TweenMax.to $video.get(0), 0.2, { autoAlpha: 0 }
 					.addTo(cntrl)
 
 			#

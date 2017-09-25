@@ -1,5 +1,8 @@
 extends page
 
+append params
+	- pageMod = "_about"
+
 block pageContent
 	if file.mission
 		+b.content-widget._type-1._offset-bottom: +i({ data: file.mission })

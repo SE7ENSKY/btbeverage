@@ -14,4 +14,4 @@ block pageContent
 		if file.pageSubtitle
 			h2.page__subtitle!= file.pageSubtitle
 
-		+b.articles-list: +i({ data: articles })
+		+b.articles-list._mobile-short: +i({ data: articles })

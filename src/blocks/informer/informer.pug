@@ -2,6 +2,9 @@ if data
 	if data.text
 		+e.text!= data.text
 	if data.label
-		+e.label!= data.label
+		+e.label
+			!= data.label
+			if data.number
+				+e.number= data.number
 	if data.button
 		+e("a").button.btn(href=data.button.url)= data.button.label

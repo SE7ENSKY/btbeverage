@@ -75,10 +75,13 @@
 		&_bottom-offset-sm
 			margin-bottom 35px
 	&__subtitle
-		margin-bottom 65px
 		font-size 18px
 		color brandColor
 		text-align center
+		@media tablet_desktop
+			margin-bottom 65px
+		@media phone
+			margin-bottom 30px
 	&__content
 		@media tablet_desktop
 			padding-top 100px

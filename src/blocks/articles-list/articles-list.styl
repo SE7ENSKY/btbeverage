@@ -3,10 +3,20 @@
 	flex-wrap wrap
 	justify-content space-between
 	margin-bottom 15px
+	&_mobile-short
+		@media phone
+			.articles-list__item
+				&:nth-child(n+3)
+					display none
 	&__item
 		@media tablet_desktop
-			width 315px
 			margin-bottom 50px
+		@media md
+			width 315px
+		@media sm
+			width 295px
+		@media tablet
+			width 350px
 		@media phone
 			margin-bottom 30px
 			width 100%

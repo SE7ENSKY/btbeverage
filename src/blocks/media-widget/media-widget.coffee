@@ -43,16 +43,32 @@ $ ->
 			#
 			# Video loading
 			#
-			isVideoCalled = false
-			new Scene({
-				triggerElement: $elem.get(0),
-				offset: -200,
-				})
-				.on 'enter', ->
-					if !isVideoCalled
-						isVideoCalled = true
-						addVideo $elem
-				.addTo(cntrl)
+			if $elem.find('video').length
+				isVideoCalled = false
+				new Scene({
+					triggerElement: $elem.get(0),
+					offset: -200,
+					})
+					.on 'enter', ->
+						if !isVideoCalled
+							isVideoCalled = true
+							addVideo $elem
+					.addTo(cntrl)
+
+				$video = $elem.find 'video'
+
+				new Scene({
+					triggerElement: $elem.get(0),
+					duration: $video.outerHeight()
+					})
+					.on 'enter', ->
+						if !isVideoCalled
+							isVideoCalled = true
+							addVideo $elem
+						$video.get(0).play()
+					.on 'leave', ->
+						$video.get(0).pause()
+					.addTo(cntrl)
 
 			#
 			# Sequence

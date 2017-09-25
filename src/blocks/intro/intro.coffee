@@ -22,8 +22,10 @@ $ ->
 			})
 			.on 'leave', ->
 				$block.find('video').get(0).pause()
+				TweenMax.set $block.find('video').get(0), { autoAlpha: 0 }
 			.on 'enter', ->
 				$block.find('video').get(0).play()
+				TweenMax.set $block.find('video').get(0), { autoAlpha: 1 }
 			.addTo(cntrl)
 
 		#
@@ -142,9 +144,26 @@ $ ->
 				.on 'enter', (ev) ->
 					$leaf.show(0) if ev.scrollDirection == "REVERSE"
 
+		#
+		# video add callback
+		#
+
+		addVideoCallback = ->
+			$(document).trigger 'sequence-init'
+			$video = $block.find('video')
+			return unless $video.length
+
+			tlVideo = new TimelineMax()
+			tlVideo
+				.fromTo $('.intro__wrap-image').get(0), 0.3, { autoAlpha: 1 }, { autoAlpha: 0 }, 0.2
+				.fromTo $video.get(0), 0.3, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
+
+		#
+		# Combine animation func
+		#
+
 		startAnimation = ->
 			$leaf.show(0)
-			window.scrollTo 0, 0
 			# preloader animation
 			leafPreloaderAnimation()
 			preloaderBgAnimation 1.3
@@ -152,12 +171,14 @@ $ ->
 			lettersAnimation 2.5
 			headerAnimation 3.5
 			sliderAnimation 3.5
-			$('body').css 'overflow', 'hidden'
+			setTimeout ->
+				window.scrollTo 0, 0
+				$('body').css 'overflow', 'hidden'
+			, 300
 			setTimeout ->
 				$('body').css 'overflow', '' if isSequenceLoaded
 				sliderAnimationOver = true
-				addVideo $block, 0, ->
-					$(document).trigger 'sequence-init'
+				addVideo $block, 0, addVideoCallback
 			, 5000
 			window.isPreloaderPlayedBefore = true
 
@@ -167,8 +188,7 @@ $ ->
 			sliderAnimationOver = true
 			$('.intro__preloader').hide(0)
 			$('.intro__logo').addClass 'done'
-			addVideo $block, 0, ->
-				$(document).trigger 'sequence-init'
+			addVideo $block, 0, addVideoCallback
 		else
 			startAnimation()
 

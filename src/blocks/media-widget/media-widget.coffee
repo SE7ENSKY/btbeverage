@@ -43,16 +43,36 @@ $ ->
 			#
 			# Video loading
 			#
-			isVideoCalled = false
-			new Scene({
-				triggerElement: $elem.get(0),
-				offset: -200,
-				})
-				.on 'enter', ->
-					if !isVideoCalled
-						isVideoCalled = true
-						addVideo $elem
-				.addTo(cntrl)
+			$video = $elem.find 'video'
+			if $video.length
+				isVideoCalled = false
+				new Scene({
+					triggerElement: $elem.get(0),
+					offset: -200,
+					})
+					.on 'enter', ->
+						if !isVideoCalled
+							isVideoCalled = true
+							$mainImage = $elem.find('.media-widget__image_main .media-widget__image-i')
+							addVideo $elem, 0, ->
+								tl = new TimelineMax()
+								tl
+									.fromTo $mainImage.get(0), 0.5, { autoAlpha: 1 }, { autoAlpha: 0 }, 0.2
+									.fromTo $video.get(0), 0.5, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
+					.addTo(cntrl)
+
+				new Scene({
+					triggerElement: $elem.get(0),
+					triggerHook: 1,
+					duration: 2 * $video.outerHeight()
+					})
+					.on 'enter', ->
+						$video.get(0).play()
+						TweenMax.to $video.get(0), 0.2, { autoAlpha: 1 }
+					.on 'leave', ->
+						$video.get(0).pause()
+						TweenMax.to $video.get(0), 0.2, { autoAlpha: 0 }
+					.addTo(cntrl)
 
 			#
 			# Sequence

@@ -14,7 +14,7 @@ $ ->
 				pixi.frames.push resources[key].texture
 
 			pixi.sprite = new PIXI.Sprite pixi.frames[0]
-			pixi.sprite.height = window.innerHeight
+			pixi.sprite.height = Math.max window.innerHeight, 650
 			pixi.sprite.anchor.set(0.5, 0)
 
 			pixi.sprite.position.x = pixi.app.renderer.width / 2

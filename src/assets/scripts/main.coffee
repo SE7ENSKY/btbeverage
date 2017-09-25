@@ -1,6 +1,7 @@
 import FastClick from 'fastclick';
 import Modernizr from 'modernizr';
 import { Controller } from 'scrollmagic'
+import { TweenMax, Power1 } from 'gsap'
 
 window.controller =
 	controller: null,
@@ -33,3 +34,20 @@ $ ->
 			$this.addClass('has-value')
 		if $this.hasClass('has-value')
 			$this.removeClass('has-value') unless value
+
+	$window = $(window)
+	scrollTime = 0.5
+	scrollDistance = 130
+	$window.on 'mousewheel DOMMouseScroll', (event) ->
+		event.preventDefault()
+		delta = event.originalEvent.wheelDelta / 120 or -event.originalEvent.detail / 3
+		scrollTop = $window.scrollTop()
+		delta = 2 if delta > 2
+		delta = -2 if delta < -2
+		finalScroll = scrollTop - parseInt(delta * scrollDistance)
+		TweenMax.to $window, scrollTime,
+			scrollTo:
+				y: finalScroll
+				autoKill: true
+			ease: Power1.easeOut
+			overwrite: 5

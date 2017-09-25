@@ -24,6 +24,7 @@ import 'vendor/twitter-bootstrap/modal.js';
 import 'vendor/pixi/pixi.min.js';
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap';
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators';
+import 'imports-loader?define=>false!gsap/ScrollToPlugin';
 
 // ----------------- import system scripts -------------------
 import 'scripts/main.coffee';

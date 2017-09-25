@@ -14,11 +14,15 @@ $ ->
 				pixi.frames.push resources[key].texture
 
 			pixi.sprite = new PIXI.Sprite pixi.frames[0]
-			pixi.sprite.height = Math.max window.innerHeight, 650
-			pixi.sprite.anchor.set(0.5, 0)
+			{ width, height } = pixi.sprite.texture.orig
+			realHeight = Math.max window.innerHeight, 650
+			realWidth = width / height * realHeight
+			pixi.sprite.height = realHeight
+			pixi.sprite.width = realWidth
+			pixi.sprite.anchor.set(0.5, 0.5)
 
 			pixi.sprite.position.x = pixi.app.renderer.width / 2
-			pixi.sprite.position.y = 0
+			pixi.sprite.position.y = pixi.app.renderer.height / 2
 
 			pixi.app.stage.addChild pixi.sprite
 

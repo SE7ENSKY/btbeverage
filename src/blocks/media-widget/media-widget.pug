@@ -1,5 +1,5 @@
 +e.image._main
-	if mainImage && !videoLink
+	if mainImage
 		+e.image-i(style=`background-image:url("${mainImage}");`)
 	if videoLink
 		+e('video').image-v(data-video=videoLink.src type="video/mp4" preload="preload" poster=videoLink.poster muted loop)

@@ -43,7 +43,8 @@ $ ->
 			#
 			# Video loading
 			#
-			if $elem.find('video').length
+			$video = $elem.find 'video'
+			if $video.length
 				isVideoCalled = false
 				new Scene({
 					triggerElement: $elem.get(0),
@@ -52,19 +53,19 @@ $ ->
 					.on 'enter', ->
 						if !isVideoCalled
 							isVideoCalled = true
-							addVideo $elem
+							$mainImage = $elem.find('.media-widget__image_main .media-widget__image-i')
+							addVideo $elem, 0, ->
+								tl = new TimelineMax()
+								tl
+									.fromTo $mainImage.get(0), 0.5, { autoAlpha: 1 }, { autoAlpha: 0 }, 0.2
+									.fromTo $video.get(0), 0.5, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
 					.addTo(cntrl)
-
-				$video = $elem.find 'video'
 
 				new Scene({
 					triggerElement: $elem.get(0),
 					duration: $video.outerHeight()
 					})
 					.on 'enter', ->
-						if !isVideoCalled
-							isVideoCalled = true
-							addVideo $elem
 						$video.get(0).play()
 					.on 'leave', ->
 						$video.get(0).pause()

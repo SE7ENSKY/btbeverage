@@ -24,7 +24,14 @@ block pageContent
 			+b("form").address-edit: +i
 
 		when "3"
-			+b("form").personal-data: +i
+			+b("form").data-form: +i({
+				title: "Your personal details",
+				state: "personalData"
+			})
 
 		when "4"
-			+b("form").change-pass: +i
+			+b("form").data-form: +i({
+				title: "Your password",
+				state: "changePass"
+			})
+

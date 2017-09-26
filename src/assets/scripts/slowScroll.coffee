@@ -2,7 +2,7 @@ import { TweenMax, Power1 } from 'gsap'
 
 $ ->
 	scrollTime = 0.5
-	scrollDistance = 130
+	scrollDistance = 100
 
 	slowScroll = (event) ->
 		event.preventDefault()
@@ -11,7 +11,7 @@ $ ->
 		delta = 2 if delta > 2
 		delta = -2 if delta < -2
 		finalScroll = scrollTop - parseInt(delta * scrollDistance)
-		TweenMax.to window, scrollTime,
+		TweenMax.to $(window), scrollTime,
 			scrollTo:
 				y: finalScroll
 				autoKill: true
@@ -19,10 +19,10 @@ $ ->
 			overwrite: 5
 
 	initSlowScroll = ->
-		window.addEventListener 'mousewheel DOMMouseScroll', slowScroll
+		$(window).on 'mousewheel DOMMouseScroll', slowScroll
 
 	removeSlowScroll = ->
-		window.removeEventListener 'mousewheel DOMMouseScroll', slowScroll
+		$(window).off 'mousewheel DOMMouseScroll', slowScroll
 
 
 	$(document).on 'remove-slow-scroll', removeSlowScroll

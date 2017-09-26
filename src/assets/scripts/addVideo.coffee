@@ -10,9 +10,6 @@ window.addVideo = ($block, playDelay = 0, cb) ->
 	tempVideo.src = videoSrc
 	tempVideo.addEventListener 'loadeddata', ->
 		$video.get(0).src = videoSrc
-		setTimeout ->
-			$video.get(0).play()
-		, playDelay
 		cb() if cb
 	tempVideo.addEventListener 'error', ->
 		cb() if cb

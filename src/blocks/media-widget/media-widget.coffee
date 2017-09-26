@@ -61,7 +61,7 @@ $ ->
 				videoPromise = videoWithPromise $video.get(0)
 
 				new Scene({
-					triggerElement: $video.get(0),
+					triggerElement: $video.parent().get(0),
 					duration: "100%"
 					})
 					.on 'enter', ->

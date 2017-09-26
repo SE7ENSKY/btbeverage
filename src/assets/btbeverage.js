@@ -1,3 +1,8 @@
+window.scrollTo(0, 0);
+window.addEventListener("beforeunload", function (event) {
+	document.querySelector('body').style.display = 'none';
+	window.scrollTo(0, 0);
+});
 if (module.hot) {
 	const originalLog = console.log;
 	console.log = function () {

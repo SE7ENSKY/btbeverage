@@ -16,9 +16,11 @@ block pageMain
 					form
 						fieldset
 							.form-section
+								.form-section-header.form-section-header_offset-bottom.visible-xs
+									.form-section-info Already have an account? <a href="#login-modal" data-toggle="modal" class="form-link"><strong>Log in</strong></a>
 								.form-section-header
 									.form-section-title Customer information
-									.form-section-info Already have an account? <a href="#login-modal" data-toggle="modal" class="form-link"><strong>Log in</strong></a>
+									.form-section-info.hidden-xs Already have an account? <a href="#login-modal" data-toggle="modal" class="form-link"><strong>Log in</strong></a>
 								.row
 									.col-sm-8
 										.form-group.has-error
@@ -58,7 +60,8 @@ block pageMain
 									.col-sm-8
 										.form-group
 											input.form-control(type="tel" placeholder="Phone (Optional)")
-							button.btn.btn-xs-block(type="submit") Continue to shipping method
+							.form-footer
+								button.btn.btn-xs-block(type="submit") Continue to shipping method
 				when "2"
 					form
 						fieldset
@@ -73,7 +76,7 @@ block pageMain
 									.form-section-title Delivery
 								+b.checkbox-group: +i({ data: file.deliveryList, groupName: "delivery" })
 						.form-footer.form-footer_nav
-							button.btn(type="submit") Continue to payment method
+							button.btn.btn-xs-block(type="submit") Continue to payment method
 							a.form-footer-link.form-link(href="/") Return to customer info
 				when "3"
 					form

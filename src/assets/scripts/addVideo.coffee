@@ -9,7 +9,7 @@ window.addVideo = ($block, playDelay = 0, cb) ->
 	tempVideo = document.createElement('video')
 	tempVideo.src = videoSrc
 	tempVideo.addEventListener 'loadeddata', ->
-		$video.get(0).src = videoSrc
+		$video.attr 'src', videoSrc
 		cb() if cb
 	tempVideo.addEventListener 'error', ->
 		cb() if cb

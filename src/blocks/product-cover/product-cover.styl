@@ -18,23 +18,21 @@
 			bottom 0
 			left 0
 			background-color rgba(0,0,0,.5)
-	&__image
-		position absolute
-		top 0
-		left 0
-		bottom 0
-		width 100%
-		background-size cover
-		background-position center center
-		background-repeat no-repeat
-		&-wrapper
+		&-inner
 			position absolute
+			display flex
 			top 0
 			bottom 0
 			left 0
-			width 100%
+			width 200%
 			overflow hidden
-			transition width .3s ease-in-out
+			transition margin-left .5s ease-in-out
+	&__image
+		width 50%
+		height 100%
+		background-size cover
+		background-position center center
+		background-repeat no-repeat
 	&__video
 		display none
 		position absolute
@@ -42,20 +40,11 @@
 		left 50%
 		height calc(100% + 10px)
 		transform translateX(-50%)
-		&-inner
-			position absolute
-			top 0
-			right 0
-			bottom 0
-			width 50vw
 		&-wrapper
-			position absolute
-			top 0
-			bottom 0
-			right 0
-			width 0
+			position relative
+			width 50%
+			height 100%
 			overflow hidden
-			transition width .3s ease-in-out
 	&__content
 		position absolute
 		top 0
@@ -188,9 +177,6 @@
 				opacity 0
 	&.hover
 		.product-cover
-			&__image
-				&-wrapper
-					width 0
-			&__video
-				&-wrapper
-					width 100%
+			&__wrap
+				&-inner
+					margin-left -100%

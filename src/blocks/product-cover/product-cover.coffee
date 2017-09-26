@@ -50,7 +50,7 @@ $ ->
 				$this.toggleClass 'hover'
 				setTimeout ->
 					$video.hide(0) if !$this.hasClass('hover')
-				, 300
+				, 500
 
 	productCoverJS()
 

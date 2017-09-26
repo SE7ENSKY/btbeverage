@@ -90,7 +90,7 @@ block pageMain
 									.form-section-title Billing address
 								+b.checkbox-group: +i({ data: file.billingList, groupName: "billing" })
 						.form-footer.form-footer_nav
-							button.btn(type="submit") Complete order
+							button.btn.btn-xs-block(type="submit") Complete order
 							a.form-footer-link.form-link(href="/checkout-step-2.html") Return to shipping method
 	.page__aside
 		+b.cart: +i({ list: cartProducts, hidePayments: true })

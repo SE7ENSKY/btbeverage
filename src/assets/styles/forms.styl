@@ -54,20 +54,29 @@ placeholderTrans()
 
 .form-section
 	margin-bottom 60px
+	@media phone
+		margin-bottom 30px
 	&-title
 		margin-bottom 17px
 		font-size 12px
 		text-transform uppercase
+		@media phone
+			order 2
 		&_simple
 			margin-bottom 30px
 			text-align center
 	&-header
 		display flex
 		justify-content space-between
+		@media phone
+			flex-direction column
 	&-info
 		margin-bottom 17px
 		font-size 12px
 		text-transform uppercase
+		@media phone
+			order 1
+			margin-bottom 35px
 	&-summary
 		padding 20px
 		font-size 12px

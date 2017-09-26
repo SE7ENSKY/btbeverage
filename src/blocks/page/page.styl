@@ -99,19 +99,45 @@
 	&_checkout
 		.page
 			&__content
-				display flex
-				padding-top 0
+				@media desktop
+					display flex
+					padding-top 0
+				@media tablet
+					width 760px
+					padding-left 10px
+					padding-right @padding-left
+					margin 0 auto
+				@media phone
+					padding-left 20px
+					padding-right @padding-left
 			&__body
-				display flex
-				justify-content flex-end
-				width 63%
-				padding 65px 100px 0 0
+				@media md
+					width 63%
+					padding-right 100px
+				@media sm
+					width 53%
+					padding-right 50px
+				@media desktop
+					padding-top 65px
+					display flex
+					justify-content flex-end
 				&-inner
-					width 630px
+					@media md
+						width 630px
+					@media sm
+						width 460px
 			&__aside
-				width 37%
-				padding-top 185px
-				background-color #dfeada
+				@media desktop
+					padding-top 185px
+					background-color #dfeada
+				@media md
+					width 37%
+				@media sm
+					width 47%
+				@media tablet
+					padding-top 100px
+				@media phone
+					display none
 	&_about
 		.page
 			&__content

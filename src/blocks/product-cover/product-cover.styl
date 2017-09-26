@@ -26,7 +26,7 @@
 			left 0
 			width 200%
 			overflow hidden
-			transition margin-left .5s ease-out
+			transition transform .5s ease-out
 	&__image
 		width 50%
 		height 100%
@@ -38,7 +38,7 @@
 		position absolute
 		top 0
 		left 50%
-		height calc(100% + 10px)
+		height 100%
 		transform translateX(-50%)
 		&-wrapper
 			position relative
@@ -179,4 +179,4 @@
 		.product-cover
 			&__wrap
 				&-inner
-					margin-left -100%
+					transform translateX(-50%)

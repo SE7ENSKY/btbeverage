@@ -52,25 +52,25 @@ $ ->
 						if !isVideoCalled
 							isVideoCalled = true
 							$mainImage = $elem.find('.media-widget__image_main .media-widget__image-i')
-							# addVideo $elem, 0, ->
-							# 	tl = new TimelineMax()
-							# 	tl
-							# 		.fromTo $video.get(0), 0.5, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
+							addVideo $elem, 0, ->
+								tl = new TimelineMax()
+								tl
+									.fromTo $video.get(0), 0.5, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
 					.addTo(cntrl)
 
 				videoPromise = videoWithPromise $video.get(0)
 
-				# new Scene({
-				# 	triggerElement: $elem.get(0),
-				# 	duration: "100%"
-				# 	})
-				# 	.on 'enter', ->
-				# 		$video.show(0)
-				# 		videoPromise.play()
-				# 	.on 'leave', ->
-				# 		videoPromise.pause()
-				# 		$video.hide(0)
-				# 	.addTo(cntrl)
+				new Scene({
+					triggerElement: $video.get(0),
+					duration: "100%"
+					})
+					.on 'enter', ->
+						$video.show(0)
+						videoPromise.play()
+					.on 'leave', ->
+						videoPromise.pause()
+						$video.hide(0)
+					.addTo(cntrl)
 
 			#
 			# Sequence

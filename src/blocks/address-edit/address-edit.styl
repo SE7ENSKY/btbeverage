@@ -1,13 +1,19 @@
 .address-edit
+	max-width 630px
 	margin 0 auto
-	width 630px
 	&__section
 		margin-bottom 30px
 	&__footer
 		display flex
 		justify-content center
+		@media phone
+			margin 0 -20px
 	&__button
-		min-width 210px
+		@media tablet_desktop
+			min-width 210px
+		@media phone
+			width 50%
+			max-width 210px
 		&_back
 			background #679e51
 	&__wrap

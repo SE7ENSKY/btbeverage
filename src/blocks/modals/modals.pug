@@ -6,7 +6,7 @@ mixin modal(name, classes, contentClasses, modalClose)
 				block
 
 +modal("cart-modal")
-	.modal-title My cart
+	.modal-title.modal-title_styled My cart
 	+b.cart: +i({ list: cartList })
 
 +modal("login-modal", "modal_content-centered")
@@ -15,7 +15,7 @@ mixin modal(name, classes, contentClasses, modalClose)
 		.modal-text I am a returning customer
 		+b.auth-box: +i({ state: "login" })
 
-+modal("registration-modal", "modal_content-centered")
++modal("registration-modal")
 	.modal-title.modal-title_simple Register
 	.modal-body
 		.modal-text Already have an account? <a href="#login-modal" data-toggle="modal" data-dismiss="modal"><strong>Log in</strong></a>

@@ -18,8 +18,8 @@ $ ->
 		new Scene({
 			triggerElement: $block.get(0)
 			triggerHook: 0,
-			offset: -100,
-			duration: if window.innerHeight >= 650 then "100%" else 750
+			offset: 0,
+			duration: if window.innerHeight >= 650 then "100%" else 650
 			})
 			.on 'leave', ->
 				$block.find('video').get(0).pause()

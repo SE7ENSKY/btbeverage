@@ -153,11 +153,11 @@ $ ->
 			$(document).trigger 'sequence-init'
 			$video = $block.find('video')
 			return unless $video.length
-
+			$video.get(0).play()
 			tlVideo = new TimelineMax()
 			tlVideo
-				.fromTo $('.intro__wrap-image').get(0), 0.3, { autoAlpha: 1 }, { autoAlpha: 0 }, 1
-				.fromTo $video.get(0), 0.3, { autoAlpha: 0 }, { autoAlpha: 1 }, 1
+				.set $video.get(0), { autoAlpha: 1 }
+				.fromTo $('.intro__wrap-image').get(0), 0.6, { autoAlpha: 1 }, { autoAlpha: 0, delay: 1.5 }
 
 		#
 		# Combine animation func

@@ -156,7 +156,7 @@ $ ->
 
 			tlVideo = new TimelineMax()
 			tlVideo
-				.fromTo $('.intro__wrap-image').get(0), 0.3, { autoAlpha: 1 }, { autoAlpha: 0 }, 0.2
+				.fromTo $('.intro__wrap-image').get(0), 0.3, { autoAlpha: 1 }, { autoAlpha: 0 }, 0.4
 				.fromTo $video.get(0), 0.3, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
 
 		#
@@ -167,11 +167,11 @@ $ ->
 			$leaf.show(0)
 			# preloader animation
 			leafPreloaderAnimation()
-			preloaderBgAnimation 1.3
-			bLetterAnimation 2
-			lettersAnimation 2.5
-			headerAnimation 3.5
-			sliderAnimation 3.5
+			preloaderBgAnimation 2
+			bLetterAnimation 2.2
+			lettersAnimation 2.7
+			headerAnimation 3.7
+			sliderAnimation 3.7
 			setTimeout ->
 				window.scrollTo 0, 0
 				$('body').css 'overflow', 'hidden'

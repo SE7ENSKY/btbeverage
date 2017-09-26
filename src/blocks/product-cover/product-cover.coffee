@@ -38,9 +38,9 @@ $ ->
 			$video = $this.find('video')
 			hasVideo = $video.length and $video.attr('src')
 			if (hasVideo and !$this.hasClass('hover'))
+				$video.show(0)
 				$video.get(0).play()
 				$this.toggleClass 'hover'
-				TweenMax.set $video.get(0), { autoAlpha: 1 }
 		, ->
 			$this = $(@)
 			$video = $this.find('video')
@@ -48,6 +48,9 @@ $ ->
 			if (hasVideo and $this.hasClass('hover'))
 				$video.get(0).pause()
 				$this.toggleClass 'hover'
+				setTimeout ->
+					$video.hide(0) if !$this.hasClass('hover')
+				, 300
 
 	productCoverJS()
 

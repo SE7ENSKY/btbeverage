@@ -22,10 +22,10 @@ $ ->
 			})
 			.on 'leave', ->
 				$block.find('video').get(0).pause()
-				TweenMax.set $block.find('video').get(0), { autoAlpha: 0 }
+				$block.find('video').hide(0)
 			.on 'enter', ->
+				$block.find('video').show(0)
 				$block.find('video').get(0).play()
-				TweenMax.set $block.find('video').get(0), { autoAlpha: 1 }
 			.addTo(cntrl)
 
 		#

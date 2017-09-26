@@ -30,7 +30,6 @@ $ ->
 			tl
 				.fromTo $contentBg, 0.5, { height: "60%" }, { height: "140%" }, 0
 				.fromTo $mainImage, 0.5, { y: -yRangeMain }, { y: yRangeMain }, 0
-				# .fromTo $secondImage, 0.5, { y: -yRangeSecond }, { y: yRangeSecond }, 0
 
 			new Scene({
 				triggerElement: $elem.get(0),
@@ -57,21 +56,19 @@ $ ->
 							addVideo $elem, 0, ->
 								tl = new TimelineMax()
 								tl
-									.fromTo $mainImage.get(0), 0.5, { autoAlpha: 1 }, { autoAlpha: 0 }, 0.2
 									.fromTo $video.get(0), 0.5, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
 					.addTo(cntrl)
 
 				new Scene({
 					triggerElement: $elem.get(0),
-					triggerHook: 1,
-					duration: 2 * $video.outerHeight()
+					duration: "100%"
 					})
 					.on 'enter', ->
 						$video.get(0).play()
-						TweenMax.to $video.get(0), 0.2, { autoAlpha: 1 }
+						$video.show(0)
 					.on 'leave', ->
 						$video.get(0).pause()
-						TweenMax.to $video.get(0), 0.2, { autoAlpha: 0 }
+						$video.hide(0)
 					.addTo(cntrl)
 
 			#

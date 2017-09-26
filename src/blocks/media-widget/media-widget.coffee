@@ -29,7 +29,6 @@ $ ->
 			tl = new TimelineMax()
 			tl
 				.fromTo $contentBg, 0.5, { height: "60%" }, { height: "140%" }, 0
-				.fromTo $mainImage, 0.5, { y: -yRangeMain }, { y: yRangeMain }, 0
 
 			new Scene({
 				triggerElement: $elem.get(0),
@@ -65,10 +64,10 @@ $ ->
 					})
 					.on 'enter', ->
 						$video.get(0).play()
-						$video.show(0)
+						$video.show(0.3)
 					.on 'leave', ->
 						$video.get(0).pause()
-						$video.hide(0)
+						$video.hide(0.3)
 					.addTo(cntrl)
 
 			#

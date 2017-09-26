@@ -9,11 +9,12 @@ $ ->
 		rerender: ->
 			this.app.renderer.render this.app.stage
 		resize: (w, h)->
-			{ width, height } = pixi.sprite.texture.orig
-			realHeight = Math.max h, 650
-			realWidth = width / height * realHeight
-			pixi.sprite.height = realHeight
-			pixi.sprite.width = realWidth
+			if pixi.sprite
+				{ width, height } = pixi.sprite.texture.orig
+				realHeight = Math.max h, 650
+				realWidth = width / height * realHeight
+				pixi.sprite.height = realHeight
+				pixi.sprite.width = realWidth
 			this.app.renderer.resize w, h
 
 	document.getElementsByClassName('sequence')[0].appendChild(pixi.app.view)

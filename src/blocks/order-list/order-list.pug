@@ -8,15 +8,19 @@
 		each item in data
 			+e.row
 				+e.col
+					+e.col-label Order #
 					if item.number
 						+e.number= item.number
 				+e.col
+					+e.col-label Status
 					if item.status
 						+e.status= item.status
 				+e.col
+					+e.col-label Date
 					if item.date
 						+e.date= item.date
 				+e.col
+					+e.col-label Total
 					if item.total
 						+e.total= item.total
 				if item.buttons

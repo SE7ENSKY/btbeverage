@@ -29,6 +29,7 @@ $ ->
 			tl = new TimelineMax()
 			tl
 				.fromTo $contentBg, 0.5, { height: "60%" }, { height: "140%" }, 0
+				.fromTo $secondImage, 0.5, { y: yRangeSecond }, { y: -yRangeSecond }, 0
 
 			new Scene({
 				triggerElement: $elem.get(0),

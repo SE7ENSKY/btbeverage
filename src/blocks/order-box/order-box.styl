@@ -1,22 +1,40 @@
 .order-box
 	position relative
-	left 50%
-	right @left
-	width 100vw
-	margin 0 -50vw
+	@media desktop
+		left 50%
+		right @left
+		width 100vw
+		margin 0 -50vw
 	&__wrap
-		display flex
+		@media desktop
+			display flex
 	&__body
-		display flex
-		justify-content flex-end
-		width 63%
-		padding-right 100px
+		@media desktop
+			display flex
+			justify-content flex-end
+		@media md
+			width 63%
+			padding-right 100px
+		@media sm
+			width 53%
+			padding-right 50px
 		&-inner
-			width 630px
+			@media md
+				width 630px
+			@media sm
+				width 460px
 	&__aside
-		width 37%
+		@media md
+			width 37%
+		@media sm
+			width 47%
+		@media phone
+			margin 55px -20px 0
 	&__section
-		margin-bottom 35px
+		@media tablet_desktop
+			margin-bottom 35px
+		@media phone
+			margin-bottom 25px
 		&-title
 			margin-bottom 15px
 			font-size 12px
@@ -42,26 +60,35 @@
 	&__footer
 		margin-top 80px
 		text-align center
+		@media phone
+			margin 40px -20px 0
 	&__button
 		min-width 210px
 	&__panel
 		display flex
 		justify-content space-between
-		padding 30px 20px 28px
 		border 2px solid #d5e4d0
 		font-size 12px
 		text-transform uppercase
 		color brandColor
+		@media tablet_desktop
+			padding 30px 20px 28px
+		@media phone
+			padding 20px
 		&-label
 			flex-shrink 0
 			margin-left 20px
 			font-weight bold
 		&-text
-			display inline-block
+			@media tablet_desktop
+				display inline-block
 		&-icons
-			display inline-block
-			vertical-align middle
-			margin-left 30px
+			@media tablet_desktop
+				display inline-block
+				vertical-align middle
+				margin-left 30px
+			@media phone
+				margin-top 10px
 		&-body
 			flex-grow 1
 

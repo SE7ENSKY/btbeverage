@@ -156,8 +156,8 @@ $ ->
 
 			tlVideo = new TimelineMax()
 			tlVideo
-				.fromTo $('.intro__wrap-image').get(0), 0.3, { autoAlpha: 1 }, { autoAlpha: 0 }, 0.4
-				.fromTo $video.get(0), 0.3, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
+				.fromTo $('.intro__wrap-image').get(0), 0.3, { autoAlpha: 1 }, { autoAlpha: 0 }, 1
+				.fromTo $video.get(0), 0.3, { autoAlpha: 0 }, { autoAlpha: 1 }, 1
 
 		#
 		# Combine animation func

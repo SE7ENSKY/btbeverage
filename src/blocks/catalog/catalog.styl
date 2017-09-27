@@ -1,15 +1,19 @@
 .catalog
 	display flex
 	flex-wrap wrap
-	flex-direction row-reverse
-	padding-top 120px
+	@media tablet_desktop
+		flex-direction row-reverse
+		padding-top 120px
 	&__item
-		width 50%
-		&:nth-child(odd)
-			margin-top -120px
-		&:nth-child(even)
-			&:last-child
+		@media tablet_desktop
+			width 50%
+			&:nth-child(odd)
 				margin-top -120px
-				margin-left auto
-			&:first-child
-				margin-left 0
+			&:nth-child(even)
+				&:last-child
+					margin-top -120px
+					margin-left auto
+				&:first-child
+					margin-left 0
+		@media phone
+			width 100%

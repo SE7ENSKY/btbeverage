@@ -3,12 +3,15 @@
 	&__inner
 		padding-top 140px
 	&__title
-		margin 0 0 90px
-		font-size 72px
-		line-height 1.138
+		font-size calc(1rem + 4vw)
+		line-height 1.2
 		color brandColor
 		text-align center
 		text-transform uppercase
+		@media tablet_desktop
+			margin 0 0 90px
+		@media phone
+			margin 0 0 30px
 		&-row
 			display block
 			position relative
@@ -29,12 +32,17 @@
 			@media (max-height: 650px)
 				top 330px
 	&__text
-		width 65%
 		margin 0 auto
 		font-size 16px
 		line-height 1.4
 		color brandColor
 		text-align center
+		@media tablet_desktop
+			width 65%
+			font-size 16px
+		@media phone
+			width 100%
+			font-size 14px
 		p
 			margin 0
 	&__list

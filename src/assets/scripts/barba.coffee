@@ -45,7 +45,6 @@ $ ->
 
 	Barba.Dispatcher.on 'transitionCompleted', ->
 		$(document).trigger 'about-block'
-		$(document).trigger 'catalog'
 		$(document).trigger 'content-heading'
 		$(document).trigger 'gallery'
 		$(document).trigger 'media-widget'
@@ -53,5 +52,4 @@ $ ->
 		$(document).trigger 'product-cover'
 		$(document).trigger 'product-params'
 		$(document).trigger 'payment-chooser'
-		$(document).trigger 'sequence-init'
 		$(document).trigger 'intro'

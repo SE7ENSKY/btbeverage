@@ -1,27 +1,44 @@
 .cart
 	.page_checkout &
-		max-width 550px
+		@media desktop
+			max-width 575px
+	&_static
+		.cart__product
+			&-content
+				padding-right 20px
+			&-row
+				@media tablet_desktop
+					padding-right 50px
+				@media phone
+					padding-right 0
 	&__list
 		&-item
-			&:nth-child(odd)
+			@media tablet_desktop
+				&:nth-child(odd)
+					background-color #78a965
+				&:nth-child(even)
+					background-color #679e51
+				&:nth-child(3n)
+					background-color #56943e
+			@media phone
 				background-color #78a965
-			&:nth-child(even)
-				background-color #679e51
-			&:nth-child(3n)
-				background-color #56943e
 	&__product
-		display flex
+		@media tablet_desktop
+			display flex
 		&-image
 			position relative
 			flex-shrink 0
 			display flex
 			align-items center
 			justify-content center
-			width 210px
 			padding 20px
 			background-size cover
 			background-repeat no-repeat
 			background-position center center
+			@media tablet_desktop
+				width 210px
+			@media phone
+				min-height 100px
 			&:before
 				content ""
 				position absolute
@@ -32,7 +49,10 @@
 				background-color rgba(0,0,0,.5)
 		&-content
 			flex-grow 1
-			padding 40px 0 40px 50px
+			@media tablet_desktop
+				padding 40px 0 40px 50px
+			@media phone
+				padding-left 20px
 		&-title
 			position relative
 			font-size 14px
@@ -44,11 +64,15 @@
 			text-align center
 		&-row
 			position relative
-			padding 12px 110px 12px 0
 			font-size 14px
 			line-height 1.57
 			text-transform uppercase
 			color #fff
+			@media tablet_desktop
+				padding 12px 110px 12px 0
+			@media phone
+				padding 19px 60px 19px 0
+				text-align center
 			&:hover
 				.no-touchevents &
 					.cart__controls
@@ -58,21 +82,31 @@
 			font-weight bold
 	&__controls
 		position absolute
-		top 12px
 		right 0
-		width 80px
 		display flex
 		transition .2s opacity ease-in-out
+		@media tablet_desktop
+			width 80px
+			top 12px
+		@media phone
+			width 40px
+			top 0
+			bottom 0
+			flex-direction column
 		.no-touchevents &
 			opacity 0
 			visibility hidden
 		&-item
 			position relative
-			width 50%
 			height 40px
 			user-select none
 			cursor pointer
 			transition .2s background-color ease-in-out
+			@media tablet_desktop
+				width 50%
+			@media phone
+				width 100%
+				height 50%
 			&:before
 			&:after
 				position absolute
@@ -109,19 +143,33 @@
 		color #fff
 		text-align center
 		font-weight bold
+		white-space nowrap
+		@media phone
+			padding-left 20px
+			padding-right @padding-left
 		&-label
 			margin 15px 15px 0 0
-			font-size 14px
 			text-transform uppercase
+			@media tablet_desktop
+				font-size 14px
+			@media phone
+				font-size 13px
 		&-value
-			font-size 30px
+			@media tablet_desktop
+				font-size 30px
+			@media phone
+				font-size 26px
 	&__payments
-		display flex
-		flex-wrap wrap
-		&-item
-			width 33.333333%
-			height 120px
+		@media tablet_desktop
 			display flex
+			flex-wrap wrap
+		&-item
+			display flex
+			@media tablet_desktop
+				width 33.333333%
+				height 120px
+			@media phone
+				height 100px
 			&:nth-child(odd)
 				background-color #4b8834
 			&:nth-child(even)
@@ -153,21 +201,30 @@
 			justify-content center
 			text-decoration none
 	&__prices
-		padding 45px 60px
 		background-color #56943e
 		font-size 14px
 		color #fff
 		font-weight bold
+		@media tablet_desktop
+			padding 45px 60px
+		@media phone
+			padding 45px 20px
 		&-item
 			display flex
 			margin-bottom 8px
 			&:last-child
 				margin-bottom 0
 		&-label
-			width 130px
 			flex-shrink 0
 			text-transform uppercase
+			@media tablet_desktop
+				width 130px
+			@media phone
+				width 50%
 		&-value
-			width 135px
 			text-align right
+			@media tablet_desktop
+				width 135px
+			@media phone
+				width 50%
 		

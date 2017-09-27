@@ -1,18 +1,35 @@
 .content-box
-	margin-bottom 130px
 	color brandColor
+	@media desktop
+		margin-bottom 130px
+	@media tablet
+		margin-bottom 100px
+	@media phone
+		margin-bottom 70px
 	&__title
-		margin-bottom 55px
 		font-size 18px
+		@media tablet_desktop
+			margin-bottom 55px
+		@media phone
+			margin-bottom 25px
 	&__row
-		display flex
-		margin 0 -50px
+		@media tablet_desktop
+			display flex
+		@media desktop
+			margin 0 -50px
+		@media tablet
+			margin 0 -30px
 	&__col
-		flex-shrink 0
-		width 50%
-		padding 0 50px
+		@media tablet_desktop
+			flex-shrink 0
+			width 50%
+		@media desktop
+			padding 0 50px
+		@media tablet
+			padding 0 30px
 	&__text
 		font-size 16px
 		&_md
-			font-size 26px
-			line-height 1.3
+			@media tablet_desktop
+				font-size 26px
+				line-height 1.3

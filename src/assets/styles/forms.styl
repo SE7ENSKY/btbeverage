@@ -54,6 +54,8 @@ placeholderTrans()
 
 .form-section
 	margin-bottom 60px
+	@media phone
+		margin-bottom 30px
 	&-title
 		margin-bottom 17px
 		font-size 12px
@@ -64,6 +66,8 @@ placeholderTrans()
 	&-header
 		display flex
 		justify-content space-between
+		&_offset-bottom
+			margin-bottom 20px
 	&-info
 		margin-bottom 17px
 		font-size 12px
@@ -86,12 +90,27 @@ placeholderTrans()
 		color siteColor
 
 .form-footer
+	@media phone
+		margin 0 -20px
 	&_nav
-		display flex
-		justify-content space-between
-		align-items center
+		@media tablet_desktop
+			display flex
+			align-items center
+			justify-content space-between
+		@media sm
+			flex-direction column
+			align-items inherit
 	&-link
 		font-weight 600
+		@media sm
+			margin-top 20px
+			padding 20px 0
+			text-align center
+		@media phone
+			display block
+			margin-top 10px
+			padding 20px 0
+			text-align center
 
 .error-message
 	display none

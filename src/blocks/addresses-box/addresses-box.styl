@@ -5,9 +5,28 @@
 		text-transform uppercase
 		text-align center
 	&__list
+		max-width 525px
+		margin 0 auto 50px
+		@media phone
+			margin 0 -20px 30px
 		&-item
-			margin-bottom 30px
+			@media tablet_desktop
+				margin-bottom 30px
+			@media phone
+				&:nth-child(odd)
+					.address-widget
+						background-color #dfeada
+				&:nth-child(even)
+					.address-widget
+						background-color #ecf3e9
 	&__footer
 		text-align center
+		@media phone
+			margin 0 -20px
 	&__button
-		min-width 320px
+		@media tablet_desktop
+			min-width 320px
+		@media phone
+			display block
+			width 100%
+			max-width 320px

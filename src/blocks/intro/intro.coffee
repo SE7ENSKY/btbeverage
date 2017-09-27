@@ -172,10 +172,7 @@ $ ->
 			lettersAnimation 2.7
 			headerAnimation 3.7
 			sliderAnimation 3.7
-			setTimeout ->
-				window.scrollTo 0, 0
-				$('body').css 'overflow', 'hidden'
-			, 300
+			$('body').css 'overflow', 'hidden'
 			setTimeout ->
 				if isSequenceLoaded
 					$('body').css 'overflow', ''

@@ -36,7 +36,7 @@ $ ->
 		$block.hover ->
 			$this = $(@)
 			$video = $this.find('video')
-			hasVideo = $video.length and $video.attr('src')
+			hasVideo = $video.length and $video.hasClass('is-loaded')
 			if (hasVideo and !$this.hasClass('hover'))
 				$video.show(0)
 				$video.get(0).play()
@@ -44,7 +44,7 @@ $ ->
 		, ->
 			$this = $(@)
 			$video = $this.find('video')
-			hasVideo = $video.length and $video.attr('src')
+			hasVideo = $video.length and $video.hasClass('is-loaded')
 			if (hasVideo and $this.hasClass('hover'))
 				$video.get(0).pause()
 				$this.toggleClass 'hover'

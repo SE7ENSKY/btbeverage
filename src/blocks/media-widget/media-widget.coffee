@@ -56,7 +56,7 @@ $ ->
 							addVideo $elem, 0, ->
 								tl = new TimelineMax()
 								tl
-									.fromTo $video.get(0), 0.5, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
+									.fromTo $video.get(0), 0.5, { autoAlpha: 0 }, { autoAlpha: 1, delay: 1.5 }
 					.addTo(cntrl)
 
 				videoPromise = videoWithPromise $video.get(0)

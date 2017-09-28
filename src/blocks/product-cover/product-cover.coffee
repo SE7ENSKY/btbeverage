@@ -7,7 +7,7 @@ $ ->
 		$catalog = $(".catalog")
 
 		$block.each (index) ->
-			if index % 2
+			if index % 2 == 0
 				$(this).addClass 'right'
 
 		#
@@ -19,7 +19,7 @@ $ ->
 		$block.each ->
 			isCalled = false
 			self = @
-			new Scene({
+			scene = new Scene({
 				triggerElement: self,
 				offset: -200
 				})
@@ -28,6 +28,13 @@ $ ->
 						addVideo $(self)
 						isCalled = true
 				.addTo(cntrl)
+			scene.enabled false if isMobile()
+
+			controller.resizeSceneActions.push ->
+				if isMobile()
+					scene.enabled false
+				else
+					scene.enabled true
 
 		#
 		# hover
@@ -37,7 +44,7 @@ $ ->
 			$this = $(@)
 			$video = $this.find('video')
 			hasVideo = $video.length and $video.hasClass('is-loaded')
-			if (hasVideo and !$this.hasClass('hover'))
+			if (hasVideo and !$this.hasClass('hover')) and !isMobile()
 				$video.show(0)
 				$video.get(0).play()
 				$this.toggleClass 'hover'

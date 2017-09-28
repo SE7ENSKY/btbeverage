@@ -166,6 +166,10 @@
 				&-vertical
 					transform rotate(90deg) translate(10%, -290%)
 					transform-origin left top
+			&__wrap
+				&-inner
+					flex-direction row-reverse
+					transform translateX(-50%)
 	&.active
 		.product-cover
 			&__close
@@ -180,3 +184,8 @@
 			&__wrap
 				&-inner
 					transform translateX(-50%)
+		&.right
+			.product-cover
+				&__wrap
+					&-inner
+						transform translateX(0%)

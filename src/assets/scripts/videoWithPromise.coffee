@@ -3,10 +3,13 @@ $ ->
     isPlayPromise = null
 
     delayedPause = ->
-      return unless isPlayPromise
-
-      isPlayPromise.then ->
-        el.pause()
+      if isPlayPromise
+        isPlayPromise.then ->
+          el.pause()
+      else
+        setTimeout ->
+          el.pause()
+        , 100
 
     return
       play: ->

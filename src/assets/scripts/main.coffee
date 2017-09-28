@@ -17,6 +17,8 @@ window.controller =
 	,
 	resizeSceneActions: []
 
+window.isMobile = -> window.innerWidth <= 768
+
 $ ->
 	unless Modernizr.touchevents
 		# replace tel: links to callto:

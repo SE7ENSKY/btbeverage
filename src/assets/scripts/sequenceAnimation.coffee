@@ -28,7 +28,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 	cntrl = controller.get()
 	scene = null
 
-	new Scene({
+	seqScene = new Scene({
 			triggerElement: triggerElement,
 			offset: 0,
 			triggerHook: options.triggerHook or 1,
@@ -47,7 +47,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 					triggerHook: options.triggerHook or 1,
 					duration: "100%"
 					})
-					.setTween TweenMax.fromTo '.sequence canvas', 0.5, { y: 0 }, { y: '-100%', ease: Power0.easeNone }
+					.setTween TweenMax.fromTo '.sequence', 0.5, { y: 0 }, { y: '-100%', ease: Power0.easeNone }
 					.addTo(cntrl)
 		.on 'enter', (ev) ->
 			if (options.begin and ev.scrollDirection == "FORWARD")
@@ -59,3 +59,9 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 
 	controller.resizeSceneActions.push ->
 		scene.offset(window.innerHeight) if scene
+		if isMobile()
+			scene.enabled false if scene
+			seqScene.enabled false
+		else
+			scene.enabled true if scene
+			seqScene.enabled true

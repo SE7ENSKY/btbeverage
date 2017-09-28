@@ -1,7 +1,10 @@
 .about
 	margin-bottom 80px
 	&__inner
-		padding-top 140px
+		@media tablet_desktop
+			padding-top 140px
+		@media phone
+			padding-top 60px
 	&__title
 		font-size calc(1rem + 4vw)
 		line-height 1.2

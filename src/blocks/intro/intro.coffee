@@ -15,19 +15,31 @@ $ ->
 		#
 
 		cntrl = controller.get()
-		new Scene({
+		backgroundVideo = new Scene({
 			triggerElement: $block.get(0)
 			triggerHook: 0,
 			offset: 0,
 			duration: if window.innerHeight >= 650 then "100%" else 650
 			})
 			.on 'leave', ->
-				$block.find('video').get(0).pause()
-				$block.find('video').hide(0)
+				$video = $block.find('video')
+				return unless $video.length
+				$video.get(0).pause()
+				$video.hide(0)
 			.on 'enter', ->
-				$block.find('video').show(0)
-				$block.find('video').get(0).play()
+				$video = $block.find('video')
+				return unless $video.length
+				$video.show(0)
+				$video.get(0).play()
 			.addTo(cntrl)
+
+		backgroundVideo.enabled false if isMobile()
+
+		controller.resizeSceneActions.push ->
+			if isMobile()
+				backgroundVideo.enabled false
+			else
+				backgroundVideo.enabled true
 
 		#
 		# set basic configs
@@ -134,7 +146,7 @@ $ ->
 				.setTween(tween)
 				.addTo(cntrl)
 
-			new Scene({
+			leafHideScene = new Scene({
 					offset: Math.max(window.innerHeight, 650),
 					duration: "50%",
 				})
@@ -144,6 +156,10 @@ $ ->
 					$leaf.hide(0) if ev.scrollDirection == "FORWARD"
 				.on 'enter', (ev) ->
 					$leaf.show(0) if ev.scrollDirection == "REVERSE"
+
+			controller.resizeSceneActions.push ->
+				leafHideScene
+					.offset Math.max(window.innerHeight, 650)
 
 		#
 		# video add callback

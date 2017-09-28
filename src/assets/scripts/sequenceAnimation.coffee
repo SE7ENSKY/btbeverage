@@ -27,12 +27,12 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 
 	cntrl = controller.get()
 
-	if options.finish
-		seqArr = $('.sequence__seq').data 'image'
-		imgUrl = seqArr[seqArr.length - 1]
-		$img = $(triggerElement).find '.media-widget__image-bottle'
-		return unless $img.length
-		$img.attr 'src', imgUrl
+	# if options.finish
+	# 	seqArr = $('.sequence__seq').data 'image'
+	# 	imgUrl = seqArr[seqArr.length - 1]
+	# 	$img = $(triggerElement).find '.media-widget__image-bottle'
+	# 	return unless $img.length
+	# 	$img.attr 'src', imgUrl
 
 	new Scene({
 			triggerElement: triggerElement,
@@ -46,13 +46,13 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 			if (options.begin and ev.scrollDirection == "REVERSE") or (options.finish and ev.scrollDirection == "FORWARD")
 				TweenMax.set $canvas.get(0), { autoAlpha: 0 }
 				TweenMax.set $seq.get(0), { autoAlpha: 0 }
-			if (options.finish and ev.scrollDirection == "FORWARD")
-				return unless $img.length
-				TweenMax.set $img.parent(), { autoAlpha: 1 }
+			# if (options.finish and ev.scrollDirection == "FORWARD")
+			# 	return unless $img.length
+			# 	TweenMax.set $img.parent(), { autoAlpha: 1 }
 		.on 'enter', (ev) ->
 			if (options.begin and ev.scrollDirection == "FORWARD") or (options.finish and ev.scrollDirection == "REVERSE")
 				TweenMax.set $canvas.get(0), { autoAlpha: 1 }
 				TweenMax.set $seq.get(0), { autoAlpha: 1 }
-			if (options.finish and ev.scrollDirection == "REVERSE")
-				return unless $img.length
-				TweenMax.set $img.parent(), { autoAlpha: 0 }
+			# if (options.finish and ev.scrollDirection == "REVERSE")
+			# 	return unless $img.length
+			# 	TweenMax.set $img.parent(), { autoAlpha: 0 }

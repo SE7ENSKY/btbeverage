@@ -46,14 +46,24 @@
 		p
 			margin 0
 	&__list
+		position relative
 		display flex
 		flex-wrap wrap
 		justify-content space-between
-		margin-top 450px
+		@media tablet_desktop
+			margin-top 450px
+		@media phone, (orientation: portrait)
+			margin-top 160px
+			margin-left -20px
+			margin-right -20px
 		&-item
 			width 38%
 			text-align center
-			margin-bottom 110px
+			@media tablet_desktop
+				margin-bottom 110px
+			@media phone
+				margin-bottom 45px
+				width 35%
 		&-image
 			width 65px
 			height @width
@@ -70,3 +80,19 @@
 			line-height 1.285
 			color brandColor
 			font-weight bold
+			@media phone
+				display none
+	&__bottle
+		display none
+		position absolute
+		top -120px
+		left 50%
+		transform translateX(-50%)
+		z-index 7
+		@media phone, (orientation: portrait)
+			display block
+		@media phone
+			width 120px
+		&-i
+			max-width 100%
+			max-height @max-width

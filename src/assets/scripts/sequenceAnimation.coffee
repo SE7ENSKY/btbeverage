@@ -57,9 +57,11 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 				scene.destroy()
 				scene = null
 
+	seqScene.enabled false if isMobile() or isPortrait()
+
 	controller.resizeSceneActions.push ->
 		scene.offset(window.innerHeight) if scene
-		if isMobile()
+		if isMobile() or isPortrait()
 			scene.enabled false if scene
 			seqScene.enabled false
 		else

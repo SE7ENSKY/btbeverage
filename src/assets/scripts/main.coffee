@@ -17,7 +17,8 @@ window.controller =
 	,
 	resizeSceneActions: []
 
-window.isMobile = -> window.innerWidth <= 768
+window.isMobile = -> window.innerWidth < 768
+window.isPortrait = -> window.innerWidth <= window.innerHeight
 
 $ ->
 	unless Modernizr.touchevents

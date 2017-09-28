@@ -45,7 +45,7 @@ $ ->
 			$video = $elem.find 'video'
 			if $video.length
 				isVideoCalled = false
-				new Scene({
+				sceneVideoInit = new Scene({
 					triggerElement: $elem.get(0),
 					offset: -200,
 					})
@@ -61,7 +61,7 @@ $ ->
 
 				videoPromise = videoWithPromise $video.get(0)
 
-				new Scene({
+				sceneVideoDisplay = new Scene({
 					triggerElement: $video.parent().get(0),
 					duration: "150%"
 					})
@@ -73,6 +73,17 @@ $ ->
 						$video.hide(0)
 					.addTo(cntrl)
 
+				if isMobile() or isPortrait()
+					sceneVideoDisplay.enabled false
+					sceneVideoInit.enabled false
+
+				controller.resizeSceneActions.push ->
+					if isMobile() or isPortrait()
+						sceneVideoDisplay.enabled false
+						sceneVideoInit.enabled false
+					else
+						sceneVideoDisplay.enabled true
+						sceneVideoInit.enabled true
 			#
 			# Sequence
 			#

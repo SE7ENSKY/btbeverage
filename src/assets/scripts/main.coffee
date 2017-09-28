@@ -14,6 +14,8 @@ window.controller =
 		if @.controller
 			@.controller.destroy()
 			@.controller = null
+	,
+	resizeSceneActions: []
 
 $ ->
 	unless Modernizr.touchevents
@@ -33,3 +35,7 @@ $ ->
 			$this.addClass('has-value')
 		if $this.hasClass('has-value')
 			$this.removeClass('has-value') unless value
+
+	window.addEventListener 'resize', ->
+		resizeAction() for resizeAction in controller.resizeSceneActions
+		return

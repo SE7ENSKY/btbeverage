@@ -63,7 +63,7 @@ $ ->
 
 				new Scene({
 					triggerElement: $video.parent().get(0),
-					duration: "100%"
+					duration: "150%"
 					})
 					.on 'enter', ->
 						$video.show(0)

@@ -54,6 +54,7 @@ $ ->
 							isVideoCalled = true
 							$mainImage = $elem.find('.media-widget__image_main .media-widget__image-i')
 							addVideo $elem, 0, ->
+								$elem.find('video').get(0).play()
 								tl = new TimelineMax()
 								tl
 									.fromTo $video.get(0), 0.5, { autoAlpha: 0 }, { autoAlpha: 1, delay: 1.5 }

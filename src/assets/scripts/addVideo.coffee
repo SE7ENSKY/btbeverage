@@ -13,9 +13,11 @@ window.addVideo = ($block, playDelay = 0, cb) ->
 		source = document.createElement('source')
 		source.src = videoSrc
 		source.type = videoType
-		$video.addClass 'is-loaded'
 		$video.get(0).appendChild(source)
-		cb() if cb
+		setTimeout ->
+			$video.addClass 'is-loaded'
+			cb() if cb
+		, 1500
 
 	tempVideo.addEventListener 'error', ->
 		cb() if cb

@@ -1,13 +1,31 @@
 .informer
-	margin-bottom 90px
 	text-align center
+	@media tablet_desktop
+		margin-bottom 90px
+	@media phone
+		margin-bottom 45px
 	&__text
-		margin-bottom 30px
+		@media tablet_desktop
+			margin-bottom 30px
+		@media phone
+			margin-bottom 20px
 	&__label
-		display inline-block
 		padding 15px 30px
 		background-color #dfeada
 		font-size 24px
 		color brandColor
+		@media tablet_desktop
+			display inline-block
+		@media phone
+			max-width 400px
+			margin 0 auto
+			font-size 20px
+	&__number
+		font-weight bold
+		@media tablet_desktop
+			display inline
 	&__button
-		min-width 320px
+		@media tablet_desktop
+			min-width 320px
+		@media phone
+			min-width 280px

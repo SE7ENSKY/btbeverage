@@ -29,8 +29,7 @@ $ ->
 			tl = new TimelineMax()
 			tl
 				.fromTo $contentBg, 0.5, { height: "60%" }, { height: "140%" }, 0
-				.fromTo $mainImage, 0.5, { y: -yRangeMain }, { y: yRangeMain }, 0
-				# .fromTo $secondImage, 0.5, { y: -yRangeSecond }, { y: yRangeSecond }, 0
+				.fromTo $secondImage, 0.5, { y: yRangeSecond }, { y: -yRangeSecond }, 0
 
 			new Scene({
 				triggerElement: $elem.get(0),
@@ -46,7 +45,7 @@ $ ->
 			$video = $elem.find 'video'
 			if $video.length
 				isVideoCalled = false
-				new Scene({
+				sceneVideoInit = new Scene({
 					triggerElement: $elem.get(0),
 					offset: -200,
 					})
@@ -57,23 +56,36 @@ $ ->
 							addVideo $elem, 0, ->
 								tl = new TimelineMax()
 								tl
-									.fromTo $mainImage.get(0), 0.5, { autoAlpha: 1 }, { autoAlpha: 0 }, 0.2
-									.fromTo $video.get(0), 0.5, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
+									.fromTo $video.get(0), 0.5, { autoAlpha: 0 }, { autoAlpha: 1, delay: 1.5 }
 					.addTo(cntrl)
 
-				new Scene({
-					triggerElement: $elem.get(0),
-					triggerHook: 1,
-					duration: 2 * $video.outerHeight()
+				videoPromise = videoWithPromise $video.get(0)
+
+				sceneVideoDisplay = new Scene({
+					triggerElement: $video.parent().get(0),
+					duration: "150%"
 					})
 					.on 'enter', ->
-						$video.get(0).play()
-						TweenMax.to $video.get(0), 0.2, { autoAlpha: 1 }
+						if $video.hasClass 'is-loaded'
+							$video.show(0)
+							videoPromise.play()
 					.on 'leave', ->
-						$video.get(0).pause()
-						TweenMax.to $video.get(0), 0.2, { autoAlpha: 0 }
+						if $video.hasClass 'is-loaded'
+							videoPromise.pause()
+							$video.hide(0)
 					.addTo(cntrl)
 
+				if isMobile() or isPortrait()
+					sceneVideoDisplay.enabled false
+					sceneVideoInit.enabled false
+
+				controller.resizeSceneActions.push ->
+					if isMobile() or isPortrait()
+						sceneVideoDisplay.enabled false
+						sceneVideoInit.enabled false
+					else
+						sceneVideoDisplay.enabled true
+						sceneVideoInit.enabled true
 			#
 			# Sequence
 			#

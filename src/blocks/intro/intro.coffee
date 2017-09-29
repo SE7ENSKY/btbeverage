@@ -15,18 +15,31 @@ $ ->
 		#
 
 		cntrl = controller.get()
-		new Scene({
+		backgroundVideo = new Scene({
 			triggerElement: $block.get(0)
 			triggerHook: 0,
+			offset: 0,
 			duration: if window.innerHeight >= 650 then "100%" else 650
 			})
 			.on 'leave', ->
-				$block.find('video').get(0).pause()
-				TweenMax.set $block.find('video').get(0), { autoAlpha: 0 }
+				$video = $block.find('video')
+				return unless $video.length
+				$video.get(0).pause()
+				$video.hide(0)
 			.on 'enter', ->
-				$block.find('video').get(0).play()
-				TweenMax.set $block.find('video').get(0), { autoAlpha: 1 }
+				$video = $block.find('video')
+				return unless $video.length
+				$video.show(0)
+				$video.get(0).play()
 			.addTo(cntrl)
+
+		backgroundVideo.enabled false if isMobile()
+
+		controller.resizeSceneActions.push ->
+			if isMobile()
+				backgroundVideo.enabled false
+			else
+				backgroundVideo.enabled true
 
 		#
 		# set basic configs
@@ -126,14 +139,29 @@ $ ->
 					scale: 1.15,
 					ease: Power1.easeIn
 
+			scrollScene = null
+
 			new Scene({
 					offset: 0
 					duration: "100%"
 				})
 				.setTween(tween)
 				.addTo(cntrl)
+				.on 'leave', (ev) ->
+					if ev.scrollDirection == "FORWARD" and !scrollScene and isMobile()
+						scrollScene = new Scene({
+							offset: Math.max(window.innerHeight, 650),
+							triggerHook: 1,
+							duration: "50%"
+							})
+							.setTween TweenMax.fromTo $leaf, 0.5, { y: -35 }, { y: -400, ease: Power0.easeNone }
+							.addTo(cntrl)
+				.on 'enter', (ev) ->
+					if ev.scrollDirection == "REVERSE" and scrollScene
+						scrollScene.destroy()
+						scrollScene = null
 
-			new Scene({
+			leafHideScene = new Scene({
 					offset: Math.max(window.innerHeight, 650),
 					duration: "50%",
 				})
@@ -144,6 +172,19 @@ $ ->
 				.on 'enter', (ev) ->
 					$leaf.show(0) if ev.scrollDirection == "REVERSE"
 
+			leafHideScene.enabled false if isMobile()
+
+			controller.resizeSceneActions.push ->
+				if isMobile()
+					scrollScene.enabled true if scrollScene
+					leafHideScene.enabled false
+				else
+					scrollScene.enabled false if scrollScene
+					leafHideScene.enabled true
+				leafHideScene
+					.offset Math.max(window.innerHeight, 650)
+				scrollScene.offset Math.max(window.innerHeight, 650) if scrollScene
+
 		#
 		# video add callback
 		#
@@ -152,11 +193,11 @@ $ ->
 			$(document).trigger 'sequence-init'
 			$video = $block.find('video')
 			return unless $video.length
-
+			$video.get(0).play()
 			tlVideo = new TimelineMax()
 			tlVideo
-				.fromTo $('.intro__wrap-image').get(0), 0.3, { autoAlpha: 1 }, { autoAlpha: 0 }, 0.2
-				.fromTo $video.get(0), 0.3, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
+				.set $video.get(0), { autoAlpha: 1 }
+				.fromTo $('.intro__wrap-image').get(0), 0.6, { autoAlpha: 1 }, { autoAlpha: 0, delay: 1.5 }
 
 		#
 		# Combine animation func
@@ -166,19 +207,21 @@ $ ->
 			$leaf.show(0)
 			# preloader animation
 			leafPreloaderAnimation()
-			preloaderBgAnimation 1.3
-			bLetterAnimation 2
-			lettersAnimation 2.5
-			headerAnimation 3.5
-			sliderAnimation 3.5
+			preloaderBgAnimation 2
+			bLetterAnimation 2.2
+			lettersAnimation 2.7
+			headerAnimation 3.7
+			sliderAnimation 3.7
+			$('body').css 'overflow', 'hidden'
 			setTimeout ->
-				window.scrollTo 0, 0
-				$('body').css 'overflow', 'hidden'
-			, 300
-			setTimeout ->
-				$('body').css 'overflow', '' if isSequenceLoaded
+				if isSequenceLoaded
+					$('body').css 'overflow', ''
+					$(document).trigger 'init-slow-scroll'
 				sliderAnimationOver = true
-				addVideo $block, 0, addVideoCallback
+				if isMobile()
+					$(document).trigger 'sequence-init'
+				else
+					addVideo $block, 0, addVideoCallback
 			, 5000
 			window.isPreloaderPlayedBefore = true
 
@@ -197,7 +240,9 @@ $ ->
 	handleSequenceLoad = ->
 		isSequenceLoaded = true
 		$('.intro__more text').text 'Scroll to discover'
-		$('body').css 'overflow', '' if sliderAnimationOver
+		if sliderAnimationOver
+			$('body').css 'overflow', ''
+			$(document).trigger 'init-slow-scroll'
 
 	introJS()
 

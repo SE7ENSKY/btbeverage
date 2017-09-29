@@ -2,11 +2,14 @@
 	position fixed
 	bottom 0
 	top 0
-	right 0
-	left 0
+	left 50%
+	transform translateX(-50%)
 	z-index 6
 	visibility hidden
 	opacity 0
+	
 	canvas
 		visibility hidden
 		opacity 0
+	@media phone
+		display none

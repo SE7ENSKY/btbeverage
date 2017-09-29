@@ -2,7 +2,8 @@
 	position relative
 	display flex
 	flex-direction column
-	min-height 100vh
+	@media phone, (orientation: portrait)
+		display none
 	&__image
 		overflow hidden
 		&_main
@@ -41,9 +42,14 @@
 			top 0
 			left 0
 			width 100vw
-			min-height 100%
 			visibility hidden
 			opacity 0
+		&-bottle
+			position absolute
+			top 50%
+			left 50%
+			height 100%
+			transform translate(-50%, -50%)
 	&__content
 		position relative
 		width 50%
@@ -95,6 +101,10 @@
 					height 100vh
 					min-height 650px
 					background-position center
-					background-size 1280px 100%
+					background-size contain
 					opacity 0
 					visibility hidden
+				&-v
+					width auto
+					min-height auto
+					height 100%

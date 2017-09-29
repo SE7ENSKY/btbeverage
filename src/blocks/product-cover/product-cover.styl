@@ -5,57 +5,46 @@
 	cursor pointer
 	&__wrap
 		position absolute
-		top 0
-		right 0
-		bottom 0
-		left 0
+		top -1px
+		right 0px
+		bottom -1px
+		left 0px
 		overflow hidden
 		&:after
 			content ""
 			position absolute
+			top -1px
+			right -1px
+			bottom -1px
+			left -1px
+			background-color rgba(0,0,0,.5)
+		&-inner
+			position absolute
+			display flex
 			top 0
-			right 0
 			bottom 0
 			left 0
-			background-color rgba(0,0,0,.5)
+			width 200%
+			overflow hidden
+			transition transform .5s ease-out
 	&__image
-		position absolute
-		top 0
-		left 0
-		bottom 0
-		width 100%
+		width 50%
+		height 100%
 		background-size cover
 		background-position center center
 		background-repeat no-repeat
-		&-wrapper
-			position absolute
-			top 0
-			bottom 0
-			left 0
-			width 100%
-			overflow hidden
-			transition width .3s ease-in-out
 	&__video
+		display none
 		position absolute
 		top 0
 		left 50%
 		height 100%
 		transform translateX(-50%)
-		visibility hidden
-		&-inner
-			position absolute
-			top 0
-			right 0
-			bottom 0
-			width 50vw
 		&-wrapper
-			position absolute
-			top 0
-			bottom 0
-			right 0
-			width 0
+			position relative
+			width 50%
+			height 100%
 			overflow hidden
-			transition width .3s ease-in-out
 	&__content
 		position absolute
 		top 0
@@ -178,6 +167,10 @@
 				&-vertical
 					transform rotate(90deg) translate(10%, -290%)
 					transform-origin left top
+			&__wrap
+				&-inner
+					flex-direction row-reverse
+					transform translateX(-50%)
 	&.active
 		.product-cover
 			&__close
@@ -189,9 +182,11 @@
 				opacity 0
 	&.hover
 		.product-cover
-			&__image
-				&-wrapper
-					width 0
-			&__video
-				&-wrapper
-					width 100%
+			&__wrap
+				&-inner
+					transform translateX(-50%)
+		&.right
+			.product-cover
+				&__wrap
+					&-inner
+						transform translateX(0%)

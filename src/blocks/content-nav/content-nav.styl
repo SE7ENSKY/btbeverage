@@ -1,9 +1,15 @@
 .content-nav
 	display flex
+	flex-wrap wrap
 	justify-content center
-	margin-bottom 60px
+	@media tablet_desktop
+		margin-bottom 60px
+	@media phone
+		margin-bottom 30px
 	&__item
 		padding 0 15px
+		@media phone
+			padding 0 10px
 		&.active
 			.content-nav__link
 				color siteColor

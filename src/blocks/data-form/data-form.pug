@@ -1,0 +1,21 @@
+if title
+	.form-section-title.form-section-title_simple= title
+
+if state == "changePass"
+	.form-group
+		input.form-control(type="password" placeholder="Password")
+	.form-group
+		input.form-control(type="password" placeholder="Password confirm")
+
+if state == "personalData"
+	.form-group
+		input.form-control(type="text" placeholder="First name")
+	.form-group
+		input.form-control(type="text" placeholder="Second name")
+	.form-group
+		input.form-control(type="email" placeholder="Email")
+	.form-group
+		input.form-control(type="tel" placeholder="Phone")
+
++e.footer
+	+e("button").button.btn(type="submit") Save

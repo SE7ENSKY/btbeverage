@@ -1,8 +1,9 @@
 +e.image._main
 	if mainImage
 		+e.image-i(style=`background-image:url("${mainImage}");`)
+		- console.log(mainImage)
 	if videoLink
-		+e('video').image-v(data-video=videoLink.src type="video/mp4" preload="preload" poster=videoLink.poster muted loop)
+		+e('video').image-v(data-video=videoLink.src data-type="video/mp4" preload="preload" poster=videoLink.poster muted loop)
 
 +e.content
 	+e.content-bg
@@ -10,6 +11,7 @@
 		+e.title= title
 
 +e.image._center
+	+e("img").image-bottle(src=i('null.png'))
 
 unless hideAddImage
 	- classes = []

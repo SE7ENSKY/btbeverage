@@ -3,13 +3,24 @@
 	justify-content center
 	margin-bottom 50px
 	&__item
-		margin 0 20px
 		font-size 13px
 		font-weight bold
-		text-align center
 		text-transform uppercase
 		color #dae8d5
+		@media tablet_desktop
+			margin 0 20px
+			text-align center
+		@media phone
+			display flex
+			margin 0 7px
 		&.active
 			color brandColor
 		&-num
-			margin-bottom 5px
+			@media tablet_desktop
+				margin-bottom 5px
+			@media phone
+				margin-right 10px
+		&-label
+			@media phone
+				font-size 9px
+				line-height 1.2

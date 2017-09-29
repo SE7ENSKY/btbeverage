@@ -26,15 +26,9 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 			ease: Power0.easeNone,
 
 	cntrl = controller.get()
+	scene = null
 
-	if options.finish
-		seqArr = $('.sequence__seq').data 'image'
-		imgUrl = seqArr[seqArr.length - 1]
-		$img = $(triggerElement).find '.media-widget__image_center'
-		return unless $img.length
-		$img.css 'background-image', "url(#{imgUrl})"
-
-	new Scene({
+	seqScene = new Scene({
 			triggerElement: triggerElement,
 			offset: 0,
 			triggerHook: options.triggerHook or 1,
@@ -43,16 +37,33 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 		.setTween(seqTween)
 		.addTo(cntrl)
 		.on 'leave', (ev) ->
-			if (options.begin and ev.scrollDirection == "REVERSE") or (options.finish and ev.scrollDirection == "FORWARD")
+			if (options.begin and ev.scrollDirection == "REVERSE")
 				TweenMax.set $canvas.get(0), { autoAlpha: 0 }
 				TweenMax.set $seq.get(0), { autoAlpha: 0 }
-			if (options.finish and ev.scrollDirection == "FORWARD")
-				return unless $img.length
-				TweenMax.set $img, { autoAlpha: 1 }
+			if (options.finish and ev.scrollDirection == "FORWARD") and !scene
+				scene = new Scene({
+					triggerElement: triggerElement,
+					offset: window.innerHeight,
+					triggerHook: options.triggerHook or 1,
+					duration: "100%"
+					})
+					.setTween TweenMax.fromTo '.sequence', 0.5, { y: 0 }, { y: '-100%', ease: Power0.easeNone }
+					.addTo(cntrl)
 		.on 'enter', (ev) ->
-			if (options.begin and ev.scrollDirection == "FORWARD") or (options.finish and ev.scrollDirection == "REVERSE")
+			if (options.begin and ev.scrollDirection == "FORWARD")
 				TweenMax.set $canvas.get(0), { autoAlpha: 1 }
 				TweenMax.set $seq.get(0), { autoAlpha: 1 }
-			if (options.finish and ev.scrollDirection == "REVERSE")
-				return unless $img.length
-				TweenMax.set $img, { autoAlpha: 0 }
+			if (options.finish and ev.scrollDirection == "REVERSE") and scene
+				scene.destroy()
+				scene = null
+
+	seqScene.enabled false if isMobile() or isPortrait()
+
+	controller.resizeSceneActions.push ->
+		scene.offset(window.innerHeight) if scene
+		if isMobile() or isPortrait()
+			scene.enabled false if scene
+			seqScene.enabled false
+		else
+			scene.enabled true if scene
+			seqScene.enabled true

@@ -18,6 +18,8 @@ $ ->
 					.then @.fadeIn.bind(@)
 		fadeOut: -> new Promise (resolve) ->
 				controller.destroy()
+				controller.resizeSceneActions.length = 0
+				$(document).trigger 'remove-slow-scroll'
 				$('body').css 'overflow', ''
 				resolve()
 		fadeIn: ->
@@ -44,7 +46,6 @@ $ ->
 
 	Barba.Dispatcher.on 'transitionCompleted', ->
 		$(document).trigger 'about-block'
-		$(document).trigger 'catalog'
 		$(document).trigger 'content-heading'
 		$(document).trigger 'gallery'
 		$(document).trigger 'media-widget'
@@ -52,5 +53,4 @@ $ ->
 		$(document).trigger 'product-cover'
 		$(document).trigger 'product-params'
 		$(document).trigger 'payment-chooser'
-		$(document).trigger 'sequence-init'
 		$(document).trigger 'intro'

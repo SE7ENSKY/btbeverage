@@ -15,8 +15,14 @@
 			border-bottom 0 none
 	&__panel
 		display flex !important
+		@media phone
+			flex-direction column
 		&-label
-			margin-right 30px
+			@media tablet_desktop
+				margin-right 30px
+			@media phone
+				& + .payment-chooser__panel-icons
+					margin-top 10px
 		&-icons
 			height 25px
 			margin-top -5px

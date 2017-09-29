@@ -8,7 +8,7 @@ $ ->
 		$catalog = $(".catalog")
 
 		$block.each (index) ->
-			if index % 2
+			if index % 2 == 0
 				$(this).addClass 'right'
 
 		#
@@ -20,7 +20,7 @@ $ ->
 		$block.each ->
 			isCalled = false
 			self = @
-			new Scene({
+			scene = new Scene({
 				triggerElement: self,
 				offset: -200
 				})
@@ -29,6 +29,13 @@ $ ->
 						addVideo $(self)
 						isCalled = true
 				.addTo(cntrl)
+			scene.enabled false if isMobile()
+
+			controller.resizeSceneActions.push ->
+				if isMobile()
+					scene.enabled false
+				else
+					scene.enabled true
 
 		#
 		# catalog animation
@@ -114,18 +121,21 @@ $ ->
 		$block.hover ->
 			$this = $(@)
 			$video = $this.find('video')
-			hasVideo = $video.length and $video.attr('src')
+			hasVideo = $video.length and $video.hasClass('is-loaded')
 			if (hasVideo and !$this.hasClass('hover')) and !$this.hasClass('active')
+				$video.show(0)
 				$video.get(0).play()
 				$this.toggleClass 'hover'
-				TweenMax.set $video.get(0), { autoAlpha: 1 }
 		, ->
 			$this = $(@)
 			$video = $this.find('video')
-			hasVideo = $video.length and $video.attr('src')
+			hasVideo = $video.length and $video.hasClass('is-loaded')
 			if (hasVideo and $this.hasClass('hover')) and !$this.hasClass('active')
 				$video.get(0).pause()
 				$this.toggleClass 'hover'
+				setTimeout ->
+					$video.hide(0) if !$this.hasClass('hover')
+				, 500
 
 		#
 		# Click handler

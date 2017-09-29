@@ -2,38 +2,61 @@
 	&__cover
 		position relative
 		display flex
-		align-items flex-end
-		height calc(100vh - 80px)
-		min-height 650px
-		margin-bottom 40px
+		@media tablet_desktop
+			align-items flex-end
+			height calc(100vh - 80px)
+			min-height 650px
+			margin-bottom 40px
+		@media phone
+			padding-top 66vw
 		&-bg
 			position absolute
 			top 0
 			right 0
-			bottom 0
 			left 0
 			background-size cover
 			background-repeat no-repeat
 			background-position center center
+			@media tablet_desktop
+				bottom 0
+			@media phone
+				height 66vw
 		&-wrap
 			position relative
-			margin-bottom -40px
-			padding-right 35%
+			@media tablet_desktop
+				margin-bottom -40px
+			@media desktop
+				padding-right 35%
+			@media tablet
+				padding-right 25%
 			&:before
 				content ""
 				position absolute
 				top 0
-				right 35%
 				bottom 0
-				left 50%
-				margin-left -50vw
 				background url(i("green-texture.jpg")) repeat center center brandColor
+				@media tablet_desktop
+					left 50%
+					margin-left -50vw
+				@media desktop
+					right 35%
+				@media tablet
+					right 25%
+				@media phone
+					right -20px
+					left -20px
 		&-content
 			position relative
-			padding 60px 100px 50px 0
 			color #fff
+			@media tablet_desktop
+				padding 60px 100px 50px 0
+			@media phone
+				padding 30px 0 40px
 		&-title
 			margin-bottom 35px
+			@media phone
+				font-size 20px
+				margin-bottom 20px
 		&-text
 			margin-bottom 20px
 			font-size 14px
@@ -42,40 +65,83 @@
 		&-date
 			font-size 12px
 			color #9dc78d
+			text-transform uppercase
 	&__title
 		margin-bottom 55px
 		color brandColor
 		text-align center
+		@media phone
+			margin-bottom 30px
 		&_bottom-offset-sm
 			margin-bottom 35px
 	&__subtitle
-		margin-bottom 65px
 		font-size 18px
 		color brandColor
 		text-align center
+		@media tablet_desktop
+			margin-bottom 65px
+		@media phone
+			margin-bottom 30px
 	&__content
-		padding-top 100px
+		@media tablet_desktop
+			padding-top 100px
+		@media phone
+			padding-top 40px
 	&__footer
-		margin-top 80px
 		text-align center
+		@media tablet_desktop
+			margin-top 80px
+		@media phone
+			margin-top 60px
 	&__back
 		min-width 210px
 	
 	&_checkout
 		.page
 			&__content
-				display flex
-				padding-top 0
+				@media desktop
+					display flex
+					padding-top 0
+				@media tablet
+					width 760px
+					padding-left 10px
+					padding-right @padding-left
+					margin 0 auto
+				@media phone
+					padding-left 20px
+					padding-right @padding-left
 			&__body
-				display flex
-				justify-content flex-end
-				width 63%
-				padding 65px 100px 0 0
+				@media md
+					width 63%
+					padding-right 100px
+				@media sm
+					width 53%
+					padding-right 50px
+				@media desktop
+					padding-top 65px
+					display flex
+					justify-content flex-end
 				&-inner
-					width 630px
+					@media md
+						width 630px
+					@media sm
+						width 460px
 			&__aside
-				width 37%
-				padding-top 185px
-				background-color #dfeada
+				@media desktop
+					padding-top 185px
+					background-color #dfeada
+				@media md
+					width 37%
+				@media sm
+					width 47%
+				@media tablet
+					padding-top 100px
+				@media phone
+					display none
+	&_about
+		.page
+			&__content
+				@media phone
+					padding-top 0
 
 

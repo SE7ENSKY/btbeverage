@@ -1,14 +1,19 @@
 .catalog
 	display flex
 	flex-wrap wrap
-	// padding-top 120px
+	@media tablet_desktop
+		flex-direction row-reverse
+		padding-top 120px
 	&__item
-		width 50%
-		// &:nth-child(even)
-		// 	margin-top -120px
-		// &:nth-child(odd)
-		// 	&:last-child
-		// 		margin-top -120px
-		// 		margin-left auto
-		// 	&:first-child
-		// 		margin-left 0
+		@media tablet_desktop
+			width 50%
+			&:nth-child(odd)
+				margin-top -120px
+			&:nth-child(even)
+				&:last-child
+					margin-top -120px
+					margin-left auto
+				&:first-child
+					margin-left 0
+		@media phone
+			width 100%

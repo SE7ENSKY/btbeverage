@@ -9,23 +9,39 @@ $ ->
 		cntrl = controller.get()
 		$buttonLink = $block.find '.taste-button__link'
 		tasteButtonHeight = $block.outerHeight()
-		offset = $block.data 'screen-offset'
-		duration = $block.data 'duration'
+		triggerClass = $block.data 'trigger-class'
+		stopClass = $block.data 'stop-class'
 
-		new Scene({
-				offset: if offset then offset * window.innerHeight else 0,
-				duration: duration or 0,
+		$trigger = $("." + triggerClass)
+		$stopper = $("." + stopClass)
+
+		TweenMax.fromTo $buttonLink, 0.3, { y: 0 }, { y: tasteButtonHeight }
+
+		tasteButtonShow = new Scene({
+				triggerElement: $trigger.get(0),
+				triggerHook: 0.5,
 			})
-			.addTo(cntrl)
-			.on 'enter', ->
-				TweenMax.fromTo $buttonLink, 0.3, { y: tasteButtonHeight }, { y: 0 }
-			.on 'leave', ->
-				TweenMax.fromTo $buttonLink, 0.3, { y: 0 }, { y: tasteButtonHeight }
+			.setTween TweenMax.fromTo $buttonLink, 0.3, { y: tasteButtonHeight }, { y: 0 }
+			.addTo cntrl
 
-		$buttonLink.on 'click', (ev) ->
-			ev.preventDefault()
-			$('body').animate
-				scrollTop: $("#catalog").offset().top
+		tasteButtonHide = new Scene({
+				triggerElement: $stopper.get(0),
+				triggerHook: 1
+			})
+			.addTo cntrl
+			.setTween TweenMax.fromTo $buttonLink, 0.3, { y: 0 }, { y: tasteButtonHeight }
+
+		if isMobile()
+			tasteButtonHide.enabled false
+			tasteButtonShow.enabled false
+
+		controller.resizeSceneActions.push ->
+			if isMobile()
+				tasteButtonHide.enabled false
+				tasteButtonShow.enabled false
+			else
+				tasteButtonHide.enabled true
+				tasteButtonShow.enabled true
 
 	tasteButtonJS()
 

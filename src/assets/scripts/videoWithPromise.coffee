@@ -1,6 +1,6 @@
 $ ->
   window.videoWithPromise = (el) ->
-    isPlayPromise = null
+    isPlayPromise = undefined
 
     delayedPause = ->
       if isPlayPromise != undefined

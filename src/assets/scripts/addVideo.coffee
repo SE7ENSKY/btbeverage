@@ -9,7 +9,7 @@ window.addVideo = ($block, playDelay = 0, cb) ->
 
 	tempVideo = document.createElement('video')
 	tempVideo.src = videoSrc
-	tempVideo.addEventListener 'loadeddata', ->
+	tempVideo.addEventListener 'canplaythrough', ->
 		source = document.createElement('source')
 		source.src = videoSrc
 		source.type = videoType

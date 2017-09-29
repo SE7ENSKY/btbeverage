@@ -1,4 +1,5 @@
 import { Scene } from 'scrollmagic'
+import { TweenMax, Power0 } from 'gsap'
 
 $ ->
 	productCoverJS = ->
@@ -46,6 +47,7 @@ $ ->
 			hasVideo = $video.length and $video.hasClass('is-loaded')
 			if (hasVideo and !$this.hasClass('hover')) and !isMobile()
 				$video.show(0)
+				TweenMax.fromTo $video.parent().get(0), 0.5, { autoAlpha: 0 }, { autoAlpha: 1, ease: Power0.easeNone }
 				$video.get(0).play()
 				$this.toggleClass 'hover'
 		, ->
@@ -55,9 +57,7 @@ $ ->
 			if (hasVideo and $this.hasClass('hover'))
 				$video.get(0).pause()
 				$this.toggleClass 'hover'
-				setTimeout ->
-					$video.hide(0) if !$this.hasClass('hover')
-				, 500
+				TweenMax.to $video.parent().get(0), 0.3, { autoAlpha: 0, ease: Power0.easeNone, onComplete: -> $video.hide(0) }
 
 	productCoverJS()
 

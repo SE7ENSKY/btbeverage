@@ -15,6 +15,8 @@ $ ->
 		$trigger = $("." + triggerClass)
 		$stopper = $("." + stopClass)
 
+		TweenMax.fromTo $buttonLink, 0.3, { y: 0 }, { y: tasteButtonHeight }
+
 		tasteButtonShow = new Scene({
 				triggerElement: $trigger.get(0),
 				triggerHook: 0.5,

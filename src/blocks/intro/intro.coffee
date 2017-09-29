@@ -218,7 +218,10 @@ $ ->
 					$('body').css 'overflow', ''
 					$(document).trigger 'init-slow-scroll'
 				sliderAnimationOver = true
-				addVideo $block, 0, addVideoCallback
+				if isMobile()
+					$(document).trigger 'sequence-init'
+				else
+					addVideo $block, 0, addVideoCallback
 			, 5000
 			window.isPreloaderPlayedBefore = true
 

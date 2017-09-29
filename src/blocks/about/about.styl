@@ -20,7 +20,10 @@
 			position relative
 			&_1
 			&_3
-				z-index 1
+				@media tablet_desktop
+					z-index 1
+				@media phone
+					z-index 7
 			&_2
 				z-index 7
 		&-image
@@ -86,16 +89,16 @@
 			@media phone
 				display none
 	&__bottle
-		display none
 		position absolute
 		top -120px
 		left 50%
 		transform translateX(-50%)
 		z-index 7
-		@media phone, (orientation: portrait)
-			display block
 		@media phone
 			width 120px
 		&-i
+			display none
+			@media phone, (orientation: portrait)
+				display block
 			max-width 100%
 			max-height @max-width

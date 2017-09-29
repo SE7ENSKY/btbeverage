@@ -33,6 +33,23 @@ $ ->
 				.setTween(tl)
 				.addTo(cntrl)
 
+		bottleScene = new Scene({
+				triggerElement: '.about__bottle',
+				triggerHook: 1,
+				offset: -20,
+				duration: "50%"
+			})
+			.setTween TweenMax.fromTo '.about__bottle', 0.5, { autoAlpha: 0 }, { autoAlpha: 1 }
+			.addTo cntrl
+
+		bottleScene.enabled false unless isMobile()
+
+		controller.resizeSceneActions.push ->
+			if isMobile()
+				bottleScene.enabled true
+			else
+				bottleScene.enabled false
+
 		sequence = $block.data('sequence')
 		return if !sequence
 

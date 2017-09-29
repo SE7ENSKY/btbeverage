@@ -3,7 +3,7 @@ $ ->
     isPlayPromise = null
 
     delayedPause = ->
-      if isPlayPromise
+      if isPlayPromise != undefined
         isPlayPromise.then ->
           el.pause()
       else
@@ -14,4 +14,7 @@ $ ->
     return
       play: ->
         isPlayPromise = el.play()
+        if isPlayPromise != undefined
+          isPlayPromise.catch (e) ->
+            console.log 'error', e
       pause: delayedPause

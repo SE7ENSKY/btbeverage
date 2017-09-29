@@ -66,11 +66,13 @@ $ ->
 					duration: "150%"
 					})
 					.on 'enter', ->
-						$video.show(0)
-						videoPromise.play()
+						if $video.hasClass 'is-loaded'
+							$video.show(0)
+							videoPromise.play()
 					.on 'leave', ->
-						videoPromise.pause()
-						$video.hide(0)
+						if $video.hasClass 'is-loaded'
+							videoPromise.pause()
+							$video.hide(0)
 					.addTo(cntrl)
 
 				if isMobile() or isPortrait()

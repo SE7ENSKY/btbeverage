@@ -11,11 +11,15 @@
 		line-height 1.4
 		color brandColor
 		background-color #dfeada
-		@media tablet_desktop
+		@media md
 			padding 40px 70px
+			font-size 16px
+		@media sm
+			padding 40px 50px
 			font-size 16px
 		@media tablet
 			padding 30px
+			font-size 14px
 		@media phone
 			order 4
 			z-index 5
@@ -39,8 +43,10 @@
 	&__inner
 		display flex
 		color #fff
-		@media desktop
+		@media md
 			padding 60px 70px
+		@media sm
+			padding 40px 50px
 		@media tablet
 			padding 30px
 		@media phone
@@ -57,6 +63,9 @@
 		transition opacity 0.15s ease-in-out
 		@media desktop
 			margin-right 70px
+			font-size 30px
+		@media desktop
+			margin-right 50px
 			font-size 30px
 		@media tablet
 			margin-right 40px
@@ -101,8 +110,10 @@
 			width 60%
 			opacity 1
 			visibility visible
-			@media desktop
+			@media md
 				padding 60px 0 60px 70px
+			@media sm
+				padding 40px 0 40px 50px
 			@media tablet
 				padding 35px 0 35px 30px
 			@media phone
@@ -125,9 +136,13 @@
 			font-weight bold
 			background-color #4B8834
 			cursor pointer
-			@media desktop
+			@media md
 				height 156px
 				padding 70px 0
+				font-size 14px
+			@media sm
+				height 116px
+				padding 50px 0
 				font-size 14px
 			@media tablet
 				height 106px

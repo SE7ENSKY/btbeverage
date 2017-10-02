@@ -11,7 +11,7 @@ $ ->
 
 		onPixiSetup = (loader, resources) ->
 			$(document).trigger 'sequence-loaded'
-			
+
 			for i, item of resources.seq.textures
 				pixi.frames.push(item)
 

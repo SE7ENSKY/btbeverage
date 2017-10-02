@@ -138,7 +138,7 @@
 			display flex
 			left 0
 			width 200%
-			transition margin-left .5s ease-out
+			transition transform .5s ease-out
 			@media tablet_desktop
 				top 50%
 				transform translateY(-50%)
@@ -220,5 +220,8 @@
 				&:hover
 					opacity 0.6
 			&__title
-				font-size 40px
-				line-height 1.1
+				@media tablet_desktop
+					opacity 0
+				@media phone
+					font-size 40px
+					line-height 1.1

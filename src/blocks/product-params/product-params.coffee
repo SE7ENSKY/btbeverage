@@ -42,7 +42,7 @@ $ ->
 			$thisProductCover = $(".product-cover.active")
 
 			$slider = $thisProductCover.find('.product-cover__slider-inner')
-			$slider.css 'margin-left', if position then "-" + (position * 100) + "%" else 0
+			$slider.css 'transform', "translateX(#{if position then "-" + (position * if isMobile() then 23 else 50) + "%" else 0})"
 			$slider.find('.product-cover__slider-item')
 				.each (index) ->
 					$(this).removeClass 'active'

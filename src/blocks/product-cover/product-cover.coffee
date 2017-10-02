@@ -70,6 +70,7 @@ $ ->
 
 			volumeHeight = $paramsVolume.outerHeight()
 			textHeight = $paramsText.outerHeight()
+			packHeight = $paramsPack.outerHeight()
 
 			isEvenProductCover = catalogIndex % 2
 			coef = if isEvenProductCover then -1 else 1
@@ -84,12 +85,12 @@ $ ->
 					tl
 						.fromTo $target.get(0), 0.5, { height: 0 }, { height: $targetInner.outerHeight(),ease: Power0.easeNone  }, 0
 						.fromTo $sliderWrapper, 0.2, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
-						.fromTo $paramsCart.get(0), 0.5, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight())}, { y: 0, ease: Power0.easeNone }, 0
-						.fromTo $paramsPack.get(0), 0.4, { y: -(textHeight + volumeHeight) }, { y: 0, ease: Power0.easeNone }, 0.1
-						.fromTo $paramsVolume.get(0), 0.3, { y: -textHeight }, { y: 0, ease: Power0.easeNone }, 0.2
+						.fromTo $paramsText.get(0), 0.5, { y: -(packHeight + volumeHeight + $paramsCart.outerHeight())}, { y: 0, ease: Power0.easeNone }, 0
+						.fromTo $paramsCart.get(0), 0.4, { y: -(packHeight + volumeHeight) }, { y: 0, ease: Power0.easeNone }, 0.1
+						.fromTo $paramsPack.get(0), 0.3, { y: -volumeHeight }, { y: 0, ease: Power0.easeNone }, 0.2
 						.staggerFromTo $blockInners, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }, 0, 0.4
-						.fromTo $slider, 1, { x: -  window.innerWidth }, { x: 0, ease: Power1.easeOut }, 0.5
-						.fromTo $sliderNormalText, 0.4, { x: -0.5 * window.innerWidth }, { x: 0, ease: Power1.easeOut }, 0.5
+						.fromTo $slider, 0.5, { x: -window.innerWidth }, { x: 0, ease: Power1.easeOut }, 0.5
+						.fromTo $sliderNormalText, 0.3, { x: -0.5 * window.innerWidth }, { x: 0, ease: Power1.easeOut }, 0.5
 				else
 					tl
 						.fromTo $target.get(0), 0.5, { height: 0 }, { height: $targetInner.outerHeight(),ease: Power0.easeNone  }, 0
@@ -97,7 +98,7 @@ $ ->
 						.fromTo $sliderWrapper, 0.2, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
 						.staggerFromTo selector, 0.5, { y: 0 }, { y: diff * coef, ease: Power0.easeNone }, 0, 0
 						.set $blockInners, { autoAlpha: 0 }, 0
-						.fromTo $paramsCart.get(0), 0.5, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight())}, { y: 0, ease: Power0.easeNone }, 0
+						.fromTo $paramsCart.get(0), 0.5, { y: -(textHeight + volumeHeight + packHeight)}, { y: 0, ease: Power0.easeNone }, 0
 						.fromTo $paramsPack.get(0), 0.4, { y: -(textHeight + volumeHeight) }, { y: 0, ease: Power0.easeNone }, 0.1
 						.fromTo $paramsVolume.get(0), 0.3, { y: -textHeight }, { y: 0, ease: Power0.easeNone }, 0.2
 						.staggerFromTo $blockInners, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }, 0, 0.4
@@ -116,9 +117,9 @@ $ ->
 						.to $target.get(0), 0.5, { height: 0, ease: Power0.easeNone }, 0
 						.staggerFromTo $blockInners, 0.1, { autoAlpha: 1 }, { autoAlpha: 0 }, 0, 0
 						.fromTo $sliderWrapper, 0.2, { autoAlpha: 1 }, { autoAlpha: 0 }, 0
-						.fromTo $paramsCart.get(0), 0.5, { y: 0 }, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight()), ease: Power0.easeNone }, 0
-						.fromTo $paramsPack.get(0), 0.4, { y: 0 }, { y: -(textHeight + volumeHeight), ease: Power0.easeNone }, 0
-						.fromTo $paramsVolume.get(0), 0.3, { y: 0 }, { y: -textHeight, ease: Power0.easeNone }, 0
+						.fromTo $paramsText.get(0), 0.5, { y: 0 }, { y: -(packHeight + volumeHeight + $paramsCart.outerHeight()), ease: Power0.easeNone }, 0
+						.fromTo $paramsCart.get(0), 0.4, { y: 0 }, { y: -(textHeight + volumeHeight), ease: Power0.easeNone }, 0
+						.fromTo $paramsPack.get(0), 0.3, { y: 0 }, { y: -textHeight, ease: Power0.easeNone }, 0
 				else
 					tl
 						.to $target.get(0), 0.5, { height: 0, ease: Power0.easeNone }, 0
@@ -128,8 +129,8 @@ $ ->
 						.staggerFromTo $blockInners, 0.1, { autoAlpha: 1 }, { autoAlpha: 0 }, 0, 0
 						.staggerFromTo selector, 0.5, { y: -diff }, { y: 0, ease: Power0.easeNone }, 0, 0
 						.fromTo $paramsCart.get(0), 0.5, { y: 0 }, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight()), ease: Power0.easeNone }, 0
-						.fromTo $paramsPack.get(0), 0.4, { y: 0 }, { y: -(textHeight + volumeHeight), ease: Power0.easeNone }, 0
-						.fromTo $paramsVolume.get(0), 0.3, { y: 0 }, { y: -textHeight, ease: Power0.easeNone }, 0
+						.fromTo $paramsPack.get(0), 0.4, { y: 0 }, { y: -(packHeight + volumeHeight), ease: Power0.easeNone }, 0
+						.fromTo $paramsVolume.get(0), 0.3, { y: 0 }, { y: -volumeHeight, ease: Power0.easeNone }, 0
 						.to $videoMessage.get(0), 0.5, { autoAlpha: 1 }, 0
 						# after animation
 				setTimeout ->

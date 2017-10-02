@@ -1,10 +1,14 @@
 .catalog
-	display flex
-	flex-wrap wrap
-	@media tablet_desktop
+	&__desktop
+	&__mobile
+		display flex
+		flex-wrap wrap
+	&__desktop
 		flex-direction row-reverse
 		padding-top 120px
 	&__item
+		display flex
+		flex-direction column
 		@media tablet_desktop
 			width 50%
 			&:nth-child(odd)

@@ -1,5 +1,5 @@
 import { Scene } from 'scrollmagic'
-import { TimelineMax, TweenMax, Power0, Power2 } from 'gsap'
+import { TimelineMax, TweenMax, Power0, Power1 } from 'gsap'
 
 $ ->
 	productCoverJS = ->
@@ -77,42 +77,65 @@ $ ->
 			$slider = $this.find '.product-cover__slider'
 			$sliderVerticalText = $this.find '.product-cover__text-vertical span'
 			$sliderNormalText = $this.find '.product-cover__text'
+			$videoMessage = $this.find '.product-cover__video-message'
 
 			if !isOpen
-				tl
-					.fromTo $target.get(0), 0.5, { height: 0 }, { height: $targetInner.outerHeight(),ease: Power0.easeNone  }, 0
-					.fromTo $this.get(0), 0.5, { paddingBottom: "#{productCoverHeightClosed}px" }, { paddingBottom: "#{productCoverHeightOpen}px", ease: Power0.easeNone }, 0
-					.fromTo $sliderWrapper, 0.2, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
-					.staggerFromTo selector, 0.5, { y: 0 }, { y: -diff, ease: Power0.easeNone }, 0, 0
-					.set $blockInners, { autoAlpha: 0 }, 0
-					.fromTo $paramsCart.get(0), 0.5, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight())}, { y: 0, ease: Power0.easeNone }, 0
-					.fromTo $paramsPack.get(0), 0.4, { y: -(textHeight + volumeHeight) }, { y: 0, ease: Power0.easeNone }, 0.1
-					.fromTo $paramsVolume.get(0), 0.3, { y: -textHeight }, { y: 0, ease: Power0.easeNone }, 0.2
-					.staggerFromTo $blockInners, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }, 0, 0.4
-					.fromTo $slider, 1, { x: 0.5 * window.innerWidth * coef}, { x: 0, ease: Power2.easeOut }, 0.3
-					.fromTo $sliderNormalText, 0.4, { x: 0.25 * window.innerWidth * coef }, { x: 0, ease: Power2.easeOut }, 0.9
-					.staggerFromTo $sliderVerticalText, 0.4, { autoAlpha: 0, rotationX: 90 * coef }, { autoAlpha: 1, rotationX: 0 }, 0.2, 0.4
-					# after animation
-					setTimeout ->
-						isAnimation = false
-						scrollToViewport $this
-					, 1300
+				if isMobile()
+					tl
+						.fromTo $target.get(0), 0.5, { height: 0 }, { height: $targetInner.outerHeight(),ease: Power0.easeNone  }, 0
+						.fromTo $sliderWrapper, 0.2, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
+						.fromTo $paramsCart.get(0), 0.5, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight())}, { y: 0, ease: Power0.easeNone }, 0
+						.fromTo $paramsPack.get(0), 0.4, { y: -(textHeight + volumeHeight) }, { y: 0, ease: Power0.easeNone }, 0.1
+						.fromTo $paramsVolume.get(0), 0.3, { y: -textHeight }, { y: 0, ease: Power0.easeNone }, 0.2
+						.staggerFromTo $blockInners, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }, 0, 0.4
+						.fromTo $slider, 1, { x: -  window.innerWidth }, { x: 0, ease: Power1.easeOut }, 0.5
+						.fromTo $sliderNormalText, 0.4, { x: -0.5 * window.innerWidth }, { x: 0, ease: Power1.easeOut }, 0.5
+				else
+					tl
+						.fromTo $target.get(0), 0.5, { height: 0 }, { height: $targetInner.outerHeight(),ease: Power0.easeNone  }, 0
+						.fromTo $this.get(0), 0.5, { paddingBottom: "#{productCoverHeightClosed}px" }, { paddingBottom: "#{productCoverHeightOpen}px", ease: Power0.easeNone }, 0
+						.fromTo $sliderWrapper, 0.2, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
+						.staggerFromTo selector, 0.5, { y: 0 }, { y: diff * coef, ease: Power0.easeNone }, 0, 0
+						.set $blockInners, { autoAlpha: 0 }, 0
+						.fromTo $paramsCart.get(0), 0.5, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight())}, { y: 0, ease: Power0.easeNone }, 0
+						.fromTo $paramsPack.get(0), 0.4, { y: -(textHeight + volumeHeight) }, { y: 0, ease: Power0.easeNone }, 0.1
+						.fromTo $paramsVolume.get(0), 0.3, { y: -textHeight }, { y: 0, ease: Power0.easeNone }, 0.2
+						.staggerFromTo $blockInners, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }, 0, 0.4
+						.fromTo $slider, 1, { x: - 0.5 * window.innerWidth * coef}, { x: 0, ease: Power1.easeOut }, 0.3
+						.fromTo $sliderNormalText, 0.4, { x: -0.25 * window.innerWidth * coef }, { x: 0, ease: Power1.easeOut }, 0.9
+						.staggerFromTo $sliderVerticalText, 0.4, { autoAlpha: 0, rotationX: 90 * coef }, { autoAlpha: 1, rotationX: 0 }, 0.2, 0.4
+						.to $videoMessage.get(0), 0.5, { autoAlpha: 0 }, 0
+						# after animation
+				setTimeout ->
+					isAnimation = false
+					scrollToViewport $this
+				, 1300
 			else
-				tl
-					.to $target.get(0), 0.5, { height: 0, ease: Power0.easeNone }, 0
-					.to $this.get(0), 0.5, { paddingBottom: "#{productCoverHeightClosed}px" , ease: Power0.easeNone  }, 0
-					.set $this.get(0), { paddingBottom: "66%" }, 0.5
-					.fromTo $sliderWrapper, 0.2, { autoAlpha: 1 }, { autoAlpha: 0 }, 0
-					.staggerFromTo $blockInners, 0.1, { autoAlpha: 1 }, { autoAlpha: 0 }, 0, 0
-					.staggerFromTo selector, 0.5, { y: -diff }, { y: 0, ease: Power0.easeNone }, 0, 0
-					.fromTo $paramsCart.get(0), 0.5, { y: 0 }, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight()), ease: Power0.easeNone }, 0
-					.fromTo $paramsPack.get(0), 0.4, { y: 0 }, { y: -(textHeight + volumeHeight), ease: Power0.easeNone }, 0
-					.fromTo $paramsVolume.get(0), 0.3, { y: 0 }, { y: -textHeight, ease: Power0.easeNone }, 0
-					# after animation
-					setTimeout ->
-						isAnimation = false
-						$this.removeClass 'hover' if removeHover
-					, 500
+				if isMobile()
+					tl
+						.to $target.get(0), 0.5, { height: 0, ease: Power0.easeNone }, 0
+						.staggerFromTo $blockInners, 0.1, { autoAlpha: 1 }, { autoAlpha: 0 }, 0, 0
+						.fromTo $sliderWrapper, 0.2, { autoAlpha: 1 }, { autoAlpha: 0 }, 0
+						.fromTo $paramsCart.get(0), 0.5, { y: 0 }, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight()), ease: Power0.easeNone }, 0
+						.fromTo $paramsPack.get(0), 0.4, { y: 0 }, { y: -(textHeight + volumeHeight), ease: Power0.easeNone }, 0
+						.fromTo $paramsVolume.get(0), 0.3, { y: 0 }, { y: -textHeight, ease: Power0.easeNone }, 0
+				else
+					tl
+						.to $target.get(0), 0.5, { height: 0, ease: Power0.easeNone }, 0
+						.to $this.get(0), 0.5, { paddingBottom: "#{productCoverHeightClosed}px" , ease: Power0.easeNone  }, 0
+						.set $this.get(0), { paddingBottom: "66%" }, 0.5
+						.fromTo $sliderWrapper, 0.2, { autoAlpha: 1 }, { autoAlpha: 0 }, 0
+						.staggerFromTo $blockInners, 0.1, { autoAlpha: 1 }, { autoAlpha: 0 }, 0, 0
+						.staggerFromTo selector, 0.5, { y: -diff }, { y: 0, ease: Power0.easeNone }, 0, 0
+						.fromTo $paramsCart.get(0), 0.5, { y: 0 }, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight()), ease: Power0.easeNone }, 0
+						.fromTo $paramsPack.get(0), 0.4, { y: 0 }, { y: -(textHeight + volumeHeight), ease: Power0.easeNone }, 0
+						.fromTo $paramsVolume.get(0), 0.3, { y: 0 }, { y: -textHeight, ease: Power0.easeNone }, 0
+						.to $videoMessage.get(0), 0.5, { autoAlpha: 1 }, 0
+						# after animation
+				setTimeout ->
+					isAnimation = false
+					$this.removeClass 'hover' if removeHover
+				, 500
 
 		#
 		# hover
@@ -125,6 +148,7 @@ $ ->
 			if (hasVideo and !$this.hasClass('hover')) and !$this.hasClass('active')
 				$video.show(0)
 				TweenMax.fromTo $video.parent().get(0), 0.5, { autoAlpha: 0 }, { autoAlpha: 1, ease: Power0.easeNone }
+				TweenMax.to $this.find('.product-cover__title').get(0), 0.1, { autoAlpha: 0, ease: Power0.easeNone }
 				$video.get(0).play()
 				$this.toggleClass 'hover'
 		, ->
@@ -135,6 +159,7 @@ $ ->
 				$video.get(0).pause()
 				$this.toggleClass 'hover'
 				TweenMax.to $video.parent().get(0), 0.3, { autoAlpha: 0, ease: Power0.easeNone, onComplete: -> $video.hide(0) }
+				TweenMax.to $this.find('.product-cover__title').get(0), 0.1, { autoAlpha: 1, ease: Power0.easeNone }
 
 		#
 		# Click handler
@@ -155,6 +180,7 @@ $ ->
 
 				setTimeout ->
 					animationFunc $this, isOpen
+					$openBlock.trigger 'mouseleave'
 					$this.toggleClass 'active'
 				, 500
 

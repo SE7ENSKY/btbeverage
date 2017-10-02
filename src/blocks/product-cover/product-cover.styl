@@ -69,20 +69,21 @@
 		bottom -1px
 		left -1px
 		text-decoration none
-		z-index 5
+		z-index 8
 	&__title
 		width 100%
 		height @width
 		display flex
 		align-items center
 		justify-content center
+		padding 20px
 		font-size 20px
 		text-transform uppercase
 		color #fff
 		text-align center
 		font-weight bold
 		letter-spacing 1pt
-		transition opacity 0.2s ease-in-out, opacity 0.2s ease-in-out
+		transition opacity 0.2s ease-in-out
 	&__close
 		position absolute
 		top 20px
@@ -109,12 +110,16 @@
 			height 10px
 	&__slider
 		position absolute
-		z-index 2
+		z-index 8
 		top 5%
 		right 10%
 		bottom 5%
 		width 50%
 		overflow hidden
+		@media phone
+			bottom 1px
+			right auto
+			left 38.5%
 		&-wrapper
 			display flex
 			position absolute
@@ -122,22 +127,31 @@
 			left 0
 			right 0
 			bottom 0
-			padding 70px 0 70px 60px
 			opacity 0
 			visibility hidden
+			@media tablet_desktop
+				padding 70px 0 70px 60px
+			@media phone
+				padding 20px
 		&-inner
 			position absolute
 			display flex
-			top 50%
 			left 0
 			width 200%
-			transform translateY(-50%)
 			transition margin-left .5s ease-out
+			@media tablet_desktop
+				top 50%
+				transform translateY(-50%)
+			@media phone
+				top 0
 		&-item
-			width 50%
 			text-align center
 			transition opacity .15s ease-in-out
 			opacity 0
+			@media tablet_desktop
+				width 50%
+			@media phone
+				width 23%
 			&.active
 				opacity 1
 				transition opacity .3s ease-out .3s
@@ -152,10 +166,13 @@
 		left 0
 		right 0
 		bottom 0
-		font-size 14px
 		line-height 1.5
 		color #fff
 		text-transform uppercase
+		@media tablet_desktop
+			font-size 14px
+		@media phone
+			font-size 10px
 		&-vertical
 			display block
 			transform rotate(-90deg) translate(-90%, 100%)
@@ -172,14 +189,20 @@
 			span
 				display inline-block
 				transform-origin 100% 50%
+			@media phone
+				display none
 	&.right
 		.product-cover
 			&__slider
-				left 10%
-				right auto
+				@media tablet_desktop
+					left 10%
+					right auto
 				&-wrapper
-					justify-content flex-end
-					padding 70px 60px 70px 0
+					@media tablet_desktop
+						justify-content flex-end
+						padding 70px 60px 70px 0
+					@media phone
+						padding 20px
 			&__text
 				text-align right
 				&-vertical
@@ -197,4 +220,5 @@
 				&:hover
 					opacity 0.6
 			&__title
-				opacity 0
+				font-size 40px
+				line-height 1.1

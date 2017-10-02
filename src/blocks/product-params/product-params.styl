@@ -3,34 +3,51 @@
 	overflow hidden
 	&__text
 		z-index 1
-		padding 40px 70px
-		font-size 16px
 		line-height 1.4
 		color brandColor
 		background-color #dfeada
+		@media tablet_desktop
+			padding 40px 70px
+			font-size 16px
+		@media phone
+			padding 30px 20px
+			font-size 14px
 	&__title
 		display flex
-		width 130px
 		align-items center
 		text-transform uppercase
 		font-size 12px
 		line-height 1.5
 		white-space pre-line
+		@media tablet_desktop
+			width 130px
+			font-size 12px
+		@media phone
+			width 80px
+			font-size 10px
 	&__inner
 		display flex
 		color #fff
-		padding 60px 70px
+		@media tablet_desktop
+			padding 60px 70px
+		@media phone
+			padding 35px 20px
 	&__list
 		display flex
 		align-items center
 	&__item
-		margin-right 70px
 		font-size 30px
 		line-height 1.1
 		font-weight bold
 		cursor pointer
 		opacity 0.2
 		transition opacity 0.15s ease-in-out
+		@media tablet_desktop
+			margin-right 70px
+			font-size 30px
+		@media phone
+			margin-right 35px
+			font-size 20px
 		&.active
 			opacity 1
 		&:not(.active):hover
@@ -44,7 +61,7 @@
 		&-dots
 			display flex
 			flex-wrap wrap
-			width 52px
+			width 53px
 		&-dot
 			width 7px
 			height 7px
@@ -69,19 +86,30 @@
 			padding 60px 0 60px 70px
 			opacity 1
 			visibility visible
+			@media tablet_desktop
+				padding 60px 0 60px 70px
+			@media phone
+				padding 35px 0 35px 20px
 			&-value
-				font-size 30px
 				line-height 1.1
 				font-weight bold
+				@media tablet_desktop
+					font-size 30px
+				@media phone
+					font-size 20px
 		&-button
 			width 40%
-			padding 70px 0
 			text-align center
-			font-size 14px
 			line-height 1.15
 			font-weight bold
 			background-color #4B8834
 			cursor pointer
+			@media tablet_desktop
+				padding 70px 0
+				font-size 14px
+			@media phone
+				padding 40px 0
+				font-size 12px
 		&.added
 			.product-params
 				&__cart

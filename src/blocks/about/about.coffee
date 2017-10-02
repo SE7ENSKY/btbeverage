@@ -42,10 +42,10 @@ $ ->
 			.setTween TweenMax.fromTo '.about__bottle', 0.5, { autoAlpha: 0 }, { autoAlpha: 1 }
 			.addTo cntrl
 
-		bottleScene.enabled false unless isMobile()
+		bottleScene.enabled false unless isMobile() or isPortrait()
 
 		controller.resizeSceneActions.push ->
-			if isMobile()
+			if isMobile() or isPortrait()
 				bottleScene.enabled true
 			else
 				bottleScene.enabled false

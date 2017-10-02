@@ -1,10 +1,11 @@
 +e.wrap
 	+e.wrap-inner
-		if data.image
-			+e.image(style=`background-image:url("${data.image}");`)
 		if data.video
 			+e.video-wrapper
-				+e("video").video(data-video=data.video data-type="video/mp4" preload="auto" loop muted)
+				+e("video").video(data-video=data.video data-type="video/mp4" loop muted)
+				+e.video-message Choose me
+		if data.image
+			+e.image(style=`background-image:url("${data.image}");`)
 +e("a").content(href=data.externalLink target="_blank")
 	if data.title
 		+e.title!= data.title

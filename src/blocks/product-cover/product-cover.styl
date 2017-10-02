@@ -5,9 +5,9 @@
 	cursor pointer
 	&__wrap
 		position absolute
-		top -1px
+		top 0px
 		right 0px
-		bottom -1px
+		bottom 0px
 		left 0px
 		overflow hidden
 		&:after
@@ -18,18 +18,21 @@
 			bottom -1px
 			left -1px
 			background-color rgba(0,0,0,.5)
+			z-index 5
 		&-inner
 			position absolute
 			display flex
 			top 0
 			bottom 0
 			left 0
-			width 200%
+			right 0
 			overflow hidden
-			transition transform .5s ease-out
 	&__image
-		width 50%
-		height 100%
+		position absolute
+		top 0
+		bottom 0
+		left 0
+		right 0
 		background-size cover
 		background-position center center
 		background-repeat no-repeat
@@ -41,17 +44,32 @@
 		height 100%
 		transform translateX(-50%)
 		&-wrapper
-			position relative
-			width 50%
-			height 100%
-			overflow hidden
+			position absolute
+			top 0
+			bottom 0
+			left 0
+			right 0
+			opacity 0
+			z-index 7
+			visibility hidden
+		&-message
+			position absolute
+			top 50%
+			left 50%
+			transform translate(-50%, -50%)
+			color #fff
+			font-size 20px
+			text-transform uppercase
+			font-weight bold
+			letter-spacing 1pt
 	&__content
 		position absolute
-		top 0
-		right 0
-		bottom 0
-		left 0
+		top -1px
+		right -1px
+		bottom -1px
+		left -1px
 		text-decoration none
+		z-index 5
 	&__title
 		width 100%
 		height @width
@@ -167,10 +185,10 @@
 				&-vertical
 					transform rotate(90deg) translate(10%, -290%)
 					transform-origin left top
-			&__wrap
-				&-inner
-					flex-direction row-reverse
-					transform translateX(-50%)
+			// &__wrap
+			// 	&-inner
+			// 		flex-direction row-reverse
+			// 		transform translateX(-50%)
 	&.active
 		.product-cover
 			&__close
@@ -180,13 +198,3 @@
 					opacity 0.6
 			&__title
 				opacity 0
-	&.hover
-		.product-cover
-			&__wrap
-				&-inner
-					transform translateX(-50%)
-		&.right
-			.product-cover
-				&__wrap
-					&-inner
-						transform translateX(0%)

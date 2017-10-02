@@ -3,7 +3,7 @@
 		+e.image-i(style=`background-image:url("${mainImage}");`)
 		- console.log(mainImage)
 	if videoLink
-		+e('video').image-v(data-video=videoLink.src data-type="video/mp4" preload="preload" poster=videoLink.poster muted loop)
+		+e('video').image-v(data-video=videoLink.src data-type="video/mp4" poster=videoLink.poster muted loop)
 
 +e.content
 	+e.content-bg

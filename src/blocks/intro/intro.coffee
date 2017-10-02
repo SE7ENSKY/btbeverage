@@ -38,6 +38,7 @@ $ ->
 		controller.resizeSceneActions.push ->
 			if isMobile()
 				backgroundVideo.enabled false
+				$block.find('video').show(0)
 			else
 				backgroundVideo.enabled true
 

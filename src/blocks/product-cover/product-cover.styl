@@ -111,15 +111,21 @@
 	&__slider
 		position absolute
 		z-index 8
-		top 5%
-		right 10%
-		bottom 5%
-		width 50%
 		overflow hidden
+		top 5%
+		@media desktop
+			right 10%
+			bottom 5%
+			width 50%
+		@media tablet
+			right 10%
+			bottom 5%
+			width 40%
 		@media phone
 			bottom 1px
 			right auto
 			left 38.5%
+			width 23%
 		&-wrapper
 			display flex
 			position absolute
@@ -136,9 +142,9 @@
 		&-inner
 			position absolute
 			display flex
-			left 0
 			width 200%
-			transition transform .5s ease-out
+			left 0
+			transition margin-left .5s ease-out
 			@media tablet_desktop
 				top 50%
 				transform translateY(-50%)
@@ -148,10 +154,7 @@
 			text-align center
 			transition opacity .15s ease-in-out
 			opacity 0
-			@media tablet_desktop
-				width 50%
-			@media phone
-				width 23%
+			width 50%
 			&.active
 				opacity 1
 				transition opacity .3s ease-out .3s

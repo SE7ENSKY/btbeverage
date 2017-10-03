@@ -7,6 +7,8 @@ $ ->
 			$(document).trigger 'sequence-loaded'
 			return
 
+		$(document).trigger 'connect-pixi'
+
 		pixi.frames = []
 
 		onPixiSetup = (loader, resources) ->

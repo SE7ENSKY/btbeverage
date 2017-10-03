@@ -45,6 +45,7 @@ $ ->
 		history.replaceState { sTop: window.pageYOffset }, "page1", window.location.pathname
 
 	Barba.Dispatcher.on 'transitionCompleted', ->
+		$(document).trigger 'catalog-init'
 		$(document).trigger 'about-block'
 		$(document).trigger 'content-heading'
 		$(document).trigger 'gallery'

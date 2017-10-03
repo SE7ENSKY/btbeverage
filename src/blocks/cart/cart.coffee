@@ -43,7 +43,5 @@ $ ->
 			total = calculateTotal()
 			$totalSum.text('$ '+ total.toFixed(2))
 
-
-	initCartControls()
-
 	$(document).on 'init-cart-controls', initCartControls
+	$(document).trigger 'update-cart'

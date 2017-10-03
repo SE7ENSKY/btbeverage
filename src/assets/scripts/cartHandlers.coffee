@@ -69,10 +69,12 @@ $ ->
 
 		updateCartBadge()
 
-	updateCartModal = ->
+	updateCart = ->
 		cart = getJSON Cookie.get('bt-cart')
-		$modal = $('#cart-modal')
-		$cartList = $modal.find '.cart__list'
+		$cart = $('.cart')
+		return unless $cart.length
+
+		$cartList = $cart.find '.cart__list'
 		$cartList.empty()
 
 		if !cart or !Object.keys(cart).length
@@ -128,5 +130,5 @@ $ ->
 
 	$(document).on 'addToCart', addToCart
 	$(document).on 'updateCartBadge', updateCartBadge
-	$(document).on 'update-cart-modal', updateCartModal
+	$(document).on 'update-cart', updateCart
 	$(document).on 'handle-cart-change', handleCartChange

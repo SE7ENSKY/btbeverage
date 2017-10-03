@@ -11,10 +11,8 @@ $ ->
 				$("body").addClass("modal-open")
 			, 400
 
-
-
 		$('.modal').on 'shown.bs.modal', (e) ->
-			$(document).trigger 'update-cart-modal' if @.id == 'cart-modal'
+			$(document).trigger 'update-cart' if @.id == 'cart-modal'
 			$(document).trigger 'remove-slow-scroll'
 
 		$closeButton.on 'click', (e) ->

@@ -1,2 +1,6 @@
 - title: "Products"
   url: "#catalog"
+- title: "Cart"
+  url: "#cart-modal"
+  modal: true
+  badge: "0"

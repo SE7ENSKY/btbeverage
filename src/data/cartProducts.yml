@@ -1,24 +1,40 @@
 - title: "Original black tea"
   image: "/assets/i/catalog-img-1.jpg"
+  slug: 'black-tea'
   list:
     - title: "3 x 8oz, pack of 12"
       price: "$ 78.00"
+      key: '8oz-12'
+      amount: 3
 - title: "Lemonade"
   image: "/assets/i/catalog-img-3.jpg"
+  slug: 'lemonade'
   list:
     - title: "2 x 8oz, pack of 6"
       price: "$ 50.00"
+      key: '8oz-6'
+      amount: 2
 - title: "Tranquility"
   image: "/assets/i/catalog-img-5.jpg"
+  slug: 'tranquility'
   list:
     - title: "1 x 8oz, pack of 6"
       price: "$ 25.00"
+      key: '8oz-6'
+      amount: 1
 - title: "Chili Cleanser"
   image: "/assets/i/catalog-img-2.jpg"
+  slug: 'chili-cleanser'
   list:
     - title: "1 x 8oz, pack of 12"
       price: "$ 60.00"
+      key: '8oz-12'
+      amount: 1
     - title: "1 x 8oz, pack of 8"
       price: "$ 15.00"
+      key: '8oz-8'
+      amount: 1
     - title: "4 x 8oz, pack of 6"
       price: "$ 100.00"
+      key: '8oz-6'
+      amount: 4

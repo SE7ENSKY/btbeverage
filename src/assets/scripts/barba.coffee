@@ -54,3 +54,4 @@ $ ->
 		$(document).trigger 'product-params'
 		$(document).trigger 'payment-chooser'
 		$(document).trigger 'intro'
+		$(document).trigger 'modal-init'

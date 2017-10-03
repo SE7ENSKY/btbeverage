@@ -3,6 +3,15 @@ $ ->
 		$block = $('.product-params')
 		return unless $block.length
 
+		handleTotalChange = ($this) ->
+			priceList = $this.data 'price-list'
+			volume = $this.find('.product-params__volume .product-params__item.active').data 'volume'
+			pack = $this.find('.product-params__packs .product-params__item.active').data 'pack'
+			$this.find('.product-params__cart-total-value').text('$ ' + priceList["#{volume}-#{pack}"])
+
+		$block.each ->
+			handleTotalChange $(@)
+
 		$cartButton = $block.find('.product-params__cart-button')
 		$cartButton.each ->
 			$this = $(@)
@@ -50,6 +59,9 @@ $ ->
 				else
 					$(this).removeClass 'disabled'
 
+			# update Total
+			handleTotalChange $this.parents('.product-params')
+
 		$volumes = $block.find('.product-params__volume .product-params__item')
 		$volumes.click ->
 			$this = $(@)
@@ -72,6 +84,9 @@ $ ->
 					$(this).removeClass 'active'
 					if index == position
 						$(this).addClass 'active'
+
+			# update Total
+			handleTotalChange $this.parents('.product-params')
 
 	productParamsJS()
 

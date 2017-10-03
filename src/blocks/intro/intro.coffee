@@ -14,6 +14,9 @@ $ ->
 		# init background Video
 		#
 
+		$video = $block.find('video')
+		videoPromise = videoWithPromise $video.get(0)
+
 		cntrl = controller.get()
 		backgroundVideo = new Scene({
 			triggerElement: $block.get(0)
@@ -22,15 +25,13 @@ $ ->
 			duration: if window.innerHeight >= 650 then "100%" else 650
 			})
 			.on 'leave', ->
-				$video = $block.find('video')
 				return unless $video.length
-				$video.get(0).pause()
+				videoPromise.pause()
 				$video.hide(0)
 			.on 'enter', ->
-				$video = $block.find('video')
 				return unless $video.length
 				$video.show(0)
-				$video.get(0).play()
+				videoPromise.play()
 			.addTo(cntrl)
 
 		backgroundVideo.enabled false if isMobile()

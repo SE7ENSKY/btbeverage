@@ -56,12 +56,20 @@ $ ->
 			productCoverHeightClosed = 0.33 * window.innerWidth
 			productCoverHeightOpen = Math.max(150 + $targetInner.outerHeight(), 0.33 * window.innerWidth)
 
-			diff = productCoverHeightClosed - 150
-
 			catalogIndex = $('.catalog__item').index($this.parent()) + 1
-			isEvenProductCover = catalogIndex % 2
-			coef = if isEvenProductCover then -1 else 1
-			selector = ".catalog__item:nth-child(2n+" + (catalogIndex + 2) + ")"
+			isOddProductCover = catalogIndex % 2
+			if isOddProductCover
+				oddShift = 150 - productCoverHeightClosed
+				evenShift = -120
+				coef = -1
+				selectorOdd = ".catalog__item:nth-child(2n+" + (catalogIndex + 2) + ")"
+				selectorEven = ".catalog__item:nth-child(2n+2)"
+			else
+				oddShift = 120
+				evenShift = -120
+				coef = 1
+				selectorOdd = ".catalog__item:nth-child(2n+1)"
+				selectorEven = ".catalog__item:nth-child(2n+" + (catalogIndex + 2) + ")"
 
 			$blockInners = $targetInner.find '.stagger'
 
@@ -96,7 +104,8 @@ $ ->
 						.fromTo $target.get(0), 0.5, { height: 0 }, { height: $targetInner.outerHeight(),ease: Power0.easeNone  }, 0
 						.fromTo $this.get(0), 0.5, { paddingBottom: "#{productCoverHeightClosed}px" }, { paddingBottom: "#{productCoverHeightOpen}px", ease: Power0.easeNone }, 0
 						.fromTo $sliderWrapper, 0.2, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
-						.staggerFromTo selector, 0.5, { y: 0 }, { y: coef * diff, ease: Power0.easeNone }, 0, 0
+						.staggerFromTo selectorOdd, 0.5, { y: 0 }, { y: oddShift, ease: Power0.easeNone }, 0, 0
+						.staggerFromTo selectorEven, 0.5, { y: 0 }, { y: evenShift, ease: Power0.easeNone }, 0, 0
 						.set $blockInners, { autoAlpha: 0 }, 0
 						.fromTo $paramsCart.get(0), 0.5, { y: -(textHeight + volumeHeight + packHeight)}, { y: 0, ease: Power0.easeNone }, 0
 						.fromTo $paramsPack.get(0), 0.4, { y: -(textHeight + volumeHeight) }, { y: 0, ease: Power0.easeNone }, 0.1
@@ -109,7 +118,7 @@ $ ->
 						# after animation
 				setTimeout ->
 					isAnimation = false
-					scrollToViewport $this
+					# scrollToViewport $this
 				, 1300
 			else
 				if isMobile()
@@ -129,7 +138,8 @@ $ ->
 						.set $this.get(0), { paddingBottom: "66%" }, 0.5
 						.fromTo $sliderWrapper, 0.2, { autoAlpha: 1 }, { autoAlpha: 0 }, 0
 						.staggerFromTo $blockInners, 0.1, { autoAlpha: 1 }, { autoAlpha: 0 }, 0, 0
-						.staggerFromTo selector, 0.5, { y: coef * diff }, { y: 0, ease: Power0.easeNone }, 0, 0
+						.staggerFromTo selectorOdd, 0.5, { y: oddShift }, { y: 0, ease: Power0.easeNone }, 0, 0
+						.staggerFromTo selectorEven, 0.5, { y: evenShift }, { y: 0, ease: Power0.easeNone }, 0, 0
 						.fromTo $paramsCart.get(0), 0.5, { y: 0 }, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight()), ease: Power0.easeNone }, 0
 						.fromTo $paramsPack.get(0), 0.4, { y: 0 }, { y: -(packHeight + volumeHeight), ease: Power0.easeNone }, 0
 						.fromTo $paramsVolume.get(0), 0.3, { y: 0 }, { y: -volumeHeight, ease: Power0.easeNone }, 0

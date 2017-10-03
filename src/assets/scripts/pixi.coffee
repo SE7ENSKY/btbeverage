@@ -33,6 +33,6 @@ $ ->
 	connectPixiToDom = ->
 		$sequenceBlock = $('.sequence')
 		return unless $sequenceBlock.length
-		document.getElementsByClassName('sequence')[0].appendChild(pixi.app.view)
+		$sequenceBlock.get(0).appendChild(pixi.app.view)
 
 	$(document).on 'connect-pixi', connectPixiToDom

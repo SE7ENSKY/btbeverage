@@ -117,6 +117,8 @@ $ ->
 						.to $target.get(0), 0.5, { height: 0, ease: Power0.easeNone }, 0
 						.staggerFromTo $blockInners, 0.1, { autoAlpha: 1 }, { autoAlpha: 0 }, 0, 0
 						.fromTo $sliderWrapper, 0.2, { autoAlpha: 1 }, { autoAlpha: 0 }, 0
+						.set $slider, { x: -window.innerWidth }, 0.2
+						.set $sliderNormalText, { x: -0.5 * window.innerWidth }, 0.2
 						.fromTo $paramsText.get(0), 0.5, { y: 0 }, { y: -(packHeight + volumeHeight + $paramsCart.outerHeight()), ease: Power0.easeNone }, 0
 						.fromTo $paramsCart.get(0), 0.4, { y: 0 }, { y: -(textHeight + volumeHeight), ease: Power0.easeNone }, 0
 						.fromTo $paramsPack.get(0), 0.3, { y: 0 }, { y: -textHeight, ease: Power0.easeNone }, 0

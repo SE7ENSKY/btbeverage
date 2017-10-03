@@ -35,6 +35,7 @@ import 'imports-loader?define=>false!gsap/ScrollToPlugin';
 import 'scripts/main.coffee';
 import 'scripts/sequenceAnimation.coffee';
 import 'scripts/addVideo.coffee';
+import 'scripts/cart.coffee';
 import 'scripts/barba.coffee';
 import 'scripts/pixi.coffee';
 import 'scripts/slowScroll.coffee';

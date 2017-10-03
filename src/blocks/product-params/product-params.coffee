@@ -1,3 +1,5 @@
+import Cookie from 'assets/scripts/cookie'
+
 $ ->
 	productParamsJS = ->
 		$block = $('.product-params')
@@ -11,6 +13,21 @@ $ ->
 					.parents '.product-params__cart'
 					.addClass 'added'
 				$this.text 'Added to Cart'
+
+			#
+			# dispatch cart update
+			#
+
+			$parent = $this.parents('.product-params')
+			productSlug = $parent.data 'product'
+			volume = $parent.find('.product-params__volume .product-params__item.active').data 'volume'
+			pack = $parent.find('.product-params__packs .product-params__item.active').data 'pack'
+
+			order =
+				"#{productSlug}": "#{volume}-#{pack}"
+			console.log 'order', order
+
+			$(document).trigger 'updateCart', [ order ]
 
 		$packSize = $block.find('.product-params__packs .product-params__item')
 		$packSize.click ->

@@ -18,9 +18,6 @@ $ ->
 				pixi.sprite.width = realWidth
 			this.app.renderer.resize w, h
 
-
-
-
 	window.addEventListener 'resize', ->
 		h = window.innerHeight
 		w = h * widthRatio

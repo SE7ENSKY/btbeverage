@@ -19,8 +19,8 @@ $ ->
 				scrollTo:
 					y: $target.offset().top
 					autoKill: true
-				ease: Power2.easeOut
+				ease: Power2.easeOut 
 
-	scroll2Id()
-
-	$(document).on 'init-scroll2id', scroll2Id
+	# scroll2Id()
+	#
+	# $(document).on 'init-scroll2id', scroll2Id

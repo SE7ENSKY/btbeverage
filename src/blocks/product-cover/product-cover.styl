@@ -1,8 +1,11 @@
 .product-cover
 	position relative
-	padding-bottom 66vw
 	user-select none
 	cursor pointer
+	@media tablet_desktop
+		padding-bottom 33vw
+	@media phone
+		padding-bottom 66vw
 	&__wrap
 		position absolute
 		top -1px

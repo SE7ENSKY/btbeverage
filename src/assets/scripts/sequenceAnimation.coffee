@@ -1,23 +1,20 @@
-import { Controller, Scene } from 'scrollmagic'
-import { TimelineMax, TweenMax, Power0 } from 'gsap'
+import { Scene } from 'scrollmagic'
+import { TweenMax, Power0 } from 'gsap'
 
 window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
-	$bottle = $('.sequence')
-	return unless $bottle.length
-
-	$bottleSeq = $bottle.find('.sequence__image')
-	if !$bottleSeq.length
-		console.warn 'Sequence block was init, but sequence images were not set'
-		return
+	$seq = $('.sequence')
+	return unless $seq.length
 
 	tempAnimationObj =
 		current: start
 
 	onUpdateFunc = (obj) ->
-		return unless obj
-		currentChild = Math.round obj.current
-		$bottle.find('.active').removeClass 'active'
-		$($bottleSeq.get(currentChild)).addClass 'active'
+		return unless obj && pixi.sprite
+		currentChild = pixi.frames[Math.round(obj.current)]
+		prevActive = pixi.sprite.texture
+		if prevActive != currentChild
+			pixi.sprite.texture = currentChild
+			pixi.rerender()
 
 	seqTween = TweenMax.fromTo tempAnimationObj, 0.5,
 		current: start,
@@ -26,30 +23,47 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 			onUpdateParams: [tempAnimationObj],
 			ease: Power0.easeNone,
 
-	controller = new Controller()
+	cntrl = controller.get()
+	scene = null
 
-	if options.finish
-		$img = $(triggerElement).find '.media-widget__image_center'
-		return unless $img.length
-		$img.css 'background-image', "url(#{$($bottleSeq.get(end)).data('image')})"
-
-	new Scene({
+	seqScene = new Scene({
 			triggerElement: triggerElement,
 			offset: 0,
 			triggerHook: options.triggerHook or 1,
 			duration: options.duration or '100%'
 		})
 		.setTween(seqTween)
-		.addTo(controller)
+		.addTo(cntrl)
 		.on 'leave', (ev) ->
-			if (options.begin and ev.scrollDirection == "REVERSE") or (options.finish and ev.scrollDirection == "FORWARD")
-				TweenMax.set $bottle.get(0), { autoAlpha: 0 }
-			if (options.finish and ev.scrollDirection == "FORWARD")
-				return unless $img.length
-				TweenMax.set $img, { autoAlpha: 1 }
+			if (options.begin and ev.scrollDirection == "REVERSE")
+				$canvas = $seq.find 'canvas'
+				TweenMax.set $canvas.get(0), { autoAlpha: 0 }
+				TweenMax.set $seq.get(0), { autoAlpha: 0 }
+			if (options.finish and ev.scrollDirection == "FORWARD") and !scene
+				scene = new Scene({
+					triggerElement: triggerElement,
+					offset: window.innerHeight,
+					triggerHook: options.triggerHook or 1,
+					duration: "100%"
+					})
+					.setTween TweenMax.fromTo '.sequence', 0.5, { y: 0 }, { y: '-100%', ease: Power0.easeNone }
+					.addTo(cntrl)
 		.on 'enter', (ev) ->
-			if (options.begin and ev.scrollDirection == "FORWARD") or (options.finish and ev.scrollDirection == "REVERSE")
-				TweenMax.set $bottle.get(0), { autoAlpha: 1 }
-			if (options.finish and ev.scrollDirection == "REVERSE")
-				return unless $img.length
-				TweenMax.set $img, { autoAlpha: 0 }
+			if (options.begin and ev.scrollDirection == "FORWARD")
+				$canvas = $seq.find 'canvas'
+				TweenMax.set $canvas.get(0), { autoAlpha: 1 }
+				TweenMax.set $seq.get(0), { autoAlpha: 1 }
+			if (options.finish and ev.scrollDirection == "REVERSE") and scene
+				scene.destroy()
+				scene = null
+
+	seqScene.enabled false if isMobile() or isPortrait()
+
+	controller.resizeSceneActions.push ->
+		scene.offset(window.innerHeight) if scene
+		if isMobile() or isPortrait()
+			scene.enabled false if scene
+			seqScene.enabled false
+		else
+			scene.enabled true if scene
+			seqScene.enabled true

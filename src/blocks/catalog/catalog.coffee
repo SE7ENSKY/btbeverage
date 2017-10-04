@@ -1,33 +1,38 @@
-import { TimelineMax } from 'gsap'
-import { Controller, Scene } from 'scrollmagic'
-
 $ ->
-	catalogScene = []
 
-	catalogBlockJS = ->
+	catalogStructureJS = ->
 		$block = $('.catalog')
 		return unless $block.length
+		firstInitIsMobile = isMobile()
+		desktopEventConnected = !firstInitIsMobile
+		mobileEventConnected = firstInitIsMobile
 
-		controller = new Controller()
-		tl = new TimelineMax()
-		tl
-			.fromTo '.catalog__item:nth-child(2n+1)', 0.5, { y: 30 }, { y: 0 }, 0
-			.fromTo '.catalog__item:nth-child(2n)', 0.5, { y: 100 }, { y: 0 }, 0
+		$desktop = $block.find('.catalog__desktop')
+		$mobile = $block.find('.catalog__mobile')
 
-		catalogScene.push(new Scene({
-				triggerElement: $block.get(0),
-				triggerHook: 1,
-				duration: "50%",
-				offset: -100
-			})
-			.setTween(tl)
-			.addTo(controller))
+		isInDOM = (el) -> !jQuery.contains document, el[0]
 
-	catalogBlockJS()
+		handleStructure = ->
+			if isMobile()
+				$desktop = $desktop.detach() if $block.find('.catalog__desktop').length
+				$mobile.appendTo('.catalog') if !$block.find('.catalog__mobile').length
+				if !mobileEventConnected
+					$(document).trigger 'product-cover'
+					$(document).trigger 'product-params'
+					mobileEventConnected = true
+			else
+				$mobile = $mobile.detach() if $block.find('.catalog__mobile').length
+				$desktop.appendTo('.catalog') if !$block.find('.catalog__desktop').length
+				if !desktopEventConnected
+					$(document).trigger 'product-cover'
+					$(document).trigger 'product-params'
+					desktopEventConnected = true
 
-	removeScene = ->
-		catalogScene.forEach (el) -> el.destroy()
-		catalogScene.length = 0
+		handleStructure()
 
-	$(document).on 'catalog', catalogBlockJS
-	$(document).on 'catalog-remove', removeScene
+		controller.resizeSceneActions.push ->
+			handleStructure()
+
+	catalogStructureJS()
+
+	$(document).on 'catalog-init', catalogStructureJS

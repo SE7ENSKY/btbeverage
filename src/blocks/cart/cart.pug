@@ -2,16 +2,17 @@ if list
 	+e.list
 		each item in list
 			+e.list-item
-				+e.product
+				+e.product(data-slug=item.slug)
 					+e.product-image(style=`background-image:url("${item.image}");`)
 						if item.title
 							+e.product-title!= item.title
 					+e.product-content
 						if item.list
 							each subitem in item.list
-								+e.product-row
-									if subitem.title
-										+e.product-info!= subitem.title
+								+e.product-row(data-sizeKey=subitem.key data-price=subitem.price data-amount=subitem.amount)
+									- [volume, packSize] = subitem.key.split('-')
+									- title = subitem.amount + " x " + volume + ", pack of " + packSize
+									+e.product-info!= title
 									if subitem.price
 										+e.product-price!= subitem.price
 									unless hideControls

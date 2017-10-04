@@ -17,13 +17,9 @@ $ ->
 					.all [@.newContainerLoading, @.fadeOut()]
 					.then @.fadeIn.bind(@)
 		fadeOut: -> new Promise (resolve) ->
-				$(document).trigger 'intro-remove'
-				$(document).trigger 'taste-button-remove'
-				$(document).trigger 'content-heading-remove'
-				$(document).trigger 'catalog-remove'
-				$(document).trigger 'about-block-remove'
-				$(document).trigger 'product-cover-remove'
-				$(document).trigger 'media-widget-remove'
+				controller.destroy()
+				controller.resizeSceneActions.length = 0
+				$(document).trigger 'remove-slow-scroll'
 				$('body').css 'overflow', ''
 				resolve()
 		fadeIn: ->
@@ -49,8 +45,8 @@ $ ->
 		history.replaceState { sTop: window.pageYOffset }, "page1", window.location.pathname
 
 	Barba.Dispatcher.on 'transitionCompleted', ->
+		$(document).trigger 'catalog-init'
 		$(document).trigger 'about-block'
-		$(document).trigger 'catalog'
 		$(document).trigger 'content-heading'
 		$(document).trigger 'gallery'
 		$(document).trigger 'media-widget'
@@ -58,5 +54,6 @@ $ ->
 		$(document).trigger 'product-cover'
 		$(document).trigger 'product-params'
 		$(document).trigger 'payment-chooser'
-		$(document).trigger 'sequence-init'
 		$(document).trigger 'intro'
+		$(document).trigger 'update-cart'
+		$(document).trigger 'modal-init'

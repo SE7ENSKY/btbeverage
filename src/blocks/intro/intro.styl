@@ -7,13 +7,20 @@ strokeAnimDelay = 0.3
 	position relative
 	overflow hidden
 	height 100vh
-	min-height 650px
+	min-height 420px
 	&__wrap
 		position absolute
 		top 0
 		left 0
 		width 100%
 		height 100%
+		&-image
+			position absolute
+			top 0
+			left 0
+			width 100%
+			height 100%
+			background-size cover
 		video
 			object-fit cover
 			.no-objectfit &
@@ -46,7 +53,8 @@ strokeAnimDelay = 0.3
 		bottom 0
 		right 0
 		z-index 5
-		background url(i("green-texture.jpg")) repeat center center brandColor
+		background-color brandColor
+		will-change height
 	&__logo
 		position absolute
 		top 50%

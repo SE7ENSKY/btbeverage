@@ -1,11 +1,10 @@
 import { TimelineMax, TweenMax, Power2, Power1, Sine } from 'gsap'
-import { Controller, Scene } from 'scrollmagic';
+import { Scene } from 'scrollmagic';
 
 $ ->
 	introScrollScene = []
 	isSequenceLoaded = false
 	sliderAnimationOver = false
-	controller = null
 
 	introJS = ->
 		$block = $(".intro")
@@ -15,17 +14,35 @@ $ ->
 		# init background Video
 		#
 
-		controller = new Controller()
-		new Scene({
+		$video = $block.find('video')
+		videoPromise = videoWithPromise $video.get(0)
+
+		cntrl = controller.get()
+		backgroundVideo = new Scene({
 			triggerElement: $block.get(0)
 			triggerHook: 0,
-			duration: if window.innerHeight >= 650 then "100%" else 650
+			offset: 0,
+			duration: if window.innerHeight >= 420 then "100%" else 420
 			})
 			.on 'leave', ->
-				$block.find('video').get(0).pause()
+				return unless $video.length
+				videoPromise.pause()
+				$video.hide(0)
 			.on 'enter', ->
-				$block.find('video').get(0).play()
-			.addTo(controller)
+				return unless $video.length
+				$video.show(0)
+				videoPromise.play()
+			.addTo(cntrl)
+
+		backgroundVideo.enabled false if isMobile()
+
+		controller.resizeSceneActions.push ->
+			backgroundVideo.duration(if window.innerHeight >= 420 then "100%" else 420)
+			if isMobile()
+				backgroundVideo.enabled false
+				$block.find('video').show(0)
+			else
+				backgroundVideo.enabled true
 
 		#
 		# set basic configs
@@ -112,8 +129,10 @@ $ ->
 			hideTween =
 				TweenMax.fromTo $leaf, 0.5,
 					rotation: 60,
+					autoAlpha: 1,
 					scale: 1.15
 						rotation: 30,
+						autoAlpha: if isMobile() then 0 else 1
 						ease: Sine.easeIn
 						scale: 1.15
 
@@ -125,39 +144,74 @@ $ ->
 					scale: 1.15,
 					ease: Power1.easeIn
 
+			scrollScene = null
+
 			new Scene({
 					offset: 0
 					duration: "100%"
 				})
 				.setTween(tween)
-				.addTo(controller)
+				.addTo(cntrl)
 
-			new Scene({
-					offset: Math.max(window.innerHeight, 650),
+			leafHideScene = new Scene({
+					offset: window.innerHeight,
 					duration: "50%",
 				})
 				.setTween(hideTween)
-				.addTo(controller)
+				.addTo(cntrl)
 				.on 'leave', (ev) ->
 					$leaf.hide(0) if ev.scrollDirection == "FORWARD"
 				.on 'enter', (ev) ->
 					$leaf.show(0) if ev.scrollDirection == "REVERSE"
 
+			controller.resizeSceneActions.push ->
+				leafHideScene
+					.offset window.innerHeight
+					.duration(if isMobile() then "5%" else "50%")
+
+		#
+		# video add callback
+		#
+
+		addVideoCallback = ->
+			$(document).trigger 'sequence-init'
+			$video = $block.find('video')
+			return unless $video.length
+			$video.get(0).play()
+			# tlVideo = new TimelineMax()
+			# tlVideo
+				# .set $video.get(0), { autoAlpha: 1 }, 0
+				# .to '.intro__wrap-image', 0.5, { autoAlpha: 0 }, 0
+			# 	.pause()
+			# # if videoPromise != undefined
+			# # 	videoPromise.then -> tlVideo.play()
+			# # 	console.log loaded
+			# # else
+			# tlVideo.play()
+
+		#
+		# Combine animation func
+		#
+
 		startAnimation = ->
 			$leaf.show(0)
-			window.scrollTo(0, 0)
-			$('body').css 'overflow', 'hidden'
 			# preloader animation
 			leafPreloaderAnimation()
-			preloaderBgAnimation 1.3
-			bLetterAnimation 2
-			lettersAnimation 2.5
-			headerAnimation 3.5
-			sliderAnimation 3.5
+			preloaderBgAnimation 2
+			bLetterAnimation 2.2
+			lettersAnimation 2.7
+			headerAnimation 3.7
+			sliderAnimation 3.7
+			$('body').css 'overflow', 'hidden'
 			setTimeout ->
-				$('body').css 'overflow', '' if isSequenceLoaded
+				if isSequenceLoaded
+					$('body').css 'overflow', ''
+					$(document).trigger 'init-slow-scroll'
 				sliderAnimationOver = true
-				addVideo $block
+				if isMobile()
+					$(document).trigger 'sequence-init'
+				else
+					addVideo $block, 0, addVideoCallback
 			, 5000
 			window.isPreloaderPlayedBefore = true
 
@@ -167,24 +221,20 @@ $ ->
 			sliderAnimationOver = true
 			$('.intro__preloader').hide(0)
 			$('.intro__logo').addClass 'done'
-			addVideo $block
+			addVideo $block, 0, addVideoCallback
 		else
 			startAnimation()
 
 		leafScrollAnimation()
 
-	removeScene = ->
-		if controller
-			controller.destroy()
-			controller = null
-
 	handleSequenceLoad = ->
 		isSequenceLoaded = true
 		$('.intro__more text').text 'Scroll to discover'
-		$('body').css 'overflow', '' if sliderAnimationOver
+		if sliderAnimationOver
+			$('body').css 'overflow', ''
+			$(document).trigger 'init-slow-scroll'
 
 	introJS()
 
 	$(document).on 'intro', introJS
-	$(document).on 'intro-remove', removeScene
 	$(document).on 'sequence-loaded', handleSequenceLoad

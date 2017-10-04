@@ -1,3 +1,8 @@
+window.scrollTo(0, 0);
+window.addEventListener("beforeunload", function (event) {
+	document.querySelector('body').style.display = 'none';
+	window.scrollTo(0, 0);
+});
 if (module.hot) {
 	const originalLog = console.log;
 	console.log = function () {
@@ -21,14 +26,21 @@ import 'styles/main.styl';
 // ------------------ import vendor scripts ------------------
 import 'vendor/twitter-bootstrap/transition.js';
 import 'vendor/twitter-bootstrap/modal.js';
+import 'vendor/pixi/pixi.min.js';
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap';
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators';
+import 'imports-loader?define=>false!gsap/ScrollToPlugin';
 
 // ----------------- import system scripts -------------------
 import 'scripts/main.coffee';
 import 'scripts/sequenceAnimation.coffee';
 import 'scripts/addVideo.coffee';
+import 'scripts/cartHandlers.coffee';
 import 'scripts/barba.coffee';
+import 'scripts/pixi.coffee';
+import 'scripts/slowScroll.coffee';
+import 'scripts/videoWithPromise.coffee';
+import 'scripts/helpers.coffee';
 
 // ------------------ import system blocks -------------------
 getRequiredfiles(require.context('../blocks/', true, /\.(css|styl|less|sass|scss)$/));

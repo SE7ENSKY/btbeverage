@@ -1,71 +1,85 @@
 .product-cover
 	position relative
-	padding-bottom 66%
 	user-select none
+	cursor pointer
+	@media tablet_desktop
+		padding-bottom 33vw
+	@media phone
+		padding-bottom 66vw
 	&__wrap
 		position absolute
-		top 0
-		right 0
-		bottom 0
-		left 0
+		top -1px
+		right 0px
+		bottom 0px
+		left 0px
 		overflow hidden
 		&:after
 			content ""
 			position absolute
+			top -1px
+			right -1px
+			bottom -1px
+			left -1px
+			background-color rgba(0,0,0,.5)
+			z-index 5
+		&-inner
+			position absolute
+			display flex
 			top 0
-			right 0
 			bottom 0
 			left 0
-			background-color rgba(0,0,0,.5)
+			right 0
+			overflow hidden
 	&__image
 		position absolute
 		top 0
-		left 0
 		bottom 0
-		width 100%
+		left 0
+		right 0
 		background-size cover
 		background-position center center
 		background-repeat no-repeat
-		&-wrapper
-			position absolute
-			top 0
-			bottom 0
-			left 0
-			width 100%
-			overflow hidden
-			transition width .3s ease-in-out
 	&__video
+		display none
 		position absolute
 		top 0
 		left 50%
 		height 100%
 		transform translateX(-50%)
-		&-inner
-			position absolute
-			top 0
-			right 0
-			bottom 0
-			width 50vw
 		&-wrapper
 			position absolute
 			top 0
 			bottom 0
+			left 0
 			right 0
-			width 0
-			overflow hidden
-			transition width .3s ease-in-out
+			opacity 0
+			z-index 7
+			visibility hidden
+		&-message
+			position absolute
+			top 50%
+			left 50%
+			transform translate(-50%, -50%)
+			color #fff
+			font-size 20px
+			text-transform uppercase
+			font-weight bold
+			letter-spacing 1pt
 	&__content
 		position absolute
-		top 0
-		right 0
-		bottom 0
-		left 0
+		top -1px
+		right -1px
+		bottom -1px
+		left -1px
+		text-decoration none
+		z-index 8
 	&__title
 		width 100%
 		height @width
 		display flex
 		align-items center
 		justify-content center
+		padding 20px
 		font-size 20px
 		text-transform uppercase
 		color #fff
@@ -80,6 +94,7 @@
 		width 30px
 		height @width
 		opacity 0
+		z-index 10
 		transform rotate(45deg)
 		transition .2s opacity ease-in-out
 		cursor pointer
@@ -99,12 +114,22 @@
 			height 10px
 	&__slider
 		position absolute
-		z-index 2
-		top 5%
-		right 10%
-		bottom 5%
-		width 50%
+		z-index 8
 		overflow hidden
+		top 5%
+		@media md
+			right 10%
+			bottom 5%
+			width 50%
+		@media tablet_sm
+			right 20%
+			bottom 5%
+			width 30%
+		@media phone
+			bottom 1px
+			right auto
+			left 38.5%
+			width 23%
 		&-wrapper
 			display flex
 			position absolute
@@ -112,22 +137,28 @@
 			left 0
 			right 0
 			bottom 0
-			padding 70px 0 70px 60px
 			opacity 0
 			visibility hidden
+			@media tablet_desktop
+				padding 70px 0 70px 60px
+			@media phone
+				padding 20px
 		&-inner
 			position absolute
 			display flex
-			top 50%
-			left 0
 			width 200%
-			transform translateY(-50%)
+			left 0
 			transition margin-left .5s ease-out
+			@media tablet_desktop
+				top 50%
+				transform translateY(-50%)
+			@media phone
+				top 0
 		&-item
-			width 50%
 			text-align center
 			transition opacity .15s ease-in-out
 			opacity 0
+			width 50%
 			&.active
 				opacity 1
 				transition opacity .3s ease-out .3s
@@ -142,11 +173,15 @@
 		left 0
 		right 0
 		bottom 0
-		font-size 14px
 		line-height 1.5
 		color #fff
 		text-transform uppercase
+		@media tablet_desktop
+			font-size 14px
+		@media phone
+			font-size 10px
 		&-vertical
+			display block
 			transform rotate(-90deg) translate(-90%, 100%)
 			transform-origin left bottom
 			margin-left -20px
@@ -161,19 +196,32 @@
 			span
 				display inline-block
 				transform-origin 100% 50%
+			@media phone
+				display none
 	&.right
 		.product-cover
 			&__slider
-				left 10%
-				right auto
+				@media md
+					left 10%
+					right auto
+				@media tablet_sm
+					left 20%
+					right auto
 				&-wrapper
-					justify-content flex-end
-					padding 70px 60px 70px 0
+					@media tablet_desktop
+						justify-content flex-end
+						padding 70px 60px 70px 0
+					@media phone
+						padding 20px
 			&__text
 				text-align right
 				&-vertical
 					transform rotate(90deg) translate(10%, -290%)
 					transform-origin left top
+			// &__wrap
+			// 	&-inner
+			// 		flex-direction row-reverse
+			// 		transform translateX(-50%)
 	&.active
 		.product-cover
 			&__close
@@ -182,12 +230,8 @@
 				&:hover
 					opacity 0.6
 			&__title
-				opacity 0
-	&.hover
-		.product-cover
-			&__image
-				&-wrapper
-					width 0
-			&__video
-				&-wrapper
-					width 100%
+				@media tablet_desktop
+					opacity 0
+				@media phone
+					font-size 40px
+					line-height 1.1

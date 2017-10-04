@@ -1,24 +1,36 @@
 $ ->
+	widthRatio = 0.625 # 720 x 450
+
 	sequenceJS = ->
 		$block = $('.sequence')
-		return unless $block.length
+		if !$block.length or isMobile() or isPortrait()
+			$(document).trigger 'sequence-loaded'
+			return
 
-		$children = $block.find('.sequence__image')
-		$childrenCount = $children.length
-		loadedCount = 0
-		$children.each ->
-			$this = $(@)
-			self = @
-			imgSrc = $this.data('image')
-			tempImage = document.createElement 'img'
-			tempImage.src = imgSrc
-			tempImage.style.height = 0
-			imageDOM = document.body.appendChild tempImage
-			imageDOM.addEventListener 'load', ->
-				self.style.backgroundImage = "url(#{imgSrc})"
-				$(imageDOM).remove()
-				$(document).trigger 'sequence-loaded' if ++loadedCount == $childrenCount
+		$(document).trigger 'connect-pixi'
 
-	sequenceJS()
+		pixi.frames = []
+
+		onPixiSetup = (loader, resources) ->
+			$(document).trigger 'sequence-loaded'
+
+			for i, item of resources.seq.textures
+				pixi.frames.push(item)
+
+			pixi.sprite = new PIXI.Sprite pixi.frames[0]
+			realHeight = window.innerHeight
+			realWidth = realHeight * widthRatio
+			pixi.sprite.height = realHeight
+			pixi.sprite.width = realWidth
+			pixi.sprite.anchor.set(0.5, 0.5)
+
+			pixi.sprite.position.x = pixi.app.renderer.width / 2
+			pixi.sprite.position.y = pixi.app.renderer.height / 2
+
+			pixi.app.stage.addChild pixi.sprite
+		loader = new PIXI.loaders.Loader()
+		loader
+			.add 'seq', '/assets/i/seq/btseq.json'
+			.load onPixiSetup
 
 	$(document).on 'sequence-init', sequenceJS

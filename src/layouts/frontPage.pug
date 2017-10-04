@@ -6,39 +6,50 @@ append params
 
 block main
 	+b.intro: +i({
-		poster: "/assets/i/intro-cover.jpg",
-		mp4: "http://tmp.static.se7enapp.com/btbeverage/video/main.mp4"
+		poster: "/assets/i/firstframe.jpg",
+		mp4: "http://tmp.static.se7enapp.com/btbeverage/video/web-main.mp4"
 	})
-	//- mp4: "http://tmp.static.se7enapp.com/bdsl/main.mp4"
 
-	+b.about(data-sequence="[0, 74]"): +i({ })
+	+b.about(data-sequence="[0, 76]"): +i({ })
 
-	+b.media-widget._oriented-right(data-sequence="[74, 177]"): +i({
+	+b.media-widget._oriented-right(data-sequence="[77, 163]"): +i({
 		title: "b-healthy",
 		mainImage: "/assets/i/media-img-1.jpg",
 		addImage: "/assets/i/media-img-sm-1.jpg",
+		videoLink: {
+			src: "http://tmp.static.se7enapp.com/btbeverage/video/B-Healthy.mp4",
+			poster: "/assets/i/media-img-1.jpg",
+		}
 	})
 
-	+b.media-widget._oriented-left(data-sequence="[177, 370]"): +i({
+	+b.media-widget._oriented-left(data-sequence="[164, 241]"): +i({
 		title: "b-active",
 		mainImage: "/assets/i/media-img-2.jpg",
-		addImageMask: true
+		addImageMask: true,
+		videoLink: {
+			src: "http://tmp.static.se7enapp.com/btbeverage/video/B-Active.mp4",
+			poster: "/assets/i/media-img-2.jpg",
+		}
 	})
 
-	+b.media-widget._simple._offset-bottom(data-sequence="[370, 440]" data-sequence-fin="true"): +i({
+	+b.media-widget._simple._offset-bottom(data-sequence="[242, 319]" data-sequence-fin="true"): +i({
 		title: "b-tea",
 		mainImage: "/assets/i/media-img-3.jpg",
 		hideAddImage: true,
+		videoLink: {
+			src: "http://tmp.static.se7enapp.com/btbeverage/video/B-Tea.mp4",
+			poster: "/assets/i/media-img-3.jpg",
+		}
 	})
 
 	.container
 		+b.content-heading: +i({
 			title: "<span>Choose</span> <br><span>your flavor</span>",
-			text: "<p>Each flavor is crisp, refreshing and fully satisfying.</p><p>Naturally!</p>"
+			text: "<p>Each flavor is crisp, refreshing and fully satisfying. Naturally!</p>"
 		})
 
 	+b.catalog#catalog: +i({ list: catalog })
 	
-	+b.taste-button(data-screen-offset="0.5" data-duration="600%"): +i({})
+	+b.taste-button(data-trigger-class="about" data-stop-class="catalog"): +i({})
 	
-	+b.sequence: +i({ sequence: file.bottleSeq })
+	+b.sequence

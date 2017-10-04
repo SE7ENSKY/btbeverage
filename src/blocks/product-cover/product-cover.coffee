@@ -193,17 +193,23 @@ $ ->
 			if !isOpen and $openBlock.length
 				# check if other block is not opened
 				animationFunc $openBlock, true, true
-				$openBlock.toggleClass 'active'
+				$openBlock.removeClass 'active'
 
 				setTimeout ->
 					animationFunc $this, isOpen
 					$openBlock.trigger 'mouseleave'
-					$this.toggleClass 'active'
+					$this.addClass 'active'
 				, 500
-
-			else
+			else if !isOpen
 				animationFunc $this, isOpen
-				$this.toggleClass 'active'
+				$this.addClass 'active'
+
+		$block.find('.product-cover__close').on 'click', (e) ->
+			e.preventDefault()
+			$this = $(@)
+			$parent = $this.parents('.product-cover.active')
+			animationFunc $parent, true
+			$parent.removeClass 'active'
 
 		controller.resizeSceneActions.push ->
 			# close all open blocks on resize

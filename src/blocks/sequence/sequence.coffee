@@ -3,7 +3,7 @@ $ ->
 
 	sequenceJS = ->
 		$block = $('.sequence')
-		if !$block.length
+		if !$block.length or isMobile() or isPortrait()
 			$(document).trigger 'sequence-loaded'
 			return
 
@@ -28,7 +28,6 @@ $ ->
 			pixi.sprite.position.y = pixi.app.renderer.height / 2
 
 			pixi.app.stage.addChild pixi.sprite
-
 		loader = new PIXI.loaders.Loader()
 		loader
 			.add 'seq', '/assets/i/seq/btseq.json'

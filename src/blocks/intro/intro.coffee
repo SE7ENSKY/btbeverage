@@ -129,8 +129,10 @@ $ ->
 			hideTween =
 				TweenMax.fromTo $leaf, 0.5,
 					rotation: 60,
+					autoAlpha: 1,
 					scale: 1.15
 						rotation: 30,
+						autoAlpha: if isMobile() then 0 else 1
 						ease: Sine.easeIn
 						scale: 1.15
 
@@ -150,22 +152,9 @@ $ ->
 				})
 				.setTween(tween)
 				.addTo(cntrl)
-				.on 'leave', (ev) ->
-					if ev.scrollDirection == "FORWARD" and !scrollScene and isMobile()
-						scrollScene = new Scene({
-							offset: Math.max(window.innerHeight, 420),
-							triggerHook: 1,
-							duration: "50%"
-							})
-							.setTween TweenMax.fromTo $leaf, 0.5, { y: -35 }, { y: -320, ease: Power0.easeNone }
-							.addTo(cntrl)
-				.on 'enter', (ev) ->
-					if ev.scrollDirection == "REVERSE" and scrollScene
-						scrollScene.destroy()
-						scrollScene = null
 
 			leafHideScene = new Scene({
-					offset: Math.max(window.innerHeight, 420),
+					offset: window.innerHeight,
 					duration: "50%",
 				})
 				.setTween(hideTween)
@@ -175,18 +164,10 @@ $ ->
 				.on 'enter', (ev) ->
 					$leaf.show(0) if ev.scrollDirection == "REVERSE"
 
-			leafHideScene.enabled false if isMobile()
-
 			controller.resizeSceneActions.push ->
-				if isMobile()
-					scrollScene.enabled true if scrollScene
-					leafHideScene.enabled false
-				else
-					scrollScene.enabled false if scrollScene
-					leafHideScene.enabled true
 				leafHideScene
-					.offset Math.max(window.innerHeight, 420)
-				scrollScene.offset Math.max(window.innerHeight, 420) if scrollScene
+					.offset window.innerHeight
+					.duration(if isMobile() then "5%" else "50%")
 
 		#
 		# video add callback

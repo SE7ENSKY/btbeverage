@@ -1,9 +1,9 @@
 +e.image._main
 	if mainImage
-		+e.image-i(style=`background-image:url("${mainImage}");`)
+		+e.image-i(class="lazy-image" data-src=mainImage)
 		- console.log(mainImage)
 	if videoLink
-		+e('video').image-v(data-video=videoLink.src data-type="video/mp4" poster=videoLink.poster muted loop)
+		+e('video').image-v(data-video=videoLink.src data-type="video/mp4" muted loop)
 
 +e.content
 	+e.content-bg

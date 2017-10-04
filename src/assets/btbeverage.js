@@ -41,6 +41,7 @@ import 'scripts/pixi.coffee';
 import 'scripts/slowScroll.coffee';
 import 'scripts/videoWithPromise.coffee';
 import 'scripts/helpers.coffee';
+import 'scripts/lazyLoad.coffee';
 
 // ------------------ import system blocks -------------------
 getRequiredfiles(require.context('../blocks/', true, /\.(css|styl|less|sass|scss)$/));

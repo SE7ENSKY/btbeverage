@@ -57,3 +57,4 @@ $ ->
 		$(document).trigger 'intro'
 		$(document).trigger 'update-cart'
 		$(document).trigger 'modal-init'
+		$(document).trigger 'init-lazy-load'

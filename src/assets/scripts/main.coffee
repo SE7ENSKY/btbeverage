@@ -17,10 +17,6 @@ window.controller =
 	,
 	resizeSceneActions: []
 
-window.isMobile = -> window.innerWidth < 768
-window.isPortrait = -> window.innerWidth <= window.innerHeight
-window.convertToArray = (obj) -> Object.keys(obj).map (key) -> { ...obj[key], key: key }
-
 $ ->
 	unless Modernizr.touchevents
 		# replace tel: links to callto:

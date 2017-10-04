@@ -60,13 +60,17 @@ $ ->
 			isOddProductCover = catalogIndex % 2
 			if isOddProductCover
 				oddShift = 150 - productCoverHeightClosed
-				evenShift = -120
+				evenShift = -121
 				coef = -1
 				selectorOdd = ".catalog__item:nth-child(2n+" + (catalogIndex + 2) + ")"
 				selectorEven = ".catalog__item:nth-child(2n+2)"
 			else
-				oddShift = 120
-				evenShift = -120
+				oddShift = 119
+				evenShift = switch getWidthVariable()
+					when "tablet" then -40
+					when "sm" then -97
+					when "md" then -210
+					else 0
 				coef = 1
 				selectorOdd = ".catalog__item:nth-child(2n+1)"
 				selectorEven = ".catalog__item:nth-child(2n+" + (catalogIndex + 2) + ")"
@@ -201,6 +205,12 @@ $ ->
 				animationFunc $this, isOpen
 				$this.toggleClass 'active'
 
+		controller.resizeSceneActions.push ->
+			# close all open blocks on resize
+			$openBlock = $('.product-cover.active')
+			return unless $openBlock.length
+			animationFunc $openBlock, true, true
+			$openBlock.removeClass 'active'
 
 	productCoverJS()
 

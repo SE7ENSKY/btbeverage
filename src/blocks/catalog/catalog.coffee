@@ -3,6 +3,9 @@ $ ->
 	catalogStructureJS = ->
 		$block = $('.catalog')
 		return unless $block.length
+		firstInitIsMobile = isMobile()
+		desktopEventConnected = !firstInitIsMobile
+		mobileEventConnected = firstInitIsMobile
 
 		$desktop = $block.find('.catalog__desktop')
 		$mobile = $block.find('.catalog__mobile')
@@ -11,13 +14,19 @@ $ ->
 
 		handleStructure = ->
 			if isMobile()
-				$desktop = $desktop.remove() if $block.find('.catalog__desktop').length
+				$desktop = $desktop.detach() if $block.find('.catalog__desktop').length
 				$mobile.appendTo('.catalog') if !$block.find('.catalog__mobile').length
+				if !mobileEventConnected
+					$(document).trigger 'product-cover'
+					$(document).trigger 'product-params'
+					mobileEventConnected = true
 			else
-				$mobile = $mobile.remove() if $block.find('.catalog__mobile').length
-				$desktop.appendTo('.catalog') if $block.find('.catalog__desktop').length
-			$(document).trigger 'product-cover'
-			$(document).trigger 'product-params'
+				$mobile = $mobile.detach() if $block.find('.catalog__mobile').length
+				$desktop.appendTo('.catalog') if !$block.find('.catalog__desktop').length
+				if !desktopEventConnected
+					$(document).trigger 'product-cover'
+					$(document).trigger 'product-params'
+					desktopEventConnected = true
 
 		handleStructure()
 

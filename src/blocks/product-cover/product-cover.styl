@@ -114,12 +114,12 @@
 		z-index 8
 		overflow hidden
 		top 5%
-		@media desktop
+		@media md
 			right 10%
 			bottom 5%
 			width 50%
-		@media tablet
-			right 10%
+		@media tablet_sm
+			right 20%
 			bottom 5%
 			width 30%
 		@media phone
@@ -198,8 +198,11 @@
 	&.right
 		.product-cover
 			&__slider
-				@media tablet_desktop
+				@media md
 					left 10%
+					right auto
+				@media tablet_sm
+					left 20%
 					right auto
 				&-wrapper
 					@media tablet_desktop

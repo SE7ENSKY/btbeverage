@@ -40,7 +40,7 @@ import 'scripts/barba.coffee';
 import 'scripts/pixi.coffee';
 import 'scripts/slowScroll.coffee';
 import 'scripts/videoWithPromise.coffee';
-import 'scripts/scroll2Id.coffee';
+import 'scripts/helpers.coffee';
 
 // ------------------ import system blocks -------------------
 getRequiredfiles(require.context('../blocks/', true, /\.(css|styl|less|sass|scss)$/));

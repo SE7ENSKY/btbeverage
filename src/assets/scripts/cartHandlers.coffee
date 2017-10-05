@@ -128,7 +128,20 @@ $ ->
 
 		$(document).trigger 'init-cart-controls'
 
+	deleteCartProduct = (ev, product) ->
+		cart = getJSON Cookie.get('bt-cart')
+		return unless cart
+		productSlug = Object.keys(product)[0]
+		productSizeKey = product[productSlug]
+		delete cart[productSlug]['packs'][productSizeKey]
+		if Object.keys(cart[productSlug]['packs']).length == 0
+			delete cart[productSlug]
+
+		Cookie.set 'bt-cart', JSON.stringify(cart), { expires: expires }
+
+
 	$(document).on 'addToCart', addToCart
 	$(document).on 'updateCartBadge', updateCartBadge
 	$(document).on 'update-cart', updateCart
 	$(document).on 'handle-cart-change', handleCartChange
+	$(document).on 'delete-cart-product', deleteCartProduct

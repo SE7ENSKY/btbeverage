@@ -10,31 +10,43 @@ $ ->
 		$cartControls.on 'click', ->
 			$this = $(@)
 			$productRow = $this.parents('.cart__product-row')
+			$product = $this.parents('.cart__product')
 			{ sizekey, price, amount } = $productRow.data()
-			{ slug } = $this.parents('.cart__product').data()
+			{ slug } = $product.data()
 
 			actionValue = if $this.hasClass('cart__controls-item_plus') then 1 else -1
 			newAmount = +amount + actionValue
-			return if newAmount < 0
+			if newAmount < 0
+				product =
+					"#{slug}": "#{sizekey}"
 
-			#
-			# update params and texts
-			#
+				$(document).trigger 'delete-cart-product', [ product ]
+				$productRow.remove()
+				unless $product.find('.cart__product-row').length
+					$product.parent('.cart__list-item').remove()
+				unless $('.cart__list-item').length
+					$('.cart').addClass 'empty-cart'
 
-			[volume, packSize] = sizekey.split '-'
-			$productRow.data 'amount', newAmount
-			$productRow.find('.cart__product-info').text(newAmount + " x " + volume + ", pack of " + packSize)
-			$productRow.find('.cart__product-price').text('$ ' + (+price * newAmount).toFixed(2))
 
-			#
-			# handle cookie update
-			#
+			else
+				#
+				# update params and texts
+				#
 
-			product =
-				"#{slug}":
-					"#{sizekey}": newAmount
+				[volume, packSize] = sizekey.split '-'
+				$productRow.data 'amount', newAmount
+				$productRow.find('.cart__product-info').text(newAmount + " x " + volume + ", pack of " + packSize)
+				$productRow.find('.cart__product-price').text('$ ' + (+price * newAmount).toFixed(2))
 
-			$(document).trigger 'handle-cart-change', [ product ]
+				#
+				# handle cookie update
+				#
+
+				product =
+					"#{slug}":
+						"#{sizekey}": newAmount
+
+				$(document).trigger 'handle-cart-change', [ product ]
 
 			#
 			# update Total

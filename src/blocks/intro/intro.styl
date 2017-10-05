@@ -62,23 +62,6 @@ strokeAnimDelay = 0.3
 		margin -191px 0 0 -113px
 		width 226px
 		height 383px
-		&.active
-			.intro__logo-s
-				&_short
-					animation (animTime)s logoShortAnim forwards cubic-bezier(0.16, 0.26, 0.36, 1)
-				&_main
-					animation (animTime - strokeAnimDelay)s logoMainAnim forwards linear
-					animation-delay (strokeAnimDelay)s
-				&_shape
-					opacity 1
-		&.done
-			.intro__logo-s
-				&_short
-					stroke-dashoffset -(strokeShortLine * 4)
-				&_main
-					stroke-dashoffset -(strokeLine * 2)
-				&_shape
-					opacity 1
 		&-image
 			display block
 			width 100%
@@ -90,19 +73,36 @@ strokeAnimDelay = 0.3
 				fill none
 				stroke #fff
 				stroke-width 22px
-			&_short
-				stroke-dasharray strokeShortLine, strokeShortLine
-				stroke-dashoffset -(strokeShortLine)
-				// animation (animTime)s logoShortAnim forwards cubic-bezier(0.16, 0.26, 0.36, 1)
-			&_main
-				stroke-dasharray strokeLine, strokeLine
-				stroke-dashoffset -(strokeLine)
-				// animation (animTime - strokeAnimDelay)s logoMainAnim forwards linear
-				// animation-delay (strokeAnimDelay)s
-			&_shape
-				opacity 0
-				fill brandColor
-				transition .1s opacity (animTime)s ease-in-out
+		&.not-ie
+			&.active
+				.intro__logo-s
+					&_short
+						animation (animTime)s logoShortAnim forwards cubic-bezier(0.16, 0.26, 0.36, 1)
+					&_main
+						animation (animTime - strokeAnimDelay)s logoMainAnim forwards linear
+						animation-delay (strokeAnimDelay)s
+					&_shape
+						opacity 1
+			&.done
+				.intro__logo-s
+					&_short
+						stroke-dashoffset -(strokeShortLine * 4)
+					&_main
+						stroke-dashoffset -(strokeLine * 2)
+					&_shape
+						opacity 1
+			.intro__logo-s
+				&_short
+					stroke-dasharray strokeShortLine, strokeShortLine
+					stroke-dashoffset -(strokeShortLine)
+				&_main
+					stroke-dasharray strokeLine, strokeLine
+					stroke-dashoffset -(strokeLine)
+				&_shape
+					opacity 0
+					fill brandColor
+					transition .1s opacity (animTime)s ease-in-out
+
 
 @keyframes logoShortAnim
 	10%

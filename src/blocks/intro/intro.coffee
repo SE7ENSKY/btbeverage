@@ -11,6 +11,13 @@ $ ->
 		return unless $block.length
 
 		#
+		# handle logo SVG animation on IE/Edge
+		#
+
+		if !detectIE()
+			$('.intro__logo').addClass 'not-ie'
+
+		#
 		# init background Video
 		#
 
@@ -61,11 +68,13 @@ $ ->
 				.to '.intro__preloader', 0.9, { height: 0 }, startTime
 
 		bLetterAnimation = (startTime)->
-			setTimeout ->
-				$('.intro__logo').addClass 'active'
-			, startTime * 1000
+			if $('.intro__logo').hasClass 'not-ie'
+				setTimeout ->
+					$('.intro__logo').addClass 'active'
+				, startTime * 1000
 
 		lettersAnimation = (startTime) ->
+			return unless $('.intro__logo').hasClass 'not-ie'
 			tl = new TimelineMax()
 			tl
 				.fromTo '.intro__logo-s_b', 0.5, { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut } , startTime

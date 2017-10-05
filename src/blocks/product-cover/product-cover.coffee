@@ -137,7 +137,7 @@ $ ->
 					tl
 						.to $target.get(0), 0.5, { height: 0, ease: Power0.easeNone }, 0
 						.to $this.get(0), 0.5, { paddingBottom: "#{productCoverHeightClosed}px" , ease: Power0.easeNone  }, 0
-						.set $this.get(0), { paddingBottom: "66%" }, 0.5
+						.set $this.get(0), { paddingBottom: "33vw" }, 0.5
 						.fromTo $sliderWrapper, 0.2, { autoAlpha: 1 }, { autoAlpha: 0 }, 0
 						.staggerFromTo $blockInners, 0.1, { autoAlpha: 1 }, { autoAlpha: 0 }, 0, 0
 						.staggerFromTo selectorOdd, 0.5, { y: oddShift }, { y: 0, ease: Power0.easeNone }, 0, 0

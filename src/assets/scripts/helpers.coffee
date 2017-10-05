@@ -10,3 +10,13 @@ window.getWidthVariable = ->
 		return "md"
 	return "mobile"
 window.convertToArray = (obj) -> Object.keys(obj).map (key) -> { ...obj[key], key: key }
+
+window.detectIE = ->
+	ie = undefined
+	if /MSIE 10/i.test(navigator.userAgent)
+		ie = 'IE10'
+	if /rv:11.0/i.test(navigator.userAgent)
+		ie = 'isIE11'
+	if /Edge\/\d./i.test(navigator.userAgent)
+		ie = 'Microsoft Edge'
+	ie

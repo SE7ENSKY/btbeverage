@@ -126,6 +126,9 @@ $ ->
 			prev.append($listItem)
 		, $cartList
 
+		total = calculateTotal()
+		$('.cart__total-value').text('$ '+ total.toFixed(2))
+
 		$(document).trigger 'init-cart-controls'
 
 	deleteCartProduct = (ev, product) ->

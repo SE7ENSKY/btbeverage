@@ -67,7 +67,7 @@ $ ->
 			else
 				oddShift = 119
 				evenShift = switch getWidthVariable()
-					when "tablet" then -40
+					when "tablet" then -38
 					when "sm" then -97
 					when "md" then -210
 					else 0
@@ -90,7 +90,6 @@ $ ->
 			$slider = $this.find '.product-cover__slider'
 			$sliderVerticalText = $this.find '.product-cover__text-vertical span'
 			$sliderNormalText = $this.find '.product-cover__text'
-			$videoMessage = $this.find '.product-cover__video-message'
 
 			if !isOpen
 				if isMobile()
@@ -118,7 +117,6 @@ $ ->
 						.fromTo $slider, 1, { x: - 0.5 * window.innerWidth * coef}, { x: 0, ease: Power1.easeOut }, 0.3
 						.fromTo $sliderNormalText, 0.4, { x: -0.25 * window.innerWidth * coef }, { x: 0, ease: Power1.easeOut }, 0.9
 						.staggerFromTo $sliderVerticalText, 0.4, { autoAlpha: 0, rotationX: 90 * coef }, { autoAlpha: 1, rotationX: 0 }, 0.2, 0.4
-						.to $videoMessage.get(0), 0.5, { autoAlpha: 0 }, 0
 						# after animation
 				setTimeout ->
 					isAnimation = false
@@ -147,7 +145,6 @@ $ ->
 						.fromTo $paramsCart.get(0), 0.5, { y: 0 }, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight()), ease: Power0.easeNone }, 0
 						.fromTo $paramsPack.get(0), 0.4, { y: 0 }, { y: -(packHeight + volumeHeight), ease: Power0.easeNone }, 0
 						.fromTo $paramsVolume.get(0), 0.3, { y: 0 }, { y: -volumeHeight, ease: Power0.easeNone }, 0
-						.to $videoMessage.get(0), 0.5, { autoAlpha: 1 }, 0
 						# after animation
 				setTimeout ->
 					isAnimation = false
@@ -164,10 +161,10 @@ $ ->
 			hasVideo = $video.length and $video.hasClass('is-loaded')
 			if (hasVideo and !$this.hasClass('hover')) and !$this.hasClass('active')
 				$video.show(0)
-				TweenMax.fromTo $video.parent().get(0), 0.5, { autoAlpha: 0 }, { autoAlpha: 1, ease: Power0.easeNone }
-				TweenMax.to $this.find('.product-cover__title').get(0), 0.1, { autoAlpha: 0, ease: Power0.easeNone }
-				$video.get(0).play()
 				$this.toggleClass 'hover'
+				setTimeout ->
+					$video.get(0).play() if $this.hasClass('hover')
+				, 300
 		, ->
 			$this = $(@)
 			$video = $this.find('video')
@@ -175,8 +172,9 @@ $ ->
 			if (hasVideo and $this.hasClass('hover')) and !$this.hasClass('active')
 				$video.get(0).pause()
 				$this.toggleClass 'hover'
-				TweenMax.to $video.parent().get(0), 0.3, { autoAlpha: 0, ease: Power0.easeNone, onComplete: -> $video.hide(0) }
-				TweenMax.to $this.find('.product-cover__title').get(0), 0.1, { autoAlpha: 1, ease: Power0.easeNone }
+				setTimeout ->
+					$video.hide(0) if !$this.hasClass('hover')
+				, 300
 
 		#
 		# Click handler
@@ -201,8 +199,8 @@ $ ->
 					$this.addClass 'active'
 				, 500
 			else if !isOpen
-				animationFunc $this, isOpen
 				$this.addClass 'active'
+				animationFunc $this, isOpen
 
 		$block.find('.product-cover__close').on 'click', (e) ->
 			e.preventDefault()

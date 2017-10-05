@@ -28,14 +28,12 @@
 			top 0
 			bottom 0
 			left 0
-			right 0
+			width 200%
+			transition transform .3s ease-out
 			overflow hidden
 	&__image
-		position absolute
-		top 0
-		bottom 0
-		left 0
-		right 0
+		width 50%
+		height 100%
 		background-size cover
 		background-position center center
 		background-repeat no-repeat
@@ -47,14 +45,10 @@
 		height 100%
 		transform translateX(-50%)
 		&-wrapper
-			position absolute
-			top 0
-			bottom 0
-			left 0
-			right 0
-			opacity 0
-			z-index 7
-			visibility hidden
+			position relative
+			width 50%
+			height 100%
+			overflow hidden
 	&__content
 		position absolute
 		top -1px
@@ -208,10 +202,10 @@
 				&-vertical
 					transform rotate(90deg) translate(10%, -290%)
 					transform-origin left top
-			// &__wrap
-			// 	&-inner
-			// 		flex-direction row-reverse
-			// 		transform translateX(-50%)
+			&__wrap
+				&-inner
+					flex-direction row-reverse
+					transform translateX(-50%)
 	&.active
 		.product-cover
 			&__close
@@ -225,3 +219,13 @@
 				@media phone
 					font-size 40px
 					line-height 1.1
+	&.hover
+		.product-cover
+			&__wrap
+				&-inner
+					transform translateX(-50%)
+		&.right
+			.product-cover
+				&__wrap
+					&-inner
+						transform translateX(0%)

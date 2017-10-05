@@ -1,10 +1,10 @@
 +e.wrap
 	+e.wrap-inner
+		if data.image
+			+e.image(class="lazy-image" data-src=data.image)
 		if data.video
 			+e.video-wrapper
 				+e("video").video(data-video=data.video data-type="video/mp4" loop muted)
-		if data.image
-			+e.image(class="lazy-image" data-src=data.image)
 +e.content
 	if data.title
 		+e.title!= data.title

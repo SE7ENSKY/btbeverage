@@ -1,6 +1,13 @@
 - title: "Products"
   url: "#catalog"
+- title: "About us"
+  url: '/about.html'
+- title: "Blog"
+  url: '/blog.html'
 - title: "Cart"
   url: "#cart-modal"
   modal: true
   badge: "0"
+- title: "Login"
+  url: "#login"
+  modal: true

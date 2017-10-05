@@ -58,3 +58,4 @@ $ ->
 		$(document).trigger 'update-cart'
 		$(document).trigger 'modal-init'
 		$(document).trigger 'init-lazy-load'
+		$(document).trigger 'header-fix'

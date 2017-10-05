@@ -9,5 +9,5 @@
   modal: true
   badge: "0"
 - title: "Login"
-  url: "#login"
+  url: "#login-modal"
   modal: true

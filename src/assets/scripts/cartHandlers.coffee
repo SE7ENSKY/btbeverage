@@ -1,11 +1,11 @@
-import Cookie, { getJSON } from './cookie'
+import Cookie from 'js-cookie'
 
 $ ->
 
 	expires = 1440
 
 	window.calculateTotal = ->
-		cart = getJSON Cookie.get('bt-cart')
+		cart = Cookie.getJSON('bt-cart')
 		return 0 if !cart or !Object.keys(cart).length
 
 		products = convertToArray cart
@@ -19,7 +19,7 @@ $ ->
 		return total
 
 	updateCartBadge = ->
-		cart = getJSON Cookie.get('bt-cart')
+		cart = Cookie.getJSON('bt-cart')
 		$cartInMenu = $('.header__menu-link[href="#cart-modal"]')
 		$cartBadge = $cartInMenu.find '.header__menu-badge'
 
@@ -37,7 +37,7 @@ $ ->
 		$cartBadge.text productsInCart
 
 	addToCart = (ev, order) ->
-		cart = getJSON Cookie.get('bt-cart')
+		cart = Cookie.getJSON('bt-cart')
 		productSlug = Object.keys(order)[0]
 		sizeKey = Object.keys(order[productSlug].packs)[0]
 
@@ -58,7 +58,7 @@ $ ->
 	handleCartChange = (ev, product) ->
 		productSlug = Object.keys(product)[0]
 		sizeKey = Object.keys(product[productSlug])[0]
-		cart = getJSON Cookie.get('bt-cart')
+		cart = Cookie.getJSON('bt-cart')
 
 		if !cart
 			Cookie.set 'bt-cart', JSON.stringify(product), { expires: expires }
@@ -70,7 +70,7 @@ $ ->
 		updateCartBadge()
 
 	updateCart = ->
-		cart = getJSON Cookie.get('bt-cart')
+		cart = Cookie.getJSON('bt-cart')
 		$cart = $('.cart')
 		return unless $cart.length
 
@@ -132,7 +132,7 @@ $ ->
 		$(document).trigger 'init-cart-controls'
 
 	deleteCartProduct = (ev, product) ->
-		cart = getJSON Cookie.get('bt-cart')
+		cart = Cookie.getJSON('bt-cart')
 		return unless cart
 		productSlug = Object.keys(product)[0]
 		productSizeKey = product[productSlug]

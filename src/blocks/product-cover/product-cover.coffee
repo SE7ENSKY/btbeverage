@@ -46,7 +46,7 @@ $ ->
 
 		scrollToViewport = ($this) ->
 			$('html, body').animate
-				scrollTop: $this.offset().top
+				scrollTop: $this.offset().top - 60
 
 		animationFunc = ($this, isOpen, removeHover = false) ->
 			isAnimation = true
@@ -156,7 +156,7 @@ $ ->
 		# hover
 		#
 
-		$block.hover ->
+		hoverIn = ->
 			$this = $(@)
 			$video = $this.find('video')
 			hasVideo = $video.length and $video.hasClass('is-loaded')
@@ -166,7 +166,8 @@ $ ->
 				setTimeout ->
 					$video.get(0).play() if $this.hasClass('hover')
 				, 300
-		, ->
+
+		hoverOut = ->
 			$this = $(@)
 			$video = $this.find('video')
 			hasVideo = $video.length and $video.hasClass('is-loaded')
@@ -176,6 +177,9 @@ $ ->
 				setTimeout ->
 					$video.hide(0) if !$this.hasClass('hover')
 				, 300
+
+		if !touchDevice
+			$block.hover hoverIn, hoverOut
 
 		#
 		# Click handler
@@ -210,12 +214,14 @@ $ ->
 			animationFunc $parent, true
 			$parent.removeClass 'active'
 
-		controller.resizeSceneActions.push ->
-			# close all open blocks on resize
-			$openBlock = $('.product-cover.active')
-			return unless $openBlock.length
-			animationFunc $openBlock, true, true
-			$openBlock.removeClass 'active'
+		if !isMobile()
+			controller.resizeSceneActions.push ->
+				# close all open blocks on resize
+				$openBlock = $('.product-cover.active')
+				return unless $openBlock.length
+				$openBlock.each ->
+					animationFunc $(@), true, true
+				$openBlock.removeClass 'active'
 
 	productCoverJS()
 

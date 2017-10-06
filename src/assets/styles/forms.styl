@@ -14,7 +14,6 @@ placeholderTrans()
 	font-size 12px
 	line-height 1.2
 	color siteColor
-	text-transform uppercase
 	border 2px solid #d5e4d0
 	background-color #fff
 	border-radius 0
@@ -31,15 +30,19 @@ placeholderTrans()
 		resize vertical
 	&::-webkit-input-placeholder
 		color brandColor
+		text-transform uppercase
 		placeholderTrans()
 	&::-moz-placeholder
 		color brandColor
+		text-transform uppercase
 		placeholderTrans()
 	&:-moz-placeholder
 		color brandColor
+		text-transform uppercase
 		placeholderTrans()
 	&:-ms-input-placeholder
 		color brandColor
+		text-transform uppercase
 		placeholderTrans()
 	&:focus::-webkit-input-placeholder
 		opacity 0

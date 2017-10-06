@@ -15,35 +15,38 @@ $ ->
 		$cartButton = $block.find('.product-params__cart-button')
 		$cartButton.each ->
 			$this = $(@)
+			$parentCart = $this.parents '.product-params__cart'
 			$this.click ->
-				return if $this.hasClass 'added'
-				$this
-					.parents '.product-params__cart'
-					.addClass 'added'
-				$this.text 'Added to Cart'
+				if !$parentCart.hasClass 'added'
+					$parentCart.addClass 'added'
+					$this.text 'Added to Cart'
 
-				#
-				# dispatch cart update
-				#
+					#
+					# dispatch cart update
+					#
 
-				$parent = $this.parents('.product-params')
-				productSlug = $parent.data 'product'
-				productTitle = $parent.data 'title'
-				productImg = $parent.data 'image'
-				priceList = $parent.data 'price-list'
-				volume = $parent.find('.product-params__volume .product-params__item.active').data 'volume'
-				pack = $parent.find('.product-params__packs .product-params__item.active').data 'pack'
+					$parent = $this.parents('.product-params')
+					productSlug = $parent.data 'product'
+					productTitle = $parent.data 'title'
+					productImg = $parent.data 'image'
+					priceList = $parent.data 'price-list'
+					volume = $parent.find('.product-params__volume .product-params__item.active').data 'volume'
+					pack = $parent.find('.product-params__packs .product-params__item.active').data 'pack'
 
-				order =
-					"#{productSlug}":
-						title: productTitle
-						image: productImg
-						packs:
-							"#{volume}-#{pack}":
-								amount: 1
-								pricePerOne: priceList["#{volume}-#{pack}"]
+					order =
+						"#{productSlug}":
+							title: productTitle
+							image: productImg
+							packs:
+								"#{volume}-#{pack}":
+									amount: 1
+									pricePerOne: priceList["#{volume}-#{pack}"]
 
-				$(document).trigger 'addToCart', [ order ]
+					$(document).trigger 'addToCart', [ order ]
+					setTimeout ->
+						$parentCart.removeClass 'added'
+						$this.text 'Add to Cart'
+					, 2000
 
 		$packSize = $block.find('.product-params__packs .product-params__item')
 		$packSize.click ->

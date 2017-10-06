@@ -103,8 +103,7 @@
 		&-inner
 			display flex
 		&-total
-		&-button
-			transition width 0.5s ease-in-out, padding-left 0.5s ease-in-out
+			transition width 0.3s ease-out, padding-left 0.3s ease-out, opacity 0.15s ease-out 0.15s
 		&-total
 			display flex
 			width 60%
@@ -136,7 +135,7 @@
 			font-weight bold
 			background-color #4B8834
 			cursor pointer
-			transition background-color 0.15s ease-in-out
+			transition background-color 0.15s ease-in-out, width 0.3s ease-out
 			@media md
 				height 156px
 				padding 70px 0
@@ -163,6 +162,7 @@
 						padding-left 0
 						padding-bottom 0
 						opacity 0
+						transition width 0.3s ease-out, padding-left 0.3s ease-out, opacity 0s ease-out 0s
 					&-button
 						width 100%
 						background-color #315423

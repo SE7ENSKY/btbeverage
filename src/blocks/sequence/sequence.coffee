@@ -1,9 +1,11 @@
 $ ->
 	widthRatio = 0.625 # 720 x 450
 
+	isSequenceLoaded = false
+
 	sequenceJS = ->
 		$block = $('.sequence')
-		if !$block.length or isMobile() or isPortrait()
+		if !$block.length or isMobile() or isPortrait() or isSequenceLoaded
 			$(document).trigger 'sequence-loaded'
 			return
 
@@ -28,6 +30,9 @@ $ ->
 			pixi.sprite.position.y = pixi.app.renderer.height / 2
 
 			pixi.app.stage.addChild pixi.sprite
+
+			isSequenceLoaded = true
+
 		loader = new PIXI.loaders.Loader()
 		loader
 			.add 'seq', '/assets/i/seq/btseq.json'

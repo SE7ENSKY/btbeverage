@@ -17,7 +17,7 @@ window.addVideo = ($block, playDelay = 0, cb) ->
 		setTimeout ->
 			$video.addClass 'is-loaded'
 			cb() if cb
-		, 1500
+		, 300
 
 	tempVideo.addEventListener 'error', ->
 		cb() if cb

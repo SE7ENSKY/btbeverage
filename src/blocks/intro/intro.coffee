@@ -6,6 +6,8 @@ $ ->
 	isSequenceLoaded = false
 	sliderAnimationOver = false
 
+	window.isPreloaderPlayedBefore = false
+
 	introJS = ->
 		$block = $(".intro")
 		return unless $block.length

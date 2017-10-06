@@ -7,6 +7,7 @@ $ ->
 		$block = $('.sequence')
 		if !$block.length or isMobile() or isPortrait() or isSequenceLoaded
 			$(document).trigger 'sequence-loaded'
+			$(document).trigger 'connect-pixi' if isSequenceLoaded
 			return
 
 		$(document).trigger 'connect-pixi'

@@ -6,6 +6,7 @@ $ ->
 			width: window.innerHeight * widthRatio
 			height: window.innerHeight
 			transparent: true
+			forceCanvas: true
 		frames: []
 		sprite: null
 		rerender: ->

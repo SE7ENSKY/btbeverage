@@ -60,3 +60,4 @@ $ ->
 		$(document).trigger 'init-lazy-load'
 		$(document).trigger 'header-fix'
 		$(document).trigger 'reset-addthis'
+		$(document).on 'init-content-widget'

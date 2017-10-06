@@ -1,4 +1,16 @@
+import Barba from 'barba.js'
+
 $ ->
+
+	initGoToCheckout = ->
+		$block = $('#go-to-checkout')
+		return unless $block.length
+
+		{ checkout } = $block.data()
+
+		$block.on 'click', ->
+			$('#cart-modal').modal('hide')
+			Barba.Pjax.goTo checkout
 
 	initCartControls = ->
 		$block = $('.cart')
@@ -54,6 +66,8 @@ $ ->
 
 			total = calculateTotal()
 			$totalSum.text('$ '+ total.toFixed(2))
+
+	initGoToCheckout()
 
 	$(document).on 'init-cart-controls', initCartControls
 	$(document).trigger 'update-cart'

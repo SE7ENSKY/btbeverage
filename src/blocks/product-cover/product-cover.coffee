@@ -53,22 +53,22 @@ $ ->
 			$target = $catalog.find($this.attr("data-target"))
 			$targetInner = $target.find('.product-params__wrap')
 
-			productCoverHeightClosed = 0.33 * window.innerWidth
-			productCoverHeightOpen = Math.max(150 + $targetInner.outerHeight(), 0.33 * window.innerWidth)
+			productCoverHeightClosed = 0.3333 * window.innerWidth
+			productCoverHeightOpen = Math.max(150 + $targetInner.outerHeight(), 0.3333 * window.innerWidth)
 
 			catalogIndex = $('.catalog__item').index($this.parent()) + 1
 			isOddProductCover = catalogIndex % 2
 			if isOddProductCover
 				oddShift = 150 - productCoverHeightClosed
-				evenShift = -121
+				evenShift = -120
 				coef = -1
 				selectorOdd = ".catalog__item:nth-child(2n+" + (catalogIndex + 2) + ")"
 				selectorEven = ".catalog__item:nth-child(2n+2)"
 			else
-				oddShift = 119
+				oddShift = 120
 				evenShift = switch getWidthVariable()
 					when "tablet" then -38
-					when "sm" then -97
+					when "sm" then -110
 					when "md" then -210
 					else 0
 				coef = 1
@@ -137,7 +137,7 @@ $ ->
 					tl
 						.to $target.get(0), 0.5, { height: 0, ease: Power0.easeNone }, 0
 						.to $this.get(0), 0.5, { paddingBottom: "#{productCoverHeightClosed}px" , ease: Power0.easeNone  }, 0
-						.set $this.get(0), { paddingBottom: "33vw" }, 0.5
+						.set $this.get(0), { paddingBottom: "33.33vw" }, 0.5
 						.fromTo $sliderWrapper, 0.2, { autoAlpha: 1 }, { autoAlpha: 0 }, 0
 						.staggerFromTo $blockInners, 0.1, { autoAlpha: 1 }, { autoAlpha: 0 }, 0, 0
 						.staggerFromTo selectorOdd, 0.5, { y: oddShift }, { y: 0, ease: Power0.easeNone }, 0, 0

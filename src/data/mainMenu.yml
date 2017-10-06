@@ -1,5 +1,5 @@
 - title: "Products"
-  url: "#catalog"
+  url: "/#catalog"
 - title: "About us"
   url: '/about.html'
 - title: "Blog"

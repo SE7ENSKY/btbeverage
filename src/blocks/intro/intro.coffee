@@ -9,7 +9,7 @@ $ ->
 	introJS = ->
 		$block = $(".intro")
 		return unless $block.length
-
+		window.scrollTo 0, 0
 		#
 		# handle logo SVG animation on IE/Edge
 		#
@@ -216,6 +216,7 @@ $ ->
 				if isSequenceLoaded
 					$('body').css 'overflow', ''
 					$(document).trigger 'init-slow-scroll'
+					scrollToHash()
 				sliderAnimationOver = true
 				if isMobile()
 					$(document).trigger 'sequence-init'
@@ -236,12 +237,28 @@ $ ->
 
 		leafScrollAnimation()
 
+	#
+	# scroll to element with id if location.hash exists
+	# after scrolling is available
+	#
+
+	scrollToHash = ->
+		hash = location.hash
+		location.hash = ''
+		location.hash = hash if hash
+
+	#
+	# handle when sequence is loaded
+	#
+
 	handleSequenceLoad = ->
 		isSequenceLoaded = true
 		$('.intro__more text').text 'Scroll to discover'
 		if sliderAnimationOver
 			$('body').css 'overflow', ''
 			$(document).trigger 'init-slow-scroll'
+
+			scrollToHash()
 
 	introJS()
 

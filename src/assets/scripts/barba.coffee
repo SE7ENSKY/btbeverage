@@ -59,3 +59,4 @@ $ ->
 		$(document).trigger 'modal-init'
 		$(document).trigger 'init-lazy-load'
 		$(document).trigger 'header-fix'
+		$(document).trigger 'reset-addthis'

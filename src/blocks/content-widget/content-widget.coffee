@@ -14,8 +14,6 @@ $ ->
 		yRangeImage = getRandomSkew 20
 		yRangeBody = getRandomSkew 20
 
-		console.log
-
 		$block.each ->
 
 			$this = $(@)
@@ -35,8 +33,6 @@ $ ->
 				})
 				.addTo cntrl
 				.setTween tl
-
-			console.log @, scene.enabled()
 
 			scene.enabled false if isMobile()
 

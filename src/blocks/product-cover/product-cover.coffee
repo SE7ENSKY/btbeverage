@@ -18,20 +18,21 @@ $ ->
 		cntrl = controller.get()
 
 		$block.each ->
-			isCalled = false
 			self = @
 			scene = new Scene({
 				triggerElement: self,
+				triggerHook: 1,
 				offset: -200
 				})
-				.on 'enter', ->
-					if !isCalled
-						addVideo $(self)
-						isCalled = true
+				.on 'start', ->
+					addVideo $(self)
+					scene.destroy()
 				.addTo(cntrl)
-			scene.enabled false if isMobile()
+
+			scene.enabled false if isMobile() && scene
 
 			controller.resizeSceneActions.push ->
+				return unless scene
 				if isMobile()
 					scene.enabled false
 				else

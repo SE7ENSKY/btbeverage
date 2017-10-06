@@ -39,12 +39,21 @@ $ ->
 				.fromTo @.newContainer, 0.5, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.5
 	})
 
+	Barba.Pjax.originalPreventCheck = Barba.Pjax.preventCheck
+
+	Barba.Pjax.preventCheck = (evt, element) ->
+		if ($(element).attr('href') && $(element).attr('href').indexOf('#') > -1)
+			return true
+		else
+			return Barba.Pjax.originalPreventCheck(evt, element)
+
 	Barba.Pjax.getTransition = -> HideShowTransition
 
 	Barba.Dispatcher.on 'linkClicked', ->
 		history.replaceState { sTop: window.pageYOffset }, "page1", window.location.pathname
 
 	Barba.Dispatcher.on 'transitionCompleted', ->
+		$(document).trigger 'init-lazy-load'
 		$(document).trigger 'catalog-init'
 		$(document).trigger 'about-block'
 		$(document).trigger 'content-heading'
@@ -57,7 +66,6 @@ $ ->
 		$(document).trigger 'intro'
 		$(document).trigger 'update-cart'
 		$(document).trigger 'modal-init'
-		$(document).trigger 'init-lazy-load'
 		$(document).trigger 'header-fix'
 		$(document).trigger 'reset-addthis'
 		$(document).on 'init-content-widget'

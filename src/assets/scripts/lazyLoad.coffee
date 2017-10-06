@@ -20,10 +20,10 @@ $ ->
 			loadScene = new Scene({
 				triggerElement: @,
 				triggerHook: 1,
-				offset: -400,
+				offset: -200,
 				})
 				.addTo cntrl
-				.on 'enter', ->
+				.on 'start', ->
 					loadScene.destroy()
 					loadImage $this
 

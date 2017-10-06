@@ -44,7 +44,7 @@ $ ->
 		isAnimation = false
 
 		scrollToViewport = ($this) ->
-			$('body').animate
+			$('html, body').animate
 				scrollTop: $this.offset().top
 
 		animationFunc = ($this, isOpen, removeHover = false) ->
@@ -120,7 +120,7 @@ $ ->
 						# after animation
 				setTimeout ->
 					isAnimation = false
-					# scrollToViewport $this
+					scrollToViewport $this
 				, 1300
 			else
 				if isMobile()

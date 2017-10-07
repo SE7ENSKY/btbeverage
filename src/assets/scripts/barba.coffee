@@ -1,3 +1,4 @@
+import FastClick from 'fastclick'
 import Barba from 'barba.js'
 import { TimelineMax } from 'gsap'
 
@@ -53,6 +54,7 @@ $ ->
 		history.replaceState { sTop: window.pageYOffset }, "page1", window.location.pathname
 
 	Barba.Dispatcher.on 'transitionCompleted', ->
+		FastClick.attach(document.body)
 		$(document).trigger 'init-lazy-load'
 		$(document).trigger 'catalog-init'
 		$(document).trigger 'about-block'

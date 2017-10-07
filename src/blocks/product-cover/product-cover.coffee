@@ -64,16 +64,15 @@ $ ->
 				evenShift = -120
 				coef = -1
 				selectorOdd = ".catalog__item:nth-child(2n+" + (catalogIndex + 2) + ")"
+				selectorOddBefore = ''
 				selectorEven = ".catalog__item:nth-child(2n+2)"
 			else
-				oddShift = 120
-				evenShift = switch getWidthVariable()
-					when "tablet" then -38
-					when "sm" then -110
-					when "md" then -210
-					else 0
+				oddShift = 240
+				oddShiftBefore = 120
+				evenShift = 240 - productCoverHeightClosed
 				coef = 1
-				selectorOdd = ".catalog__item:nth-child(2n+1)"
+				selectorOdd = ".catalog__item:nth-child(2n+" + (catalogIndex + 1) + ")"
+				selectorOddBefore = ".catalog__item:nth-child(-2n+" + (catalogIndex - 1) + ")"
 				selectorEven = ".catalog__item:nth-child(2n+" + (catalogIndex + 2) + ")"
 
 			$blockInners = $targetInner.find '.stagger'
@@ -119,6 +118,9 @@ $ ->
 						.fromTo $sliderNormalText, 0.4, { x: -0.25 * window.innerWidth * coef }, { x: 0, ease: Power1.easeOut }, 0.9
 						.staggerFromTo $sliderVerticalText, 0.4, { autoAlpha: 0, rotationX: 90 * coef }, { autoAlpha: 1, rotationX: 0 }, 0.2, 0.4
 						# after animation
+					if selectorOddBefore
+						tl.staggerFromTo selectorOddBefore, 0.5, { y: 0 }, { y: oddShiftBefore, ease: Power0.easeNone }, 0, 0
+
 				setTimeout ->
 					isAnimation = false
 					scrollToViewport $this
@@ -147,6 +149,8 @@ $ ->
 						.fromTo $paramsPack.get(0), 0.4, { y: 0 }, { y: -(packHeight + volumeHeight), ease: Power0.easeNone }, 0
 						.fromTo $paramsVolume.get(0), 0.3, { y: 0 }, { y: -volumeHeight, ease: Power0.easeNone }, 0
 						# after animation
+					if selectorOddBefore
+						tl.staggerFromTo selectorOddBefore, 0.5, { y: oddShiftBefore }, { y: 0, ease: Power0.easeNone }, 0, 0
 				setTimeout ->
 					isAnimation = false
 					$this.removeClass 'hover' if removeHover

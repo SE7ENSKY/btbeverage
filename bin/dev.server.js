@@ -66,7 +66,9 @@ const webpackDevMiddlewareInstance = webpackDevMiddleware(compiler, devServerCon
 const webpackHotMiddlewareInstance = webpackHotMiddleware(compiler);
 
 browserSync.init({
-	ui: false,
+	ui: {
+		port: 8080
+	},
 	open: false,
 	notify: false,
 	reloadOnRestart: true,

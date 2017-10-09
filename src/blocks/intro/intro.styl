@@ -21,6 +21,8 @@ strokeAnimDelay = 0.3
 			width 100%
 			height 100%
 			background-size cover
+			@media tablet_desktop
+				display none
 		video
 			object-fit cover
 			.no-objectfit &
@@ -32,6 +34,8 @@ strokeAnimDelay = 0.3
 				min-width 100%
 				min-height 100%
 				transform translate(-50%, -50%)
+			@media phone
+				display none
 	&__footer
 		position absolute
 		left 0

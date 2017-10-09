@@ -1,6 +1,5 @@
 window.addVideo = ($block, playDelay = 0, cb) ->
 	$video = $block.find("video")
-	$video.attr "controls", "true" if touchDevice
 	videoSrc = $video.data 'video'
 	videoType = $video.data 'type'
 	if !videoSrc

@@ -135,7 +135,7 @@ $ ->
 			if !isOpen
 				if isMobile()
 					tl
-						.fromTo $target.get(0), 0.5, { height: 0 }, { height: $targetInner.outerHeight(),ease: Power0.easeNone  }, 0
+						.to $target.get(0), 0.5, { height: $targetInner.outerHeight(), ease: Power0.easeNone  }, 0
 						.fromTo $sliderWrapper, 0.2, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
 						.fromTo $paramsText.get(0), 0.5, { y: -(packHeight + volumeHeight + $paramsCart.outerHeight())}, { y: 0, ease: Power0.easeNone }, 0
 						.fromTo $paramsCart.get(0), 0.4, { y: -(packHeight + volumeHeight) }, { y: 0, ease: Power0.easeNone }, 0.1
@@ -190,14 +190,57 @@ $ ->
 						.fromTo $paramsPack.get(0), 0.4, { y: 0 }, { y: -(packHeight + volumeHeight), ease: Power0.easeNone }, 0
 						.fromTo $paramsVolume.get(0), 0.3, { y: 0 }, { y: -volumeHeight, ease: Power0.easeNone }, 0
 						# after animation
-					$targetIngredients = $target.removeClass('ingredients-open').find('.product-params__ingredients')
-					tl.set $targetIngredients.get(0), { height: 0, autoAlpha: 0 }, 0.5
 					if selectorOddBefore
 						tl.staggerTo selectorOddBefore, 0.5, { y: 0, ease: Power0.easeNone }, 0, 0
+					$targetIngredients = $target.removeClass('ingredients-open').find('.product-params__ingredients')
+					if $targetIngredients.length
+						tl.set $targetIngredients.get(0), { height: 0, autoAlpha: 0 }, 0.5
 				setTimeout ->
 					isAnimation = false
 					$this.removeClass 'hover' if removeHover
 				, 500
+
+		#
+		# resize logic if some block isOpen (active)
+		#
+		resizeAnimation = ($this) ->
+			return if isAnimation
+			tl = new TimelineMax()
+			$target = $catalog.find($this.attr("data-target"))
+			$targetInner = $target.find('.product-params__wrap')
+
+			productCoverHeightClosed = (0.6666 * $this.outerWidth())
+			productCoverHeightOpen = Math.max(150 + $targetInner.outerHeight(), productCoverHeightClosed)
+
+			catalogIndex = $('.catalog__item').index($this.parent()) + 1
+			isOddProductCover = catalogIndex % 2
+			if isOddProductCover
+				oddShift = 150 - productCoverHeightClosed
+				evenShift = -120
+				coef = -1
+				selectorOdd = ".catalog__item:nth-child(2n+" + (catalogIndex + 2) + ")"
+				selectorOddBefore = ''
+				selectorEven = ".catalog__item:nth-child(2n+2)"
+			else
+				oddShift = 240
+				oddShiftBefore = 120
+				evenShift = 240 - productCoverHeightClosed
+				selectorOdd = ".catalog__item:nth-child(2n+" + (catalogIndex + 1) + ")"
+				selectorOddBefore = ".catalog__item:nth-child(-2n+" + (catalogIndex - 1) + ")"
+				selectorEven = ".catalog__item:nth-child(2n+" + (catalogIndex + 2) + ")"
+
+			if isMobile()
+				tl
+					.set $target.get(0), { height: $targetInner.outerHeight()  }, 0
+			else
+				tl
+					.set $target.get(0), { height: $targetInner.outerHeight()  }, 0
+					.set $this.get(0), { paddingBottom: "#{productCoverHeightOpen}px" }, 0
+					.set selectorOdd, { y: oddShift, ease: Power0.easeNone }, 0
+					.set selectorEven, { y: evenShift, ease: Power0.easeNone }, 0
+					# after animation
+				if selectorOddBefore
+					tl.set selectorOddBefore, { y: oddShiftBefore }, 0
 
 		#
 		# hover
@@ -232,6 +275,8 @@ $ ->
 		# Click handler
 		#
 
+		activeBlock = null
+
 		$block.on "click", (e) ->
 			e.preventDefault()
 			$this = $(@)
@@ -244,31 +289,38 @@ $ ->
 				# check if other block is not opened
 				animationFunc $openBlock, true, true
 				$openBlock.removeClass 'active'
+				activeBlock = null
 
 				setTimeout ->
 					animationFunc $this, isOpen
 					$openBlock.trigger 'mouseleave'
 					$this.addClass 'active'
+					activeBlock = $this.data 'target'
 				, 501
 			else if !isOpen
 				$this.addClass 'active'
+				activeBlock = $this.data 'target'
 				animationFunc $this, isOpen
 
 		$block.find('.product-cover__close').on 'click touchstart', (e) ->
 			e.preventDefault()
 			$this = $(@)
-			$parent = $this.parents('.product-cover.active')
+			$parent = $this.parents('.product-cover')
 			animationFunc $parent, true
 			$parent.removeClass 'active'
+			activeBlock = null
 
-		if !isMobile()
-			controller.resizeSceneActions.push ->
-				# close all open blocks on resize
-				$openBlock = $('.product-cover.active')
-				return unless $openBlock.length
-				$openBlock.each ->
-					animationFunc $(@), true, true
-				$openBlock.removeClass 'active'
+		controller.resizeSceneActions.push ->
+			# close all open blocks on resize
+			$openBlock = $('.product-cover.active')
+			return unless $openBlock.length or activeBlock
+			if $openBlock.length
+				resizeAnimation $openBlock
+			else if activeBlock
+				$activeBlock = $('.catalog').find("[data-target='#{activeBlock}']")
+				return unless $activeBlock.length
+				$activeBlock.addClass 'active'
+				animationFunc $activeBlock, false
 
 	productCoverJS()
 

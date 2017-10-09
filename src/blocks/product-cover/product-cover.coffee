@@ -38,6 +38,46 @@ $ ->
 				else
 					scene.enabled true
 
+			#
+			# Handle ingredients click
+			#
+			$this = $(@)
+			$params = $catalog.find($this.attr("data-target"))
+			$ingredients = $this.find('.ingredients')
+			$paramsIngredient = $params.find('.product-params__ingredients')
+			$paramsIngredientInner = $params.find('.product-params__ingredients-inner')
+			productCoverHeightClosed = 0.3333 * window.innerWidth
+
+			$ingredients.on 'click', ->
+				ingredientsOrigin = $paramsIngredientInner.outerHeight()
+				isOpen = $params.hasClass 'ingredients-open'
+				ingredientsHeight = if !isOpen then ingredientsOrigin else 0
+				paramsHeightDiff = if !isOpen then ingredientsOrigin else -ingredientsOrigin
+				catalogIndex = $('.catalog__item').index($this.parent()) + 1
+				isOddProductCover = catalogIndex % 2
+				tl = new TimelineMax()
+
+				if !isMobile()
+					if isOddProductCover
+						$selector = ".catalog__item:nth-child(2n+" + (catalogIndex + 2) + ")"
+						tl
+							.staggerTo $selector, 0.2, { y: 150 - productCoverHeightClosed - ingredientsHeight, ease: Power0.easeNone }, 0
+							.to $params.get(0), 0.2, { height: $params.height() + paramsHeightDiff, ease: Power0.easeNone }, 0
+					else
+						$selector = ".catalog__item:nth-child(2n+" + (catalogIndex + 2) + ")"
+						tl
+							.staggerTo $selector, 0.2, { y: 240 - productCoverHeightClosed - ingredientsHeight, ease: Power0.easeNone }, 0
+							.to $params.get(0), 0.2, { height: $params.height() + paramsHeightDiff, ease: Power0.easeNone }, 0
+
+				if isOpen
+					tl.to $paramsIngredient.get(0), 0.2, { height: 0, autoAlpha: 0, ease: Power0.easeNone }, 0
+				else
+					tl.fromTo $paramsIngredient.get(0), 0.2, { height: 0 }, { height: ingredientsHeight, autoAlpha: 1, ease: Power0.easeNone }, 0
+
+				$params.toggleClass 'ingredients-open'
+
+
+
 		#
 		# catalog animation
 		#
@@ -107,8 +147,8 @@ $ ->
 						.fromTo $target.get(0), 0.5, { height: 0 }, { height: $targetInner.outerHeight(),ease: Power0.easeNone  }, 0
 						.fromTo $this.get(0), 0.5, { paddingBottom: "#{productCoverHeightClosed}px" }, { paddingBottom: "#{productCoverHeightOpen}px", ease: Power0.easeNone }, 0
 						.fromTo $sliderWrapper, 0.2, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
-						.staggerFromTo selectorOdd, 0.5, { y: 0 }, { y: oddShift, ease: Power0.easeNone }, 0, 0
-						.staggerFromTo selectorEven, 0.5, { y: 0 }, { y: evenShift, ease: Power0.easeNone }, 0, 0
+						.staggerTo selectorOdd, 0.5, { y: oddShift, ease: Power0.easeNone }, 0, 0
+						.staggerTo selectorEven, 0.5, { y: evenShift, ease: Power0.easeNone }, 0, 0
 						.set $blockInners, { autoAlpha: 0 }, 0
 						.fromTo $paramsCart.get(0), 0.5, { y: -(textHeight + volumeHeight + packHeight)}, { y: 0, ease: Power0.easeNone }, 0
 						.fromTo $paramsPack.get(0), 0.4, { y: -(textHeight + volumeHeight) }, { y: 0, ease: Power0.easeNone }, 0.1
@@ -119,7 +159,7 @@ $ ->
 						.staggerFromTo $sliderVerticalText, 0.4, { autoAlpha: 0, rotationX: 90 * coef }, { autoAlpha: 1, rotationX: 0 }, 0.2, 0.4
 						# after animation
 					if selectorOddBefore
-						tl.staggerFromTo selectorOddBefore, 0.5, { y: 0 }, { y: oddShiftBefore, ease: Power0.easeNone }, 0, 0
+						tl.staggerTo selectorOddBefore, 0.5, { y: oddShiftBefore, ease: Power0.easeNone }, 0, 0
 
 				setTimeout ->
 					isAnimation = false
@@ -142,15 +182,17 @@ $ ->
 						.to $this.get(0), 0.5, { paddingBottom: "#{productCoverHeightClosed}px" , ease: Power0.easeNone  }, 0
 						.set $this.get(0), { paddingBottom: "33.33vw" }, 0.5
 						.fromTo $sliderWrapper, 0.2, { autoAlpha: 1 }, { autoAlpha: 0 }, 0
-						.staggerFromTo $blockInners, 0.1, { autoAlpha: 1 }, { autoAlpha: 0 }, 0, 0
-						.staggerFromTo selectorOdd, 0.5, { y: oddShift }, { y: 0, ease: Power0.easeNone }, 0, 0
-						.staggerFromTo selectorEven, 0.5, { y: evenShift }, { y: 0, ease: Power0.easeNone }, 0, 0
+						.staggerTo $blockInners, 0.1, { autoAlpha: 1 }, { autoAlpha: 0 }, 0, 0
+						.staggerTo selectorOdd, 0.5, { y: 0, ease: Power0.easeNone }, 0, 0
+						.staggerTo selectorEven, 0.5, { y: 0, ease: Power0.easeNone }, 0, 0
 						.fromTo $paramsCart.get(0), 0.5, { y: 0 }, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight()), ease: Power0.easeNone }, 0
 						.fromTo $paramsPack.get(0), 0.4, { y: 0 }, { y: -(packHeight + volumeHeight), ease: Power0.easeNone }, 0
 						.fromTo $paramsVolume.get(0), 0.3, { y: 0 }, { y: -volumeHeight, ease: Power0.easeNone }, 0
 						# after animation
+					$targetIngredients = $target.removeClass('ingredients-open').find('.product-params__ingredients')
+					tl.set $targetIngredients.get(0), { height: 0, autoAlpha: 0 }, 0.5
 					if selectorOddBefore
-						tl.staggerFromTo selectorOddBefore, 0.5, { y: oddShiftBefore }, { y: 0, ease: Power0.easeNone }, 0, 0
+						tl.staggerTo selectorOddBefore, 0.5, { y: 0, ease: Power0.easeNone }, 0, 0
 				setTimeout ->
 					isAnimation = false
 					$this.removeClass 'hover' if removeHover

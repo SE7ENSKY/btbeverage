@@ -10,6 +10,7 @@
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
+  ingredients: "some ingredients It quenches that hard-to-reach thirst with a bold flavor and all the goodness of 100% organic Darjeerling"
   priceList:
     8oz-6: 3
     8oz-8: 6
@@ -29,6 +30,7 @@
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
+  ingredients: "some ingredients"
   priceList:
     8oz-6: 3
     8oz-8: 6
@@ -48,6 +50,7 @@
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
+  ingredients: "some ingredients"
   priceList:
     8oz-6: 3
     8oz-8: 6
@@ -67,6 +70,7 @@
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
+  ingredients: "some ingredients"
   priceList:
     8oz-6: 3
     8oz-8: 6
@@ -86,6 +90,7 @@
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
+  ingredients: "some ingredients"
   priceList:
     8oz-6: 3
     8oz-8: 6
@@ -105,6 +110,7 @@
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
+  ingredients: "some ingredients"
   priceList:
     8oz-6: 3
     8oz-8: 6
@@ -124,6 +130,7 @@
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
+  ingredients: "some ingredients"
   priceList:
     8oz-6: 3
     8oz-8: 6
@@ -143,6 +150,7 @@
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
+  ingredients: "some ingredients"
   priceList:
     8oz-6: 3
     8oz-8: 6
@@ -162,6 +170,7 @@
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
+  ingredients: "some ingredients"
   priceList:
     8oz-6: 3
     8oz-8: 6

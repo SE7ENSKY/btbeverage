@@ -1,7 +1,9 @@
 +e.wrap
-	if text
+	if data.text
 		+e.text
-			+e.text-inner.stagger!= text
+			+e.text-inner.stagger!= data.text
+				+e.ingredients
+					+e.ingredients-inner= data.ingredients
 	+e.volume
 		+e.inner.stagger
 			+e.title select &#10; size

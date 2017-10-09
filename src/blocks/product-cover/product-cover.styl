@@ -126,6 +126,7 @@
 			bottom 0
 			opacity 0
 			visibility hidden
+			cursor default
 			@media tablet_desktop
 				padding 70px 0 70px 60px
 			@media phone
@@ -163,8 +164,13 @@
 		line-height 1.5
 		color #fff
 		text-transform uppercase
+		opacity 1
+		cursor pointer
 		@media tablet_desktop
 			font-size 14px
+			transition opacity 0.2s ease-in-out
+			&:hover
+				opacity 0.6
 		@media phone
 			font-size 10px
 		&-vertical

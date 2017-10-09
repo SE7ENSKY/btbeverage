@@ -57,17 +57,18 @@ $ ->
 				isOddProductCover = catalogIndex % 2
 				tl = new TimelineMax()
 
+				tl
+					.to $params.get(0), 0.2, { height: $params.height() + paramsHeightDiff, ease: Power0.easeNone }, 0
+
 				if !isMobile()
 					if isOddProductCover
 						$selector = ".catalog__item:nth-child(2n+" + (catalogIndex + 2) + ")"
 						tl
 							.staggerTo $selector, 0.2, { y: 150 - productCoverHeightClosed - ingredientsHeight, ease: Power0.easeNone }, 0
-							.to $params.get(0), 0.2, { height: $params.height() + paramsHeightDiff, ease: Power0.easeNone }, 0
 					else
 						$selector = ".catalog__item:nth-child(2n+" + (catalogIndex + 2) + ")"
 						tl
 							.staggerTo $selector, 0.2, { y: 240 - productCoverHeightClosed - ingredientsHeight, ease: Power0.easeNone }, 0
-							.to $params.get(0), 0.2, { height: $params.height() + paramsHeightDiff, ease: Power0.easeNone }, 0
 
 				if isOpen
 					tl.to $paramsIngredient.get(0), 0.2, { height: 0, autoAlpha: 0, ease: Power0.easeNone }, 0

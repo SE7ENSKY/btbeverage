@@ -5,20 +5,19 @@ $ ->
 		return unless $block.length
 		$modalLink = $block.find("[data-toggle='modal']")
 		$closeButton = $block.find '.modal-close'
+		topScrollPos = window.pageYOffset
 
 		$('.modal').on 'shown.bs.modal', (e) ->
-			$("html, body").addClass("modal-open")
+			topScrollPos = window.pageYOffset
+			$("html, body").addClass("overflow-hidden")
 			$(@).addClass('overflow-hidden')
 			$(document).trigger 'update-cart' if @.id == 'cart-modal'
 			$(document).trigger 'remove-slow-scroll'
 
-		$('.modal').on 'hidden.bs.modal', (e) ->
-			$("body").removeClass("modal-open")
-			$("html").removeClass("overflow-hidden")
+		$('.modal').on 'hide.bs.modal', (e) ->
+			$("html, body").removeClass("overflow-hidden")
 			$(@).removeClass('overflow-hidden')
-			$(document).trigger 'init-slow-scroll'
-
-		$closeButton.on 'click', (e) ->
+			window.scrollTo 0, topScrollPos
 			$(document).trigger 'init-slow-scroll'
 
 	modalsJS()

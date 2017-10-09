@@ -46,7 +46,7 @@ $ ->
 			$ingredients = $this.find('.ingredients')
 			$paramsIngredient = $params.find('.product-params__ingredients')
 			$paramsIngredientInner = $params.find('.product-params__ingredients-inner')
-			productCoverHeightClosed = 0.3333 * window.innerWidth
+			productCoverHeightClosed = 0.6666 * $this.parent().outerWidth()
 
 			$ingredients.on 'click', ->
 				ingredientsOrigin = $paramsIngredientInner.outerHeight()
@@ -95,8 +95,8 @@ $ ->
 			$target = $catalog.find($this.attr("data-target"))
 			$targetInner = $target.find('.product-params__wrap')
 
-			productCoverHeightClosed = 0.3333 * window.innerWidth
-			productCoverHeightOpen = Math.max(150 + $targetInner.outerHeight(), 0.3333 * window.innerWidth)
+			productCoverHeightClosed = (0.6666 * $this.outerWidth())
+			productCoverHeightOpen = Math.max(150 + $targetInner.outerHeight(), productCoverHeightClosed)
 
 			catalogIndex = $('.catalog__item').index($this.parent()) + 1
 			isOddProductCover = catalogIndex % 2
@@ -209,7 +209,7 @@ $ ->
 			hasVideo = $video.length and $video.hasClass('is-loaded')
 			if (hasVideo and !$this.hasClass('hover')) and !$this.hasClass('active')
 				$video.show(0)
-				$this.toggleClass 'hover'
+				$this.addClass 'hover'
 				setTimeout ->
 					$video.get(0).play() if $this.hasClass('hover')
 				, 300
@@ -220,7 +220,7 @@ $ ->
 			hasVideo = $video.length and $video.hasClass('is-loaded')
 			if (hasVideo and $this.hasClass('hover')) and !$this.hasClass('active')
 				$video.get(0).pause()
-				$this.toggleClass 'hover'
+				$this.removeClass 'hover'
 				setTimeout ->
 					$video.hide(0) if !$this.hasClass('hover')
 				, 300
@@ -249,7 +249,7 @@ $ ->
 					animationFunc $this, isOpen
 					$openBlock.trigger 'mouseleave'
 					$this.addClass 'active'
-				, 500
+				, 501
 			else if !isOpen
 				$this.addClass 'active'
 				animationFunc $this, isOpen

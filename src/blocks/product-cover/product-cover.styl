@@ -10,8 +10,8 @@
 		padding-bottom 66.66vw
 	&__wrap
 		position absolute
-		top -1px
-		right 0px
+		top 0px
+		right -1px
 		bottom 0px
 		left -1px
 		overflow hidden
@@ -31,9 +31,8 @@
 			bottom 0
 			left 0
 			width 200%
-			transition transform .3s linear
+			transition all .3s linear
 			overflow hidden
-			margin-bottom -1px
 	&__image
 		width 50%
 		height 100%
@@ -178,8 +177,6 @@
 			transform rotate(-90deg) translate(-90%, 100%)
 			transform-origin left bottom
 			margin-left -20px
-			// font-size 72px
-			font-size 5.1vw
 			line-height 1.1
 			font-weight 600
 			color #fff
@@ -189,6 +186,10 @@
 			span
 				display inline-block
 				transform-origin 100% 50%
+			@media xl
+				font-size 72px
+			@media not_xl
+				font-size 5.1vw
 			@media phone
 				display none
 	&.right

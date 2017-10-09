@@ -6,14 +6,16 @@ $ ->
 		$modalLink = $block.find("[data-toggle='modal']")
 		$closeButton = $block.find '.modal-close'
 
-		$modalLink.on "click", (e) ->
-			setTimeout ->
-				$("body").addClass("modal-open")
-			, 400
-
 		$('.modal').on 'shown.bs.modal', (e) ->
+			$("html, body").addClass("modal-open")
+			$(@).addClass('overflow-hidden')
 			$(document).trigger 'update-cart' if @.id == 'cart-modal'
 			$(document).trigger 'remove-slow-scroll'
+
+		$('.modal').on 'hidden.bs.modal', (e) ->
+			$("body").removeClass("modal-open")
+			$("html").removeClass("overflow-hidden")
+			$(@).removeClass('overflow-hidden')
 
 		$closeButton.on 'click', (e) ->
 			$(document).trigger 'init-slow-scroll'

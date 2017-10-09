@@ -213,10 +213,10 @@ $ ->
 			lettersAnimation 2.7
 			headerAnimation 3.7
 			sliderAnimation 3.7
-			$('body').css 'overflow', 'hidden'
+			$('html, body').addClass 'overflow-hidden'
 			setTimeout ->
 				if isSequenceLoaded
-					$('body').css 'overflow', ''
+					$('html, body').removeClass 'overflow-hidden'
 					$(document).trigger 'init-slow-scroll'
 					scrollToHash()
 				sliderAnimationOver = true
@@ -229,7 +229,7 @@ $ ->
 
 		if window.isPreloaderPlayedBefore
 			$leaf.show(0)
-			$('body').css 'overflow', 'hidden'
+			$('html, body').addClass 'overflow-hidden'
 			sliderAnimationOver = true
 			$('.intro__preloader').hide(0)
 			$('.intro__logo').addClass 'done'
@@ -257,7 +257,7 @@ $ ->
 		isSequenceLoaded = true
 		$('.intro__more text').text 'Scroll to discover'
 		if sliderAnimationOver
-			$('body').css 'overflow', ''
+			$('html, body').removeClass 'overflow-hidden'
 			$(document).trigger 'init-slow-scroll'
 
 			scrollToHash()

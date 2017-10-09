@@ -61,6 +61,8 @@
 	&__list
 		display flex
 		align-items center
+		@media phone_tablet
+			margin-left -10px
 	&__item
 		font-size 30px
 		line-height 1.1
@@ -75,15 +77,20 @@
 			margin-right 50px
 			font-size 30px
 		@media tablet
-			margin-right 40px
+			margin-right 20px
 			font-size 25px
+			padding 10px
+			cursor pointer
 		@media phone
-			margin-right 35px
+			margin-right 15px
 			font-size 20px
+			padding 10px
+			cursor pointer
 		&.active
 			opacity 1
-		&:not(.active):hover
-			opacity 0.6
+		@media desktop
+			&:not(.active):hover
+				opacity 0.6
 	&__volume
 		z-index 2
 		background-color #78A965

@@ -49,7 +49,7 @@ $ ->
 					, 2000
 
 		$packSize = $block.find('.product-params__packs .product-params__item')
-		$packSize.click ->
+		$packSize.on 'click touchstart', ->
 			$this = $(@)
 			activeDots = $this.data 'pack'
 			$innerPackSize = $this.parent().find('.product-params__item')
@@ -66,7 +66,7 @@ $ ->
 			handleTotalChange $this.parents('.product-params')
 
 		$volumes = $block.find('.product-params__volume .product-params__item')
-		$volumes.click ->
+		$volumes.on 'click touchstart', ->
 			$this = $(@)
 			position = 0
 

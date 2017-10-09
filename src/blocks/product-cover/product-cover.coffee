@@ -254,7 +254,7 @@ $ ->
 				$this.addClass 'active'
 				animationFunc $this, isOpen
 
-		$block.find('.product-cover__close').on 'click', (e) ->
+		$block.find('.product-cover__close').on 'click touchstart', (e) ->
 			e.preventDefault()
 			$this = $(@)
 			$parent = $this.parents('.product-cover.active')

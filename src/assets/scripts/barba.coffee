@@ -43,8 +43,16 @@ $ ->
 	Barba.Pjax.originalPreventCheck = Barba.Pjax.preventCheck
 
 	Barba.Pjax.preventCheck = (evt, element) ->
-		if ($(element).attr('href') && $(element).attr('href').indexOf('#') > -1)
-			return true
+		href = $(element).attr('href')
+		linkWithHash = href && href.indexOf('#') > -1
+		if linkWithHash
+			pos = href.indexOf('#')
+			if pos == 0
+				return false
+			else if (window.location.pathname == href.substring(0, pos))
+				return false
+			else
+				return true
 		else
 			return Barba.Pjax.originalPreventCheck(evt, element)
 

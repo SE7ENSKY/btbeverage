@@ -16,6 +16,7 @@ $ ->
 			$("body").removeClass("modal-open")
 			$("html").removeClass("overflow-hidden")
 			$(@).removeClass('overflow-hidden')
+			$(document).trigger 'init-slow-scroll'
 
 		$closeButton.on 'click', (e) ->
 			$(document).trigger 'init-slow-scroll'

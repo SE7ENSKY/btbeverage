@@ -9,9 +9,22 @@ $ ->
 
 		$('.modal').on 'shown.bs.modal', (e) ->
 			topScrollPos = window.pageYOffset
-			$("html, body").addClass("overflow-hidden-modal")
-			$(@).addClass('overflow-hidden')
-			$(document).trigger 'update-cart' if @.id == 'cart-modal'
+			self = @
+
+			onComplete = ->
+				$("html, body").addClass("overflow-hidden-modal")
+				$(self).addClass('overflow-hidden')
+				$(document).trigger 'update-cart' if self.id == 'cart-modal'
+
+			if isMobile()
+				$('.main').css 'opacity', 0
+				$('html, body').animate
+					scrollTop: 0
+				, 50, ->
+					$('.main').css 'opacity', 'initial'
+					onComplete()
+			else
+				onComplete
 
 		$('.modal').on 'hide.bs.modal', (e) ->
 			$("html, body").removeClass("overflow-hidden-modal")

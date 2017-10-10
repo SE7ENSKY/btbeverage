@@ -13,21 +13,27 @@ $ ->
 		$desktop = $block.find('.catalog__desktop')
 		$mobile = $block.find('.catalog__mobile')
 
-		tl = new TimelineMax()
-		tl
-			.fromTo $desktop.find('.catalog__item:nth-child(2n+1)'), 0.5, { y: 50 }, { y: 0 }, 0
-			.fromTo $desktop.find('.catalog__item:nth-child(2n+2)'), 0.5, { y: -100 }, { y: 0 }, 0
-
+		tween = TweenMax.to $desktop.find('.catalog__item:nth-child(2n)'), 0.5, { y: '+=300', ease: Power0.easeNone }
 		cntrl = controller.get()
 
+		needCalcDuration = true
+		durationValue = 0
+		calcDuration = ->
+			return durationValue unless needCalcDuration
+			durationValue = $block.outerHeight() + window.innerHeight
+			needCalcDuration = false
+			return durationValue
+
+		$(window).on 'resize', ->
+			needCalcDuration = true
+
 		scene = new Scene({
-			triggerElement: $block.get(0)
-			triggerHook: 1,
-			offset: 20,
-			duration: "33%"
+				triggerElement: $block.get(0)
+				triggerHook: 1,
+				duration: calcDuration
 			})
 			.addTo cntrl
-			.setTween tl
+			.setTween tween
 
 		scene.enabled false if isMobile()
 

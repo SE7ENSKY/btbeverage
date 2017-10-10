@@ -1,5 +1,5 @@
 import { Scene } from 'scrollmagic'
-import { TimelineMax } from 'gsap'
+import { TimelineMax, TweenMax } from 'gsap'
 
 $ ->
 	mediaWidgetJS = ->
@@ -49,15 +49,12 @@ $ ->
 					triggerElement: $elem.get(0),
 					offset: -200,
 					})
-					.on 'enter', ->
-						if !isVideoCalled
-							isVideoCalled = true
-							$mainImage = $elem.find('.media-widget__image_main .media-widget__image-i')
+					.on 'start', (ev) ->
+						if ev.scrollDirection == "FORWARD"
+							sceneVideoInit = sceneVideoInit.destroy()
 							addVideo $elem, 0, ->
 								$elem.find('video').get(0).play()
-								tl = new TimelineMax()
-								tl
-									.fromTo $video.get(0), 0.5, { autoAlpha: 0 }, { autoAlpha: 1, delay: 1.5 }
+								TweenMax.fromTo $video.get(0), 0.5, { autoAlpha: 0 }, { autoAlpha: 1, delay: 1.5 }
 					.addTo(cntrl)
 
 				videoPromise = videoWithPromise $video.get(0)
@@ -68,12 +65,10 @@ $ ->
 					})
 					.on 'enter', ->
 						if $video.hasClass 'is-loaded'
-							$video.show(0)
 							videoPromise.play()
 					.on 'leave', ->
 						if $video.hasClass 'is-loaded'
 							videoPromise.pause()
-							$video.hide(0)
 					.addTo(cntrl)
 
 				if isMobile() or isPortrait()
@@ -83,10 +78,10 @@ $ ->
 				controller.resizeSceneActions.push ->
 					if isMobile() or isPortrait()
 						sceneVideoDisplay.enabled false
-						sceneVideoInit.enabled false
+						sceneVideoInit.enabled false if sceneVideoInit
 					else
 						sceneVideoDisplay.enabled true
-						sceneVideoInit.enabled true
+						sceneVideoInit.enabled true if sceneVideoInit
 			#
 			# Sequence
 			#

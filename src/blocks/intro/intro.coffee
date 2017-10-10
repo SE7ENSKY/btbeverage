@@ -189,9 +189,9 @@ $ ->
 
 		addVideoCallback = ->
 			$(document).trigger 'sequence-init'
-			$video = $block.find('video')
-			return unless $video.length
-			$video.get(0).play()
+			# $video = $block.find('video')
+			# return unless $video.length
+			# $video.get(0).play()
 			# tlVideo = new TimelineMax()
 			# tlVideo
 				# .set $video.get(0), { autoAlpha: 1 }, 0

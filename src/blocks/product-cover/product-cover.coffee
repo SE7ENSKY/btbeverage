@@ -195,6 +195,9 @@ $ ->
 					$targetIngredients = $target.removeClass('ingredients-open').find('.product-params__ingredients')
 					if $targetIngredients.length
 						tl.set $targetIngredients.get(0), { height: 0, autoAlpha: 0 }, 0.5
+				setTimeout ->
+					isAnimation = false
+				, 500
 
 		#
 		# resize logic if some block isOpen (active)
@@ -245,30 +248,26 @@ $ ->
 		hoverIn = ->
 			$this = $(@)
 			$video = $this.find('video')
-			hasVideo = $video.length and $video.hasClass('is-loaded')
+			hasVideo = $video.length
 			if (hasVideo and !$this.hasClass('hover')) and !$this.hasClass('active')
-				$video.show(0)
 				$this.addClass 'hover'
 				toX = if $this.hasClass 'right' then "0%" else "-50%"
 				$inner = $this.find('.product-cover__wrap-inner')
-				TweenMax.to $inner.get(0), 0.3, { x: toX, ease: Power0.easeNone }
-				setTimeout ->
-					$video.get(0).play() if $this.hasClass('hover')
-				, 300
+				onComplete = ->
+					$video.get(0).play() if $this.hasClass('hover') and $video.hasClass('is-loaded')
+
+				TweenMax.to $inner.get(0), 0.3, { x: toX, ease: Power0.easeNone, onComplete: onComplete }
 
 		hoverOut = ->
 			$this = $(@)
 			$video = $this.find('video')
-			hasVideo = $video.length and $video.hasClass('is-loaded')
+			hasVideo = $video.length
 			if (hasVideo and $this.hasClass('hover')) and !$this.hasClass('active')
 				$video.get(0).pause()
 				$this.removeClass 'hover'
 				toX = if $this.hasClass 'right' then "-50%" else "0%"
 				$inner = $this.find('.product-cover__wrap-inner')
 				TweenMax.to $inner.get(0), 0.3, { x: toX, ease: Power0.easeNone }
-				setTimeout ->
-					$video.hide(0) if !$this.hasClass('hover')
-				, 300
 
 		if !touchDevice
 			$block.hover hoverIn, hoverOut

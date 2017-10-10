@@ -1,9 +1,8 @@
 +e.image._main
 	if mainImage
 		+e.image-i(class="lazy-image" data-src=mainImage)
-		- console.log(mainImage)
 	if videoLink
-		+e('video').image-v(data-video=videoLink.src data-type="video/mp4" muted loop)
+		+e('video').image-v(data-video=videoLink.src data-type="video/mp4" muted loop poster=mainImage)
 
 +e.content
 	+e.content-bg

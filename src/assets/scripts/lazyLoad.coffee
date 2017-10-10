@@ -25,8 +25,11 @@ $ ->
 				.addTo cntrl
 				.on 'start', (ev) ->
 					if ev.scrollDirection == "FORWARD"
-						loadScene.destroy()
+						loadScene = loadScene.destroy()
 						loadImage $this
+
+			controller.resizeSceneActions.push ->
+				loadScene.refresh() if loadScene
 
 	initLazyLoad()
 

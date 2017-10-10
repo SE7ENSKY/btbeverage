@@ -7,9 +7,9 @@ $ ->
 		return unless $block.length
 		$catalog = $(".catalog")
 
-		$block.each (index) ->
-			if index % 2 == 0
-				$(this).addClass 'right'
+		$col = $catalog.find('.catalog__col')
+		if $col.length
+			$col.filter(':eq(1)').find($block).addClass 'right'
 
 		#
 		# add Video
@@ -18,25 +18,6 @@ $ ->
 		cntrl = controller.get()
 
 		$block.each ->
-			# self = @
-			# scene = new Scene({
-			# 	triggerElement: self,
-			# 	triggerHook: 1,
-			# 	offset: -200
-			# 	})
-			# 	.on 'start', ->
-			# 		addVideo $(self)
-			# 		scene.destroy()
-			# 	.addTo(cntrl)
-			#
-			# scene.enabled false if isMobile() && scene
-			#
-			# controller.resizeSceneActions.push ->
-			# 	return unless scene
-			# 	if isMobile()
-			# 		scene.enabled false
-			# 	else
-			# 		scene.enabled true
 
 			#
 			# Handle ingredients click
@@ -238,7 +219,6 @@ $ ->
 
 			return if isAnimation
 
-			$(document).trigger 'catalog-parallax', [false]
 
 			if !isOpen and $openBlock.length
 				# check if other block is not opened
@@ -263,11 +243,9 @@ $ ->
 			$parent = $this.parents('.product-cover')
 			animationFunc $parent, true
 			$parent.removeClass 'active'
-			$(document).trigger 'catalog-parallax', [true]
 			activeBlock = null
 
 		controller.resizeSceneActions.push ->
-			# close all open blocks on resize
 			$openBlock = $('.product-cover.active')
 			return unless $openBlock.length or activeBlock
 			if $openBlock.length

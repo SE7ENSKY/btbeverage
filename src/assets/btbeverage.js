@@ -24,6 +24,7 @@ import 'f/ffmark/stylesheet.css';
 import 'styles/main.styl';
 
 // ------------------ import vendor scripts ------------------
+import 'intersection-observer';
 import 'vendor/twitter-bootstrap/transition.js';
 import 'vendor/twitter-bootstrap/modal.js';
 import 'vendor/pixi/pixi.min.js';

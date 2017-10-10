@@ -44,19 +44,6 @@ $ ->
 			#
 			$video = $elem.find 'video'
 			if $video.length
-				isVideoCalled = false
-				sceneVideoInit = new Scene({
-					triggerElement: $elem.get(0),
-					offset: -200,
-					})
-					.on 'enter', (ev) ->
-						if ev.scrollDirection == "FORWARD" and sceneVideoInit
-							sceneVideoInit = sceneVideoInit.destroy()
-							addVideo $elem, 0, ->
-								$elem.find('video').get(0).play()
-								TweenMax.fromTo $video.get(0), 0.5, { autoAlpha: 0 }, { autoAlpha: 1, delay: 1.5 }
-					.addTo(cntrl)
-
 				videoPromise = videoWithPromise $video.get(0)
 
 				sceneVideoDisplay = new Scene({
@@ -78,10 +65,8 @@ $ ->
 				controller.resizeSceneActions.push ->
 					if isMobile() or isPortrait()
 						sceneVideoDisplay.enabled false
-						sceneVideoInit.enabled false if sceneVideoInit
 					else
 						sceneVideoDisplay.enabled true
-						sceneVideoInit.enabled true if sceneVideoInit
 			#
 			# Sequence
 			#

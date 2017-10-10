@@ -2,7 +2,7 @@
 	if mainImage
 		+e.image-i(class="lozad" data-background-image=mainImage)
 	if videoLink
-		+e('video').image-v(class='video-lozad' data-video=videoLink.src data-type="video/mp4" muted loop data-poster=mainImage)
+		+e('video').image-v(class='video-lozad' data-video=videoLink.src data-type="video/mp4" muted loop autoplay data-poster=mainImage)
 
 +e.content
 	+e.content-bg

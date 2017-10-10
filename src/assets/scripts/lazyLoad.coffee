@@ -19,6 +19,8 @@ $ ->
 
 			el.addEventListener 'canplaythrough', ->
 				$this.addClass 'is-loaded'
+				# force play
+				el.play() if $this.closest('.product-cover.hover, .product-cover.active').length
 
 	initLazyLoad = ->
 		observer.observe()

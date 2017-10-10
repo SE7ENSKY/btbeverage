@@ -37,6 +37,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 		.on 'leave', (ev) ->
 			if (options.begin and ev.scrollDirection == "REVERSE")
 				$canvas = $seq.find 'canvas'
+				return unless $canvas.length
 				TweenMax.set $canvas.get(0), { autoAlpha: 0 }
 				TweenMax.set $seq.get(0), { autoAlpha: 0 }
 			if (options.finish and ev.scrollDirection == "FORWARD") and !scene
@@ -51,6 +52,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 		.on 'enter', (ev) ->
 			if (options.begin and ev.scrollDirection == "FORWARD")
 				$canvas = $seq.find 'canvas'
+				return unless $canvas.length
 				TweenMax.set $canvas.get(0), { autoAlpha: 1 }
 				TweenMax.set $seq.get(0), { autoAlpha: 1 }
 			if (options.finish and ev.scrollDirection == "REVERSE") and scene

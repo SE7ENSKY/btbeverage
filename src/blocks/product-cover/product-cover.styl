@@ -18,9 +18,9 @@
 		&:after
 			content ""
 			position absolute
-			top 0px
+			top -1px
 			right -1px
-			bottom 0px
+			bottom -1px
 			left -1px
 			background-color rgba(0,0,0,.5)
 		&-inner
@@ -31,7 +31,6 @@
 			bottom 0
 			left 0
 			width 200%
-			transition all .3s linear
 			overflow hidden
 	&__image
 		width 50%
@@ -50,10 +49,10 @@
 			height 100%
 	&__content
 		position absolute
-		top -1px
-		right -1px
-		bottom -1px
-		left -1px
+		top 0
+		right 0
+		bottom 0
+		left 0
 		text-decoration none
 		z-index 8
 	&__title
@@ -226,13 +225,3 @@
 				@media phone
 					font-size 40px
 					line-height 1.1
-	&.hover
-		.product-cover
-			&__wrap
-				&-inner
-					transform translateX(-50%)
-		&.right
-			.product-cover
-				&__wrap
-					&-inner
-						transform translateX(0%)

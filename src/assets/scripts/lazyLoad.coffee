@@ -23,9 +23,11 @@ $ ->
 				offset: -200,
 				})
 				.addTo cntrl
-				.on 'start', ->
-					loadScene.destroy()
-					loadImage $this
+				.on 'start', (ev) ->
+					if ev.scrollDirection == "FORWARD"
+						console.log 'lazyload', $this
+						loadScene.destroy()
+						loadImage $this
 
 	initLazyLoad()
 

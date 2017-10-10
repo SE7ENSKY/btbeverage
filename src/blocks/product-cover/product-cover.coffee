@@ -195,10 +195,6 @@ $ ->
 					$targetIngredients = $target.removeClass('ingredients-open').find('.product-params__ingredients')
 					if $targetIngredients.length
 						tl.set $targetIngredients.get(0), { height: 0, autoAlpha: 0 }, 0.5
-				setTimeout ->
-					isAnimation = false
-					$this.removeClass 'hover' if removeHover
-				, 500
 
 		#
 		# resize logic if some block isOpen (active)
@@ -253,6 +249,9 @@ $ ->
 			if (hasVideo and !$this.hasClass('hover')) and !$this.hasClass('active')
 				$video.show(0)
 				$this.addClass 'hover'
+				toX = if $this.hasClass 'right' then "0%" else "-50%"
+				$inner = $this.find('.product-cover__wrap-inner')
+				TweenMax.to $inner.get(0), 0.3, { x: toX, ease: Power0.easeNone }
 				setTimeout ->
 					$video.get(0).play() if $this.hasClass('hover')
 				, 300
@@ -264,6 +263,9 @@ $ ->
 			if (hasVideo and $this.hasClass('hover')) and !$this.hasClass('active')
 				$video.get(0).pause()
 				$this.removeClass 'hover'
+				toX = if $this.hasClass 'right' then "-50%" else "0%"
+				$inner = $this.find('.product-cover__wrap-inner')
+				TweenMax.to $inner.get(0), 0.3, { x: toX, ease: Power0.easeNone }
 				setTimeout ->
 					$video.hide(0) if !$this.hasClass('hover')
 				, 300
@@ -285,6 +287,8 @@ $ ->
 
 			return if isAnimation
 
+			$(document).trigger 'catalog-parallax', [false]
+
 			if !isOpen and $openBlock.length
 				# check if other block is not opened
 				animationFunc $openBlock, true, true
@@ -292,11 +296,11 @@ $ ->
 				activeBlock = null
 
 				setTimeout ->
-					animationFunc $this, isOpen
-					$openBlock.trigger 'mouseleave'
 					$this.addClass 'active'
+					hoverOut.call $openBlock.get(0)
 					activeBlock = $this.data 'target'
-				, 501
+					animationFunc $this, isOpen
+				, 500
 			else if !isOpen
 				$this.addClass 'active'
 				activeBlock = $this.data 'target'
@@ -308,6 +312,7 @@ $ ->
 			$parent = $this.parents('.product-cover')
 			animationFunc $parent, true
 			$parent.removeClass 'active'
+			$(document).trigger 'catalog-parallax', [true]
 			activeBlock = null
 
 		controller.resizeSceneActions.push ->

@@ -31,6 +31,10 @@ $ ->
 
 		scene.enabled false if isMobile()
 
+		$(document).on 'catalog-parallax', (e, value) ->
+			if !isMobile()
+				scene.enabled value
+
 		handleStructure = ->
 			if isMobile()
 				scene.enabled false

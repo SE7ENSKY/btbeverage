@@ -87,7 +87,7 @@ $ ->
 
 		scrollToViewport = ($this) ->
 			$('html, body').animate
-				scrollTop: $this.offset().top - 60
+				scrollTop: $this.offset().top - $('.header').outerHeight()
 
 		animationFunc = ($this, isOpen, removeHover = false) ->
 			isAnimation = true

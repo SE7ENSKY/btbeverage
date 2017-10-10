@@ -1,35 +1,16 @@
-import { Scene } from 'scrollmagic'
+import lozad from 'lozad'
 
 $ ->
-
-	loadImage = ($this) ->
-		{ src } = $this.data()
-		img = new Image()
-		img.onload = ->
-			$this.css 'background-image', "url(#{src})"
-		img.src = src
+	observer = lozad();
+	videoObserver = lozad '.video-lozad',
+		load: (el) ->
+			$this = $(el)
+			{ poster } = $this.data()
+			$this.attr 'poster', poster
 
 	initLazyLoad = ->
-		$imageLoad = $('.lazy-image')
-		return unless $imageLoad.length
-
-		cntrl = controller.get()
-
-		$imageLoad.each ->
-			$this = $(@)
-			loadScene = new Scene({
-				triggerElement: @,
-				triggerHook: 1,
-				offset: -200,
-				})
-				.addTo cntrl
-				.on 'start', (ev) ->
-					if ev.scrollDirection == "FORWARD"
-						loadScene = loadScene.destroy()
-						loadImage $this
-
-			controller.resizeSceneActions.push ->
-				loadScene.refresh() if loadScene
+		observer.observe()
+		videoObserver.observe()
 
 	initLazyLoad()
 

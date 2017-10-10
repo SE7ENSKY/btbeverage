@@ -1,8 +1,8 @@
 +e.image._main
 	if mainImage
-		+e.image-i(class="lazy-image" data-src=mainImage)
+		+e.image-i(class="lozad" data-background-image=mainImage)
 	if videoLink
-		+e('video').image-v(data-video=videoLink.src data-type="video/mp4" muted loop poster=mainImage)
+		+e('video').image-v(class='video-lozad' data-video=videoLink.src data-type="video/mp4" muted loop data-poster=mainImage)
 
 +e.content
 	+e.content-bg

@@ -49,8 +49,8 @@ $ ->
 					triggerElement: $elem.get(0),
 					offset: -200,
 					})
-					.on 'start', (ev) ->
-						if ev.scrollDirection == "FORWARD"
+					.on 'enter', (ev) ->
+						if ev.scrollDirection == "FORWARD" and sceneVideoInit
 							sceneVideoInit = sceneVideoInit.destroy()
 							addVideo $elem, 0, ->
 								$elem.find('video').get(0).play()

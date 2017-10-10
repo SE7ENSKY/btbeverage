@@ -1,10 +1,10 @@
 +e.wrap
 	+e.wrap-inner
 		if data.image
-			+e.image(class="lazy-image" data-src=data.image)
+			+e.image(class="lozad" data-background-image=data.image)
 		if data.video
 			+e.video-wrapper
-				+e("video").video(data-video=data.video data-type="video/mp4" loop muted poster=data.poster)
+				+e("video").video(class='video-lozad' data-video=data.video data-type="video/mp4" loop muted data-poster=data.poster)
 +e.content
 	if data.title
 		+e.title!= data.title

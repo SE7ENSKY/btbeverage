@@ -30,17 +30,21 @@ $ ->
 		backgroundVideo = new Scene({
 			triggerElement: $block.get(0)
 			triggerHook: 0,
-			offset: 0,
+			offset: 200,
 			duration: if window.innerHeight >= 420 then "100%" else 420
 			})
-			.on 'leave', ->
+			.on 'leave', (event) ->
 				return unless $video.length
-				videoPromise.pause()
-				$video.hide(0)
-			.on 'enter', ->
+				{ scrollDirection } = event
+				if scrollDirection == "FORWARD"
+					videoPromise.pause()
+					$video.hide(0)
+			.on 'enter', (event) ->
 				return unless $video.length
-				$video.show(0)
-				videoPromise.play()
+				{ scrollDirection } = event
+				if scrollDirection == "REVERSE"
+					$video.show(0)
+					videoPromise.play()
 			.addTo(cntrl)
 
 		backgroundVideo.enabled false if isMobile()
@@ -119,16 +123,15 @@ $ ->
 			tl
 				.fromTo $leaf, 2.2,
 					y: - window.innerHeight / 2 - 40,
-					rotation: -90,
 						y: "-100%",
 						ease: Power1.easeOut
 					, 0
 				.fromTo $leaf, 0.8, { rotation: -90 }, { rotation: 25 }, 0
 				.fromTo $leaf, 0.8, { x: "-50%" }, { x: "-53%" }, 0
-				.fromTo $leaf, 0.6, { x: "-53%" }, { x: "-45%" }, 0.8
-				.fromTo $leaf, 0.4, { rotation: 25 }, { rotation: -5 }, 1
-				.fromTo $leaf, 0.6, { rotation: -5 }, { rotation: 5 }, 1.6
-				.fromTo $leaf, 0.6, { x: "-45%" }, { x: "-50%" }, 1.6
+				.to $leaf, 0.6, { x: "-45%" }, 0.8
+				.to $leaf, 0.4, { rotation: -5 }, 1
+				.to $leaf, 0.6, { rotation: 5 }, 1.6
+				.to $leaf, 0.6, { x: "-50%" }, 1.6
 
 		leafScrollAnimation = ->
 			basicConfig =

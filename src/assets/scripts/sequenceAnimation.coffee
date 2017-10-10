@@ -46,7 +46,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 					triggerHook: options.triggerHook or 1,
 					duration: "100%"
 					})
-					.setTween TweenMax.fromTo '.sequence', 0.5, { y: 0 }, { y: '-100%', ease: Power0.easeNone }
+					.setTween TweenMax.fromTo '.sequence', 0.5, { y: '0%', x: '-50%' }, { y: '-100%', x: '-50%', ease: Power0.easeNone }
 					.addTo(cntrl)
 		.on 'enter', (ev) ->
 			if (options.begin and ev.scrollDirection == "FORWARD")

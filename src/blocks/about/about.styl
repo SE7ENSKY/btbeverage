@@ -29,12 +29,14 @@
 		&-image
 			display none
 			position fixed
-			top calc(50vh + 5px)
-			left calc(50vw + 20px)
+			top 50%
+			left 50%
+			margin-top 7px
+			margin-left 20px
 			z-index 6
 			width 160px
 			height 90px
-			transform translate(-50%, -100%)rotate(5deg)
+			transform translate(-50%, -100%) rotate(5deg)
 			@media (max-height: 420px)
 				top 330px
 	&__text

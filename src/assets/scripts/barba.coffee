@@ -21,7 +21,7 @@ $ ->
 				controller.destroy()
 				controller.resizeSceneActions.length = 0
 				$(document).trigger 'remove-slow-scroll'
-				$('body').css 'overflow', ''
+				$('html, body').removeClass 'overflow-hidden'
 				resolve()
 		fadeIn: ->
 			tl = new TimelineMax()

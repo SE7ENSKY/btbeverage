@@ -45,6 +45,9 @@ $ ->
 	Barba.Pjax.preventCheck = (evt, element) ->
 		href = $(element).attr('href')
 		linkWithHash = href && href.indexOf('#') > -1
+		if window.location.pathname == href
+			evt.preventDefault()
+			return false
 		if linkWithHash
 			pos = href.indexOf('#')
 			if pos == 0

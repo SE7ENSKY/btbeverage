@@ -4,12 +4,11 @@
 		display flex
 		flex-wrap wrap
 	&__desktop
-		flex-direction row-reverse
 		padding-top 120px
+	&__col
+		@media tablet_desktop
+			width 50%
 	&__item
 		display flex
 		flex-direction column
-		@media tablet_desktop
-			width 50%
-		@media phone
-			width 100%
+		width 100%

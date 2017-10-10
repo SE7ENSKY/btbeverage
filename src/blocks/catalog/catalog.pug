@@ -1,51 +1,53 @@
 if list
 	+e.desktop
-		+e.item
-			+b.product-params#product-params-2(data-product=list[1].slug data-title=list[1].title data-price-list=list[1].priceList data-image=list[1].image): +i({
-				data: list[1]
-			})
-			+b.product-cover(data-target="#product-params-1"): +i({ data: list[0] })
-		+e.item
-			+b.product-params#product-params-1(data-product=list[0].slug data-title=list[0].title data-price-list=list[0].priceList data-image=list[0].image): +i({
-				data: list[0]
-			})
-			+b.product-cover(data-target="#product-params-2"): +i({ data: list[1] })
-		+e.item
-			+b.product-params#product-params-4(data-product=list[3].slug data-title=list[3].title data-price-list=list[3].priceList data-image=list[3].image): +i({
-				data: list[3]
-			})
-			+b.product-cover(data-target="#product-params-3"): +i({ data: list[2] })
-		+e.item
-			+b.product-params#product-params-3(data-product=list[2].slug data-title=list[2].title data-price-list=list[2].priceList data-image=list[2].image): +i({
-				data: list[2]
-			})
-			+b.product-cover(data-target="#product-params-4"): +i({ data: list[3] })
-		+e.item
-			+b.product-params#product-params-6(data-product=list[5].slug data-title=list[5].title data-price-list=list[5].priceList data-image=list[5].image): +i({
-				data: list[5]
-			})
-			+b.product-cover(data-target="#product-params-5"): +i({ data: list[4] })
-		+e.item
-			+b.product-params#product-params-5(data-product=list[4].slug data-title=list[4].title data-price-list=list[4].priceList data-image=list[4].image): +i({
-				data: list[4]
-			})
-			+b.product-cover(data-target="#product-params-6"): +i({ data: list[5] })
-		+e.item
-			+b.product-params#product-params-8(data-product=list[7].slug data-title=list[7].title data-price-list=list[7].priceList data-image=list[7].image): +i({
-				data: list[7]
-			})
-			+b.product-cover(data-target="#product-params-7"): +i({ data: list[6] })
-		+e.item
-			+b.product-params#product-params-7(data-product=list[6].slug data-title=list[6].title data-price-list=list[6].priceList data-image=list[6].image): +i({
-				data: list[6]
-			})
-			+b.product-cover(data-target="#product-params-8"): +i({ data: list[7] })
-		+e.item
-			+b.product-cover(data-target="#product-params-9"): +i({ data: list[8] })
-		+e.item
-			+b.product-params#product-params-9(data-product=list[8].slug data-title=list[8].title data-price-list=list[8].priceList data-image=list[8].image): +i({
-				data: list[8]
-			})
+		+e.col
+			+e.item
+				+b.product-params#product-params-1(data-product=list[0].slug data-title=list[0].title data-price-list=list[0].priceList data-image=list[0].image): +i({
+					data: list[0]
+				})
+				+b.product-cover(data-target="#product-params-2"): +i({ data: list[1] })
+			+e.item
+				+b.product-params#product-params-3(data-product=list[2].slug data-title=list[2].title data-price-list=list[2].priceList data-image=list[2].image): +i({
+					data: list[2]
+				})
+				+b.product-cover(data-target="#product-params-4"): +i({ data: list[3] })
+			+e.item
+				+b.product-params#product-params-5(data-product=list[4].slug data-title=list[4].title data-price-list=list[4].priceList data-image=list[4].image): +i({
+					data: list[4]
+				})
+				+b.product-cover(data-target="#product-params-6"): +i({ data: list[5] })
+			+e.item
+				+b.product-params#product-params-7(data-product=list[6].slug data-title=list[6].title data-price-list=list[6].priceList data-image=list[6].image): +i({
+					data: list[6]
+				})
+				+b.product-cover(data-target="#product-params-8"): +i({ data: list[7] })
+			+e.item
+				+b.product-params#product-params-9(data-product=list[8].slug data-title=list[8].title data-price-list=list[8].priceList data-image=list[8].image): +i({
+					data: list[8]
+				})
+		+e.col
+			+e.item
+				+b.product-params#product-params-2(data-product=list[1].slug data-title=list[1].title data-price-list=list[1].priceList data-image=list[1].image): +i({
+					data: list[1]
+				})
+				+b.product-cover(data-target="#product-params-1"): +i({ data: list[0] })
+			+e.item
+				+b.product-params#product-params-4(data-product=list[3].slug data-title=list[3].title data-price-list=list[3].priceList data-image=list[3].image): +i({
+					data: list[3]
+				})
+				+b.product-cover(data-target="#product-params-3"): +i({ data: list[2] })
+			+e.item
+				+b.product-params#product-params-6(data-product=list[5].slug data-title=list[5].title data-price-list=list[5].priceList data-image=list[5].image): +i({
+					data: list[5]
+				})
+				+b.product-cover(data-target="#product-params-5"): +i({ data: list[4] })
+			+e.item
+				+b.product-params#product-params-8(data-product=list[7].slug data-title=list[7].title data-price-list=list[7].priceList data-image=list[7].image): +i({
+					data: list[7]
+				})
+				+b.product-cover(data-target="#product-params-7"): +i({ data: list[6] })
+			+e.item
+				+b.product-cover(data-target="#product-params-9"): +i({ data: list[8] })
 	+e.mobile
 		+e.item
 			+b.product-params#product-params-1(data-product=list[0].slug data-title=list[0].title data-price-list=list[0].priceList data-image=list[0].image): +i({

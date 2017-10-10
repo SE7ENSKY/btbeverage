@@ -55,8 +55,14 @@ $ ->
 		isAnimation = false
 
 		scrollToViewport = ($this) ->
-			$('html, body').animate
-				scrollTop: $this.offset().top - $('.header').outerHeight()
+			$target = $catalog.find($this.attr("data-target"))
+			valY = Math.min($this.offset().top, $target.offset().top) - $('.header').outerHeight()
+			TweenMax.to $(window), .2,
+				scrollTo:
+					y: valY
+					autoKill: true
+				ease: Power1.easeOut
+				overwrite: 5
 
 		animationFunc = ($this, isOpen, removeHover = false) ->
 			isAnimation = true
@@ -67,12 +73,8 @@ $ ->
 			productCoverHeightClosed = (0.6666 * $this.outerWidth())
 			productCoverHeightOpen = productCoverHeightClosed * 1.6
 
-			catalogIndex = $('.catalog__item').index($this.parent()) + 1
-			isOddProductCover = catalogIndex % 2
-			if isOddProductCover
-				coef = -1
-			else
-				coef = 1
+			coef = if $this.hasClass 'right' then -1 else 1
+
 
 			$blockInners = $targetInner.find '.stagger'
 
@@ -90,6 +92,7 @@ $ ->
 			$sliderVerticalText = $this.find '.product-cover__text-vertical span'
 			$sliderNormalText = $this.find '.product-cover__text'
 
+			# open
 			if !isOpen
 				if isMobile()
 					tl
@@ -117,8 +120,9 @@ $ ->
 
 				setTimeout ->
 					isAnimation = false
-					scrollToViewport $this
 				, 1300
+			
+			# close
 			else
 				if isMobile()
 					tl
@@ -159,12 +163,7 @@ $ ->
 			productCoverHeightClosed = (0.6666 * $this.outerWidth())
 			productCoverHeightOpen = productCoverHeightClosed * 1.6
 
-			catalogIndex = $('.catalog__item').index($this.parent()) + 1
-			isOddProductCover = catalogIndex % 2
-			if isOddProductCover
-				coef = -1
-			else
-				coef = 1
+			coef = if $this.hasClass 'right' then -1 else 1
 
 			if isMobile()
 				tl
@@ -217,25 +216,26 @@ $ ->
 			isOpen = $this.hasClass('active')
 			$openBlock = $('.product-cover.active')
 
-			return if isAnimation
+			return if isAnimation || isOpen
 
-
-			if !isOpen and $openBlock.length
-				# check if other block is not opened
+			timeout = 1
+			# check if other block is opened
+			if $openBlock.length
 				animationFunc $openBlock, true, true
 				$openBlock.removeClass 'active'
 				activeBlock = null
+				timeout = 500
 
+			setTimeout ->
+				scrollToViewport $this
 				setTimeout ->
+					hoverOut.call $openBlock.get(0) if $openBlock.length
 					$this.addClass 'active'
-					hoverOut.call $openBlock.get(0)
 					activeBlock = $this.data 'target'
 					animationFunc $this, isOpen
-				, 500
-			else if !isOpen
-				$this.addClass 'active'
-				activeBlock = $this.data 'target'
-				animationFunc $this, isOpen
+				, 200
+			, timeout
+
 
 		$block.find('.product-cover__close').on 'click touchstart', (e) ->
 			e.preventDefault()

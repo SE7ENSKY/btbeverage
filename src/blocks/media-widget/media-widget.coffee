@@ -60,7 +60,6 @@ $ ->
 
 				if isMobile() or isPortrait()
 					sceneVideoDisplay.enabled false
-					sceneVideoInit.enabled false
 
 				controller.resizeSceneActions.push ->
 					if isMobile() or isPortrait()

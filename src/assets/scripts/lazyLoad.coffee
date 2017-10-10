@@ -25,7 +25,6 @@ $ ->
 				.addTo cntrl
 				.on 'start', (ev) ->
 					if ev.scrollDirection == "FORWARD"
-						console.log 'lazyload', $this
 						loadScene.destroy()
 						loadImage $this
 

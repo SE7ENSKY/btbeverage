@@ -12,13 +12,11 @@ $ ->
 			$("html, body").addClass("overflow-hidden-modal")
 			$(@).addClass('overflow-hidden')
 			$(document).trigger 'update-cart' if @.id == 'cart-modal'
-			$(document).trigger 'remove-slow-scroll'
 
 		$('.modal').on 'hide.bs.modal', (e) ->
 			$("html, body").removeClass("overflow-hidden-modal")
 			$(@).removeClass('overflow-hidden')
 			window.scrollTo 0, topScrollPos
-			$(document).trigger 'init-slow-scroll'
 
 	modalsJS()
 

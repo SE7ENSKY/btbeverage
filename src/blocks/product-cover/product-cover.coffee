@@ -37,12 +37,12 @@ $ ->
 				tl = new TimelineMax()
 
 				tl
-					.to $params.get(0), 0.2, { height: $params.outerHeight() + paramsHeightDiff, ease: Power0.easeNone }, 0
+					.to $params, 0.2, { height: $params.outerHeight() + paramsHeightDiff, ease: Power0.easeNone }, 0
 				
 				if isOpen
-					tl.to $paramsIngredient.get(0), 0.2, { height: 0, autoAlpha: 0, ease: Power0.easeNone }, 0
+					tl.to $paramsIngredient, 0.2, { height: 0, autoAlpha: 0, ease: Power0.easeNone }, 0
 				else
-					tl.fromTo $paramsIngredient.get(0), 0.2, { height: 0 }, { height: ingredientsHeight, autoAlpha: 1, ease: Power0.easeNone }, 0
+					tl.fromTo $paramsIngredient, 0.2, { height: 0 }, { height: ingredientsHeight, autoAlpha: 1, ease: Power0.easeNone }, 0
 
 				$params.toggleClass 'ingredients-open', !isOpen
 
@@ -83,6 +83,7 @@ $ ->
 			$blockInners = $targetInner.find '.stagger'
 
 			$paramsText = $targetInner.find '.product-params__text'
+			$paramsTextInner = $targetInner.find '.product-params__text-inner'
 			$paramsVolume = $targetInner.find '.product-params__volume'
 			$paramsPack = $targetInner.find '.product-params__packs'
 			$paramsCart = $targetInner.find '.product-params__cart'
@@ -95,75 +96,81 @@ $ ->
 			$slider = $this.find '.product-cover__slider'
 			$sliderVerticalText = $this.find '.product-cover__text-vertical span'
 			$sliderNormalText = $this.find '.product-cover__text'
+			$sliderTitle = $this.find '.product-cover__title'
 
 			# open
-			if !isOpen
-				if isMobile()
+			if isMobile()
+				unless isOpen
 					tl
-						.to $target.get(0), 0.5, { height: $targetInner.outerHeight(), ease: Power0.easeNone  }, 0
+						.to $target, 0.5, { height: $targetInner.outerHeight(), ease: Power0.easeNone  }, 0
 						.fromTo $sliderWrapper, 0.2, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
-						.fromTo $paramsText.get(0), 0.5, { y: -(packHeight + volumeHeight + $paramsCart.outerHeight())}, { y: 0, ease: Power0.easeNone }, 0
-						.fromTo $paramsCart.get(0), 0.4, { y: -(packHeight + volumeHeight) }, { y: 0, ease: Power0.easeNone }, 0.1
-						.fromTo $paramsPack.get(0), 0.3, { y: -volumeHeight }, { y: 0, ease: Power0.easeNone }, 0.2
-						.staggerFromTo $blockInners, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }, 0, 0.4
+						.fromTo $paramsText, 0.5, { y: -(packHeight + volumeHeight + $paramsCart.outerHeight())}, { y: 0, ease: Power0.easeNone }, 0
+						.fromTo $paramsCart, 0.4, { y: -(packHeight + volumeHeight) }, { y: 0, ease: Power0.easeNone }, 0.1
+						.fromTo $paramsPack, 0.3, { y: -volumeHeight }, { y: 0, ease: Power0.easeNone }, 0.2
+						.fromTo $paramsTextInner, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.3
+						.staggerFromTo $blockInners, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }, .1, 0.4
 						.fromTo $slider, 0.5, { x: -window.innerWidth }, { x: 0, ease: Power1.easeOut }, 0.5
 						.fromTo $sliderNormalText, 0.3, { x: -0.5 * window.innerWidth }, { x: 0, ease: Power1.easeOut }, 0.5
 				else
 					tl
-						.fromTo $target.get(0), 0.5, { height: 0 }, { height: $targetInner.outerHeight(),ease: Power0.easeNone  }, 0
-						.fromTo $this.get(0), 0.5, { paddingBottom: "#{productCoverHeightClosed}px" }, { paddingBottom: "#{productCoverHeightOpen}px", ease: Power0.easeNone }, 0
-						.fromTo $sliderWrapper, 0.2, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
-						.set $blockInners, { autoAlpha: 0 }, 0
-						.fromTo $paramsCart.get(0), 0.5, { y: -(textHeight + volumeHeight + packHeight)}, { y: 0, ease: Power0.easeNone }, 0
-						.fromTo $paramsPack.get(0), 0.4, { y: -(textHeight + volumeHeight) }, { y: 0, ease: Power0.easeNone }, 0.1
-						.fromTo $paramsVolume.get(0), 0.3, { y: -textHeight }, { y: 0, ease: Power0.easeNone }, 0.2
-						.staggerFromTo $blockInners, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }, 0, 0.4
-						.fromTo $slider, 1, { x: - 0.5 * window.innerWidth * coef}, { x: 0, ease: Power1.easeOut }, 0.3
-						.fromTo $sliderNormalText, 0.4, { x: -0.25 * window.innerWidth * coef }, { x: 0, ease: Power1.easeOut }, 0.9
-						.staggerFromTo $sliderVerticalText, 0.4, { autoAlpha: 0, rotationX: 90 * coef }, { autoAlpha: 1, rotationX: 0 }, 0.2, 0.4
-			
-			# close
-			else
-				if isMobile()
-					tl
-						.to $target.get(0), 0.5, { height: 0, ease: Power0.easeNone }, 0
-						.staggerFromTo $blockInners, 0.1, { autoAlpha: 1 }, { autoAlpha: 0 }, 0, 0
+						.to $target, 0.5, { height: 0, ease: Power0.easeNone }, 0
+						.to $paramsTextInner, 0.2, { autoAlpha: 0 }, 0, 0
+						.to $blockInners, 0.2, { autoAlpha: 0 }, 0, 0
 						.fromTo $sliderWrapper, 0.2, { autoAlpha: 1 }, { autoAlpha: 0 }, 0
 						.set $slider, { x: -window.innerWidth }, 0.2
 						.set $sliderNormalText, { x: -0.5 * window.innerWidth }, 0.2
-						.fromTo $paramsText.get(0), 0.5, { y: 0 }, { y: -(packHeight + volumeHeight + $paramsCart.outerHeight()), ease: Power0.easeNone }, 0
-						.fromTo $paramsCart.get(0), 0.4, { y: 0 }, { y: -(textHeight + volumeHeight), ease: Power0.easeNone }, 0
-						.fromTo $paramsPack.get(0), 0.3, { y: 0 }, { y: -textHeight, ease: Power0.easeNone }, 0
+						.fromTo $paramsText, 0.5, { y: 0 }, { y: -(packHeight + volumeHeight + $paramsCart.outerHeight()), ease: Power0.easeNone }, 0
+						.fromTo $paramsCart, 0.4, { y: 0 }, { y: -(textHeight + volumeHeight), ease: Power0.easeNone }, 0
+						.fromTo $paramsPack, 0.3, { y: 0 }, { y: -textHeight, ease: Power0.easeNone }, 0
+			
+			else
+				unless isOpen
+					tl
+						.set $blockInners, { autoAlpha: 1  }
+						.fromTo $target, 0.5, { height: 0 }, { height: $targetInner.outerHeight(),ease: Power0.easeNone  }, 0
+						.fromTo $this, 0.5, { paddingBottom: "#{productCoverHeightClosed}px" }, { paddingBottom: "#{productCoverHeightOpen}px", ease: Power0.easeNone }, 0
+						.fromTo $sliderWrapper, 0.2, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
+						.fromTo $paramsCart, 0.5, { y: -(textHeight + volumeHeight + packHeight)}, { y: 0, ease: Power0.easeNone }, 0
+						.fromTo $paramsPack, 0.4, { y: -(textHeight + volumeHeight) }, { y: 0, ease: Power0.easeNone }, 0.1
+						.fromTo $paramsVolume, 0.3, { y: -textHeight }, { y: 0, ease: Power0.easeNone }, 0.2
+						.fromTo $paramsTextInner, 0.5, { autoAlpha: 0, y: -100 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, 0.3
+						.staggerFromTo $blockInners, .3, { x: 100 * coef + '%' }, { x: '0%' }, .1, 0.4
+						
+						.fromTo $sliderTitle, .5, { autoAlpha: 1}, {autoAlpha: 0}, 0
+						.fromTo $slider, 1, { x: - 0.5 * window.innerWidth * coef}, { x: 0, ease: Power1.easeOut }, 0.3
+						.fromTo $sliderNormalText, 0.4, { x: -0.25 * window.innerWidth * coef }, { x: 0, ease: Power1.easeOut }, 0.9
+						.staggerFromTo $sliderVerticalText, 0.4, { autoAlpha: 0, rotationX: 90 * coef }, { autoAlpha: 1, rotationX: 0 }, 0.2, 0.4
 				else
 					tl
-						.to $target.get(0), 0.5, { height: 0, ease: Power0.easeNone }, 0
-						.to $this.get(0), 0.5, { paddingBottom: "#{productCoverHeightClosed}px" , ease: Power0.easeNone  }, 0
-						.set $this.get(0), { paddingBottom: "33.33vw" }, 0.5
-						.fromTo $sliderWrapper, 0.2, { autoAlpha: 1 }, { autoAlpha: 0 }, 0
-						.staggerTo $blockInners, 0.1, { autoAlpha: 1 }, { autoAlpha: 0 }, 0, 0
-						.fromTo $paramsCart.get(0), 0.5, { y: 0 }, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight()), ease: Power0.easeNone }, 0
-						.fromTo $paramsPack.get(0), 0.4, { y: 0 }, { y: -(packHeight + volumeHeight), ease: Power0.easeNone }, 0
-						.fromTo $paramsVolume.get(0), 0.3, { y: 0 }, { y: -volumeHeight, ease: Power0.easeNone }, 0
-					$targetIngredients = $target.removeClass('ingredients-open').find('.product-params__ingredients')
-					if $targetIngredients.length
-						tl.set $targetIngredients.get(0), { height: 0, autoAlpha: 0 }, 0.5
+						.to $target, 0.5, { height: 0, ease: Power0.easeNone }, 0
+						.to $this, 0.5, { paddingBottom: "33.33vw" , ease: Power0.easeNone  }, 0
+						.to $sliderTitle, .5, { autoAlpha: 1}, 0
+						.to $sliderWrapper, 0.2, { autoAlpha: 0 }, 0
+						.to $paramsCart, 0.5, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight()), ease: Power0.easeNone }, 0
+						.to $paramsPack, 0.4, { y: -(packHeight + volumeHeight), ease: Power0.easeNone }, 0
+						.to $paramsVolume, 0.3, { y: -volumeHeight, ease: Power0.easeNone }, 0
+						.to $paramsTextInner, 0.2, { autoAlpha: 0 }, 0
+						.to $blockInners, 0.2, { autoAlpha: 0 }, 0
+			if isOpen
+				$targetIngredients = $target.removeClass('ingredients-open').find('.product-params__ingredients')
+				if $targetIngredients.length
+					tl.set $targetIngredients, { height: 0, autoAlpha: 0 }, 0.5
 
 		#
 		# resize logic if some block isOpen (active)
 		#
 		resizeAnimation = ($this) ->
 			return if isAnimation
-			tl = new TimelineMax()
 			$target = $catalog.find($this.attr("data-target"))
 			$targetInner = $target.find('.product-params__wrap')
 
 			if isMobile()
-				tl
-					.set $target.get(0), { height: $targetInner.outerHeight()  }, 0
+				TweenMax.set $target, { height: $targetInner.outerHeight()  }, 0
 			else
-				tl
-					.set $target.get(0), { height: $targetInner.outerHeight()  }, 0
-					.set $this.get(0), { paddingBottom: "#{productCoverHeightOpen}px" }, 0
+				productCoverHeightClosed = (0.6666 * $this.outerWidth())
+				productCoverHeightOpen = productCoverHeightClosed * 1.6
+				TweenMax.set $this, { paddingBottom: "#{productCoverHeightOpen}px" }, 0
+				TweenMax.set $target, { height: $targetInner.outerHeight()  }, 0
 
 		#
 		# hover
@@ -180,7 +187,7 @@ $ ->
 				onComplete = ->
 					$video.get(0).play() if $this.hasClass('hover') and $video.hasClass('is-loaded')
 
-				TweenMax.to $inner.get(0), 0.3, { x: toX, ease: Power0.easeNone, onComplete: onComplete }
+				TweenMax.to $inner, 0.3, { x: toX, ease: Power0.easeNone, onComplete: onComplete }
 
 		hoverOut = ->
 			$this = $(@)
@@ -191,7 +198,7 @@ $ ->
 				$this.removeClass 'hover'
 				toX = if $this.hasClass 'right' then "-50%" else "0%"
 				$inner = $this.find('.product-cover__wrap-inner')
-				TweenMax.to $inner.get(0), 0.3, { x: toX, ease: Power0.easeNone }
+				TweenMax.to $inner, 0.3, { x: toX, ease: Power0.easeNone }
 
 		if !touchDevice
 			$block.hover hoverIn, hoverOut
@@ -220,7 +227,7 @@ $ ->
 
 			setTimeout ->
 				scrollToViewport $this, ->
-					hoverOut.call $openBlock.get(0) if $openBlock.length
+					hoverOut.call $openBlock if $openBlock.length
 					$this.addClass 'active'
 					activeBlock = $this.data 'target'
 					animationFunc $this, isOpen

@@ -81,4 +81,4 @@ $ ->
 		$(document).trigger 'modal-init'
 		$(document).trigger 'header-fix'
 		$(document).trigger 'reset-addthis'
-		$(document).on 'init-content-widget'
+		$(document).trigger 'init-content-widget'

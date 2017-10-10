@@ -7,12 +7,16 @@ block main
 	+b.page(class=classes)
 		if file.cover
 			+e.cover
-				if file.cover.image
+				if file.cover.image && file.cover.url
+					+e("a").cover-bg(href=file.cover.url style=`background-image:url("${file.cover.image}");`)
+				else if file.cover.image
 					+e.cover-bg(style=`background-image:url("${file.cover.image}");`)
 				.container
 					+e.cover-wrap
 						+e.cover-content
-							if file.cover.title
+							if file.cover.title && file.cover.url
+								+e("a").cover-title(href=file.cover.url)!= file.cover.title
+							else if file.cover.title
 								+e("h1").cover-title!= file.cover.title
 							if file.cover.text
 								+e.cover-text!= file.cover.text

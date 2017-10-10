@@ -54,9 +54,20 @@
 				padding 30px 0 40px
 		&-title
 			margin-bottom 35px
+			@media tablet_desktop
+				font-size 48px
+				line-height 1.1
 			@media phone
 				font-size 20px
 				margin-bottom 20px
+			a&
+				display inline-block
+				color #fff
+				font-weight bold
+				text-transform uppercase
+				text-decoration none
+				&:hover
+					color #9dc78d
 		&-text
 			margin-bottom 20px
 			font-size 14px
@@ -95,7 +106,7 @@
 			margin-top 60px
 	&__back
 		min-width 210px
-	
+
 	&_checkout
 		.page
 			&__content
@@ -143,5 +154,3 @@
 			&__content
 				@media phone
 					padding-top 0
-
-

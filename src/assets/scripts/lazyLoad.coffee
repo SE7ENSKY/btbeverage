@@ -1,8 +1,13 @@
 import lozad from 'lozad'
 
 $ ->
-	observer = lozad();
+	observer = lozad '.lozad',
+		rootMargin: '400px 0px',
+		threshold: 0
+
 	videoObserver = lozad '.video-lozad',
+		rootMargin: '300px 0px',
+		threshold: 0,
 		load: (el) ->
 			$this = $(el)
 			{ poster, video, type } = $this.data()

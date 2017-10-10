@@ -189,19 +189,6 @@ $ ->
 
 		addVideoCallback = ->
 			$(document).trigger 'sequence-init'
-			# $video = $block.find('video')
-			# return unless $video.length
-			# $video.get(0).play()
-			# tlVideo = new TimelineMax()
-			# tlVideo
-				# .set $video.get(0), { autoAlpha: 1 }, 0
-				# .to '.intro__wrap-image', 0.5, { autoAlpha: 0 }, 0
-			# 	.pause()
-			# # if videoPromise != undefined
-			# # 	videoPromise.then -> tlVideo.play()
-			# # 	console.log loaded
-			# # else
-			# tlVideo.play()
 
 		#
 		# Combine animation func

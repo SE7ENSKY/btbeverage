@@ -18,11 +18,11 @@ $ ->
 			ease: Power1.easeOut
 			overwrite: 5
 
-	initSlowScroll = (elem) ->
-		$(elem or window).on 'touchmove mousewheel DOMMouseScroll', slowScroll
+	initSlowScroll = ->
+		$(window).on 'touchmove mousewheel DOMMouseScroll', slowScroll
 
-	removeSlowScroll = (elem) ->
-		$(elem or window).off 'touchmove mousewheel DOMMouseScroll', slowScroll
+	removeSlowScroll = ->
+		$(window).off 'touchmove mousewheel DOMMouseScroll', slowScroll
 
 
 	$(document).on 'remove-slow-scroll', removeSlowScroll

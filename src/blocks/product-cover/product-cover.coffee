@@ -54,7 +54,7 @@ $ ->
 
 		isAnimation = false
 
-		scrollToViewport = ($this) ->
+		scrollToViewport = ($this, cb = null) ->
 			$target = $catalog.find($this.attr("data-target"))
 			valY = Math.min($this.offset().top, $target.offset().top) - $('.header').outerHeight()
 			TweenMax.to $(window), .2,
@@ -63,10 +63,15 @@ $ ->
 					autoKill: true
 				ease: Power1.easeOut
 				overwrite: 5
+				onComplete: ->
+					cb() if cb?
 
 		animationFunc = ($this, isOpen, removeHover = false) ->
 			isAnimation = true
-			tl = new TimelineMax()
+			tl = new TimelineMax
+				onComplete: ->
+					isAnimation = false
+
 			$target = $catalog.find($this.attr("data-target"))
 			$targetInner = $target.find('.product-params__wrap')
 
@@ -74,7 +79,6 @@ $ ->
 			productCoverHeightOpen = productCoverHeightClosed * 1.6
 
 			coef = if $this.hasClass 'right' then -1 else 1
-
 
 			$blockInners = $targetInner.find '.stagger'
 
@@ -117,10 +121,6 @@ $ ->
 						.fromTo $slider, 1, { x: - 0.5 * window.innerWidth * coef}, { x: 0, ease: Power1.easeOut }, 0.3
 						.fromTo $sliderNormalText, 0.4, { x: -0.25 * window.innerWidth * coef }, { x: 0, ease: Power1.easeOut }, 0.9
 						.staggerFromTo $sliderVerticalText, 0.4, { autoAlpha: 0, rotationX: 90 * coef }, { autoAlpha: 1, rotationX: 0 }, 0.2, 0.4
-
-				setTimeout ->
-					isAnimation = false
-				, 1300
 			
 			# close
 			else
@@ -147,9 +147,6 @@ $ ->
 					$targetIngredients = $target.removeClass('ingredients-open').find('.product-params__ingredients')
 					if $targetIngredients.length
 						tl.set $targetIngredients.get(0), { height: 0, autoAlpha: 0 }, 0.5
-				setTimeout ->
-					isAnimation = false
-				, 500
 
 		#
 		# resize logic if some block isOpen (active)
@@ -159,11 +156,6 @@ $ ->
 			tl = new TimelineMax()
 			$target = $catalog.find($this.attr("data-target"))
 			$targetInner = $target.find('.product-params__wrap')
-
-			productCoverHeightClosed = (0.6666 * $this.outerWidth())
-			productCoverHeightOpen = productCoverHeightClosed * 1.6
-
-			coef = if $this.hasClass 'right' then -1 else 1
 
 			if isMobile()
 				tl
@@ -227,13 +219,11 @@ $ ->
 				timeout = 500
 
 			setTimeout ->
-				scrollToViewport $this
-				setTimeout ->
+				scrollToViewport $this, ->
 					hoverOut.call $openBlock.get(0) if $openBlock.length
 					$this.addClass 'active'
 					activeBlock = $this.data 'target'
 					animationFunc $this, isOpen
-				, 200
 			, timeout
 
 

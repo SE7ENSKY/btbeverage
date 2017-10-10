@@ -1,10 +1,11 @@
 $ ->
 	widthRatio = 0.625 # 720 x 450
+	menuHeight = 80
 
 	window.pixi =
 		app: new PIXI.Application
 			width: window.innerHeight * widthRatio
-			height: window.innerHeight
+			height: window.innerHeight - menuHeight
 			transparent: true
 			forceCanvas: true
 		frames: []
@@ -20,7 +21,7 @@ $ ->
 			this.app.renderer.resize w, h
 
 	window.addEventListener 'resize', ->
-		h = window.innerHeight
+		h = window.innerHeight - menuHeight
 		w = h * widthRatio
 		pixi.resize w, h
 		if pixi.sprite

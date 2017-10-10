@@ -28,7 +28,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 
 	seqScene = new Scene({
 			triggerElement: triggerElement,
-			offset: 0,
+			offset: -80,
 			triggerHook: options.triggerHook or 1,
 			duration: options.duration or '100%'
 		})
@@ -42,7 +42,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 			if (options.finish and ev.scrollDirection == "FORWARD") and !scene
 				scene = new Scene({
 					triggerElement: triggerElement,
-					offset: window.innerHeight,
+					offset: window.innerHeight - 80,
 					triggerHook: options.triggerHook or 1,
 					duration: "100%"
 					})

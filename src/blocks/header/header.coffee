@@ -3,7 +3,7 @@ import { Scene } from 'scrollmagic'
 $ ->
 	$(document).trigger 'updateCartBadge'
 
-	headerFixedOnMobile = ->
+	headerFixed = ->
 		$block = $('.header')
 		return unless $block.length and $block.hasClass('header_simple')
 
@@ -12,7 +12,7 @@ $ ->
 		scene = new Scene({
 			triggerElement: '.main',
 			triggerHook: 0,
-			offset: 60
+			offset: $block.outerHeight()
 			})
 			.addTo cntrl
 			.on 'start', (ev) ->
@@ -21,15 +21,9 @@ $ ->
 				if ev.scrollDirection == 'REVERSE'
 					$block.removeClass('header_default no-padding').addClass('header_simple')
 
-
-		scene.enabled false unless isMobile()
-
 		controller.resizeSceneActions.push ->
-			if isMobile()
-				scene.enabled true
-			else
-				scene.enabled false
+			scene.offset $block.outerHeight()
 
-	headerFixedOnMobile()
+	headerFixed()
 
-	$(document).on 'header-fix', headerFixedOnMobile
+	$(document).on 'header-fix', headerFixed

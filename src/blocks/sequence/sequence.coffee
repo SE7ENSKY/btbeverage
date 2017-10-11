@@ -36,7 +36,7 @@ $ ->
 
 		loader = new PIXI.loaders.Loader()
 		loader
-			.add 'seq', '/assets/i/seq/btseq_sm.json'
+			.add 'seq', '/assets/i/seq/btseq.json'
 			.load onPixiSetup
 
 	$(document).on 'sequence-init', sequenceJS

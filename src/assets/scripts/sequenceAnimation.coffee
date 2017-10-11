@@ -27,8 +27,8 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 
 	if options.shiftToX
 		seqTween.fromTo $seq, 0.5,
-			x: 0,
-				x: options.shiftToX,
+			transform: "translateX(0)",
+				transform: "translateX(#{options.shiftToX})"
 				ease: Power0.easeNone
 		, 0
 
@@ -47,12 +47,13 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 			if (options.begin and ev.scrollDirection == "REVERSE")
 				$canvas = $seq.find 'canvas'
 				return unless $canvas.length
-				TweenMax.set $canvas, { autoAlpha: 0 }
-				TweenMax.set $seq, { autoAlpha: 0 }
+				TweenMax.set $canvas.get(0), { autoAlpha: 0 }
+				TweenMax.set $seq.get(0), { autoAlpha: 0 }
 			if (options.finish and ev.scrollDirection == "FORWARD") and !scene
 				scene = new Scene({
 					triggerElement: triggerElement,
 					triggerHook: 0,
+					offset: -$('.header').outerHeight(),
 					duration: "100%"
 					})
 					.setTween TweenMax.fromTo '.sequence', 0.5, { y: '0%' }, { y: '-100%', ease: Power0.easeNone }
@@ -61,8 +62,8 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 			if (options.begin and ev.scrollDirection == "FORWARD")
 				$canvas = $seq.find 'canvas'
 				return unless $canvas.length
-				TweenMax.set $canvas, { autoAlpha: 1 }
-				TweenMax.set $seq, { autoAlpha: 1 }
+				TweenMax.set $canvas.get(0), { autoAlpha: 1 }
+				TweenMax.set $seq.get(0), { autoAlpha: 1 }
 			if (options.finish and ev.scrollDirection == "REVERSE") and scene
 				scene.destroy()
 				scene = null

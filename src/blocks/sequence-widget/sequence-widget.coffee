@@ -14,7 +14,7 @@ $ ->
 			isFinish = $elem.data('sequence-fin')
 			duration = $elem.data('sequence-duration')
 
-			sequenceAnimation $elem.get(0), sequence[0], sequence[1], { finish: isFinish, duration: duration, shiftToX: -300 }
+			sequenceAnimation $elem.get(0), sequence[0], sequence[1], { finish: isFinish, duration: duration, shiftToX: "-25vw" }
 
 	sequenceWidgetJS()
 

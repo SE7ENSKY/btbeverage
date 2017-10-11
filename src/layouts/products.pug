@@ -4,10 +4,11 @@ append params
 	- headerDefault = true
 	
 block main
-	.container
-		+b.content-heading: +i({
-			title: "<span>Choose</span> <br><span>your flavor</span>",
-			text: "<p>Each flavor is crisp, refreshing and fully satisfying. Naturally!</p>"
-		})
+	.page.page_products
+		.container
+			+b.content-heading: +i({
+				title: "<span>Choose</span> <br><span>your flavor</span>",
+				text: "<p>Each flavor is crisp, refreshing and fully satisfying. Naturally!</p>"
+			})
 
-	+b.catalog#catalog: +i({ list: catalog })
+		+b.catalog#catalog: +i({ list: catalog })

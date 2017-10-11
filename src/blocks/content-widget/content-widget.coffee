@@ -22,8 +22,8 @@ $ ->
 
 			tl = new TimelineMax()
 			tl
-				.fromTo $image.get(0), 0.5, { y: -yRangeImage }, { y: yRangeImage }, 0
-				.fromTo $body.get(0), 0.5, { y: yRangeBody }, { y: -yRangeBody }, 0
+				.fromTo $image, 0.5, { y: -yRangeImage }, { y: yRangeImage }, 0
+				.fromTo $body, 0.5, { y: yRangeBody }, { y: -yRangeBody }, 0
 
 			scene = new Scene({
 				triggerElement: @,
@@ -34,11 +34,20 @@ $ ->
 				.addTo cntrl
 				.setTween tl
 
-			scene.enabled false if isMobile()
+			if isMobile()
+				scene.enabled false
+				tlt = new TimelineMax()
+				tlt
+					.set $image, { y: 0 }
+					.set $body, { y: 0 }
 
 			controller.resizeSceneActions.push ->
 				if isMobile()
 					scene.enabled false
+					tlt = new TimelineMax()
+					tlt
+						.set $image, { y: 0 }
+						.set $body, { y: 0 }
 				else
 					scene.enabled true
 

@@ -1,4 +1,5 @@
 import { TweenMax, Power1 } from 'gsap'
+window.isSlowScroll = false
 
 $ ->
 	scrollTime = 0.5
@@ -19,12 +20,12 @@ $ ->
 			overwrite: 5
 
 	initSlowScroll = ->
-		window.isSlowScroll = true
-		$(window).on 'touchmove mousewheel DOMMouseScroll', slowScroll
+		isSlowScroll = true
+		$(window).on 'mousewheel DOMMouseScroll', slowScroll
 
 	removeSlowScroll = ->
-		window.isSlowScroll = false
-		$(window).off 'touchmove mousewheel DOMMouseScroll', slowScroll
+		isSlowScroll = false
+		$(window).off 'mousewheel DOMMouseScroll', slowScroll
 
 
 	$(document).on 'remove-slow-scroll', removeSlowScroll

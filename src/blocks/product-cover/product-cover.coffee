@@ -9,7 +9,9 @@ $ ->
 
 		$col = $catalog.find('.catalog__col')
 		if $col.length
-			$col.filter(':eq(1)').find($block).addClass 'right'
+			$colLeft = $col.filter(':eq(0)')
+			$colRight = $col.filter(':eq(1)')
+			$colRight.find($block).addClass 'right'
 
 		#
 		# add Video
@@ -56,15 +58,31 @@ $ ->
 
 		scrollToViewport = ($this, cb = null) ->
 			$target = $catalog.find($this.attr("data-target"))
-			valY = Math.min($this.offset().top, $target.offset().top) - $('.header').outerHeight()
+			return unless $target.length
+			if $this.closest($colLeft).length
+				scrollOffset = $target.offset().top
+			else
+				scrollOffset = $this.offset().top
+
+			valY = scrollOffset - $('.header').outerHeight()
 			TweenMax.to $(window), .2,
 				scrollTo:
 					y: valY
 					autoKill: true
 				ease: Power1.easeOut
-				overwrite: 5
+				# overwrite: 10
 				onComplete: ->
-					cb() if cb?
+					if $col.length
+						thisOffset = $this.offset().top
+						targetOffset = $target.offset().top
+						diff = Math.abs(thisOffset - targetOffset)
+						TweenMax.to $colLeft, .2,
+							marginTop: -diff,
+							ease: Power1.easeOut
+							onComplete: ->
+								cb() if cb?
+					else
+						cb() if cb?
 
 		animationFunc = ($this, isOpen, removeHover = false) ->
 			isAnimation = true
@@ -151,6 +169,7 @@ $ ->
 						.to $paramsVolume, 0.3, { y: -volumeHeight, ease: Power0.easeNone }, 0
 						.to $paramsTextInner, 0.2, { autoAlpha: 0 }, 0
 						.to $blockInners, 0.2, { autoAlpha: 0 }, 0
+						.to $colLeft, .2, {marginTop: 0}, 0
 			if isOpen
 				$targetIngredients = $target.removeClass('ingredients-open').find('.product-params__ingredients')
 				if $targetIngredients.length

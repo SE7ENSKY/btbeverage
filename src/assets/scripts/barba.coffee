@@ -71,7 +71,7 @@ $ ->
 		$(document).trigger 'about-block'
 		$(document).trigger 'content-heading'
 		$(document).trigger 'gallery'
-		$(document).trigger 'media-widget'
+		$(document).trigger 'sequence-widget'
 		$(document).trigger 'taste-button'
 		$(document).trigger 'product-cover'
 		$(document).trigger 'product-params'

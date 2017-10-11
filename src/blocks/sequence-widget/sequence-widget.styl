@@ -1,0 +1,47 @@
+.sequence-widget
+	position relative
+	display flex
+	width 100%
+	background url(i("green-texture.jpg")) repeat center center brandColor
+	@media desktop
+		min-height 100vh
+		margin-bottom 120px
+	@media tablet
+		min-height 66vh
+		margin-bottom 90px
+	@media phone
+		margin-bottom 55px
+	&__body
+		color #fff
+		@media tablet_desktop
+			margin auto
+			width 60%
+			padding-left 21%
+		@media tablet_portrait
+			padding 0
+		@media phone
+			width 100%
+			padding 40px 30px
+	&__title
+		line-height 1.1
+		font-weight bold
+		letter-spacing 2pt
+		text-transform uppercase
+		@media xl
+			font-size 150px
+		@media not_xl
+			font-size calc(11vw - 0.45rem)
+		@media phone
+			text-align center
+	&__content
+		@media xl
+			font-size 20px
+		@media not_xl
+			font-size calc(0.77rem + 0.5vw)
+		@media tablet_desktop
+			margin-top 60px
+		@media phone
+			text-align center
+			margin-top 30px
+			p
+				margin 0

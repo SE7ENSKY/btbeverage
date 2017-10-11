@@ -2,15 +2,17 @@ $menuHeight = 80px
 .sequence
 	position fixed
 	bottom 0
-	top $menuHeight
+	top 0
 	left 50%
-	transform translateX(-50%)
 	z-index 6
 	visibility hidden
 	opacity 0
 
 	canvas
+		position absolute
+		top $menuHeight
 		visibility hidden
 		opacity 0
-	@media phone
+		transform translateX(-50%)
+	@media phone, (orientation: portrait)
 		display none

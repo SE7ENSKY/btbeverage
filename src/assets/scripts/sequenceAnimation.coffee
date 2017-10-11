@@ -1,5 +1,5 @@
 import { Scene } from 'scrollmagic'
-import { TweenMax, Power0 } from 'gsap'
+import { TimelineMax, TweenMax, Power0 } from 'gsap'
 
 window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 	$seq = $('.sequence')
@@ -16,19 +16,28 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 			pixi.sprite.texture = currentChild
 			pixi.rerender()
 
-	seqTween = TweenMax.fromTo tempAnimationObj, 0.5,
+	seqTween = new TimelineMax()
+	seqTween.fromTo tempAnimationObj, 0.5,
 		current: start,
 			current: end,
 			onUpdate: onUpdateFunc,
 			onUpdateParams: [tempAnimationObj],
 			ease: Power0.easeNone,
+	, 0
+
+	if options.shiftToX
+		seqTween.fromTo $seq, 0.5,
+			x: 0,
+				x: options.shiftToX,
+				ease: Power0.easeNone
+		, 0
 
 	cntrl = controller.get()
 	scene = null
 
 	seqScene = new Scene({
 			triggerElement: triggerElement,
-			offset: -80,
+			offset: -$('.header').outerHeight(),
 			triggerHook: options.triggerHook or 1,
 			duration: options.duration or '100%'
 		})
@@ -38,23 +47,22 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 			if (options.begin and ev.scrollDirection == "REVERSE")
 				$canvas = $seq.find 'canvas'
 				return unless $canvas.length
-				TweenMax.set $canvas.get(0), { autoAlpha: 0 }
-				TweenMax.set $seq.get(0), { autoAlpha: 0 }
+				TweenMax.set $canvas, { autoAlpha: 0 }
+				TweenMax.set $seq, { autoAlpha: 0 }
 			if (options.finish and ev.scrollDirection == "FORWARD") and !scene
 				scene = new Scene({
 					triggerElement: triggerElement,
-					offset: window.innerHeight - 80,
-					triggerHook: options.triggerHook or 1,
+					triggerHook: 0,
 					duration: "100%"
 					})
-					.setTween TweenMax.fromTo '.sequence', 0.5, { y: '0%', x: '-50%' }, { y: '-100%', x: '-50%', ease: Power0.easeNone }
+					.setTween TweenMax.fromTo '.sequence', 0.5, { y: '0%' }, { y: '-100%', ease: Power0.easeNone }
 					.addTo(cntrl)
 		.on 'enter', (ev) ->
 			if (options.begin and ev.scrollDirection == "FORWARD")
 				$canvas = $seq.find 'canvas'
 				return unless $canvas.length
-				TweenMax.set $canvas.get(0), { autoAlpha: 1 }
-				TweenMax.set $seq.get(0), { autoAlpha: 1 }
+				TweenMax.set $canvas, { autoAlpha: 1 }
+				TweenMax.set $seq, { autoAlpha: 1 }
 			if (options.finish and ev.scrollDirection == "REVERSE") and scene
 				scene.destroy()
 				scene = null
@@ -62,7 +70,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 	seqScene.enabled false if isMobile() or isPortrait()
 
 	controller.resizeSceneActions.push ->
-		scene.offset(window.innerHeight) if scene
+		scene.offset(window.innerHeight - $('.header').outerHeight()) if scene
 		if isMobile() or isPortrait()
 			scene.enabled false if scene
 			seqScene.enabled false

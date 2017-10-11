@@ -27,8 +27,8 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 
 	if options.shiftToX
 		seqTween.fromTo $seq, 0.5,
-			transform: "translateX(0)",
-				transform: "translateX(#{options.shiftToX})"
+			transform: "translate3d(0, 0, 0)",
+				transform: "translate3d(#{options.shiftToX}, 0, 0)"
 				ease: Power0.easeNone
 		, 0
 
@@ -56,7 +56,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 					offset: -$('.header').outerHeight(),
 					duration: "100%"
 					})
-					.setTween TweenMax.fromTo '.sequence', 0.5, { y: '0%' }, { y: '-100%', ease: Power0.easeNone }
+					.setTween TweenMax.fromTo '.sequence', 0.5, { transform: "translate3d(#{options.shiftToX || 0}, 0, 0)" }, { transform: "translate3d(#{options.shiftToX || 0}, -100%, 0)", ease: Power0.easeNone }
 					.addTo(cntrl)
 		.on 'enter', (ev) ->
 			if (options.begin and ev.scrollDirection == "FORWARD")

@@ -6,6 +6,7 @@ if (process.env.TIMESTAMP) {
 }
 
 const { join } = require('path');
+const { merge } = require('lodash');
 const nib = require('nib');
 const cssMQpacker = require('css-mqpacker');
 const perfectionist = require('perfectionist');
@@ -50,11 +51,7 @@ const stylesPostprocessorConfig = {
 	output: PROD_OUTPUT,
 	plugins: [
 		cssMQpacker(),
-		cssNano(
-			Object.assign(
-				CSS_NANO_BASE_CONFIG,
-				process.env.UGLIFY ? CSS_NANO_MINIMIZE_CONFIG : {}
-			)
+		cssNano(merge(CSS_NANO_BASE_CONFIG, process.env.UGLIFY ? CSS_NANO_MINIMIZE_CONFIG : {})
 		)
 	]
 };
@@ -88,9 +85,7 @@ const babelLoaderOptions = {
 	babelrc: false,
 	plugins: [
 		'babel-plugin-transform-class-properties',
-		'babel-plugin-syntax-dynamic-import',
 		'babel-plugin-transform-runtime',
-		'babel-plugin-syntax-async-functions',
 		'babel-plugin-transform-object-rest-spread'
 	],
 	presets: [
@@ -181,7 +176,7 @@ const prodConfig = {
 				exclude: /node_modules/,
 				use: 'happypack/loader?id=babel'
 			},
-			// this.exec() is not supported by HappyPack
+			// modernizr-loader is not supported by HappyPack
 			// https://github.com/amireh/happypack/wiki/Webpack-Loader-API-Support
 			{
 				test: /\.modernizrrc.js$/,

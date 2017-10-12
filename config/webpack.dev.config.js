@@ -47,9 +47,7 @@ const babelLoaderOptions = {
 	babelrc: false,
 	plugins: [
 		'babel-plugin-transform-class-properties',
-		'babel-plugin-syntax-dynamic-import',
 		'babel-plugin-transform-runtime',
-		'babel-plugin-syntax-async-functions',
 		'babel-plugin-transform-object-rest-spread'
 	],
 	presets: [
@@ -67,7 +65,10 @@ const babelLoaderOptions = {
 
 const devConfig = {
 	context: join(PROJECT_ROOT, 'src'),
-	entry: generateEntry('webpack-hot-middleware/client'),
+	entry: generateEntry([
+		'event-source-polyfill',
+		'webpack-hot-middleware/client'
+	]),
 	output: {
 		path: DEV_OUTPUT,
 		publicPath: '/',
@@ -155,7 +156,7 @@ const devConfig = {
 				exclude: /node_modules/,
 				use: 'happypack/loader?id=babel'
 			},
-			// this.exec() is not supported by HappyPack
+			// modernizr-loader is not supported by HappyPack
 			// https://github.com/amireh/happypack/wiki/Webpack-Loader-API-Support
 			{
 				test: /\.modernizrrc.js$/,

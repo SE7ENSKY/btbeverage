@@ -14,6 +14,7 @@ $ ->
 
 			onComplete = ->
 				$(self).addClass('overflow-hidden')
+				$('body').addClass('overflow-hidden-modal')
 				$(document).trigger 'update-cart' if self.id == 'cart-modal'
 				if isSlowScroll
 					$(document).trigger 'remove-slow-scroll'
@@ -25,19 +26,26 @@ $ ->
 					scrollTop: 0
 				, 50, ->
 					$('.main').css 'opacity', 'initial'
-					$("html, body").addClass("overflow-hidden-modal")
+					$("html").addClass("overflow-hidden-modal")
 					onComplete()
 			else
-				$('body').addClass('overflow-hidden-modal')
 				onComplete()
 
+		$('.modal').on 'hidden.bs.modal', (e) ->
+			$("body").removeClass("overflow-hidden-modal")
+
 		$('.modal').on 'hide.bs.modal', (e) ->
-			$("html, body").removeClass("overflow-hidden-modal")
+			if isMobile()
+				$("html").removeClass("overflow-hidden-modal")
+				window.scrollTo(0, topScrollPos)
 			$(@).removeClass('overflow-hidden')
-			window.scrollTo 0, topScrollPos
+
 			if wasSlowScroll
-				$(document).trigger 'init-slow-scroll'
+			# 	$(document).trigger 'init-slow-scroll'
 				wasSlowScroll = false
+				setTimeout ->
+					$(document).trigger 'init-slow-scroll'
+				, 50
 
 	modalsJS()
 

@@ -17,8 +17,8 @@ $ ->
 		onPixiSetup = (loader, resources) ->
 			$(document).trigger 'sequence-loaded'
 
-			for i, item of resources.seq.textures
-				pixi.frames.push(item)
+			pixi.frames = Object.keys(resources).map (key) ->
+				resources[key].texture
 
 			pixi.sprite = new PIXI.Sprite pixi.frames[0]
 			realHeight = window.innerHeight
@@ -35,8 +35,21 @@ $ ->
 			isSequenceLoaded = true
 
 		loader = new PIXI.loaders.Loader()
+		{ amount, dir } = $block.data()
+
+		fillArray = (amount, dir) ->
+			arr = Array.apply null, Array(amount)
+			fixNumberString = (value) ->
+				count = 3 - value.toString().length
+				res = value
+				while count-- > 0
+					res = "0" + res
+				res
+
+			arr.map (x, i) -> "#{dir}/#{fixNumberString(i + 1)}.png"
+
 		loader
-			.add 'seq', '/assets/i/seq/btseq.json'
+			.add fillArray(amount, dir)
 			.load onPixiSetup
 
 	$(document).on 'sequence-init', sequenceJS

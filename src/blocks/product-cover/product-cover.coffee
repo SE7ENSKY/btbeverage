@@ -55,11 +55,12 @@ $ ->
 					else
 						cb() if cb?
 
-		animationFunc = ($this, isOpen, removeHover = false) ->
+		animationFunc = ($this, isOpen, cb) ->
 			isAnimation = true
 			tl = new TimelineMax
 				onComplete: ->
 					isAnimation = false
+					cb() if cb?
 
 			$target = $catalog.find($this.attr("data-target"))
 			$targetInner = $target.find('.product-params__wrap')
@@ -206,7 +207,7 @@ $ ->
 			timeout = 1
 			# check if other block is opened
 			if $openBlock.length
-				animationFunc $openBlock, true, true
+				animationFunc $openBlock, true
 				$openBlock.removeClass 'active'
 				activeBlock = null
 				timeout = 500
@@ -216,7 +217,8 @@ $ ->
 					hoverOut.call $openBlock if $openBlock.length
 					$this.addClass 'active'
 					activeBlock = $this.data 'target'
-					animationFunc $this, isOpen
+					animationFunc $this, isOpen, ->
+						setHash $this.attr('id')
 			, timeout
 
 

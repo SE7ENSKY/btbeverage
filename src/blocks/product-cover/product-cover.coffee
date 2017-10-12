@@ -213,10 +213,10 @@ $ ->
 				timeout = 500
 
 			setTimeout ->
+				hoverOut.call $openBlock if $openBlock.length
+				$this.addClass 'active'
+				activeBlock = $this.data 'target'
 				scrollToViewport $this, ->
-					hoverOut.call $openBlock if $openBlock.length
-					$this.addClass 'active'
-					activeBlock = $this.data 'target'
 					animationFunc $this, isOpen, ->
 						setHash $this.attr('id')
 			, timeout
@@ -237,7 +237,6 @@ $ ->
 		$(document)
 			.unbind 'catalog-handle-hash'
 			.on 'catalog-handle-hash', (e, $this) ->
-				console.log 'catalog-handle-hash'
 				scrollToViewport $this, ->
 					$this.addClass 'active'
 					activeBlock = $this.data 'target'

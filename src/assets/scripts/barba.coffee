@@ -1,6 +1,6 @@
 import FastClick from 'fastclick'
 import Barba from 'barba.js'
-import { TimelineMax } from 'gsap'
+import { TimelineMax, TweenMax, Power1 } from 'gsap'
 
 $ ->
 	Barba.Pjax.start()
@@ -46,9 +46,17 @@ $ ->
 	Barba.Pjax.preventCheck = (evt, element) ->
 		href = $(element).attr('href')
 		linkWithHash = href && href.indexOf('#') > -1
+		data = $(element).data()
+		# if special scroll2id is set - jump to it
+		if data and data.id and $("##{data.id}").length
+			evt.preventDefault()
+			window.scrollTo 0, $("##{data.id}").offset().top - $('.header').outerHeight()
+			return false
+		# prevent all actions if we are on the same page
 		if window.location.pathname == href
 			evt.preventDefault()
 			return false
+		# analyze hash action
 		if linkWithHash
 			pos = href.indexOf('#')
 			if pos == 0

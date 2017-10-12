@@ -1,5 +1,6 @@
 - title: "Products"
   url: "/products.html"
+  scroll2id: "catalog"
 - title: "About us"
   url: '/about.html'
 - title: "Blog"

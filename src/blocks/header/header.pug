@@ -13,7 +13,7 @@
 									if item.badge
 										+e("span").menu-badge= item.badge
 							else
-								+e("a").menu-link(href=item.url)
+								+e("a").menu-link(href=item.url data-id=item.scroll2id)
 									= item.title
 									if item.badge
 										+e("span").menu-badge= item.badge

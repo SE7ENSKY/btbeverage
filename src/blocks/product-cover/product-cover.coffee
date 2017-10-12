@@ -40,7 +40,7 @@ $ ->
 
 				tl
 					.to $params, 0.2, { height: $params.outerHeight() + paramsHeightDiff, ease: Power0.easeNone }, 0
-				
+
 				if isOpen
 					tl.to $paramsIngredient, 0.2, { height: 0, autoAlpha: 0, ease: Power0.easeNone }, 0
 				else
@@ -140,7 +140,7 @@ $ ->
 						.fromTo $paramsText, 0.5, { y: 0 }, { y: -(packHeight + volumeHeight + $paramsCart.outerHeight()), ease: Power0.easeNone }, 0
 						.fromTo $paramsCart, 0.4, { y: 0 }, { y: -(textHeight + volumeHeight), ease: Power0.easeNone }, 0
 						.fromTo $paramsPack, 0.3, { y: 0 }, { y: -textHeight, ease: Power0.easeNone }, 0
-			
+
 			else
 				unless isOpen
 					tl
@@ -153,7 +153,7 @@ $ ->
 						.fromTo $paramsVolume, 0.3, { y: -textHeight }, { y: 0, ease: Power0.easeNone }, 0.2
 						.fromTo $paramsTextInner, 0.5, { autoAlpha: 0, y: -100 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, 0.3
 						.staggerFromTo $blockInners, .3, { x: 100 * coef + '%' }, { x: '0%' }, .1, 0.4
-						
+
 						.fromTo $sliderTitle, .5, { autoAlpha: 1}, {autoAlpha: 0}, 0
 						.fromTo $slider, 1, { x: - 0.5 * window.innerWidth * coef}, { x: 0, ease: Power1.easeOut }, 0.3
 						.fromTo $sliderNormalText, 0.4, { x: -0.25 * window.innerWidth * coef }, { x: 0, ease: Power1.easeOut }, 0.9
@@ -260,6 +260,19 @@ $ ->
 			animationFunc $parent, true
 			$parent.removeClass 'active'
 			activeBlock = null
+
+		#
+		# add location hash handler for Product page
+		#
+
+		$(document)
+			.unbind 'catalog-handle-hash'
+			.on 'catalog-handle-hash', (e, $this) ->
+				console.log 'catalog-handle-hash'
+				scrollToViewport $this, ->
+					$this.addClass 'active'
+					activeBlock = $this.data 'target'
+					animationFunc $this, false
 
 		controller.resizeSceneActions.push ->
 			$openBlock = $('.product-cover.active')

@@ -83,3 +83,4 @@ $ ->
 		$(document).trigger 'header-fix'
 		$(document).trigger 'reset-addthis'
 		$(document).trigger 'init-content-widget'
+		$(document).trigger 'init-product-page'

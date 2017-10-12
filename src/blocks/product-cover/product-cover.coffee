@@ -238,6 +238,7 @@ $ ->
 			.unbind 'catalog-handle-hash'
 			.on 'catalog-handle-hash', (e, $this) ->
 				scrollToViewport $this, ->
+					hoverIn.call $this
 					$this.addClass 'active'
 					activeBlock = $this.data 'target'
 					animationFunc $this, false

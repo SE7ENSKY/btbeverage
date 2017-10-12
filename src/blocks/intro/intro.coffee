@@ -238,6 +238,10 @@ $ ->
 		hash = location.hash
 		location.hash = ''
 		location.hash = hash if hash
+		$product = $('.catalog').find(hash)
+		return unless $product.length
+
+		$(document).trigger 'catalog-handle-hash', [ $product ]
 
 	#
 	# handle when sequence is loaded

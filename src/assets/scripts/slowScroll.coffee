@@ -15,7 +15,7 @@ $ ->
 		TweenMax.to $(window), scrollTime,
 			scrollTo:
 				y: finalScroll
-				autoKill: true
+				# autoKill: true
 			ease: Power1.easeOut
 			overwrite: 5
 

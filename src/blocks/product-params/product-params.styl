@@ -30,8 +30,16 @@
 		opacity 0
 		height 0
 		overflow hidden
-		&-inner
-			padding-top 1rem
+		&-button
+			display inline-block
+			margin-top 1rem
+			font-size 0.8em
+			border-bottom 1px dashed
+			text-transform uppercase
+			transition opacity 0.2s ease-in-out
+			cursor pointer
+			&:hover
+				opacity 0.6
 	&__title
 		display flex
 		align-items center

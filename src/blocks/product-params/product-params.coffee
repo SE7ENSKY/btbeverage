@@ -12,6 +12,35 @@ $ ->
 		$block.each ->
 			handleTotalChange $(@)
 
+		#
+		# Handle ingredients click
+		#
+		$ingredientsBtn = $block.find('.product-params__ingredients-button')
+		$ingredientsBtn.on 'click', ->
+			$this = $(@)
+			$ingredientsInner = $this.parent().find('.product-params__ingredients-inner')
+			$paramsIngredient = $this.parent().find('.product-params__ingredients')
+			$params = $this.parents('.product-params')
+			isClosed = $this.hasClass 'closed'
+			ingredientsOrigin = $ingredientsInner.outerHeight()
+			ingredientsHeight = if isClosed then ingredientsOrigin else 0
+			paramsHeightDiff = if isClosed then ingredientsOrigin else - ingredientsOrigin
+			tl = new TimelineMax()
+
+			tl
+				.to $params, 0.2, { height: $params.outerHeight() + paramsHeightDiff, ease: Power0.easeNone }, 0
+
+			if isClosed
+				tl.fromTo $paramsIngredient, 0.2, { height: 0 }, { height: ingredientsHeight, autoAlpha: 1, ease: Power0.easeNone }, 0
+			else
+				tl.to $paramsIngredient, 0.2, { height: 0, autoAlpha: 0, ease: Power0.easeNone }, 0
+
+			$this.toggleClass 'closed'
+
+		#
+		# Handle Cart params changes
+		#
+
 		$cartButton = $block.find('.product-params__cart-button')
 		$cartButton.each ->
 			$this = $(@)

@@ -30,8 +30,17 @@
 		opacity 0
 		height 0
 		overflow hidden
-		&-inner
-			padding-top 1rem
+		&-button
+			display inline-block
+			margin-top 1rem
+			color #315423
+			transition opacity 0.2s ease-in-out
+			cursor pointer
+			&.closed
+				&:after
+					content '...'
+			&:hover
+				opacity 0.6
 	&__title
 		display flex
 		align-items center

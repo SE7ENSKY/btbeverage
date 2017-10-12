@@ -21,35 +21,6 @@ $ ->
 
 		$block.each ->
 
-			#
-			# Handle ingredients click
-			#
-			$this = $(@)
-			$params = $catalog.find($this.attr("data-target"))
-			$ingredients = $this.find('.ingredients')
-			$paramsIngredient = $params.find('.product-params__ingredients')
-			$paramsIngredientInner = $params.find('.product-params__ingredients-inner')
-			productCoverHeightClosed = 0.6666 * $this.parent().outerWidth()
-
-			$ingredients.on 'click', ->
-				ingredientsOrigin = $paramsIngredientInner.outerHeight()
-				isOpen = $params.hasClass 'ingredients-open'
-				ingredientsHeight = if !isOpen then ingredientsOrigin else 0
-				paramsHeightDiff = if !isOpen then ingredientsOrigin else - ingredientsOrigin
-				tl = new TimelineMax()
-
-				tl
-					.to $params, 0.2, { height: $params.outerHeight() + paramsHeightDiff, ease: Power0.easeNone }, 0
-
-				if isOpen
-					tl.to $paramsIngredient, 0.2, { height: 0, autoAlpha: 0, ease: Power0.easeNone }, 0
-				else
-					tl.fromTo $paramsIngredient, 0.2, { height: 0 }, { height: ingredientsHeight, autoAlpha: 1, ease: Power0.easeNone }, 0
-
-				$params.toggleClass 'ingredients-open', !isOpen
-
-
-
 		#
 		# catalog animation
 		#
@@ -113,7 +84,6 @@ $ ->
 			$sliderWrapper = $this.find '.product-cover__slider-wrapper'
 			$slider = $this.find '.product-cover__slider'
 			$sliderVerticalText = $this.find '.product-cover__text-vertical span'
-			$sliderNormalText = $this.find '.product-cover__text'
 			$sliderTitle = $this.find '.product-cover__title'
 
 			# open
@@ -128,7 +98,6 @@ $ ->
 						.fromTo $paramsTextInner, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.3
 						.staggerFromTo $blockInners, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }, .1, 0.4
 						.fromTo $slider, 0.5, { x: -window.innerWidth }, { x: 0, ease: Power1.easeOut }, 0.5
-						.fromTo $sliderNormalText, 0.3, { x: -0.5 * window.innerWidth }, { x: 0, ease: Power1.easeOut }, 0.5
 				else
 					tl
 						.to $target, 0.5, { height: 0, ease: Power0.easeNone }, 0
@@ -136,7 +105,6 @@ $ ->
 						.to $blockInners, 0.2, { autoAlpha: 0 }, 0, 0
 						.fromTo $sliderWrapper, 0.2, { autoAlpha: 1 }, { autoAlpha: 0 }, 0
 						.set $slider, { x: -window.innerWidth }, 0.2
-						.set $sliderNormalText, { x: -0.5 * window.innerWidth }, 0.2
 						.fromTo $paramsText, 0.5, { y: 0 }, { y: -(packHeight + volumeHeight + $paramsCart.outerHeight()), ease: Power0.easeNone }, 0
 						.fromTo $paramsCart, 0.4, { y: 0 }, { y: -(textHeight + volumeHeight), ease: Power0.easeNone }, 0
 						.fromTo $paramsPack, 0.3, { y: 0 }, { y: -textHeight, ease: Power0.easeNone }, 0
@@ -156,7 +124,6 @@ $ ->
 
 						.fromTo $sliderTitle, .5, { autoAlpha: 1}, {autoAlpha: 0}, 0
 						.fromTo $slider, 1, { x: - 0.5 * window.innerWidth * coef}, { x: 0, ease: Power1.easeOut }, 0.3
-						.fromTo $sliderNormalText, 0.4, { x: -0.25 * window.innerWidth * coef }, { x: 0, ease: Power1.easeOut }, 0.9
 						.staggerFromTo $sliderVerticalText, 0.4, { autoAlpha: 0, rotationX: 90 * coef }, { autoAlpha: 1, rotationX: 0 }, 0.2, 0.4
 				else
 					tl
@@ -170,10 +137,10 @@ $ ->
 						.to $paramsTextInner, 0.2, { autoAlpha: 0 }, 0
 						.to $blockInners, 0.2, { autoAlpha: 0 }, 0
 						.to $colLeft, .2, {marginTop: 0}, 0
-			if isOpen
-				$targetIngredients = $target.removeClass('ingredients-open').find('.product-params__ingredients')
-				if $targetIngredients.length
-					tl.set $targetIngredients, { height: 0, autoAlpha: 0 }, 0.5
+			# if isOpen
+			# 	$targetIngredients = $target.removeClass('ingredients-open').find('.product-params__ingredients')
+			# 	if $targetIngredients.length
+			# 		tl.set $targetIngredients, { height: 0, autoAlpha: 0 }, 0.5
 
 		#
 		# resize logic if some block isOpen (active)

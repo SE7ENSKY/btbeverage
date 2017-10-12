@@ -1,9 +1,12 @@
 +e.wrap
 	if data.text
 		+e.text
-			+e.text-inner!= data.text
-				+e.ingredients
-					+e.ingredients-inner= data.ingredients
+			+e.text-inner
+				+e.text-content!= data.text
+				if data.ingredients
+					+e.ingredients-button.closed Ingredients
+					+e.ingredients
+						+e.ingredients-inner= data.ingredients
 	+e.volume
 		+e.inner.stagger
 			+e.title select &#10; size

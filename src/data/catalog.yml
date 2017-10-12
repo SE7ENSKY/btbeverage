@@ -7,7 +7,6 @@
   slug: 'chili-cleanser'
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
-    noteTxt: "Ingredients"
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
@@ -28,7 +27,6 @@
   slug: 'black-tea'
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
-    noteTxt: "Ingredients"
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
@@ -49,7 +47,6 @@
   slug: 'lemon-balm'
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
-    noteTxt: "Ingredients"
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
@@ -70,7 +67,6 @@
   slug: 'lemonade'
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
-    noteTxt: "Ingredients"
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
@@ -91,7 +87,6 @@
   slug: 'serenity'
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
-    noteTxt: "Ingredients"
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
@@ -112,7 +107,6 @@
   slug: 'tranquility'
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
-    noteTxt: "Ingredients"
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
@@ -133,7 +127,6 @@
   slug: 'green-tea'
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
-    noteTxt: "Ingredients"
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
@@ -154,7 +147,6 @@
   slug: 'original-ginger'
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
-    noteTxt: "Ingredients"
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
@@ -175,7 +167,6 @@
   slug: 'variety-pack'
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
-    noteTxt: "Ingredients"
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"

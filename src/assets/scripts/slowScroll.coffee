@@ -20,11 +20,11 @@ $ ->
 			overwrite: 5
 
 	initSlowScroll = ->
-		isSlowScroll = true
+		window.isSlowScroll = true
 		$(window).on 'mousewheel DOMMouseScroll', slowScroll
 
 	removeSlowScroll = ->
-		isSlowScroll = false
+		window.isSlowScroll = false
 		$(window).off 'mousewheel DOMMouseScroll', slowScroll
 
 

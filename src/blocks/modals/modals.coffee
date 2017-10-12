@@ -28,6 +28,7 @@ $ ->
 					$("html, body").addClass("overflow-hidden-modal")
 					onComplete()
 			else
+				$('body').addClass('overflow-hidden-modal')
 				onComplete()
 
 		$('.modal').on 'hide.bs.modal', (e) ->

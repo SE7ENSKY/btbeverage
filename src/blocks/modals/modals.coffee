@@ -31,14 +31,12 @@ $ ->
 			else
 				onComplete()
 
-		$('.modal').on 'hidden.bs.modal', (e) ->
-			$("body").removeClass("overflow-hidden-modal")
-
 		$('.modal').on 'hide.bs.modal', (e) ->
 			if isMobile()
 				$("html").removeClass("overflow-hidden-modal")
 				window.scrollTo(0, topScrollPos)
 			$(@).removeClass('overflow-hidden')
+			$("body").removeClass("overflow-hidden-modal")
 
 			if wasSlowScroll
 			# 	$(document).trigger 'init-slow-scroll'

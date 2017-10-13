@@ -37,7 +37,7 @@ $ ->
 			TweenMax.to $(window), .2,
 				scrollTo:
 					y: valY
-					autoKill: true
+					autoKill: false
 				ease: Power1.easeOut
 				# overwrite: 10
 				onComplete: ->

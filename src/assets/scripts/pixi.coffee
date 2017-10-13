@@ -1,5 +1,5 @@
 $ ->
-	widthRatio = 0.625 # 720 x 450
+	widthRatio = 0.60625 # 960 x 582
 	menuHeight = 80
 
 	window.pixi =

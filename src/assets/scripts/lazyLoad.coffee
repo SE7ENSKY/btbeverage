@@ -1,4 +1,5 @@
 import lozad from 'lozad'
+import { TweenMax } from 'gsap'
 
 $ ->
 	observer = lozad '.lozad',
@@ -21,6 +22,10 @@ $ ->
 				$this.addClass 'is-loaded'
 				# force play
 				el.play() if $this.closest('.product-cover.hover, .product-cover.active').length
+
+				$image = $this.parent().find('.product-cover__video-image')
+				if $image.length
+					TweenMax.to $image, 0.5, { autoAlpha: 0, delay: 2.5 }
 
 	initLazyLoad = ->
 		observer.observe()

@@ -19,8 +19,6 @@ $ ->
 
 		cntrl = controller.get()
 
-		$block.each ->
-
 		#
 		# catalog animation
 		#

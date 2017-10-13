@@ -51,9 +51,9 @@ $ ->
 
 		controller.resizeSceneActions.push ->
 			backgroundVideo.duration(if window.innerHeight >= 420 then "100%" else 420)
+			$block.find('video').show(0)
 			if isMobile()
 				backgroundVideo.enabled false
-				$block.find('video').show(0)
 			else
 				backgroundVideo.enabled true
 

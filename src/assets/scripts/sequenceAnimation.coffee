@@ -1,5 +1,5 @@
 import { Scene } from 'scrollmagic'
-import { TimelineMax, TweenMax, Power0 } from 'gsap'
+import { TimelineMax, TweenMax, Power0, Power1 } from 'gsap'
 
 window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 	$seq = $('.sequence')
@@ -37,7 +37,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 
 	seqScene = new Scene({
 			triggerElement: triggerElement,
-			offset: -$('.header').outerHeight(),
+			offset: 0,
 			triggerHook: options.triggerHook or 1,
 			duration: options.duration or '100%'
 		})
@@ -50,13 +50,14 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 				TweenMax.set $canvas.get(0), { autoAlpha: 0 }
 				TweenMax.set $seq.get(0), { autoAlpha: 0 }
 			if (options.finish and ev.scrollDirection == "FORWARD") and !scene
+				$canvas = $('.sequence canvas')
 				scene = new Scene({
-					triggerElement: triggerElement,
+					triggerElement: triggerElement
 					triggerHook: 0,
-					offset: -$('.header').outerHeight(),
-					duration: "100%"
+					offset: -40,
+					duration: $canvas.outerHeight()
 					})
-					.setTween TweenMax.fromTo '.sequence', 0.5, { transform: "translate3d(#{options.shiftToX || 0}, 0, 0)" }, { transform: "translate3d(#{options.shiftToX || 0}, -100%, 0)", ease: Power0.easeNone }
+					.setTween TweenMax.fromTo $canvas, 0.5, { y: 0 }, { y: "-100%", ease: Power0.easeNone }
 					.addTo(cntrl)
 		.on 'enter', (ev) ->
 			if (options.begin and ev.scrollDirection == "FORWARD")
@@ -71,7 +72,9 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 	seqScene.enabled false if isMobile() or isPortrait()
 
 	controller.resizeSceneActions.push ->
-		scene.offset(window.innerHeight - $('.header').outerHeight()) if scene
+		if scene
+			scene.offset( -40 )
+			scene.duration $('.sequence canvas').outerHeight()
 		if isMobile() or isPortrait()
 			scene.enabled false if scene
 			seqScene.enabled false

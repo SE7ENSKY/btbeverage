@@ -12,9 +12,21 @@ $ ->
 			sequence = $elem.data('sequence')
 			return unless sequence
 			isFinish = $elem.data('sequence-fin')
-			duration = $elem.data('sequence-duration')
 
-			sequenceAnimation $elem.get(0), sequence[0], sequence[1], { finish: isFinish, duration: duration, shiftToX: "-25vw" }
+			needCalcDuration = true
+			durationValue = 0
+
+			calcDuration = ->
+				return durationValue unless needCalcDuration
+				durationValue = $('.sequence-widget').outerHeight() -  80
+				needCalcDuration = false
+				return durationValue
+
+			$(window).on 'resize', ->
+				needCalcDuration = true
+				TweenMax.set $('.sequence canvas'), { x: "-50%" }
+
+			sequenceAnimation $elem.get(0), sequence[0], sequence[1], { finish: isFinish, duration: calcDuration, shiftToX: "-25vw" }
 
 	sequenceWidgetJS()
 

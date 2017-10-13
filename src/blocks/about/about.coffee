@@ -45,7 +45,19 @@ $ ->
 		sequence = $block.data('sequence')
 		return if !sequence
 
-		sequenceAnimation '.about__title', sequence[0], sequence[1], { begin: true, triggerHook: 0.15 }
+		needCalcDuration = true
+		durationValue = 0
+
+		calcDuration = ->
+			return durationValue unless needCalcDuration
+			durationValue = $('.sequence-widget').offset().top - $('.about__title').offset().top - $('.about__title').outerHeight(true) - 2 * 80 - window.innerHeight / 2
+			needCalcDuration = false
+			return durationValue
+
+		$(window).on 'resize', ->
+			needCalcDuration = true
+
+		sequenceAnimation '.about__title', sequence[0], sequence[1], { begin: true, triggerHook: 0.05, duration: calcDuration }
 
 	aboutBlockJS()
 

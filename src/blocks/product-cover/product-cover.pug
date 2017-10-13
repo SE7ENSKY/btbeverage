@@ -1,11 +1,11 @@
-+e.wrap
++e.wrap(class="catalog-lozad")
 	+e.wrap-inner
 		if data.image
 			+e.image(class="lozad" data-background-image=data.image)
 		if data.video
 			+e.video-wrapper
-				+e.video-poster(class="lozad" data-background-image=data.poster)
-				+e("video").video(class='video-lozad' data-video=data.video data-type="video/mp4" loop muted)
+				+e.video-poster(data-src=data.poster)
+				+e("video").video(data-video=data.video data-type="video/mp4" loop muted)
 +e.content
 	if data.title
 		+e.title!= data.title

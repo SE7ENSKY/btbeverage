@@ -4,7 +4,9 @@
 			+e.text-inner
 				+e.text-content!= data.text
 				if data.ingredients
-					+e.ingredients-button.closed Ingredients
+					+e.ingredients-header.closed
+						+e.ingredients-header-text Ingredients
+						+e.ingredients-header-icon
 					+e.ingredients
 						+e.ingredients-inner= data.ingredients
 	+e.volume

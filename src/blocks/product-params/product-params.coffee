@@ -15,7 +15,7 @@ $ ->
 		#
 		# Handle ingredients click
 		#
-		$ingredientsBtn = $block.find('.product-params__ingredients-button')
+		$ingredientsBtn = $block.find('.product-params__ingredients-header')
 		$ingredientsBtn.on 'click', ->
 			$this = $(@)
 			$ingredientsInner = $this.parent().find('.product-params__ingredients-inner')

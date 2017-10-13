@@ -30,14 +30,42 @@
 		opacity 0
 		height 0
 		overflow hidden
-		&-button
-			display inline-block
+		&-header
+			display flex
+			width 105px
 			margin-top 1rem
-			font-size 0.8em
-			border-bottom 1px dashed
-			text-transform uppercase
+			font-size 13px
+			color #78A965
 			transition opacity 0.2s ease-in-out
 			cursor pointer
+			&-icon
+				position relative
+				margin-left 10px
+				border-radius 50%
+				border 1px solid rgba(120, 169, 101, .3)
+				height 20px
+				width 20px
+				transition transform 0.2s linear
+				&:after
+				&:before
+					content ''
+					display block
+					position absolute
+					top 9px
+					width 6px
+					height 1px
+					background-color #679E51
+				&:after
+					left 4px
+					transform rotate(45deg)
+				&:before
+					right 4px
+					transform rotate(-45deg)
+			&:not(.closed)
+				.product-params
+					&__ingredients
+						&-header-icon
+							transform rotate(180deg)
 			&:hover
 				opacity 0.6
 	&__title

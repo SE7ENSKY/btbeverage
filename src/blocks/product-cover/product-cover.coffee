@@ -207,6 +207,7 @@ $ ->
 			if $openBlock.length
 				animationFunc $openBlock, true
 				$openBlock.removeClass 'active'
+				removeHash()
 				activeBlock = null
 				timeout = 500
 
@@ -222,6 +223,7 @@ $ ->
 
 		$block.find('.product-cover__close').on 'click touchstart', (e) ->
 			e.preventDefault()
+			removeHash()
 			$this = $(@)
 			$parent = $this.parents('.product-cover')
 			animationFunc $parent, true

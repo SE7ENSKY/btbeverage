@@ -5,7 +5,7 @@
 		if data.video
 			+e.video-wrapper
 				+e.video-poster(class="lozad" data-background-image=data.poster)
-				+e("video").video(class='video-lozad' data-video=data.video data-type="video/mp4" loop muted data-poster=data.poster)
+				+e("video").video(class='video-lozad' data-video=data.video data-type="video/mp4" loop muted)
 +e.content
 	if data.title
 		+e.title!= data.title

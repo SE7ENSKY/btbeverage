@@ -23,7 +23,7 @@ $ ->
 				return durationValue
 
 			$(window).on 'resize', ->
-				needCalcDuration = true
+				needCalcDuration = !isMobile()
 				TweenMax.set $('.sequence canvas'), { x: "-50%" }
 
 			sequenceAnimation $elem.get(0), sequence[0], sequence[1], { finish: isFinish, duration: calcDuration, shiftToX: "-25vw" }

@@ -55,7 +55,7 @@ $ ->
 			return durationValue
 
 		$(window).on 'resize', ->
-			needCalcDuration = true
+			needCalcDuration = !isMobile()
 
 		sequenceAnimation '.about__title', sequence[0], sequence[1], { begin: true, triggerHook: 0.05, duration: calcDuration }
 

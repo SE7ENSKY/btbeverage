@@ -13,7 +13,7 @@ $ ->
 			return unless sequence
 			isFinish = $elem.data('sequence-fin')
 
-			needCalcDuration = true
+			needCalcDuration = !isMobile()
 			durationValue = 0
 
 			calcDuration = ->

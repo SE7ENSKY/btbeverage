@@ -45,7 +45,7 @@ $ ->
 		sequence = $block.data('sequence')
 		return if !sequence
 
-		needCalcDuration = true
+		needCalcDuration = !isMobile()
 		durationValue = 0
 
 		calcDuration = ->

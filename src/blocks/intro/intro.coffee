@@ -130,12 +130,12 @@ $ ->
 				.fromTo $leaf, 0.8, { x: "-50%" }, { x: "-53%" }, 0
 				.to $leaf, 0.6, { x: "-45%" }, 0.8
 				.to $leaf, 0.4, { rotation: -5 }, 1
-				.to $leaf, 0.6, { rotation: 5 }, 1.6
+				.to $leaf, 0.6, { rotation: 0 }, 1.6
 				.to $leaf, 0.6, { x: "-50%" }, 1.6
 
 		leafScrollAnimation = ->
 			basicConfig =
-				rotation: 5,
+				rotation: 0,
 				x: "-50%",
 				y: "-100%",
 				scale: 1

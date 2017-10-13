@@ -6,7 +6,7 @@
   externalLink: "https://www.amazon.com/B-tea-Kombucha-Probiotics-Prebiotic-Cleanser/dp/B01FGPBZ8Y/ref=sr_1_9_a_it?ie=UTF8&qid=1506012111&sr=8-9&keywords=btea%2Bkombucha&th=1"
   slug: 'chili-cleanser'
   slider:
-    verticalTxt: "<span>Original</span><br><span>Black tea</span>"
+    verticalTxt: "<span>Chili</span><br><span>Cleanser</span>"
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
@@ -46,7 +46,7 @@
   externalLink: "https://www.amazon.com/B-tea-Kombucha-Organic-Probiotics-Prebiotic/dp/B01FGPBZ3E/ref=sr_1_24_a_it?ie=UTF8&qid=1506011944&sr=8-24&keywords=btea+kombucha"
   slug: 'lemon-balm'
   slider:
-    verticalTxt: "<span>Original</span><br><span>Black tea</span>"
+    verticalTxt: "<span>Lemon</span><br><span>Balm</span>"
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
@@ -66,7 +66,7 @@
   externalLink: "https://www.amazon.com/B-tea-Kombucha-Probiotics-Prebiotic-Promotes/dp/B01J2JRZB6/ref=sr_1_5_a_it?ie=UTF8&qid=1506012078&sr=8-5&keywords=btea%2Bkombucha&th=1"
   slug: 'lemonade'
   slider:
-    verticalTxt: "<span>Original</span><br><span>Black tea</span>"
+    verticalTxt: "<span>Lemonade</span>"
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
@@ -86,7 +86,7 @@
   externalLink: "https://www.amazon.com/B-tea-Kombucha-Probiotics-Prebiotic-Serenity/dp/B01F0AJXSY/ref=sr_1_10_a_it?ie=UTF8&qid=1506012111&sr=8-10&keywords=btea+kombucha"
   slug: 'serenity'
   slider:
-    verticalTxt: "<span>Original</span><br><span>Black tea</span>"
+    verticalTxt: "<span>Serenity</span>"
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
@@ -106,7 +106,7 @@
   externalLink: "https://www.amazon.com/Kombucha-Organic-Probiotics-Prebiotic-Kosher/dp/B01FGPBZ1G/ref=sr_1_43_a_it?ie=UTF8&qid=1506012020&sr=8-43&keywords=btea%2Bkombucha&th=1"
   slug: 'tranquility'
   slider:
-    verticalTxt: "<span>Original</span><br><span>Black tea</span>"
+    verticalTxt: "<span>Tranquility</span>"
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
@@ -126,7 +126,7 @@
   externalLink: "https://www.amazon.com/Kombucha-Organic-Probiotics-Prebiotic-B-tea/dp/B073V6FLHH/ref=sr_1_11_a_it?ie=UTF8&qid=1506011745&sr=8-11&keywords=btea+kombucha"
   slug: 'green-tea'
   slider:
-    verticalTxt: "<span>Original</span><br><span>Black tea</span>"
+    verticalTxt: "<span>Grean Tea</span>"
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
@@ -146,7 +146,7 @@
   externalLink: "https://www.amazon.com/B-tea-Kombucha-Probiotics-Prebiotic-Promotes/dp/B01F0AJXP2/ref=sr_1_1_a_it?ie=UTF8&qid=1506011745&sr=8-1&keywords=btea%2Bkombucha&th=1"
   slug: 'original-ginger'
   slider:
-    verticalTxt: "<span>Original</span><br><span>Black tea</span>"
+    verticalTxt: "<span>Original</span><br><span>Ginger</span>"
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"
@@ -166,7 +166,7 @@
   externalLink: "https://www.amazon.com/B-tea-Kombucha-Probiotics-Prebiotic-Promotes/dp/B01LYF01T0/ref=sr_1_17_sspa?ie=UTF8&qid=1506012111&sr=8-17-spons&keywords=btea%2Bkombucha&th=1"
   slug: 'variety-pack'
   slider:
-    verticalTxt: "<span>Original</span><br><span>Black tea</span>"
+    verticalTxt: "<span>Variety</span><br><span>Pack</span>"
     bottleImage:
       - "/assets/i/bottle.png"
       - "/assets/i/bottle.png"

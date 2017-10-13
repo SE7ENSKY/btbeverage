@@ -9,14 +9,6 @@ $ ->
 
 		cntrl = controller.get()
 
-		new Scene({
-				triggerElement: ".about__text"
-				offset: 0,
-				duration: '100%'
-			})
-			.setTween(TweenMax.fromTo '.about__text', 0.5, { autoAlpha: 1 }, { autoAlpha: 0 })
-			.addTo(cntrl)
-
 		$listItems = $block.find '.about__list-item'
 		$listItems.each ->
 			tl = new TimelineMax()
@@ -53,7 +45,7 @@ $ ->
 		sequence = $block.data('sequence')
 		return if !sequence
 
-		sequenceAnimation '.about__text', sequence[0], sequence[1], { begin: true, triggerHook: 0.5 }
+		sequenceAnimation '.about__title', sequence[0], sequence[1], { begin: true, triggerHook: 0.15 }
 
 	aboutBlockJS()
 

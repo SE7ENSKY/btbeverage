@@ -162,14 +162,14 @@ $ ->
 
 			new Scene({
 					offset: 0
-					duration: "100%"
+					duration: "80%"
 				})
 				.setTween(tween)
 				.addTo(cntrl)
 
 			leafHideScene = new Scene({
-					offset: window.innerHeight,
-					duration: "50%",
+					offset: window.innerHeight * 0.8,
+					duration: if isMobile() then "30%" else "50%",
 				})
 				.setTween(hideTween)
 				.addTo(cntrl)
@@ -180,8 +180,8 @@ $ ->
 
 			controller.resizeSceneActions.push ->
 				leafHideScene
-					.offset window.innerHeight
-					.duration(if isMobile() then "5%" else "50%")
+					.offset window.innerHeight * 0.8
+					.duration(if isMobile() then "30%" else "50%")
 
 		#
 		# video add callback

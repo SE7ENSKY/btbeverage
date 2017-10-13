@@ -194,7 +194,7 @@ $ ->
 
 		activeBlock = null
 
-		$block.on "click", (e) ->
+		$block.on "click touchstart", (e) ->
 			e.preventDefault()
 			$this = $(@)
 			isOpen = $this.hasClass('active')

@@ -102,8 +102,8 @@ $ ->
 						.to $target, 0.5, { height: 0, ease: Power0.easeNone }, 0
 						.to $paramsTextInner, 0.2, { autoAlpha: 0 }, 0, 0
 						.to $blockInners, 0.2, { autoAlpha: 0 }, 0, 0
-						.fromTo $sliderWrapper, 0.2, { autoAlpha: 1 }, { autoAlpha: 0 }, 0
-						.set $slider, { x: -window.innerWidth }, 0.2
+						.fromTo $sliderWrapper, 0.3, { autoAlpha: 1 }, { autoAlpha: 0, ease: Power0.easeNone }, 0
+						.to $slider, 0.4, { x: -window.innerWidth, ease: Power1.easeIn }, 0
 						.fromTo $paramsText, 0.5, { y: 0 }, { y: -(packHeight + volumeHeight + $paramsCart.outerHeight()), ease: Power0.easeNone }, 0
 						.fromTo $paramsCart, 0.4, { y: 0 }, { y: -(textHeight + volumeHeight), ease: Power0.easeNone }, 0
 						.fromTo $paramsPack, 0.3, { y: 0 }, { y: -textHeight, ease: Power0.easeNone }, 0
@@ -211,7 +211,7 @@ $ ->
 				timeout = 500
 
 			setTimeout ->
-				hoverOut.call $openBlock if $openBlock.length
+				hoverOut.call $openBlock if $openBlock.length and !touchDevice
 				$this.addClass 'active'
 				activeBlock = $this.data 'target'
 				scrollToViewport $this, ->

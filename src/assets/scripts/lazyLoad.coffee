@@ -50,13 +50,13 @@ $ ->
 	initLazyLoad = ->
 		observer.observe()
 		videoWasInit = false
-		if !isMobile()
+		if !isMobile() and !touchDevice
 			videoWasInit = true
 			catalogVideoObserver.observe()
 			videoObserver.observe()
 
 		controller.resizeSceneActions.push ->
-			if !isMobile() and !videoWasInit
+			if !isMobile() and !videoWasInit and !touchDevice
 				videoWasInit = true
 				videoObserver.observe()
 				catalogVideoObserver.observe()

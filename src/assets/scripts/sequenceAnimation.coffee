@@ -35,6 +35,16 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 	cntrl = controller.get()
 	scene = null
 	offset = () -> if options.offset then options.offset() else 0
+	$el =  $(triggerElement)
+
+	$menuHeight = 80
+
+	setSeqTop = () ->
+		$seq.css 'top', $el.offset().top + $el.outerHeight() - $seq.find('canvas').outerHeight() - $menuHeight
+
+	$(window).on 'resize', ->
+		if $seq.css('position') == 'absolute'
+			setSeqTop()
 
 	seqScene = new Scene({
 			triggerElement: triggerElement,
@@ -56,9 +66,14 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 					triggerElement: triggerElement
 					triggerHook: 0,
 					offset: -50,
-					duration: $canvas.outerHeight()
 					})
-					.setTween TweenMax.fromTo $canvas, 0.5, { y: 0 }, { y: "-100%", ease: Power0.easeNone }
+					.on 'start', (ev) ->
+						if ev.scrollDirection == 'FORWARD'
+							$seq.css 'position', 'absolute'
+							setSeqTop()
+						else if ev.scrollDirection == 'REVERSE'
+							$seq.css 'position', 'fixed',
+							$seq.css 'top', $menuHeight
 					.addTo(cntrl)
 		.on 'enter', (ev) ->
 			if (options.begin and ev.scrollDirection == "FORWARD")

@@ -34,10 +34,11 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 
 	cntrl = controller.get()
 	scene = null
+	offset = () -> if options.offset then options.offset() else 0
 
 	seqScene = new Scene({
 			triggerElement: triggerElement,
-			offset: 0,
+			offset: 0 + offset(),
 			triggerHook: options.triggerHook or 1,
 			duration: options.duration or '100%'
 		})
@@ -54,7 +55,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 				scene = new Scene({
 					triggerElement: triggerElement
 					triggerHook: 0,
-					offset: -40,
+					offset: -50,
 					duration: $canvas.outerHeight()
 					})
 					.setTween TweenMax.fromTo $canvas, 0.5, { y: 0 }, { y: "-100%", ease: Power0.easeNone }
@@ -73,7 +74,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 
 	controller.resizeSceneActions.push ->
 		if scene
-			scene.offset( -40 )
+			scene.offset( -50 )
 			scene.duration $('.sequence canvas').outerHeight()
 		if isMobile() or isPortrait()
 			scene.enabled false if scene

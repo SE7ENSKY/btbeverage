@@ -63,7 +63,7 @@ $ ->
 			$target = $catalog.find($this.attr("data-target"))
 			$targetInner = $target.find('.product-params__wrap')
 
-			productCoverHeightClosed = (0.6666 * $this.outerWidth())
+			productCoverHeightClosed = (0.54 * $this.outerWidth())
 			productCoverHeightOpen = productCoverHeightClosed * 1.6
 
 			coef = if $this.hasClass 'right' then -1 else 1
@@ -127,7 +127,7 @@ $ ->
 				else
 					tl
 						.to $target, 0.5, { height: 0, ease: Power0.easeNone }, 0
-						.to $this, 0.5, { paddingBottom: "33.33vw" , ease: Power0.easeNone  }, 0
+						.to $this, 0.5, { paddingBottom: "27vw" , ease: Power0.easeNone  }, 0
 						.to $sliderTitle, .5, { autoAlpha: 1}, 0
 						.to $sliderWrapper, 0.2, { autoAlpha: 0 }, 0
 						.to $paramsCart, 0.5, { y: -(textHeight + volumeHeight + $paramsPack.outerHeight()), ease: Power0.easeNone }, 0
@@ -152,7 +152,7 @@ $ ->
 			if isMobile()
 				TweenMax.set $target, { height: $targetInner.outerHeight()  }, 0
 			else
-				productCoverHeightClosed = (0.6666 * $this.outerWidth())
+				productCoverHeightClosed = (0.54 * $this.outerWidth())
 				productCoverHeightOpen = productCoverHeightClosed * 1.6
 				TweenMax.set $this, { paddingBottom: "#{productCoverHeightOpen}px" }, 0
 				TweenMax.set $target, { height: $targetInner.outerHeight()  }, 0

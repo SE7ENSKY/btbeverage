@@ -9,7 +9,7 @@
     verticalTxt: "<span>Chili</span><br><span>Cleanser</span>"
     bottleImage:
       - "/assets/i/bottle.png"
-      - "/assets/i/bottle.png"
+      - "/assets/i/bottle_chili_sm.png"
   ingredients: "some ingredients It quenches that hard-to-reach thirst with a bold flavor and all the goodness of 100% organic Darjeerling"
   priceList:
     8oz-6: 3
@@ -29,7 +29,7 @@
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     bottleImage:
       - "/assets/i/bottle.png"
-      - "/assets/i/bottle.png"
+      - "/assets/i/bottle_original_sm.png"
   ingredients: "some ingredients"
   priceList:
     8oz-6: 3
@@ -88,8 +88,8 @@
   slider:
     verticalTxt: "<span>Serenity</span>"
     bottleImage:
-      - "/assets/i/bottle.png"
-      - "/assets/i/bottle.png"
+      - "/assets/i/bottle_serenity_bg.png"
+      - "/assets/i/bottle_serenity_sm.png"
   ingredients: "some ingredients"
   priceList:
     8oz-6: 3
@@ -108,8 +108,8 @@
   slider:
     verticalTxt: "<span>Tranquility</span>"
     bottleImage:
-      - "/assets/i/bottle.png"
-      - "/assets/i/bottle.png"
+      - "/assets/i/bottle_tranquility_bg.png"
+      - "/assets/i/bottle_tranquility_sm.png"
   ingredients: "some ingredients"
   priceList:
     8oz-6: 3
@@ -128,8 +128,8 @@
   slider:
     verticalTxt: "<span>Grean Tea</span>"
     bottleImage:
-      - "/assets/i/bottle.png"
-      - "/assets/i/bottle.png"
+      - "/assets/i/bottle_green-tea_bg.png"
+      - "/assets/i/bottle_green-tea_sm.png"
   ingredients: "some ingredients"
   priceList:
     8oz-6: 3
@@ -148,8 +148,8 @@
   slider:
     verticalTxt: "<span>Original</span><br><span>Ginger</span>"
     bottleImage:
-      - "/assets/i/bottle.png"
-      - "/assets/i/bottle.png"
+      - "/assets/i/bottle_ginger_bg.png"
+      - "/assets/i/bottle_ginger_sm.png"
   ingredients: "some ingredients"
   priceList:
     8oz-6: 3

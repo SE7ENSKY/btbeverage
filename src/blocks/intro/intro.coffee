@@ -146,7 +146,8 @@ $ ->
 					autoAlpha: 1,
 					scale: 1.15
 						rotation: 30,
-						autoAlpha: if isMobile() then 0 else 1
+						autoAlpha: 0,
+						overwrite: 'allOnStart',
 						ease: Sine.easeIn
 						scale: 1.15
 
@@ -157,6 +158,7 @@ $ ->
 					y: -35,
 					scale: 1.15,
 					ease: Power1.easeIn
+					overwrite: 'allOnStart'
 
 			scrollScene = null
 
@@ -167,9 +169,17 @@ $ ->
 				.setTween(tween)
 				.addTo(cntrl)
 
+			needUpdateDuration = true
+			duration = 0
+			calcDuration = ->
+				return duration unless needUpdateDuration
+				duration = if isMobile() then "30%" else "50%"
+				needUpdateDuration = false
+				return duration
+
 			leafHideScene = new Scene({
 					offset: window.innerHeight * 0.8,
-					duration: if isMobile() then "30%" else "50%",
+					duration: calcDuration,
 				})
 				.setTween(hideTween)
 				.addTo(cntrl)
@@ -180,8 +190,8 @@ $ ->
 
 			controller.resizeSceneActions.push ->
 				leafHideScene
-					.offset window.innerHeight * 0.8
-					.duration(if isMobile() then "30%" else "50%")
+					.offset(window.innerHeight * 0.8)
+				needUpdateDuration = true
 
 		#
 		# video add callback

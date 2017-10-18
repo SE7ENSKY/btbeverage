@@ -42,7 +42,7 @@ unless hidePayments
 			+e.payments-label#go-to-checkout(data-checkout="/checkout-step-1.html") Checkout
 		+e.payments-item
 			+e("a").payments-link(href="/")
-				+e("img").payments-icon(src=i("amazon-pay.svg"), alt="" width="101" height="21")
+				+e("img").payments-icon._amazon(src=i("amazon-pay.svg"), alt="" width="101" height="21")
 		+e.payments-item
 			+e("a").payments-link(href="/")
 				+e("img").payments-icon(src=i("paypal.svg"), alt="" width="91" height="23")

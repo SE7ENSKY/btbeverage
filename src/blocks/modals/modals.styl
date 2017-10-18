@@ -61,6 +61,9 @@
 			max-width 525px
 	&-content
 		position relative
+		display flex
+		flex-direction column
+		min-height 100%
 		z-index 2
 		outline 0 none
 		width 100%
@@ -115,10 +118,9 @@
 		.modal-dialog
 			transform translateX(0)
 	&_content-centered
-		.modal-dialog
+		.modal-content
 			@media tablet_desktop
-				display flex
-				align-items center
+				justify-content center
 	&_md
 		.modal-dialog
 			@media tablet_desktop

@@ -167,6 +167,7 @@
 			flex-wrap wrap
 		&-item
 			display flex
+			transition background-color .2s ease-in-out
 			@media tablet_desktop
 				width 33.333333%
 				height 120px
@@ -180,6 +181,8 @@
 				background-color #397323
 			&:nth-child(6n)
 				background-color brandColor
+			&:hover
+				background-color #315423
 		&-label
 			display flex
 			width 100%

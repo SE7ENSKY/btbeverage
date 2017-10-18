@@ -7,7 +7,7 @@
 				input.form-control(type="password" placeholder="Password")
 			+e.footer
 				.form-group
-					+e("button").button.btn(type="submit") Login
+					+e("button").button.btn.btn-xs-block(type="submit") Login
 				+e.footer-message
 					+e("a").link(href="#registration-modal" data-toggle="modal" data-dismiss="modal") I am Guest/New
 		when "registration"
@@ -30,4 +30,4 @@
 							input(type="checkbox")
 							span I have read and agree to the Privacy Policy
 				.form-group
-					+e("button").button.btn(type="submit") Register
+					+e("button").button.btn.btn-xs-block(type="submit") Register

@@ -20,9 +20,17 @@ $ ->
 			new Scene({
 					triggerElement: @,
 					triggerHook: 0.8,
-					duration: '25%'
+					duration: '10%'
 				})
 				.setTween(tl)
+				.addTo(cntrl)
+
+			new Scene({
+					triggerElement: @,
+					triggerHook: 0.15,
+					duration: '15%'
+				})
+				.setTween TweenMax.fromTo(@, 0.5, { autoAlpha: 1 }, { autoAlpha: 0 })
 				.addTo(cntrl)
 
 		bottleScene = new Scene({

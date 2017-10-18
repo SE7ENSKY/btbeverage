@@ -13,6 +13,8 @@ $ ->
 			return unless sequence
 			isFinish = $elem.data('sequence-fin')
 
+			offsetFunc = -> -160
+
 			needCalcDuration = !isMobile()
 			durationValue = 0
 
@@ -28,7 +30,7 @@ $ ->
 				needCalcDuration = !isMobile()
 				TweenMax.set $('.sequence canvas'), { x: "-50%" }
 
-			sequenceAnimation $elem.get(0), sequence[0], sequence[1], { finish: isFinish, duration: calcDuration, shiftToX: "-25vw" }
+			sequenceAnimation $elem.get(0), sequence[0], sequence[1], { offset: offsetFunc, finish: isFinish, duration: calcDuration, shiftToX: "-25vw" }
 
 	sequenceWidgetJS()
 

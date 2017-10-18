@@ -67,6 +67,15 @@ $ ->
 			total = calculateTotal()
 			$totalSum.text('$ '+ total.toFixed(2))
 
+	$('.cart__empty-link').on 'click', (e) ->
+		$target = $(e.target)
+		data = $target.data()
+		console.log 'click', e.target, data
+
+		return unless data and data.id
+		console.log 'modal hide'
+		$('.modal').modal('hide')
+
 	initGoToCheckout()
 
 	$(document).on 'init-cart-controls', initCartControls

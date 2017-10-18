@@ -52,8 +52,8 @@ unless hidePayments
 	+e.empty-content
 		+e.empty-item
 			+e.empty-message Log in to see your cart and get shopping!
-			+e.empty-button.btn Login
+			+e("a").empty-link.btn(href="#login-modal" data-toggle="modal" data-dismiss="modal") Login
 		+e.empty-item
 			+e.empty-message or add some products
-			+e.empty-button.btn Products
+			+e("a").empty-link.btn(href="/products.html" data-id="catalog") Products
 	

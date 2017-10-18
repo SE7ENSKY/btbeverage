@@ -50,7 +50,7 @@ $ ->
 
 		calcDuration = ->
 			return durationValue unless needCalcDuration
-			durationValue = $('.sequence-widget').offset().top - $('.about__title').offset().top - $('.about__title').outerHeight(true) - 2 * 80 - window.innerHeight / 2
+			durationValue = $('.sequence-widget').offset().top - $('.about__title').offset().top - $('.about__title').outerHeight(true) - 3 * 80 - window.innerHeight / 2
 			needCalcDuration = false
 			return durationValue
 

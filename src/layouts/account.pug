@@ -2,6 +2,7 @@ extends page
 
 append params
 	- bodyMod = "bg-white"
+	- pageMod = "_account"
 
 block pageContent
 	if file.title
@@ -34,4 +35,3 @@ block pageContent
 				title: "Your password",
 				state: "changePass"
 			})
-

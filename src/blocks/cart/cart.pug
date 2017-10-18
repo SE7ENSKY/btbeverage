@@ -46,3 +46,14 @@ unless hidePayments
 		+e.payments-item
 			+e("a").payments-link(href="/")
 				+e("img").payments-icon(src=i("paypal.svg"), alt="" width="91" height="23")
+				
++e.empty
+	+e.empty-title Your cart is empty
+	+e.empty-content
+		+e.empty-item
+			+e.empty-message Log in to see your cart and get shopping!
+			+e.empty-button.btn Login
+		+e.empty-item
+			+e.empty-message or add some products
+			+e.empty-button.btn Products
+	

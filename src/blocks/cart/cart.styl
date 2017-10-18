@@ -235,10 +235,44 @@
 				width 135px
 			@media phone
 				width 50%
-
+	&__empty
+		display none
+		@media tablet_desktop
+			padding 100px 100px 0
+		@media phone
+			padding 20px 55px 0
+		&-title
+			font-weight bold
+			text-align center
+			text-transform uppercase
+			color brandColor
+			@media tablet_desktop
+				margin-bottom 40px
+				font-size 48px
+				line-height 1.1
+			@media phone
+				margin-bottom 30px
+				font-size 28px
+				line-height 1.2
+		&-content
+			@media tablet_desktop
+				padding 0 50px
+		&-item
+			margin-bottom 30px
+		&-message
+			margin-bottom 20px
+			padding 0 10px
+			text-align center
+			font-size 16px
+			line-height 1.5
+			font-weight 300
+		&-button
+			width 100%
 	&.empty-cart
 		.cart
 			&__prices
 			&__total
 			&__payments
 				display none
+			&__empty
+				display block

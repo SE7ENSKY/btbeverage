@@ -26,10 +26,9 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 	, 0
 
 	if options.shiftToX
-		seqTween.fromTo $seq, 0.5,
-			transform: "translate3d(0, 0, 0)",
-				transform: "translate3d(#{options.shiftToX}, 0, 0)"
-				ease: Power0.easeNone
+		seqTween.to $seq, 0.5,
+			transform: "translateX(#{options.shiftToX})"
+			ease: Power0.easeNone
 		, 0
 
 	cntrl = controller.get()

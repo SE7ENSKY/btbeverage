@@ -8,7 +8,7 @@
   slider:
     verticalTxt: "<span>Chili</span><br><span>Cleanser</span>"
     bottleImage:
-      - "/assets/i/bottle.png"
+      - "/assets/i/bottle_original_bg.png"
       - "/assets/i/bottle_chili_sm.png"
   ingredients: "some ingredients It quenches that hard-to-reach thirst with a bold flavor and all the goodness of 100% organic Darjeerling"
   priceList:
@@ -28,7 +28,7 @@
   slider:
     verticalTxt: "<span>Original</span><br><span>Black tea</span>"
     bottleImage:
-      - "/assets/i/bottle.png"
+      - "/assets/i/bottle_original_bg.png"
       - "/assets/i/bottle_original_sm.png"
   ingredients: "some ingredients"
   priceList:
@@ -48,8 +48,8 @@
   slider:
     verticalTxt: "<span>Lemon</span><br><span>Balm</span>"
     bottleImage:
-      - "/assets/i/bottle.png"
-      - "/assets/i/bottle.png"
+      - "/assets/i/bottle_lemon-balm_bg.png"
+      - "/assets/i/bottle_lemon-balm_sm.png"
   ingredients: "some ingredients"
   priceList:
     8oz-6: 3
@@ -68,8 +68,8 @@
   slider:
     verticalTxt: "<span>Lemonade</span>"
     bottleImage:
-      - "/assets/i/bottle.png"
-      - "/assets/i/bottle.png"
+      - "/assets/i/bottle_original_bg.png"
+      - "/assets/i/bottle_lemonade_sm.png"
   ingredients: "some ingredients"
   priceList:
     8oz-6: 3
@@ -168,8 +168,8 @@
   slider:
     verticalTxt: "<span>Variety</span><br><span>Pack</span>"
     bottleImage:
-      - "/assets/i/bottle.png"
-      - "/assets/i/bottle.png"
+      - "/assets/i/bottle_original_bg.png"
+      - "/assets/i/bottle_original_sm.png"
   ingredients: "some ingredients"
   priceList:
     8oz-6: 3

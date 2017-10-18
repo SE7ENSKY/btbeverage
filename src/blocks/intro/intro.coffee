@@ -38,12 +38,10 @@ $ ->
 				{ scrollDirection } = event
 				if scrollDirection == "FORWARD"
 					videoPromise.pause()
-					$video.hide(0)
 			.on 'enter', (event) ->
 				return unless $video.length
 				{ scrollDirection } = event
 				if scrollDirection == "REVERSE"
-					$video.show(0)
 					videoPromise.play()
 			.addTo(cntrl)
 
@@ -147,7 +145,7 @@ $ ->
 					scale: 1.15
 						rotation: 30,
 						autoAlpha: 0,
-						overwrite: 'allOnStart',
+						overwrite: 3,
 						ease: Sine.easeIn
 						scale: 1.15
 
@@ -158,7 +156,7 @@ $ ->
 					y: -35,
 					scale: 1.15,
 					ease: Power1.easeIn
-					overwrite: 'allOnStart'
+					overwrite: 3
 
 			scrollScene = null
 
@@ -184,9 +182,9 @@ $ ->
 				.setTween(hideTween)
 				.addTo(cntrl)
 				.on 'leave', (ev) ->
-					$leaf.hide(0) if ev.scrollDirection == "FORWARD"
+					TweenMax.set $leaf, { autoAlpha: 0 } if ev.scrollDirection == "FORWARD"
 				.on 'enter', (ev) ->
-					$leaf.show(0) if ev.scrollDirection == "REVERSE"
+					TweenMax.set $leaf, { autoAlpha: 1 } if ev.scrollDirection == "REVERSE"
 
 			controller.resizeSceneActions.push ->
 				leafHideScene

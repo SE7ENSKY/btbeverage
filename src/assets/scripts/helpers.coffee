@@ -20,3 +20,5 @@ window.detectIE = ->
 	if /Edge\/\d./i.test(navigator.userAgent)
 		ie = 'Microsoft Edge'
 	ie
+
+window.detectSafari = -> navigator.userAgent.indexOf('Safari') != -1 and navigator.userAgent.indexOf('Chrome') == -1

@@ -5,6 +5,8 @@ $ ->
 	scrollTime = 0.5
 	scrollDistance = 100
 
+	isSafari = detectSafari()
+
 	slowScroll = (event) ->
 		event.preventDefault()
 		delta = event.originalEvent.wheelDelta / 120 or -event.originalEvent.detail / 3
@@ -12,7 +14,7 @@ $ ->
 		delta = 2 if delta > 2
 		delta = -2 if delta < -2
 		finalScroll = scrollTop - parseInt(delta * scrollDistance)
-		TweenMax.to $(window), scrollTime,
+		TweenMax.to window, scrollTime,
 			scrollTo:
 				y: finalScroll
 				# autoKill: true

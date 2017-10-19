@@ -7,28 +7,28 @@ $ ->
 
 	isSafari = detectSafari()
 
-	slowScroll = (event) ->
-		event.preventDefault()
-		delta = event.originalEvent.wheelDelta / 120 or -event.originalEvent.detail / 3
-		scrollTop = window.pageYOffset
-		delta = 2 if delta > 2
-		delta = -2 if delta < -2
-		finalScroll = scrollTop - parseInt(delta * scrollDistance)
-		TweenMax.to window, scrollTime,
-			scrollTo:
-				y: finalScroll
-				# autoKill: true
-			ease: Power1.easeOut
-			overwrite: 5
-
-	initSlowScroll = ->
-		window.isSlowScroll = true
-		$(window).on 'mousewheel DOMMouseScroll', slowScroll
-
-	removeSlowScroll = ->
-		window.isSlowScroll = false
-		$(window).off 'mousewheel DOMMouseScroll', slowScroll
-
-
-	$(document).on 'remove-slow-scroll', removeSlowScroll
-	$(document).on 'init-slow-scroll', initSlowScroll
+	# slowScroll = (event) ->
+	# 	event.preventDefault()
+	# 	delta = event.originalEvent.wheelDelta / 120 or -event.originalEvent.detail / 3
+	# 	scrollTop = window.pageYOffset
+	# 	delta = 2 if delta > 2
+	# 	delta = -2 if delta < -2
+	# 	finalScroll = scrollTop - parseInt(delta * scrollDistance)
+	# 	TweenMax.to window, scrollTime,
+	# 		scrollTo:
+	# 			y: finalScroll
+	# 			# autoKill: true
+	# 		ease: Power1.easeOut
+	# 		overwrite: 5
+	#
+	# initSlowScroll = ->
+	# 	window.isSlowScroll = true
+	# 	$(window).on 'mousewheel DOMMouseScroll', slowScroll
+	#
+	# removeSlowScroll = ->
+	# 	window.isSlowScroll = false
+	# 	$(window).off 'mousewheel DOMMouseScroll', slowScroll
+	#
+	#
+	# $(document).on 'remove-slow-scroll', removeSlowScroll
+	# $(document).on 'init-slow-scroll', initSlowScroll

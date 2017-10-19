@@ -215,7 +215,7 @@ $ ->
 			setTimeout ->
 				if isSequenceLoaded
 					$('html, body').removeClass 'overflow-hidden'
-					$(document).trigger 'init-slow-scroll'
+					# $(document).trigger 'init-slow-scroll'
 					scrollToHash()
 				sliderAnimationOver = true
 				if isMobile()

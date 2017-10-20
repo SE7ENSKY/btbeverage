@@ -203,9 +203,9 @@ $ ->
 		#
 
 		startAnimation = ->
-			$leaf.show(0)
 			# preloader animation
 			leafPreloaderAnimation()
+			$leaf.show(0)
 			preloaderBgAnimation 2
 			bLetterAnimation 2.2
 			lettersAnimation 2.7

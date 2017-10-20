@@ -23,16 +23,21 @@ $ ->
 				$(document).trigger 'remove-slow-scroll'
 				$('html, body').removeClass 'overflow-hidden'
 				$('.header').removeClass 'no-padding'
+				$('body'). removeClass 'bg-white'
 				resolve()
 		fadeIn: ->
 			tl = new TimelineMax()
 			oldPageHeaderClasses = $(@.oldContainer).data('header-classes').join(' ')
 			newPageHeaderClasses = $(@.newContainer).data('header-classes').join(' ')
 			self = @
+			newBodyClass = $(self.newContainer).data('body-class')
 
 			onComplete = ->
 				self.done()
 				windowScroll()
+
+				$('body').addClass newBodyClass.join(" ") if newBodyClass
+
 				if oldPageHeaderClasses != newPageHeaderClasses
 					$('.header').removeClass(oldPageHeaderClasses).addClass(newPageHeaderClasses)
 

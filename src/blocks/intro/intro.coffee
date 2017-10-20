@@ -144,7 +144,7 @@ $ ->
 					autoAlpha: 1,
 					scale: 1.15
 						rotation: 30,
-						autoAlpha: 0,
+						autoAlpha: if isMobile() then 0 else 1,
 						overwrite: 3,
 						ease: Sine.easeIn
 						scale: 1.15

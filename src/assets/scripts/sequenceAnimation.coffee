@@ -59,40 +59,23 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 				return unless $canvas.length
 				TweenMax.set $canvas.get(0), { autoAlpha: 0 }
 				TweenMax.set $seq.get(0), { autoAlpha: 0 }
-			if (options.finish and ev.scrollDirection == "FORWARD") and !scene
-				$canvas = $('.sequence canvas')
-				scene = new Scene({
-					triggerElement: triggerElement
-					triggerHook: 0,
-					offset: -50,
-					})
-					.on 'start', (ev) ->
-						if ev.scrollDirection == 'FORWARD'
-							$seq.css 'position', 'absolute'
-							setSeqTop()
-						else if ev.scrollDirection == 'REVERSE'
-							$seq.css 'position', 'fixed',
-							$seq.css 'top', $menuHeight
-					.addTo(cntrl)
+			if (options.finish and ev.scrollDirection == "FORWARD")
+				$seq.css 'position', 'absolute'
+				setSeqTop()
 		.on 'enter', (ev) ->
 			if (options.begin and ev.scrollDirection == "FORWARD")
 				$canvas = $seq.find 'canvas'
 				return unless $canvas.length
 				TweenMax.set $canvas.get(0), { autoAlpha: 1 }
 				TweenMax.set $seq.get(0), { autoAlpha: 1 }
-			if (options.finish and ev.scrollDirection == "REVERSE") and scene
-				scene.destroy()
-				scene = null
+			if (options.finish and ev.scrollDirection == "REVERSE")
+				$seq.css 'position', 'fixed',
+				$seq.css 'top', $menuHeight
 
 	seqScene.enabled false if isMobile() or isPortrait()
 
 	controller.resizeSceneActions.push ->
-		if scene
-			scene.offset( -50 )
-			scene.duration $('.sequence canvas').outerHeight()
 		if isMobile() or isPortrait()
-			scene.enabled false if scene
 			seqScene.enabled false
 		else
-			scene.enabled true if scene
 			seqScene.enabled true

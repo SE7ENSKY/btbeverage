@@ -20,7 +20,7 @@ $ ->
 
 			calcDuration = ->
 				return durationValue unless needCalcDuration
-				durationValue = Math.max($('.sequence-widget').outerHeight() -  80, 0)
+				durationValue =  Math.max($('.sequence-widget').outerHeight() + 80, 0)
 				needCalcDuration = false
 				return durationValue
 

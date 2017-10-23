@@ -68,14 +68,12 @@
 			margin-left -20px
 			margin-right -20px
 		&-item
-			width 38%
+			width 27%
 			text-align center
 			@media tablet_desktop
 				margin-bottom 110px
-				&:nth-child(odd)
-					padding-right 50px
-				&:nth-child(even)
-					padding-left 50px
+			@media tablet
+				width 27%
 			@media phone
 				margin-bottom 45px
 				width 35%
@@ -90,6 +88,9 @@
 			&-i
 				max-width 100%
 				max-height @max-width
+		&-separator
+			width calc(60.625vh - 48px)
+			min-height 1px
 		&-title
 			font-size 18px
 			line-height 1.3

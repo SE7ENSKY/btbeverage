@@ -62,6 +62,7 @@ $ ->
 					cb() if cb?
 
 			$target = $catalog.find($this.attr("data-target"))
+			
 			$targetInner = $target.find('.product-params__wrap')
 			TweenMax.set $targetInner, {scaleY: 1}
 			targetInnerHeight = $targetInner.outerHeight()
@@ -73,79 +74,59 @@ $ ->
 
 			$blockInners = $targetInner.find '.stagger'
 
-			$paramsText = $targetInner.find '.product-params__text'
 			$paramsTextInner = $targetInner.find '.product-params__text-inner'
-			$paramsVolume = $targetInner.find '.product-params__volume'
-			$paramsPack = $targetInner.find '.product-params__packs'
-			$paramsCart = $targetInner.find '.product-params__cart'
-
-			volumeHeight = $paramsVolume.outerHeight()
-			textHeight = $paramsText.outerHeight()
-			packHeight = $paramsPack.outerHeight()
-
-
 
 			$sliderWrapper = $this.find '.product-cover__slider-wrapper'
 			$slider = $this.find '.product-cover__slider'
 			$sliderVerticalText = $this.find '.product-cover__text-vertical span'
 			$sliderTitle = $this.find '.product-cover__title'
 
+
 			# open
-			if isMobile()
-				unless isOpen
+			unless isOpen
+				unless isMobile()
 					tl
-						.set $blockInners, { autoAlpha: 1  }, 0
-						.to $target, .5, { height: targetInnerHeight, ease: Power0.easeNone  }, 0
-						.fromTo $targetInner, .5, {scaleY: 0}, {scaleY: 1, ease: Power0.easeNone}, 0
-
-						.fromTo $sliderWrapper, 0.2, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
-						
-						.fromTo $paramsTextInner, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.3
-						.staggerFromTo $blockInners, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }, .1, 0.4
-						.fromTo $slider, 0.5, { x: -window.innerWidth }, { x: 0, ease: Power1.easeOut }, 0.5
-				else
-					tl
-						.to $target, 0.5, { height: 0, ease: Power0.easeNone }, 0
-						.to $targetInner, .5, {scaleY: 0, ease: Power0.easeNone}, 0
-
-						# if mobile
-						.to $slider, 0.4, { x: -window.innerWidth, ease: Power1.easeIn }, 0
-						.to $sliderWrapper, 0.2, { autoAlpha: 0, ease: Power0.easeNone }, 0
-						
-						.to $paramsTextInner, 0.2, { autoAlpha: 0 }, 0, 0
-						.to $blockInners, 0.2, { autoAlpha: 0 }, 0, 0
-
-			else
-				unless isOpen
-					tl
-						# if desktop
 						.fromTo $this, 0.5, { paddingBottom: "#{productCoverHeightClosed}px" }, { paddingBottom: "#{productCoverHeightOpen}px", ease: Power0.easeNone }, 0
-						
 						.set $blockInners, { autoAlpha: 1  }, 0
-						.fromTo $target, .5, { height: 0 }, { height: targetInnerHeight, ease: Power0.easeNone  }, 0
-						.fromTo $targetInner, .5, {scaleY: 0}, {scaleY: 1, ease: Power0.easeNone}, 0
-
-						.fromTo $sliderWrapper, 0.2, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
-
-						.fromTo $paramsTextInner, 0.5, { autoAlpha: 0, y: '-100%' }, { autoAlpha: 1, y: '0%', ease: Power2.easeOut , force3D: false}, 0.3
-						.staggerFromTo $blockInners, .3, { x: 100 * coef + '%' }, { x: '0%' , force3D: false}, .1, 0.4
-						.fromTo $slider, 1, { x: - 0.5 * window.innerWidth * coef}, { x: 0, ease: Power1.easeOut , force3D: false}, 0.3
-
-						# if desktop
 						.fromTo $sliderTitle, .5, { autoAlpha: 1}, {autoAlpha: 0}, 0
+				tl	
+					.fromTo $target, .5, { height: 0 }, { height: targetInnerHeight, ease: Power2.easeOut  }, 0
+					.fromTo $targetInner, .5, {scaleY: 0}, {scaleY: 1, ease: Power2.easeOut}, 0
+					.fromTo $sliderWrapper, 0.2, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
+
+				unless isMobile()
+					tl
+						.fromTo $paramsTextInner, 0.5, { autoAlpha: 0, y: '-100%' }, { autoAlpha: 1, y: '0%', ease: Power2.easeOut , force3D: false}, 0.3
+						.fromTo $slider, 1, { x: - 0.5 * window.innerWidth * coef}, { x: 0, ease: Power1.easeOut , force3D: false}, 0.3
+						.staggerFromTo $blockInners, .3, { x: 100 * coef + '%' }, { x: '0%' , force3D: false}, .1, 0.4
 						.staggerFromTo $sliderVerticalText, 0.4, { autoAlpha: 0, rotationX: 90 * coef }, { autoAlpha: 1, rotationX: 0 , force3D: false}, 0.2, 0.4
 				else
 					tl
-						.to $target, .5, { height: 0, ease: Power0.easeNone }, 0
-						.to $targetInner, .5, {scaleY: 0, ease: Power0.easeNone}, 0
+						.fromTo $paramsTextInner, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.3
+						.fromTo $slider, 0.5, { x: -window.innerWidth }, { x: 0, ease: Power1.easeOut }, 0.3
+						.staggerFromTo $blockInners, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }, .1, 0.4
+			
+			# close
+			else
 
+				tl
+					.to $target, .5, { height: 0, ease: Power2.easeOut }, 0
+					.to $targetInner, .5, { scaleY: 0, ease: Power2.easeOut }, 0
+
+					.to $paramsTextInner, 0.2, { autoAlpha: 0 }, 0
+					.to $blockInners, 0.2, { autoAlpha: 0 }, 0
+				
+				unless isMobile()
+					tl
 						.to $this, 0.5, { paddingBottom: "27vw" , ease: Power0.easeNone  }, 0
 						.to $sliderTitle, .5, { autoAlpha: 1}, 0
 						.to $sliderWrapper, 0.2, { autoAlpha: 0 }, 0
-						
-						.to $paramsTextInner, 0.2, { autoAlpha: 0 }, 0
-						.to $blockInners, 0.2, { autoAlpha: 0 }, 0
-						.to $colLeft, .2, {marginTop: 0}, 0
+						# .to $colLeft, .2, {marginTop: 0}, 0
+				else
+					tl
+						.to $slider, 0.4, { x: -window.innerWidth, ease: Power1.easeIn }, 0
+						.to $sliderWrapper, 0.2, { autoAlpha: 0, ease: Power0.easeNone }, 0
+
 			# if isOpen
 			# 	$targetIngredients = $target.removeClass('ingredients-open').find('.product-params__ingredients')
 			# 	if $targetIngredients.length

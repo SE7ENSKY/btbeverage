@@ -54,15 +54,15 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 		.setTween(seqTween)
 		.addTo(cntrl)
 		.on 'leave', (ev) ->
-			if (options.begin and ev.scrollDirection == "REVERSE" and ev.progress == 0)
+			if options.begin and ev.scrollDirection == "REVERSE" and ev.progress == 0
 				TweenMax.set $seq.get(0), { autoAlpha: 0 }
-			if (options.finish and ev.scrollDirection == "FORWARD" and ev.progress == 1)
+			if options.finish and ev.scrollDirection == "FORWARD" and ev.progress == 1
 				$seq.css 'position', 'absolute'
 				setSeqTop()
 		.on 'enter', (ev) ->
-			if (options.begin and ev.scrollDirection == "FORWARD")
+			if options.begin and ev.scrollDirection == "FORWARD"
 				TweenMax.set $seq.get(0), { autoAlpha: 1 }
-			if (options.finish and ev.scrollDirection == "REVERSE")
+			if options.finish and ev.scrollDirection == "REVERSE"
 				$seq.css 'position', 'fixed'
 				$seq.css 'top', $menuHeight
 
@@ -76,7 +76,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 			state = seqScene.state()
 			if state == "BEFORE" and options.begin and seqScene.progress() != 1
 				TweenMax.set $seq.get(0), { autoAlpha: 0 }
-			else if options.finish and !(state == "BEFORE")
+			else if options.finish and !(state == "BEFORE") or options.begin
 				TweenMax.set $seq.get(0), { autoAlpha: 1 }
 
 			if state == "AFTER" and options.finish and seqScene.progress() == 1
@@ -102,6 +102,4 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 						ease: Power0.easeNone
 				, 0
 				seqScene.removeTween().setTween seqTween
-
-
 			seqScene.enabled true

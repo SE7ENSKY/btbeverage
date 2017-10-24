@@ -1,6 +1,6 @@
 $ ->
-	widthRatio = 0.625 # 720 x 450
-
+	widthRatio = 0.60625 # 960 x 582
+	menuHeight = 80
 	isSequenceLoaded = false
 
 	sequenceJS = ->
@@ -21,7 +21,7 @@ $ ->
 				resources[key].texture
 
 			pixi.sprite = new PIXI.Sprite pixi.frames[0]
-			realHeight = window.innerHeight
+			realHeight = window.innerHeight - menuHeight
 			realWidth = realHeight * widthRatio
 			pixi.sprite.height = realHeight
 			pixi.sprite.width = realWidth

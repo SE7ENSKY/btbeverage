@@ -13,7 +13,7 @@ $ ->
 		$desktop = $block.find('.catalog__desktop')
 		$mobile = $block.find('.catalog__mobile')
 
-		tween = TweenMax.fromTo $desktop.find('.catalog__col').first(), 0.5, { y: '+=80' }, { y: '+=400', ease: Power0.easeNone }
+		tween = TweenMax.fromTo $desktop.find('.catalog__col').first(), 0.5, { y: '+=80' }, { y: '+=400', ease: Power0.easeNone, force3D: false }
 		cntrl = controller.get()
 
 		needCalcDuration = true

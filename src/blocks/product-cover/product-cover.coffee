@@ -102,9 +102,9 @@ $ ->
 						.staggerFromTo $sliderVerticalText, 0.4, { autoAlpha: 0, rotationX: 90 * coef }, { autoAlpha: 1, rotationX: 0 , force3D: false}, 0.2, 0.4
 				else
 					tl
-						.fromTo $paramsTextInner, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.3
+						.fromTo $paramsTextInner, 0.3, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.3
 						.fromTo $slider, 0.5, { x: -window.innerWidth }, { x: 0, ease: Power1.easeOut }, 0.3
-						.staggerFromTo $blockInners, 0.1, { autoAlpha: 0 }, { autoAlpha: 1 }, .1, 0.4
+						.staggerFromTo $blockInners, 0.3, { autoAlpha: 0 }, { autoAlpha: 1 }, .1, 0.4
 			
 			# close
 			else

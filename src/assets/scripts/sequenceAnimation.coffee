@@ -55,18 +55,12 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 		.addTo(cntrl)
 		.on 'leave', (ev) ->
 			if (options.begin and ev.scrollDirection == "REVERSE")
-				$canvas = $seq.find 'canvas'
-				return unless $canvas.length
-				TweenMax.set $canvas.get(0), { autoAlpha: 0 }
 				TweenMax.set $seq.get(0), { autoAlpha: 0 }
 			if (options.finish and ev.scrollDirection == "FORWARD")
 				$seq.css 'position', 'absolute'
 				setSeqTop()
 		.on 'enter', (ev) ->
 			if (options.begin and ev.scrollDirection == "FORWARD")
-				$canvas = $seq.find 'canvas'
-				return unless $canvas.length
-				TweenMax.set $canvas.get(0), { autoAlpha: 1 }
 				TweenMax.set $seq.get(0), { autoAlpha: 1 }
 			if (options.finish and ev.scrollDirection == "REVERSE")
 				$seq.css 'position', 'fixed',
@@ -77,5 +71,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 	controller.resizeSceneActions.push ->
 		if isMobile() or isPortrait()
 			seqScene.enabled false
+			TweenMax.set $seq.get(0), { autoAlpha: 0 }
 		else
+			TweenMax.set $seq.get(0), { autoAlpha: 1 }
 			seqScene.enabled true

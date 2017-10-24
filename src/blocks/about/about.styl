@@ -61,22 +61,24 @@
 		display flex
 		flex-wrap wrap
 		justify-content space-between
-		@media tablet_desktop
-			margin-top 450px
+		&.first
+			@media tablet_desktop
+				margin-top 450px
+			@media phone, (orientation: portrait)
+				margin-top 160px
 		@media phone, (orientation: portrait)
-			margin-top 160px
 			margin-left -20px
 			margin-right -20px
 		&-item
-			width 27%
+			width 23%
 			text-align center
 			@media tablet_desktop
 				margin-bottom 110px
 			@media tablet
-				width 27%
+				width 23%
 			@media phone
 				margin-bottom 45px
-				width 35%
+				width 38%
 		&-image
 			width 65px
 			height @width
@@ -91,6 +93,8 @@
 		&-separator
 			width calc(60.625vh - 48px)
 			min-height 1px
+			@media phone, (orientation: portrait)
+				display none
 		&-title
 			font-size 18px
 			line-height 1.3

@@ -17,7 +17,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 			pixi.rerender()
 
 	seqTween = new TimelineMax()
-	seqTween.fromTo tempAnimationObj, 0.5,
+	seqTween.fromTo tempAnimationObj, 1,
 		current: start,
 			current: end,
 			onUpdate: onUpdateFunc,
@@ -26,7 +26,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 	, 0
 
 	if options.shiftToX
-		seqTween.to $seq, 0.5,
+		seqTween.to $seq, 1,
 			transform: "translateX(#{options.shiftToX})"
 			ease: Power0.easeNone
 		, 0
@@ -73,5 +73,31 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 			seqScene.enabled false
 			TweenMax.set $seq.get(0), { autoAlpha: 0 }
 		else
-			TweenMax.set $seq.get(0), { autoAlpha: 1 }
+			state = seqScene.state()
+			if state == "BEFORE" and options.begin
+				TweenMax.set $seq.get(0), { autoAlpha: 0 }
+				$seq.css 'position', 'fixed',
+				$seq.css 'top', $menuHeight
+			if state == "AFTER" and options.finish
+				TweenMax.set $seq.get(0), { autoAlpha: 1 }
+				$seq.css 'position', 'absolute'
+				setSeqTop()
+
+			if options.shiftToX
+				seqTween = new TimelineMax()
+				seqTween.fromTo tempAnimationObj, 0.5,
+					current: start,
+						current: end,
+						onUpdate: onUpdateFunc,
+						onUpdateParams: [tempAnimationObj],
+						ease: Power0.easeNone,
+				, 0
+				seqTween.fromTo $seq, 0.5,
+					transform: "translateX(0)",
+						transform: "translateX(#{options.shiftToX})"
+						ease: Power0.easeNone
+				, 0
+				seqScene.removeTween().setTween seqTween
+
+
 			seqScene.enabled true

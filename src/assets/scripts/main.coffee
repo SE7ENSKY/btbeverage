@@ -38,5 +38,4 @@ $ ->
 
 	window.addEventListener 'resize', ->
 		resizeAction() for resizeAction in controller.resizeSceneActions
-		controller.get(0).update()
 		return

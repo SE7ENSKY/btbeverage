@@ -60,22 +60,24 @@
 		position relative
 		display flex
 		flex-wrap wrap
-		justify-content space-between
+
 		&.first
 			@media tablet_desktop
 				margin-top 450px
 			@media phone, (orientation: portrait)
 				margin-top 160px
+		@media tablet_desktop
+			justify-content space-around
 		@media phone, (orientation: portrait)
+			justify-content space-between
 			margin-left -20px
 			margin-right -20px
 		&-item
-			width 38%
 			text-align center
 			@media tablet_desktop
+				flex 1
+				max-width 33%
 				margin-bottom 110px
-			@media tablet
-				width 30%
 			@media phone
 				margin-bottom 45px
 				width 38%
@@ -91,9 +93,10 @@
 				max-width 100%
 				max-height @max-width
 		&-separator
-			width calc(60.625vh - 48px)
-			max-width 24%
+			width calc(60.625vh - 250px)
 			min-height 1px
+			@media tablet
+				width calc(60.625vh - 50px)
 			@media phone, (orientation: portrait)
 				display none
 		&-title

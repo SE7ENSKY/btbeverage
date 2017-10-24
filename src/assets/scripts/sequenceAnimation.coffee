@@ -54,9 +54,9 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 		.setTween(seqTween)
 		.addTo(cntrl)
 		.on 'leave', (ev) ->
-			if (options.begin and ev.scrollDirection == "REVERSE")
+			if (options.begin and ev.scrollDirection == "REVERSE" and ev.progress == 0)
 				TweenMax.set $seq.get(0), { autoAlpha: 0 }
-			if (options.finish and ev.scrollDirection == "FORWARD")
+			if (options.finish and ev.scrollDirection == "FORWARD" and ev.progress == 1)
 				$seq.css 'position', 'absolute'
 				setSeqTop()
 		.on 'enter', (ev) ->
@@ -74,16 +74,16 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 			TweenMax.set $seq.get(0), { autoAlpha: 0 }
 		else
 			state = seqScene.state()
-			if state == "BEFORE" and options.begin
+			if state == "BEFORE" and options.begin and seqScene.progress() != 1
 				TweenMax.set $seq.get(0), { autoAlpha: 0 }
-			else if !(options.finish and state == "BEFORE")
+			else if options.finish and !(state == "BEFORE")
 				TweenMax.set $seq.get(0), { autoAlpha: 1 }
 
-			if state == "AFTER" and options.finish
+			if state == "AFTER" and options.finish and seqScene.progress() == 1
 				$seq.css 'position', 'absolute'
 				setSeqTop()
 
-			if options.begin or (state == "DURING" and options.finish)
+			if options.begin or ((state == "DURING" or state == "BEFORE" ) and options.finish)
 				$seq.css 'position', 'fixed'
 				$seq.css 'top', $menuHeight
 

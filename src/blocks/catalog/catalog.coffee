@@ -13,37 +13,37 @@ $ ->
 		$desktop = $block.find('.catalog__desktop')
 		$mobile = $block.find('.catalog__mobile')
 
-		tween = TweenMax.fromTo $desktop.find('.catalog__col').first(), 0.5, { y: '+=80' }, { y: '+=400', ease: Power0.easeNone, force3D: false }
-		cntrl = controller.get()
+		# tween = TweenMax.fromTo $desktop.find('.catalog__col').first(), 0.5, { y: '+=80' }, { y: '+=400', ease: Power0.easeNone, force3D: false }
+		# cntrl = controller.get()
 
-		needCalcDuration = true
-		durationValue = 0
-		calcDuration = ->
-			return durationValue unless needCalcDuration
-			durationValue = $block.outerHeight() + window.innerHeight
-			needCalcDuration = false
-			return durationValue
+		# needCalcDuration = true
+		# durationValue = 0
+		# calcDuration = ->
+		# 	return durationValue unless needCalcDuration
+		# 	durationValue = $block.outerHeight() + window.innerHeight
+		# 	needCalcDuration = false
+		# 	return durationValue
 
-		$(window).on 'resize', ->
-			needCalcDuration = true
+		# $(window).on 'resize', ->
+		# 	needCalcDuration = true
 
-		scene = new Scene({
-				triggerElement: $block.get(0)
-				triggerHook: 1,
-				duration: calcDuration
-			})
-			.addTo cntrl
-			.setTween tween
+		# scene = new Scene({
+		# 		triggerElement: $block.get(0)
+		# 		triggerHook: 1,
+		# 		duration: calcDuration
+		# 	})
+		# 	.addTo cntrl
+		# 	.setTween tween
 
-		scene.enabled false if isMobile()
+		# scene.enabled false if isMobile()
 
-		$(document).on 'catalog-parallax', (e, value) ->
-			if !isMobile()
-				scene.enabled value
+		# $(document).on 'catalog-parallax', (e, value) ->
+		# 	if !isMobile()
+		# 		scene.enabled value
 
 		handleStructure = ->
 			if isMobile()
-				scene.enabled false
+				# scene.enabled false
 				$desktop = $desktop.detach() if $block.find('.catalog__desktop').length
 				$mobile.appendTo('.catalog') if !$block.find('.catalog__mobile').length
 				if !mobileEventConnected
@@ -57,7 +57,7 @@ $ ->
 					$(document).trigger 'product-cover'
 					$(document).trigger 'product-params'
 					desktopEventConnected = true
-				scene.enabled true
+				# scene.enabled true
 
 		handleStructure()
 

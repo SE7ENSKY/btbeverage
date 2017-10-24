@@ -26,13 +26,13 @@ $ ->
 		isAnimation = false
 
 		scrollToViewport = ($this, cb = null) ->
-			$target = $catalog.find($this.attr("data-target"))
-			return unless $target.length
-			if $this.closest($colLeft).length
-				scrollOffset = $target.offset().top
-			else
-				scrollOffset = $this.offset().top
-
+			# $target = $catalog.find($this.attr("data-target"))
+			# return unless $target.length
+			# if $this.closest($colLeft).length
+			# 	scrollOffset = $target.offset().top
+			# else
+			# 	scrollOffset = $this.offset().top
+			scrollOffset = $this.offset().top
 			valY = scrollOffset - $('.header').outerHeight()
 			TweenMax.to $(window), .2,
 				scrollTo:
@@ -41,17 +41,18 @@ $ ->
 				ease: Power1.easeOut
 				# overwrite: 10
 				onComplete: ->
-					if $col.length
-						thisOffset = $this.offset().top
-						targetOffset = $target.offset().top
-						diff = Math.abs(thisOffset - targetOffset)
-						TweenMax.to $colLeft, .2,
-							marginTop: -diff,
-							ease: Power1.easeOut
-							onComplete: ->
-								cb() if cb?
-					else
-						cb() if cb?
+					cb() if cb?
+					# if $col.length
+					# 	thisOffset = $this.offset().top
+					# 	targetOffset = $target.offset().top
+					# 	diff = Math.abs(thisOffset - targetOffset)
+					# 	TweenMax.to $colLeft, .2,
+					# 		marginTop: -diff,
+					# 		ease: Power1.easeOut
+					# 		onComplete: ->
+					# 			cb() if cb?
+					# else
+					# 	cb() if cb?
 
 		animationFunc = ($this, isOpen, cb) ->
 			isAnimation = true

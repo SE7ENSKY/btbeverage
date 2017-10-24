@@ -63,7 +63,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 			if (options.begin and ev.scrollDirection == "FORWARD")
 				TweenMax.set $seq.get(0), { autoAlpha: 1 }
 			if (options.finish and ev.scrollDirection == "REVERSE")
-				$seq.css 'position', 'fixed',
+				$seq.css 'position', 'fixed'
 				$seq.css 'top', $menuHeight
 
 	seqScene.enabled false if isMobile() or isPortrait()
@@ -76,12 +76,16 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 			state = seqScene.state()
 			if state == "BEFORE" and options.begin
 				TweenMax.set $seq.get(0), { autoAlpha: 0 }
-				$seq.css 'position', 'fixed',
-				$seq.css 'top', $menuHeight
-			if state == "AFTER" and options.finish
+			else if !(options.finish and state == "BEFORE")
 				TweenMax.set $seq.get(0), { autoAlpha: 1 }
+
+			if state == "AFTER" and options.finish
 				$seq.css 'position', 'absolute'
 				setSeqTop()
+
+			if options.begin or (state == "DURING" and options.finish)
+				$seq.css 'position', 'fixed'
+				$seq.css 'top', $menuHeight
 
 			if options.shiftToX
 				seqTween = new TimelineMax()

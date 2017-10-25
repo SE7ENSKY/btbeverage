@@ -1,4 +1,5 @@
 import Inputmask from 'inputmask'
+import { TweenMax } from 'gsap'
 
 $ ->
 	paymentChooserJS = ->
@@ -14,9 +15,19 @@ $ ->
 
 		$toggler.on 'click', (e) ->
 			$parent = $(@).closest(".payment-chooser__item")
+			$parentInner = $parent.find(".payment-chooser__item-inner")
+			$prevActive = $block.find(".payment-chooser__item.active")
+
 			unless $parent.hasClass("active")
 				$item.removeClass('active')
 				$parent.addClass("active")
+				if $parentInner.length
+					TweenMax.to $parent.find(".payment-chooser__item-wrap"), 0.3, { height: $parentInner.outerHeight() }
+
+				$prevActiveWrap = $prevActive.find(".payment-chooser__item-wrap")
+				if $prevActiveWrap.length
+					$prevActiveInner = $prevActiveWrap.find(".payment-chooser__item-inner")
+					TweenMax.fromTo $prevActiveWrap, 0.3, { height: $prevActiveInner.outerHeight() }, { height: 0 }
 
 	paymentChooserJS()
 

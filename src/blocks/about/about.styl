@@ -64,11 +64,17 @@
 		&.first
 			@media tablet_desktop
 				margin-top 450px
-			@media phone, (orientation: portrait)
+			@media phone
+				margin-top 160px
+			@media (orientation: portrait)
 				margin-top 160px
 		@media tablet_desktop
 			justify-content space-around
-		@media phone, (orientation: portrait)
+		@media phone
+			justify-content space-between
+			margin-left -20px
+			margin-right -20px
+		@media (orientation: portrait)
 			justify-content space-between
 			margin-left -20px
 			margin-right -20px
@@ -100,7 +106,7 @@
 			min-height 1px
 			@media tablet
 				width calc(60.625vh - 50px)
-			@media phone, (orientation: portrait)
+			@media phone
 				display none
 		&-title
 			font-size 18px
@@ -122,7 +128,9 @@
 			width 120px
 		&-i
 			display none
-			@media phone, (orientation: portrait)
+			@media phone
+				display block
+			@media (orientation: portrait)
 				display block
 			max-width 100%
 			max-height @max-width

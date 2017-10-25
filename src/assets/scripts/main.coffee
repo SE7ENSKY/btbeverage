@@ -41,6 +41,14 @@ $ ->
 		if $this.hasClass('has-value')
 			$this.removeClass('has-value') unless value
 
+	window.isResize = null
 	window.addEventListener 'resize', ->
+		clearTimeout(isResize) if isResize
+		isResize = setTimeout ->
+			isResize = null
+			resizeAction() for resizeAction in controller.resizeSceneActions
+			controller.get(0).update(true)
+		, 200
+
 		resizeAction() for resizeAction in controller.resizeSceneActions
 		return

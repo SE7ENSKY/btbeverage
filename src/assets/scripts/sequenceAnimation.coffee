@@ -54,9 +54,9 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 		.setTween(seqTween)
 		.addTo(cntrl)
 		.on 'leave', (ev) ->
-			if options.begin and ev.scrollDirection == "REVERSE" and ev.progress == 0
+			if options.begin and ev.scrollDirection == "REVERSE" and !isResize
 				TweenMax.set $seq.get(0), { autoAlpha: 0 }
-			if options.finish and ev.scrollDirection == "FORWARD" and ev.progress == 1
+			if options.finish and ev.scrollDirection == "FORWARD" and !isResize
 				$seq.css 'position', 'absolute'
 				setSeqTop()
 		.on 'enter', (ev) ->

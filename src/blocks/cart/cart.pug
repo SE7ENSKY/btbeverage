@@ -38,14 +38,8 @@ if showPriceList
 
 unless hidePayments
 	+e.payments
-		+e.payments-item
-			+e.payments-label#go-to-checkout(data-checkout="/checkout-step-1.html") Checkout
-		+e.payments-item
-			+e("a").payments-link(href="/")
-				+e("img").payments-icon._amazon(src=i("amazon-pay.svg"), alt="" width="101" height="21")
-		+e.payments-item
-			+e("a").payments-link(href="/")
-				+e("img").payments-icon(src=i("paypal.svg"), alt="" width="91" height="23")
+		+e.payments-label#go-to-checkout(data-checkout="/checkout-step-1.html") Checkout
+				
 				
 +e.empty
 	+e.empty-title Your cart is empty

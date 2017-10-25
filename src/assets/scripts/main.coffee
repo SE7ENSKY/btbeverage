@@ -27,6 +27,11 @@ $ ->
 		window.touchDevice = true
 
 	FastClick.attach(document.body)
+	# fix for FastClick on email type
+	originalSetSelectionRange = HTMLInputElement.prototype.setSelectionRange
+	HTMLInputElement.prototype.setSelectionRange = ->
+		try originalSetSelectionRange.apply @, arguments
+		catch e then return
 
 	$(".form-control").on 'blur', (e) ->
 		$this = $(e.target)

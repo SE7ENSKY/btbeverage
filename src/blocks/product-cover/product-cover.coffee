@@ -1,5 +1,5 @@
 import { Scene } from 'scrollmagic'
-import { TimelineMax, TweenMax, Power0, Power1 } from 'gsap'
+import { TimelineMax, TweenMax, Power0, Power1, Power2 } from 'gsap'
 
 $ ->
 	productCoverJS = ->
@@ -34,12 +34,18 @@ $ ->
 			# 	scrollOffset = $this.offset().top
 			scrollOffset = $this.offset().top
 			valY = scrollOffset - $('.header').outerHeight()
-			TweenMax.to $(window), 2,
+
+			# scrollVal =
+			# 	y: window.scrollY
+			# TweenMax.to scrollVal, 1.3,
+			# 	y: valY
+			# 	ease: Power2.easeOut
+			# 	onUpdate: ->
+			# 		window.scroll 0, scrollVal.y
+			TweenMax.to window, 1.3,
 				scrollTo:
 					y: valY
-					autoKill: false
-				ease: Power1.easeOut
-				# overwrite: 10
+				ease: Power2.easeOut			
 				onStart: ->
 					cb() if cb?
 					# if $col.length
@@ -61,7 +67,7 @@ $ ->
 					isAnimation = false
 					cb() if cb?
 
-			tl.timeScale(.5)
+			tl.timeScale(.55)
 
 			$target = $catalog.find($this.attr("data-target"))
 			
@@ -88,49 +94,36 @@ $ ->
 			unless isOpen
 				unless isMobile()
 					tl
-						.fromTo $this, 0.5, { paddingBottom: "#{productCoverHeightClosed}px" }, { paddingBottom: "#{productCoverHeightOpen}px", ease: Power0.easeNone }, 0
-						# .set $blockInners, { autoAlpha: 1  }, 0
+						.set $sliderWrapper, { height: "#{productCoverHeightOpen}px", bottom: 'auto' }, 0
+						.fromTo $this, 0.5, { paddingBottom: "#{productCoverHeightClosed}px" }, { paddingBottom: "#{productCoverHeightOpen}px", ease: Power2.easeOut }, 0
 						.fromTo $sliderTitle, .5, { autoAlpha: 1}, {autoAlpha: 0}, 0
 				tl	
 					.fromTo $target, .5, { height: 0 }, { height: targetInnerHeight, ease: Power2.easeOut  }, 0
-					# .fromTo $targetInner, .5, {scaleY: 0}, {scaleY: 1, ease: Power2.easeOut}, 0
 					.fromTo $targetInner, .5, {y: '20%', autoAlpha: 1}, {y: '0%', ease: Power2.easeOut, force3D: false}, 0
-					.fromTo $sliderWrapper, 0.2, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
-
+					.fromTo [$blockInners, $paramsTextInner], .5, { y: '-30%' }, { y: '0%', force3D: false}, .1, 0
 				unless isMobile()
 					tl
-						# .fromTo $paramsTextInner, 0.5, { autoAlpha: 0, y: '-100%' }, { autoAlpha: 1, y: '0%', ease: Power2.easeOut , force3D: false}, 0.3
-						.fromTo $slider, 1, { x: - 0.5 * window.innerWidth * coef}, { x: 0, ease: Power1.easeOut , force3D: false}, 0.3
-						# .staggerFromTo $blockInners, .3, { x: 100 * coef + '%' }, { x: '0%' , force3D: false}, .1, 0.4
-						.fromTo [$blockInners, $paramsTextInner], .5, { y: '-30%' }, { y: '0%', force3D: false}, .1, 0.4
-						.staggerFromTo $sliderVerticalText, 0.4, { autoAlpha: 0, rotationX: 90 * coef }, { autoAlpha: 1, rotationX: 0 , force3D: false}, 0.2, 0.4
+						.staggerFromTo $sliderVerticalText, 0.3, { autoAlpha: 0, rotationX: 90 * coef }, { autoAlpha: 1, rotationX: 0 , force3D: false}, 0.2, 0
+						.set $sliderWrapper, { height: "auto", bottom: '0' }
 				else
-					tl
-						# .fromTo $paramsTextInner, 0.3, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.3
-						.fromTo $slider, 0.5, { x: -window.innerWidth }, { x: 0, ease: Power1.easeOut }, 0.3
-						# .staggerFromTo $blockInners, 0.3, { autoAlpha: 0 }, { autoAlpha: 1 }, .1, 0.4
+					coef = 2
+				tl.fromTo $slider, .5, { x: - 0.5 * window.innerWidth * coef, autoAlpha: 0}, { x: 0, autoAlpha: 1, ease: Power1.easeOut }, 0
 			
 			# close
 			else
-
 				tl
-					.to $target, .5, { height: 0, ease: Power2.easeOut }, 0
-					.to $targetInner, .5, {y: '-50%', autoAlpha: 0, ease: Power2.easeOut, force3D: false}, 0
-					# .to $targetInner, .5, { scaleY: 0, ease: Power2.easeOut }, 0
-
-					# .to $paramsTextInner, 0.2, { autoAlpha: 0 }, 0
-					# .to $blockInners, 0.2, { autoAlpha: 0 }, 0
-				
+					.to $target, .3, { height: 0, ease: Power2.easeOut }, 0
+					.to $targetInner, .3, {y: '-50%', autoAlpha: 0, ease: Power2.easeOut, force3D: false}, 0
+					.to $sliderVerticalText, .3, { autoAlpha: 0}, 0
 				unless isMobile()
 					tl
-						.to $this, 0.5, { paddingBottom: "27vw" , ease: Power0.easeNone  }, 0
-						.to $sliderTitle, .5, { autoAlpha: 1}, 0
-						.to $sliderWrapper, 0.2, { autoAlpha: 0 }, 0
+						.set $sliderWrapper, { height: "#{productCoverHeightOpen}px", bottom: 'auto' }, 0
+						.to $this, 0.3, { paddingBottom: "27vw" , ease: Power2.easeOut  }, 0
+						.to $sliderTitle, .3, { autoAlpha: 1}, 0
 						# .to $colLeft, .2, {marginTop: 0}, 0
 				else
-					tl
-						.to $slider, 0.4, { x: -window.innerWidth, ease: Power1.easeIn }, 0
-						.to $sliderWrapper, 0.2, { autoAlpha: 0, ease: Power0.easeNone }, 0
+					coef = 2
+				tl.to $slider, .3, { x: - 0.5 * window.innerWidth * coef / 4, autoAlpha: 0, ease:Power1.easeOut }, 0
 
 			# if isOpen
 			# 	$targetIngredients = $target.removeClass('ingredients-open').find('.product-params__ingredients')
@@ -207,7 +200,7 @@ $ ->
 				$openBlock.removeClass 'active'
 				removeHash()
 				activeBlock = null
-				timeout = 500
+				timeout = 600
 
 			setTimeout ->
 				hoverOut.call $openBlock if $openBlock.length and !touchDevice

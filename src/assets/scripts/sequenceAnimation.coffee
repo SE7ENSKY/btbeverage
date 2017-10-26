@@ -12,7 +12,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 		return unless obj && pixi.sprite
 		currentChild = pixi.frames[Math.round(obj.current)]
 		prevActive = pixi.sprite.texture
-		if prevActive != currentChild
+		if prevActive != currentChild and seqScene.state() == "DURING"
 			pixi.sprite.texture = currentChild
 			pixi.rerender()
 

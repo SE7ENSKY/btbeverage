@@ -29,6 +29,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 		seqTween.to $seq, 1,
 			transform: "translateX(#{options.shiftToX})"
 			ease: Power0.easeNone
+			force3D: false
 		, 0
 
 	cntrl = controller.get()
@@ -99,6 +100,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 				seqTween.fromTo $seq, 0.5,
 					transform: "translateX(0)",
 						transform: "translateX(#{options.shiftToX})"
+						force3D: false
 						ease: Power0.easeNone
 				, 0
 				seqScene.removeTween().setTween seqTween

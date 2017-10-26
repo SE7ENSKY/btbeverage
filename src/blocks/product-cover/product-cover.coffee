@@ -34,13 +34,13 @@ $ ->
 			# 	scrollOffset = $this.offset().top
 			scrollOffset = $this.offset().top
 			valY = scrollOffset - $('.header').outerHeight()
-			TweenMax.to $(window), .2,
+			TweenMax.to $(window), 2,
 				scrollTo:
 					y: valY
 					autoKill: false
 				ease: Power1.easeOut
 				# overwrite: 10
-				onComplete: ->
+				onStart: ->
 					cb() if cb?
 					# if $col.length
 					# 	thisOffset = $this.offset().top
@@ -60,6 +60,8 @@ $ ->
 				onComplete: ->
 					isAnimation = false
 					cb() if cb?
+
+			tl.timeScale(.5)
 
 			$target = $catalog.find($this.attr("data-target"))
 			
@@ -87,34 +89,37 @@ $ ->
 				unless isMobile()
 					tl
 						.fromTo $this, 0.5, { paddingBottom: "#{productCoverHeightClosed}px" }, { paddingBottom: "#{productCoverHeightOpen}px", ease: Power0.easeNone }, 0
-						.set $blockInners, { autoAlpha: 1  }, 0
+						# .set $blockInners, { autoAlpha: 1  }, 0
 						.fromTo $sliderTitle, .5, { autoAlpha: 1}, {autoAlpha: 0}, 0
 				tl	
 					.fromTo $target, .5, { height: 0 }, { height: targetInnerHeight, ease: Power2.easeOut  }, 0
-					.fromTo $targetInner, .5, {scaleY: 0}, {scaleY: 1, ease: Power2.easeOut}, 0
+					# .fromTo $targetInner, .5, {scaleY: 0}, {scaleY: 1, ease: Power2.easeOut}, 0
+					.fromTo $targetInner, .5, {y: '20%', autoAlpha: 1}, {y: '0%', ease: Power2.easeOut, force3D: false}, 0
 					.fromTo $sliderWrapper, 0.2, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.2
 
 				unless isMobile()
 					tl
-						.fromTo $paramsTextInner, 0.5, { autoAlpha: 0, y: '-100%' }, { autoAlpha: 1, y: '0%', ease: Power2.easeOut , force3D: false}, 0.3
+						# .fromTo $paramsTextInner, 0.5, { autoAlpha: 0, y: '-100%' }, { autoAlpha: 1, y: '0%', ease: Power2.easeOut , force3D: false}, 0.3
 						.fromTo $slider, 1, { x: - 0.5 * window.innerWidth * coef}, { x: 0, ease: Power1.easeOut , force3D: false}, 0.3
-						.staggerFromTo $blockInners, .3, { x: 100 * coef + '%' }, { x: '0%' , force3D: false}, .1, 0.4
+						# .staggerFromTo $blockInners, .3, { x: 100 * coef + '%' }, { x: '0%' , force3D: false}, .1, 0.4
+						.fromTo [$blockInners, $paramsTextInner], .5, { y: '-30%' }, { y: '0%', force3D: false}, .1, 0.4
 						.staggerFromTo $sliderVerticalText, 0.4, { autoAlpha: 0, rotationX: 90 * coef }, { autoAlpha: 1, rotationX: 0 , force3D: false}, 0.2, 0.4
 				else
 					tl
-						.fromTo $paramsTextInner, 0.3, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.3
+						# .fromTo $paramsTextInner, 0.3, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.3
 						.fromTo $slider, 0.5, { x: -window.innerWidth }, { x: 0, ease: Power1.easeOut }, 0.3
-						.staggerFromTo $blockInners, 0.3, { autoAlpha: 0 }, { autoAlpha: 1 }, .1, 0.4
+						# .staggerFromTo $blockInners, 0.3, { autoAlpha: 0 }, { autoAlpha: 1 }, .1, 0.4
 			
 			# close
 			else
 
 				tl
 					.to $target, .5, { height: 0, ease: Power2.easeOut }, 0
-					.to $targetInner, .5, { scaleY: 0, ease: Power2.easeOut }, 0
+					.to $targetInner, .5, {y: '-50%', autoAlpha: 0, ease: Power2.easeOut, force3D: false}, 0
+					# .to $targetInner, .5, { scaleY: 0, ease: Power2.easeOut }, 0
 
-					.to $paramsTextInner, 0.2, { autoAlpha: 0 }, 0
-					.to $blockInners, 0.2, { autoAlpha: 0 }, 0
+					# .to $paramsTextInner, 0.2, { autoAlpha: 0 }, 0
+					# .to $blockInners, 0.2, { autoAlpha: 0 }, 0
 				
 				unless isMobile()
 					tl

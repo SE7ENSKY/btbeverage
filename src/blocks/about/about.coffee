@@ -58,7 +58,7 @@ $ ->
 
 		calcDuration = ->
 			return durationValue unless needCalcDuration
-			durationValue = $('.sequence-widget').offset().top - $('.about__list.first').offset().top - 100
+			durationValue = $('.about__list.first').offset().top - $('.about__title').offset().top - 200
 			needCalcDuration = false
 			return durationValue
 

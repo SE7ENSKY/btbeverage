@@ -58,14 +58,20 @@ $ ->
 
 		calcDuration = ->
 			return durationValue unless needCalcDuration
-			durationValue = $('.sequence-widget').offset().top - $('.about__title').offset().top - $('.about__title').outerHeight(true) - 3 * 80 - window.innerHeight / 2 - 150
+			durationValue = $('.sequence-widget').offset().top - $('.about__list.first').offset().top - 100
 			needCalcDuration = false
 			return durationValue
 
 		$(window).on 'resize', ->
 			needCalcDuration = !isMobile()
 
-		sequenceAnimation '.about__title', sequence[0], sequence[1], { begin: true, triggerHook: 0.05, duration: calcDuration }
+		offset = -> -400
+
+		sequenceAnimation '.about__list.first', sequence[0], sequence[1],
+			begin: true
+			triggerHook: 1
+			duration: calcDuration
+			offset: offset
 
 	aboutBlockJS()
 

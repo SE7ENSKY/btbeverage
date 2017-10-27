@@ -18,21 +18,27 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 			pixi.sprite.texture = currentChild
 			pixi.rerender()
 
-	seqTween = new TimelineMax()
-	seqTween.fromTo tempAnimationObj, 1,
-		current: start,
-			current: end,
-			onUpdate: onUpdateFunc,
-			onUpdateParams: [tempAnimationObj],
-			ease: Power0.easeNone,
-	, 0
-
-	if options.shiftToX
-		seqTween.to $seq, 1,
-			transform: "translateX(#{options.shiftToX})"
-			ease: Power0.easeNone
-			force3D: false
+	getSeqTween = ->
+		tw = new TimelineMax()
+		tw.fromTo tempAnimationObj, 0.5,
+			current: start,
+				current: end,
+				onUpdate: onUpdateFunc,
+				onUpdateParams: [tempAnimationObj],
+				ease: Power0.easeNone,
 		, 0
+
+		if options.shiftToX
+			tw.fromTo $seq, 0.5,
+				transform: "translateX(0)",
+					transform: "translateX(#{options.shiftToX})"
+					force3D: false
+					ease: Power0.easeNone
+			, 0
+
+		tw
+
+	seqTween = getSeqTween()
 
 	cntrl = controller.get()
 	scene = null
@@ -91,19 +97,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 				$seq.css 'top', $menuHeight
 
 			if options.shiftToX
-				seqTween = new TimelineMax()
-				seqTween.fromTo tempAnimationObj, 0.5,
-					current: start,
-						current: end,
-						onUpdate: onUpdateFunc,
-						onUpdateParams: [tempAnimationObj],
-						ease: Power0.easeNone,
-				, 0
-				seqTween.fromTo $seq, 0.5,
-					transform: "translateX(0)",
-						transform: "translateX(#{options.shiftToX})"
-						force3D: false
-						ease: Power0.easeNone
-				, 0
+				seqTween = getSeqTween()
 				seqScene.removeTween().setTween seqTween
+
 			seqScene.enabled true

@@ -58,18 +58,20 @@ $ ->
 
 		calcDuration = ->
 			return durationValue unless needCalcDuration
-			durationValue = $('.about__list.first').offset().top - $('.about__title').offset().top - 200
+			durationValue = 1.3333 * window.innerHeight
 			needCalcDuration = false
 			return durationValue
 
 		$(window).on 'resize', ->
 			needCalcDuration = !isMobile()
 
-		offset = -> -400
+		offset = ->
+			titleHeight = $('.about__title').outerHeight()
+			return titleHeight - 15 # it's a magic number
 
-		sequenceAnimation '.about__list.first', sequence[0], sequence[1],
+		sequenceAnimation '.about__title', sequence[0], sequence[1],
 			begin: true
-			triggerHook: 1
+			triggerHook: 0.5
 			duration: calcDuration
 			offset: offset
 

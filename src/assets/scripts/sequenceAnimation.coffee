@@ -101,3 +101,4 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 				seqScene.removeTween().setTween seqTween
 
 			seqScene.enabled true
+			seqScene.offset offset() if options.offset

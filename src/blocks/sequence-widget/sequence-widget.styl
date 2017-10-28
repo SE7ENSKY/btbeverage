@@ -13,6 +13,10 @@
 		margin-bottom 90px
 	@media phone
 		margin-bottom 55px
+	@media (min-width: 768px) and (orientation: portrait)
+		min-height auto
+		margin-top 0
+		margin-bottom 55px
 	&__body
 		color #fff
 		@media tablet_desktop
@@ -22,6 +26,9 @@
 		@media tablet_portrait
 			padding 0
 		@media phone
+			width 100%
+			padding 40px 30px
+		@media (min-width: 768px) and (orientation: portrait)
 			width 100%
 			padding 40px 30px
 	&__title
@@ -35,6 +42,8 @@
 			font-size calc(11vw - 0.45rem)
 		@media phone
 			text-align center
+		@media (min-width: 768px) and (orientation: portrait)
+			text-align center
 	&__content
 		@media xl
 			font-size 20px
@@ -45,5 +54,11 @@
 		@media phone
 			text-align center
 			margin-top 30px
+			p
+				margin 0
+		@media (min-width: 768px) and (orientation: portrait)
+			width 65%
+			text-align center
+			margin 30px auto 0
 			p
 				margin 0

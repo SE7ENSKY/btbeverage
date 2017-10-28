@@ -1,6 +1,8 @@
 .about
 	@media tablet_desktop
 		margin-bottom 80px
+	@media (min-width: 768px) and (orientation: portrait)
+		margin-bottom 0
 	&__inner
 		@media tablet_desktop
 			padding-top 140px
@@ -74,8 +76,8 @@
 			justify-content space-between
 			margin-left -20px
 			margin-right -20px
-		@media (orientation: portrait)
-			justify-content space-between
+		@media (min-width: 768px) and (orientation: portrait)
+			justify-content space-around
 			margin-left -20px
 			margin-right -20px
 		&-item
@@ -108,6 +110,8 @@
 				width calc(60.625vh - 50px)
 			@media phone
 				display none
+			@media (min-width: 768px) and (orientation: portrait)
+				display none
 		&-title
 			font-size 18px
 			line-height 1.3
@@ -130,7 +134,7 @@
 			display none
 			@media phone
 				display block
-			@media (orientation: portrait)
+			@media (min-width: 768px) and (orientation: portrait)
 				display block
 			max-width 100%
 			max-height @max-width

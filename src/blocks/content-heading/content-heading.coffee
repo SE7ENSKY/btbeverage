@@ -15,7 +15,7 @@ $ ->
 
 		new Scene({
 				triggerElement: $block.get(0),
-				offset: -300,
+				triggerHook: 1,
 				duration: '75%'
 			})
 			.setTween(tl)

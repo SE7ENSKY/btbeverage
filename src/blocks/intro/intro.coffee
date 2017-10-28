@@ -171,7 +171,7 @@ $ ->
 			duration = 0
 			calcDuration = ->
 				return duration unless needUpdateDuration
-				duration = if isMobile() then "30%" else "50%"
+				duration = if isMobile() or isPortrait() then "30%" else "50%"
 				needUpdateDuration = false
 				return duration
 

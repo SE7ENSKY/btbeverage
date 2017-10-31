@@ -55,6 +55,10 @@ $ ->
 		# if special scroll2id is set - jump to it
 		if data and data.id and $("##{data.id}").length
 			evt.preventDefault()
+
+			if $('body').hasClass 'overflow-hidden'
+				return Barba.Pjax.originalPreventCheck(evt, element)
+
 			window.scrollTo 0, $("##{data.id}").offset().top - $('.header').outerHeight()
 			return false
 		# prevent all actions if we are on the same page

@@ -2,6 +2,7 @@ import lozad from 'lozad'
 import { TweenMax } from 'gsap'
 
 $ ->
+	isForceLoad = false
 	observer = lozad '.lozad',
 		rootMargin: '1000px 0px',
 		threshold: 0
@@ -48,12 +49,15 @@ $ ->
 
 			handleCanPlayThrough = ->
 				$video.addClass 'is-loaded'
-				$(document).trigger 'videos-loaded' if --totalVideos == 0
+				if --totalVideos == 0
+					isForceLoad = false
+					$(document).trigger 'videos-loaded'
+
 				# force play
 				$video.get(0).play() if $video.closest('.product-cover.hover, .product-cover.active').length
 				TweenMax.to $image, 0.5, { autoAlpha: 0, delay: 1.5 }
-				NProgress.inc(0.01) if window.location.pathname == '/'
-				$video.get(0).removeEventListener 'canplaythrough', handleCanPlayThrough
+
+				NProgress.inc(0.01) if window.location.pathname == '/' and isForceLoad
 
 			$video.get(0).addEventListener 'canplaythrough', handleCanPlayThrough
 
@@ -62,6 +66,7 @@ $ ->
 	totalVideos = -1
 
 	initLazyLoad = ->
+		isForceLoad = false
 		observer.observe()
 		videoWasInit = false
 		if !isMobile() and !touchDevice
@@ -76,6 +81,7 @@ $ ->
 				catalogVideoObserver.observe()
 
 	forceLazyLoad = ->
+		isForceLoad = true
 		$('.lozad').each ->
 			observer.triggerLoad @
 

@@ -245,11 +245,12 @@ $ ->
 	#
 
 	restoreStateAfterPreloading = ->
-		$('html, body').removeClass 'overflow-hidden'
-		# $(document).trigger 'init-slow-scroll'
-		NProgress.done()
-		$('.intro__more text').text 'Scroll to discover'
-		scrollToHash()
+		if window.location.pathname == '/'
+			$('html, body').removeClass 'overflow-hidden'
+			# $(document).trigger 'init-slow-scroll'
+			NProgress.done() 
+			$('.intro__more text').text 'Scroll to discover'
+			scrollToHash()
 
 	#
 	# scroll to element with id if location.hash exists

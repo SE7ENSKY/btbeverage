@@ -9,7 +9,7 @@ window.sequenceAnimation = (triggerElement, start, end, options = {}) ->
 		current: start
 
 	onUpdateFunc = (obj) ->
-		return unless obj && pixi.sprite
+		return unless obj && pixi.sprite && seqScene
 		currentChild = pixi.frames[Math.round(obj.current)]
 		prevActive = pixi.sprite.texture
 		state = seqScene.state()

@@ -5,6 +5,7 @@ $ ->
 	introScrollScene = []
 	isSequenceLoaded = false
 	sliderAnimationOver = false
+	isVideosLoaded = false
 
 	window.isPreloaderPlayedBefore = false
 
@@ -216,7 +217,7 @@ $ ->
 			setTimeout ->
 				$(document).trigger 'force-lazy-load'
 				sliderAnimationOver = true
-				restoreStateAfterPreloading() if isSequenceLoaded
+				restoreStateAfterPreloading() if isSequenceLoaded and isVideosLoaded
 				if isMobile()
 					$(document).trigger 'sequence-init'
 				else
@@ -268,9 +269,10 @@ $ ->
 
 	handleSequenceLoad = ->
 		isSequenceLoaded = true
-		restoreStateAfterPreloading() if sliderAnimationOver
+		restoreStateAfterPreloading() if sliderAnimationOver and isVideosLoaded
 
 	handleVideosLoad = ->
+		isVideosLoaded = true
 		restoreStateAfterPreloading() if sliderAnimationOver and isSequenceLoaded
 
 	introJS()

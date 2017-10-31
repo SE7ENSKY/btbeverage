@@ -55,7 +55,7 @@ $ ->
 			.load onPixiSetup
 			.onProgress.add ->
 				if --count == 0
-					NProgress.inc(0.05) if window.location.pathname == '/'
+					NProgress.inc(0.1) if window.location.pathname == '/'
 					count = 20
 
 	$(document).on 'sequence-init', sequenceJS

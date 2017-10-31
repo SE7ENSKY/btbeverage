@@ -15,7 +15,6 @@ $ ->
 		pixi.frames = []
 
 		onPixiSetup = (loader, resources) ->
-			NProgress.inc(0.5) if window.location.pathname == '/'
 			$(document).trigger 'sequence-loaded'
 
 			pixi.frames = Object.keys(resources).map (key) ->
@@ -49,8 +48,14 @@ $ ->
 
 			arr.map (x, i) -> "#{dir}/#{fixNumberString(i + 1)}.png"
 
+		count = 20
+
 		loader
 			.add fillArray(amount, dir)
 			.load onPixiSetup
+			.onProgress.add ->
+				if --count == 0
+					NProgress.inc(0.05) if window.location.pathname == '/'
+					count = 20
 
 	$(document).on 'sequence-init', sequenceJS

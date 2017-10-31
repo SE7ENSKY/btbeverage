@@ -41,19 +41,22 @@ $ ->
 			# add bottle images
 			$sliderImg = $this.parent().find('.product-cover__slider-image')
 			$sliderImg.each ->
-				console.log $(@).data().src
 				@.src = $(@).data().src
 
 			# add image background
 			$image.css('background-image', "url(#{src})")
 
-			$video.get(0).addEventListener 'canplaythrough', ->
+			handleCanPlayThrough = ->
 				$video.addClass 'is-loaded'
 				$(document).trigger 'videos-loaded' if --totalVideos == 0
 				# force play
 				$video.get(0).play() if $video.closest('.product-cover.hover, .product-cover.active').length
 				TweenMax.to $image, 0.5, { autoAlpha: 0, delay: 1.5 }
 				NProgress.inc(0.01) if window.location.pathname == '/'
+				$video.get(0).removeEventListener 'canplaythrough', handleCanPlayThrough
+
+			$video.get(0).addEventListener 'canplaythrough', handleCanPlayThrough
+
 
 	videoWasInit = false
 	totalVideos = -1

@@ -10,6 +10,7 @@ $ ->
 	window.isPreloaderPlayedBefore = false
 
 	introJS = ->
+		isVideosLoaded = true
 		NProgress.start()
 		$block = $(".intro")
 		return unless $block.length
@@ -217,11 +218,12 @@ $ ->
 			setTimeout ->
 				$(document).trigger 'force-lazy-load'
 				sliderAnimationOver = true
-				restoreStateAfterPreloading() if isSequenceLoaded and isVideosLoaded
 				if isMobile()
 					$(document).trigger 'sequence-init'
 				else
+					isVideosLoaded = false
 					addVideo $block, 0, addVideoCallback
+				restoreStateAfterPreloading() if isSequenceLoaded and isVideosLoaded
 			, 5000
 			window.isPreloaderPlayedBefore = true
 

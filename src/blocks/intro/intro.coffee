@@ -9,6 +9,7 @@ $ ->
 	window.isPreloaderPlayedBefore = false
 
 	introJS = ->
+		NProgress.start()
 		$block = $(".intro")
 		return unless $block.length
 		window.scrollTo 0, 0
@@ -213,11 +214,9 @@ $ ->
 			sliderAnimation 3.7
 			$('html, body').addClass 'overflow-hidden'
 			setTimeout ->
-				if isSequenceLoaded
-					$('html, body').removeClass 'overflow-hidden'
-					# $(document).trigger 'init-slow-scroll'
-					scrollToHash()
+				$(document).trigger 'force-lazy-load'
 				sliderAnimationOver = true
+				restoreStateAfterPreloading() if isSequenceLoaded
 				if isMobile()
 					$(document).trigger 'sequence-init'
 				else
@@ -232,10 +231,22 @@ $ ->
 			$('.intro__preloader').hide(0)
 			$('.intro__logo').addClass 'done'
 			addVideo $block, 0, addVideoCallback
+			NProgress.done()
 		else
 			startAnimation()
 
 		leafScrollAnimation()
+
+	#
+	# remove scroll forbid
+	#
+
+	restoreStateAfterPreloading = ->
+		$('html, body').removeClass 'overflow-hidden'
+		# $(document).trigger 'init-slow-scroll'
+		NProgress.done()
+		$('.intro__more text').text 'Scroll to discover'
+		scrollToHash()
 
 	#
 	# scroll to element with id if location.hash exists
@@ -257,14 +268,13 @@ $ ->
 
 	handleSequenceLoad = ->
 		isSequenceLoaded = true
-		$('.intro__more text').text 'Scroll to discover'
-		if sliderAnimationOver
-			$('html, body').removeClass 'overflow-hidden'
-			$(document).trigger 'init-slow-scroll'
+		restoreStateAfterPreloading() if sliderAnimationOver
 
-			scrollToHash()
+	handleVideosLoad = ->
+		restoreStateAfterPreloading() if sliderAnimationOver and isSequenceLoaded
 
 	introJS()
 
 	$(document).on 'intro', introJS
 	$(document).on 'sequence-loaded', handleSequenceLoad
+	$(document).on 'videos-loaded', handleVideosLoad

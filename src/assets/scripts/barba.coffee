@@ -20,7 +20,7 @@ $ ->
 		fadeOut: -> new Promise (resolve) ->
 				controller.destroy()
 				controller.resizeSceneActions.length = 0
-				$(document).trigger 'remove-slow-scroll'
+				# $(document).trigger 'remove-slow-scroll'
 				$('html, body').removeClass 'overflow-hidden'
 				$('.header').removeClass 'no-padding'
 				$('body'). removeClass 'bg-white'
@@ -79,6 +79,7 @@ $ ->
 		history.replaceState { sTop: window.pageYOffset }, "page1", window.location.pathname
 
 	Barba.Dispatcher.on 'transitionCompleted', ->
+		NProgress.remove()
 		FastClick.attach(document.body)
 		$(document).trigger 'init-lazy-load'
 		$(document).trigger 'catalog-init'

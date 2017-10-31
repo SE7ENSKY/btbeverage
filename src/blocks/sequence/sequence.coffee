@@ -15,6 +15,7 @@ $ ->
 		pixi.frames = []
 
 		onPixiSetup = (loader, resources) ->
+			NProgress.inc(0.5) if window.location.pathname == '/'
 			$(document).trigger 'sequence-loaded'
 
 			pixi.frames = Object.keys(resources).map (key) ->

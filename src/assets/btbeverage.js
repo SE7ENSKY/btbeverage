@@ -18,6 +18,7 @@ const getRequiredfiles = file => file.keys().forEach(file);
 // ------------------ import vendor styles -------------------
 import 'normalize.css/normalize.css';
 import 'flickity/dist/flickity.css';
+import 'nprogress/nprogress.css';
 
 // ------------------ import system styles -------------------
 import 'f/ffmark/stylesheet.css';
@@ -44,6 +45,7 @@ import 'scripts/videoWithPromise.coffee';
 import 'scripts/helpers.coffee';
 import 'scripts/lazyLoad.coffee';
 import 'scripts/setHash.coffee';
+import 'scripts/nprogress.coffee';
 
 // ------------------ import system blocks -------------------
 getRequiredfiles(require.context('../blocks/', true, /\.(css|styl|less|sass|scss)$/));

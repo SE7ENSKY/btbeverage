@@ -11,9 +11,10 @@ $ ->
 
 	introJS = ->
 		isVideosLoaded = true
-		NProgress.start()
 		$block = $(".intro")
 		return unless $block.length
+
+		NProgress.start()
 		window.scrollTo 0, 0
 		#
 		# handle logo SVG animation on IE/Edge
@@ -248,7 +249,7 @@ $ ->
 		if window.location.pathname == '/'
 			$('html, body').removeClass 'overflow-hidden'
 			# $(document).trigger 'init-slow-scroll'
-			NProgress.done() 
+			NProgress.done()
 			$('.intro__more text').text 'Scroll to discover'
 			scrollToHash()
 

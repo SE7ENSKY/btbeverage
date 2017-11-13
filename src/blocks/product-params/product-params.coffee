@@ -85,6 +85,7 @@ $ ->
 			$innerPackSize.each -> $(this).removeClass 'active'
 			$this.addClass 'active'
 			$dots = $this.parent().parent().find('.product-params__packs-dot')
+			$dots.parent().toggleClass "reverse", activeDots == 6
 			$dots.each (index) ->
 				if index < $dots.length - activeDots
 					$(this).addClass 'disabled'

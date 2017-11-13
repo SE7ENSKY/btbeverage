@@ -138,12 +138,20 @@
 			display flex
 			flex-wrap wrap
 			width 55px
+			&.reverse
+				flex-direction column-reverse
+				height 36px
+				width 48px
 		&-dot
 			width 6px
 			height 6px
 			margin 3px
 			background-color #fff
 			border-radius 50%
+			.reverse &
+				opacity 0.2
+				&.disabled
+					opacity 1
 			&.disabled
 				opacity 0.2
 	&__cart

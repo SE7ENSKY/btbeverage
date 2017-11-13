@@ -70,8 +70,10 @@
 				margin-top 160px
 			@media (orientation: portrait)
 				margin-top 160px
-		@media tablet_desktop
+		@media desktop
 			justify-content space-around
+		@media tablet
+			justify-content space-between
 		@media phone
 			justify-content space-between
 			margin-left -20px
@@ -83,7 +85,7 @@
 		&-item
 			text-align center
 			@media tablet_desktop
-				flex 1
+				flex-grow 1
 				max-width 33%
 				margin-bottom 110px
 			@media desktop
@@ -105,10 +107,8 @@
 				max-height @max-width
 		&-separator
 			width calc(60.625vh - 250px)
-			min-height 1px
-			@media tablet
-				width calc(60.625vh - 50px)
-			@media phone
+			height 1px
+			@media phone_tablet
 				display none
 			@media (min-width: 768px) and (orientation: portrait)
 				display none

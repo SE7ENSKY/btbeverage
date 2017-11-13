@@ -4,23 +4,25 @@
 	width 100%
 	background url(i("green-texture.jpg")) repeat center center brandColor
 	@media desktop
-		min-height 100vh
+		justify-content center
+		align-items center
+		height 100vh
 		margin-top 390px
 		margin-bottom 120px
 	@media tablet
-		min-height 100vh
+		height 100vh
+		justify-content center
+		align-items center
 		margin-top 390px
 		margin-bottom 90px
 	@media phone
 		margin-bottom 55px
 	@media (min-width: 768px) and (orientation: portrait)
-		min-height auto
 		margin-top 0
 		margin-bottom 55px
 	&__body
 		color #fff
 		@media tablet_desktop
-			margin auto
 			width 60%
 			padding-left 21%
 		@media tablet_portrait

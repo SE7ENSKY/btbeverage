@@ -26,6 +26,8 @@ $ ->
 	else
 		window.touchDevice = true
 
+	$('body').addClass 'no-objectfit' if detectIE()
+
 	FastClick.attach(document.body)
 	# fix for FastClick on email type
 	originalSetSelectionRange = HTMLInputElement.prototype.setSelectionRange

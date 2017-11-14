@@ -26,7 +26,10 @@ $ ->
 	else
 		window.touchDevice = true
 
-	$('body').addClass 'no-objectfit' if detectIE()
+	if detectIE()
+		$('body').addClass 'no-objectfit ie'
+	else
+		$('body').addClass 'no-ie'
 
 	FastClick.attach(document.body)
 	# fix for FastClick on email type

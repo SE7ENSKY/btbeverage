@@ -6,15 +6,17 @@
 	@media desktop
 		justify-content center
 		align-items center
-		height 100vh
 		margin-top 390px
 		margin-bottom 120px
+		.no-ie &
+			min-height 100vh
 	@media tablet
-		height 100vh
 		justify-content center
 		align-items center
 		margin-top 390px
 		margin-bottom 90px
+		.no-ie &
+			min-height 100vh
 	@media phone
 		margin-bottom 55px
 	@media (min-width: 768px) and (orientation: portrait)

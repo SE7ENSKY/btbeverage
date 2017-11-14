@@ -62,7 +62,7 @@
 		position relative
 		display flex
 		flex-wrap wrap
-
+		width 100%
 		&.first
 			@media tablet_desktop
 				margin-top 133vh
@@ -86,7 +86,10 @@
 			text-align center
 			@media tablet_desktop
 				flex-grow 1
-				max-width 33%
+				.no-ie &
+					max-width 33%
+				.ie &
+					width 33%
 				margin-bottom 110px
 			@media desktop
 				&_second-item

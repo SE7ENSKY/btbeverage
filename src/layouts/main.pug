@@ -3,10 +3,14 @@ extends root
 block root
 	- classes = []
 	- bodyClasses = []
+	- footerClasses = []
 	if headerMod
 		- classes.push(headerMod)
 	if headerDefault
 		- classes.push('header_default')
+	if footerBg
+		- footerClasses.push('footer_bg')
+	
 	+b("header").header(class=classes): +i({
 		menu: mainMenu
 	})
@@ -14,11 +18,11 @@ block root
 		- bodyClasses.push(bodyMod)
 
 	main.main#barba-wrapper
-		.barba-container(data-namespace="page" data-header-classes=classes data-body-class=bodyClasses)
+		.barba-container(data-namespace="page" data-header-classes=classes data-body-class=bodyClasses data-footer-class=footerClasses)
 			block main
 				!= content
 
-	+b("footer").footer: +i
+	+b("footer").footer(class=footerClasses): +i
 
 	+b.modals: +i({
 		cartList: cartProducts

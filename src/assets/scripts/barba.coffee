@@ -24,6 +24,7 @@ $ ->
 				$('html, body').removeClass 'overflow-hidden'
 				$('.header').removeClass 'no-padding'
 				$('body'). removeClass 'bg-white'
+				$('footer'). removeClass 'footer_bg'
 				resolve()
 		fadeIn: ->
 			tl = new TimelineMax()
@@ -31,12 +32,14 @@ $ ->
 			newPageHeaderClasses = $(@.newContainer).data('header-classes').join(' ')
 			self = @
 			newBodyClass = $(self.newContainer).data('body-class')
+			newFooterClass = $(self.newContainer).data('footer-class')
 
 			onComplete = ->
 				self.done()
 				windowScroll()
 
 				$('body').addClass newBodyClass.join(" ") if newBodyClass
+				$('footer').addClass newFooterClass.join(" ") if newFooterClass
 
 				if oldPageHeaderClasses != newPageHeaderClasses
 					$('.header').removeClass(oldPageHeaderClasses).addClass(newPageHeaderClasses)

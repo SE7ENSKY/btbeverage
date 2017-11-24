@@ -126,7 +126,7 @@
   externalLink: "https://www.amazon.com/Kombucha-Organic-Probiotics-Prebiotic-B-tea/dp/B073V6FLHH/ref=sr_1_11_a_it?ie=UTF8&qid=1506011745&sr=8-11&keywords=btea+kombucha"
   slug: 'green-tea'
   slider:
-    verticalTxt: "<span>Grean Tea</span>"
+    verticalTxt: "<span>Green Tea</span>"
     bottleImage:
       - "/assets/i/bottle_green-tea_bg.png"
       - "/assets/i/bottle_green-tea_sm.png"

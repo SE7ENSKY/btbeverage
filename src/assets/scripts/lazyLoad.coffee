@@ -7,6 +7,10 @@ $ ->
 		rootMargin: '1000px 0px',
 		threshold: 0
 
+	notMobileObserver = lozad '.not-mobile-lozad',
+		rootMargin: '1000px 0px',
+		threshold: 0
+
 	videoObserver = lozad '.video-lozad',
 		rootMargin: '500px 0px',
 		threshold: 0,
@@ -73,12 +77,14 @@ $ ->
 			videoWasInit = true
 			catalogVideoObserver.observe()
 			videoObserver.observe()
+			notMobileObserver.observe()
 
 		controller.resizeSceneActions.push ->
 			if !isMobile() and !videoWasInit and !touchDevice
 				videoWasInit = true
 				videoObserver.observe()
 				catalogVideoObserver.observe()
+				notMobileObserver.observe()
 
 	forceLazyLoad = ->
 		isForceLoad = true

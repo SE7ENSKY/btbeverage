@@ -1,8 +1,11 @@
 .footer
+	position relative
 	font-size 11px
 	text-align center
-	@media tablet_desktop
+	@media desktop
 		padding 80px 0 90px
+	@media tablet
+		padding 30px 0 40px
 	@media phone
 		padding 50px 0
 	&__socials
@@ -15,3 +18,13 @@
 			text-decoration none
 			&:hover
 				color brandColor
+	.container
+		z-index 2
+
+	&__bg
+		position absolute
+		bottom 0
+		left 0
+		width 40%
+		@media phone
+			display none
